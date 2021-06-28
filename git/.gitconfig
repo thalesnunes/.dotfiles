@@ -1,0 +1,7 @@
+[user]
+	name = Thales Nunes
+	email = thalesaknunes22@gmail.com
+[core]
+	excludesFile = ~/Projects/.gitignore_global
+[credential]
+	helper = store

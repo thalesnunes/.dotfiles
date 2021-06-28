@@ -1,0 +1,10 @@
+[Dlg Performance]
+EnableCompositing=false
+
+[General]
+ShellOpenFileInTabs=true
+ttsEngine=flite
+
+[Main View]
+ShowLeftPanel=false
+SplitterSizes=187,1636

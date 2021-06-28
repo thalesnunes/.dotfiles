@@ -1,0 +1,128 @@
+Height 1080=994
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAABhkAAAO8AAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAQAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAAAAAAJABrAG8AcgBnAGEAbgBpAHoAZQByAF8AdABvAG8AbABiAGEAcgEAAAOm/////wAAAAAAAAAAAAAAIABzAGMAaABlAGQAdQBsAGUAXwB0AG8AbwBsAGIAYQByAAAAAwT/////AAAAAAAAAAAAAAAcAGYAaQBsAHQAZQByAF8AdABvAG8AbABiAGEAcgAAAAAA/////wAAAAAAAAAA
+StatusBar=Disabled
+Width 1920=1561
+
+[Agenda View]
+Hour Size=15
+Show Icons in Agenda View=false
+
+[AgentTypeDialog]
+Size=460,320
+
+[Calendar]
+Default Calendar=-1
+
+[CollectionPropertiesDialog]
+Size=539,500
+
+[CollectionTreeView]
+Expansion=c18,c13
+HorizontalScroll=0
+VerticalScroll=0
+
+[Default Datetimes]
+Default Reminder Time=10
+Enable Event Reminders=true
+
+[General]
+CalendarFilters=
+Current Filter=
+Current View=Agenda
+Range Mode=3
+
+[GlobalCollectionSelection]
+Current=x-1
+Selection=c3,c17,c22,c14,c2,c16,c19
+
+[GlobalCollectionView]
+Expansion=c18,c13
+HorizontalScroll=0
+VerticalScroll=0
+
+[IncidenceDialog]
+Size=840,632
+
+[Internal Settings]
+DefaultResourceColorSeed=9
+
+[KFileDialog Settings]
+Recent Files[$e]=LabiExamesIcon.ico,file:$HOME/Imagens/Icons/LabiExamesIcon.ico
+Recent URLs[$e]=file:$HOME/Imagens/Icons/
+detailViewIconSize=0
+
+[KOrganizer Geometry]
+Separator1=0,941
+Separator2=0,0,525,430
+
+[MainWindow]
+Height 1080=1036
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAAA7EAAAPiAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAQAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAA/////wAAAAAAAAAAAAAAJABrAG8AcgBnAGEAbgBpAHoAZQByAF8AdABvAG8AbABiAGEAcgEAAAMF/////wAAAAAAAAAAAAAAIABzAGMAaABlAGQAdQBsAGUAXwB0AG8AbwBsAGIAYQByAAAAAwT/////AAAAAAAAAAAAAAAcAGYAaQBsAHQAZQByAF8AdABvAG8AbABiAGEAcgAAAAAA/////wAAAAAAAAAA
+StatusBar=Disabled
+ToolBarsMovable=Disabled
+Width 1920=945
+
+[Migratekde4]
+Version=1
+
+[Month View]
+Show Icons in Month View=false
+Show time in Month View=true
+
+[Quickview]
+Separator=87,348
+Size=775,600
+
+[Settings]
+DateNavigatorVisible=false
+EventViewerVisible=false
+ResourceViewVisible=false
+TodoViewVisible=false
+
+[Sidebar Todo View]
+ColumnOrder=0,1,2,3,4,5,6,7,8
+ColumnVisibility=true,false,false,false,true,true,false,false,false
+ColumnWidths=87,0,0,0,129,177,0,0,0
+SortAscending=1
+SortColumn=0
+
+[TagManagementDialog]
+Size=500,400
+
+[TagSelectionDialog]
+Size=500,400
+
+[Time & Date]
+Holidays=br_pt-br
+WorkingHoursEnd=1752,1,1,18,30,0
+WorkingHoursStart=1752,1,1,7,30,0
+
+[Timescale]
+Timescale Timezones=
+
+[Todo View]
+ColumnOrder=0,1,2,3,4,5,6,7,8
+ColumnVisibility=true,false,true,true,true,true,true,false,false
+ColumnWidths=1185,0,105,101,129,177,100,0,0
+SortAscending=1
+SortColumn=0
+
+[TodoTreeViewState]
+Current=x-1
+Expansion=
+HorizontalScroll=0
+Selection=
+VerticalScroll=0
+
+[TodoTreeViewStateS]
+Current=x-1
+Expansion=
+HorizontalScroll=0
+Selection=
+VerticalScroll=0
+
+[Views]
+Separator AgendaView=202,762
+ShownDatesCount=7

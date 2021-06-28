@@ -1,0 +1,21 @@
+[Desktop Entry]
+DefaultProfile=Pessoal.profile
+
+[DownloadDialog Settings]
+Height 1080=522
+Width 1920=700
+
+[Favorite Profiles]
+Favorites=
+
+[KFileDialog Settings]
+detailViewIconSize=0
+
+[MainWindow]
+Height 1080=1036
+State=AAAA/wAAAAD9AAAAAAAAB24AAAQGAAAABAAAAAQAAAAIAAAACPwAAAAA
+ToolBarsMovable=Disabled
+Width 1920=1902
+
+[TabBar]
+TabBarPosition=Top
