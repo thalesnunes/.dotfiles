@@ -13,8 +13,8 @@ Width 1920=800
 Number of Actions=0
 
 [KFileDialog Settings]
-Recent Files[$e]=Edna.layout.latte,file:$HOME/single_monitor.layout.latte,file:$HOME/dual_monitor.layout.latte
-Recent URLs[$e]=file:$HOME/Apps/
+Recent Files[$e]=Edna.layout.latte,file:$HOME/.config/latte/Unity.layout.latte,file:$HOME/.config/latte/Single Monitor.layout.latte,file:$HOME/.config/latte/Meu layout.layout.latte,file:$HOME/.config/latte/Estendido.layout.latte,file:$HOME/.config/latte/Dual Monitor.layout.latte,file:$HOME/.config/latte/Taskbar-Only.layout.latte
+Recent URLs[$e]=file:$HOME/.config/latte/
 detailViewIconSize=0
 iconViewIconSize=43
 

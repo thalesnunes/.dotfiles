@@ -8,3 +8,6 @@ ttsEngine=flite
 [Main View]
 ShowLeftPanel=false
 SplitterSizes=187,1636
+
+[PageView]
+MouseMode=TextSelect

@@ -22,9 +22,10 @@ Show Tab Bar=true
 Startup Session=new
 
 [KFileDialog Settings]
-Recent Files[$e]=Dracula.kateschema,file:$HOME/Apps/Dracula.kateschema
-Recent URLs[$e]=file:$HOME/Apps/
+Recent Files[$e]=Dracula.kateschema,file:$HOME/Projects/db-crawler/scripts/crawler-db.py
+Recent URLs[$e]=file:$HOME/Projects/db-crawler/scripts/
 detailViewIconSize=0
+iconViewIconSize=43
 
 [KTextEditor Document]
 Allow End of Line Detection=true
