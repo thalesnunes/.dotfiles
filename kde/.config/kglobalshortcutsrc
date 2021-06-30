@@ -51,7 +51,7 @@ _k_friendly_name=KDE Daemon
 display=Display\tMeta+P,Display\tMeta+P,Alternar tela
 
 [khotkeys]
-_k_friendly_name=KDE Daemon
+_k_friendly_name=Configurações do Sistema
 {2afb4543-5496-443a-9bfa-851c28f5ec9c}=Meta+C,none,Launch KOrganizer
 {47603c9a-b724-4fc1-9a9d-3505f2d4b008}=Meta+N,none,Launch Whatsapp
 {5c90ce37-f009-46b4-8d86-1f73dd39082a}=Meta+Shift+S,none,Launch Flameshot
@@ -262,7 +262,7 @@ Window to Screen 4=none,none,Janela para a tela 4
 Window to Screen 5=none,none,Janela para a tela 5
 Window to Screen 6=none,none,Janela para a tela 6
 Window to Screen 7=none,none,Janela para a tela 7
-_k_friendly_name=Latte Dock
+_k_friendly_name=KWin
 addDesktop=none,none,Virtual Desktop Bar - Add Desktop
 moveCurrentDesktopToLeft=none,none,Virtual Desktop Bar - Move Current Desktop to Left
 moveCurrentDesktopToRight=none,none,Virtual Desktop Bar - Move Current Desktop to Right
