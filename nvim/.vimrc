@@ -57,8 +57,6 @@ highlight Normal guibg=none
 nnoremap ; :
 vnoremap ; :
 
-inoremap jf <esc>
-
 augroup highlight_yank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})

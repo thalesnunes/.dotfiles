@@ -13,13 +13,13 @@ Width 1920=800
 Number of Actions=0
 
 [KFileDialog Settings]
-Recent Files[$e]=Edna.layout.latte,file:$HOME/.config/latte/Unity.layout.latte,file:$HOME/.config/latte/Single Monitor.layout.latte,file:$HOME/.config/latte/Meu layout.layout.latte,file:$HOME/.config/latte/Estendido.layout.latte,file:$HOME/.config/latte/Dual Monitor.layout.latte,file:$HOME/.config/latte/Taskbar-Only.layout.latte
-Recent URLs[$e]=file:$HOME/.config/latte/
+Recent Files[$e]=Edna.layout.latte,file:$HOME/Imagens/Icons/Candy_Icons/nvim.svg,file:$HOME/.config/latte/Unity.layout.latte,file:$HOME/.config/latte/Single Monitor.layout.latte,file:$HOME/.config/latte/Meu layout.layout.latte,file:$HOME/.config/latte/Estendido.layout.latte,file:$HOME/.config/latte/Dual Monitor.layout.latte,file:$HOME/.config/latte/Taskbar-Only.layout.latte
+Recent URLs[$e]=file:$HOME/Imagens/Icons/Candy_Icons/
 detailViewIconSize=0
 iconViewIconSize=43
 
 [KPropertiesDialog]
-Height 1080=514
+Height 1080=524
 Width 1920=488
 
 [LatteSettingsDialog]
