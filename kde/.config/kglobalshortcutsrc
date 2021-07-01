@@ -196,7 +196,7 @@ Walk Through Windows of Current Application Alternative=none,none,Passear pelas 
 Walk Through Windows of Current Application Alternative (Reverse)=none,none,Passear pelas janelas do aplicativo atual alternativo (reverso)
 Window Above Other Windows=Meta+Ctrl+Space,none,Manter acima das outras
 Window Below Other Windows=none,none,Manter abaixo das outras
-Window Close=Alt+Del\tAlt+Q,Alt+F4,Fechar janela
+Window Close=Meta+Backspace\tAlt+Q,Alt+F4,Fechar janela
 Window Fullscreen=none,none,Janela em tela inteira
 Window Grow Horizontal=none,none,Janela aumenta na horizontal
 Window Grow Vertical=none,none,Janela aumenta na vertical
@@ -488,7 +488,7 @@ _k_friendly_name=Controlo de volume PulseAudio
 _launch=none,none,Iniciar Controlo de volume PulseAudio
 
 [plasmashell]
-_k_friendly_name=Latte Dock
+_k_friendly_name=Plasma
 activate task manager entry 1=none,Meta+1,Ativar entrada 1 do gerenciador de tarefas
 activate task manager entry 10=none,Meta+0,Ativar entrada 10 do gerenciador de tarefas
 activate task manager entry 2=none,Meta+2,Ativar entrada 2 do gerenciador de tarefas

@@ -26,10 +26,15 @@ set scrolloff=8
 set termguicolors
 
 call plug#begin('~/.vim/plugged')
+" Python code formatter
+Plug 'ambv/black'
+
+" Fuzzy finder
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
+" Themeing
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'itchyny/lightline.vim'
 call plug#end()
@@ -53,9 +58,18 @@ let g:lightline = {
 colorscheme dracula
 highlight Normal guibg=none
 
+let mapleader = " "
 
 nnoremap ; :
 vnoremap ; :
+
+nnoremap <leader>ee :Ex<CR>
+vnoremap <leader>ee :Ex<CR>
+nnoremap <leader>ve :Vex<CR>
+vnoremap <leader>ve :Vex<CR>
+
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
 
 augroup highlight_yank
     autocmd!
