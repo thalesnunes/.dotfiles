@@ -60,6 +60,7 @@ _k_friendly_name=KDE Daemon
 {aa39d0c9-a757-402e-a220-acacef92b91e}=Meta+M,none,Launch Telegram
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Pesquisar
 {e4ec52fb-12e0-40ba-a7b0-b3bf26e3db2c}=Meta+T,none,Launch Konsole
+{f8eab752-c7fe-4eaf-98bc-ff71382d2800}=none,none,Launch Chrome
 
 [kmix]
 _k_friendly_name=Volume do áudio
@@ -115,10 +116,10 @@ Krohnkite: Grow Width=none,none,
 Krohnkite: Increase=none,none,
 Krohnkite: Left=Meta+\\,,none,
 Krohnkite: Monocle Layout=,none,
-Krohnkite: Move Down/Next=Meta+Shift+J,none,
+Krohnkite: Move Down/Next=Meta+Shift+K,none,
 Krohnkite: Move Left=none,none,
 Krohnkite: Move Right=none,none,
-Krohnkite: Move Up/Prev=Meta+Shift+K,none,
+Krohnkite: Move Up/Prev=Meta+Shift+J,none,
 Krohnkite: Next Layout=none,none,
 Krohnkite: Previous Layout=none,none,
 Krohnkite: Quarter Layout=none,none,
@@ -488,7 +489,7 @@ _k_friendly_name=Controlo de volume PulseAudio
 _launch=none,none,Iniciar Controlo de volume PulseAudio
 
 [plasmashell]
-_k_friendly_name=Plasma
+_k_friendly_name=Latte Dock
 activate task manager entry 1=none,Meta+1,Ativar entrada 1 do gerenciador de tarefas
 activate task manager entry 10=none,Meta+0,Ativar entrada 10 do gerenciador de tarefas
 activate task manager entry 2=none,Meta+2,Ativar entrada 2 do gerenciador de tarefas

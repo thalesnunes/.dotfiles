@@ -24,10 +24,15 @@ set undofile
 
 set scrolloff=8
 set termguicolors
+set colorcolumn=100
 
 call plug#begin('~/.vim/plugged')
 " Python code formatter
 Plug 'ambv/black'
+
+" LSP plugin
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
 
 " Fuzzy finder
 Plug 'nvim-lua/popup.nvim'
@@ -60,16 +65,27 @@ highlight Normal guibg=none
 
 let mapleader = " "
 
+" So I don't need to press Shift all the time
 nnoremap ; :
 vnoremap ; :
 
+" Explorer keys
 nnoremap <leader>ee :Ex<CR>
 vnoremap <leader>ee :Ex<CR>
 nnoremap <leader>ve :Vex<CR>
 vnoremap <leader>ve :Vex<CR>
 
+" Copy and paste to system's clipboard
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 augroup highlight_yank
     autocmd!
