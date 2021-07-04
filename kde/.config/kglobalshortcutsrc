@@ -59,7 +59,7 @@ _k_friendly_name=KDE Daemon
 {a5c2ab91-8b6f-4361-8fa1-261bd80c0175}=Meta+U,none,Launch Brave USP
 {aa39d0c9-a757-402e-a220-acacef92b91e}=Meta+M,none,Launch Telegram
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Pesquisar
-{e4ec52fb-12e0-40ba-a7b0-b3bf26e3db2c}=Meta+T,none,Launch Konsole
+{e4ec52fb-12e0-40ba-a7b0-b3bf26e3db2c}=Meta+T,none,Launch Alacritty
 
 [kmix]
 _k_friendly_name=Volume do áudio
