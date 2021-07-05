@@ -37,7 +37,7 @@ immutability=1
 plugin=com.github.zren.tiledmenu
 
 [Containments][127][Applets][128][Configuration]
-PreloadWeight=46
+PreloadWeight=38
 
 [Containments][127][Applets][128][Configuration][ConfigDialog]
 DialogHeight=660
@@ -81,19 +81,12 @@ showIcon=false
 subsMatch="Telegram Desktop","Gimp-.*","Brave Web Browser","Visual Studio Code","Google Chrome","LibreOffice Writer","LibreOffice Calc","LibreOffice Impress",
 subsReplace="Telegram","Gimp","Brave","VSCode","Chrome","Writer","Calc","Impress" ,
 
-[Containments][127][Applets][130]
-immutability=1
-plugin=org.kde.plasma.appmenu
-
-[Containments][127][Applets][130][Configuration]
-PreloadWeight=0
-
 [Containments][127][Applets][152]
 immutability=1
 plugin=org.kde.plasma.eventcalendar
 
 [Containments][127][Applets][152][Configuration]
-PreloadWeight=12
+PreloadWeight=14
 
 [Containments][127][Applets][152][Configuration][Calendar]
 monthCurrentCustomTitleFormat=d MMMM yyyy
@@ -130,7 +123,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][127][Applets][153][Configuration]
-PreloadWeight=100
+PreloadWeight=97
 SystrayContainmentId=154
 
 [Containments][127][Applets][167]
@@ -171,7 +164,15 @@ PreloadWeight=0
 
 [Containments][127][Applets][171][Configuration][General]
 expanding=false
-length=454
+length=414
+
+[Containments][127][Applets][172]
+immutability=1
+plugin=org.kde.plasma.appmenu
+
+[Containments][127][Applets][172][Configuration][ConfigDialog]
+DialogHeight=660
+DialogWidth=880
 
 [Containments][127][ConfigDialog]
 DialogHeight=89
@@ -181,7 +182,7 @@ DialogWidth=1920
 PreloadWeight=0
 
 [Containments][127][General]
-AppletOrder=128;129;130;170;152;171;167;153
+AppletOrder=128;129;172;170;152;171;167;153
 
 [Containments][154]
 activityId=
@@ -232,7 +233,7 @@ immutability=1
 plugin=org.kde.plasma.devicenotifier
 
 [Containments][154][Applets][160][Configuration]
-PreloadWeight=22
+PreloadWeight=19
 
 [Containments][154][Applets][161]
 immutability=1
@@ -246,7 +247,7 @@ immutability=1
 plugin=org.kde.plasma.volume
 
 [Containments][154][Applets][162][Configuration]
-PreloadWeight=47
+PreloadWeight=44
 
 [Containments][154][Applets][162][Configuration][ConfigDialog]
 DialogHeight=660
@@ -275,14 +276,14 @@ immutability=1
 plugin=org.kde.plasma.networkmanagement
 
 [Containments][154][Applets][165][Configuration]
-PreloadWeight=1
+PreloadWeight=0
 
 [Containments][154][Applets][166]
 immutability=1
 plugin=org.kde.plasma.bluetooth
 
 [Containments][154][Applets][166][Configuration]
-PreloadWeight=36
+PreloadWeight=33
 
 [Containments][154][Applets][168]
 immutability=1
@@ -333,7 +334,7 @@ ToolBoxButtonState=topcenter
 ToolBoxButtonX=666
 
 [Containments][88][Wallpaper][org.kde.image][General]
-Image=file:///home/thales/Imagens/Wallpapers/HD KDE Plasma Abstract 345 NO LOGO.png
+Image=file:///home/thales/Imagens/Wallpapers/79_nologo.jpg
 
 [Containments][98]
 ItemGeometriesHorizontal=
@@ -360,7 +361,7 @@ labelWidth=0
 sortMode=-1
 
 [Containments][98][Wallpaper][org.kde.image][General]
-Image=file:///home/thales/Imagens/Wallpapers/HD KDE Plasma Abstract 345 NO LOGO.png
+Image=file:///home/thales/Imagens/Wallpapers/79_nologo.jpg
 
 [Containments30Appletsts][81][Configuration][General]
 favoritesPortedToKAstats=true
