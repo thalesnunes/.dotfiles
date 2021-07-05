@@ -10,3 +10,7 @@ function update_db() {
     echo "Finished running"
     cd ~
 }
+
+function dolph() {
+    dolphin $@ &!
+}

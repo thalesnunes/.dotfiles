@@ -37,7 +37,7 @@ immutability=1
 plugin=com.github.zren.tiledmenu
 
 [Containments][127][Applets][128][Configuration]
-PreloadWeight=38
+PreloadWeight=40
 
 [Containments][127][Applets][128][Configuration][ConfigDialog]
 DialogHeight=660
@@ -86,7 +86,7 @@ immutability=1
 plugin=org.kde.plasma.eventcalendar
 
 [Containments][127][Applets][152][Configuration]
-PreloadWeight=14
+PreloadWeight=6
 
 [Containments][127][Applets][152][Configuration][Calendar]
 monthCurrentCustomTitleFormat=d MMMM yyyy
@@ -123,7 +123,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][127][Applets][153][Configuration]
-PreloadWeight=97
+PreloadWeight=100
 SystrayContainmentId=154
 
 [Containments][127][Applets][167]
@@ -169,6 +169,9 @@ length=414
 [Containments][127][Applets][172]
 immutability=1
 plugin=org.kde.plasma.appmenu
+
+[Containments][127][Applets][172][Configuration]
+PreloadWeight=42
 
 [Containments][127][Applets][172][Configuration][ConfigDialog]
 DialogHeight=660
@@ -233,7 +236,7 @@ immutability=1
 plugin=org.kde.plasma.devicenotifier
 
 [Containments][154][Applets][160][Configuration]
-PreloadWeight=19
+PreloadWeight=11
 
 [Containments][154][Applets][161]
 immutability=1
@@ -247,7 +250,7 @@ immutability=1
 plugin=org.kde.plasma.volume
 
 [Containments][154][Applets][162][Configuration]
-PreloadWeight=44
+PreloadWeight=41
 
 [Containments][154][Applets][162][Configuration][ConfigDialog]
 DialogHeight=660
@@ -283,7 +286,7 @@ immutability=1
 plugin=org.kde.plasma.bluetooth
 
 [Containments][154][Applets][166][Configuration]
-PreloadWeight=33
+PreloadWeight=30
 
 [Containments][154][Applets][168]
 immutability=1
@@ -297,7 +300,7 @@ immutability=1
 plugin=org.kde.plasma.mediacontroller
 
 [Containments][154][Applets][169][Configuration]
-PreloadWeight=0
+PreloadWeight=9
 
 [Containments][154][ConfigDialog]
 DialogHeight=660
@@ -307,8 +310,8 @@ DialogWidth=880
 PreloadWeight=0
 
 [Containments][154][General]
-extraItems=org.kde.plasma.clipboard,org.kde.plasma.keyboardindicator,org.kde.plasma.devicenotifier,org.kde.plasma.volume,org.kde.kdeconnect,org.kde.plasma.bluetooth,org.kde.plasma.printmanager,org.kde.plasma.notifications,org.kde.plasma.networkmanagement,org.kde.plasma.vault,org.kde.plasma.nightcolorcontrol,org.kde.plasma.mediacontroller,org.kde.plasma.battery,Serviço de lembretes do KOrganizer,TelegramDesktop,org.kde.kscreen,Koi,Plasma_microphone
-hiddenItems=Serviço de lembretes do KOrganizer,org.kde.kscreen,org.kde.plasma.printmanager,org.kde.plasma.keyboardindicator,org.kde.kdeconnect,org.kde.plasma.clipboard,org.kde.plasma.vault,org.kde.plasma.nightcolorcontrol,Koi,Plasma_microphone
+extraItems=org.kde.plasma.clipboard,org.kde.plasma.keyboardindicator,org.kde.plasma.devicenotifier,org.kde.plasma.volume,org.kde.kdeconnect,org.kde.plasma.bluetooth,org.kde.plasma.printmanager,org.kde.plasma.notifications,org.kde.plasma.networkmanagement,org.kde.plasma.vault,org.kde.plasma.nightcolorcontrol,org.kde.plasma.mediacontroller,org.kde.plasma.battery,Serviço de lembretes do KOrganizer,TelegramDesktop,org.kde.kscreen,Koi,Plasma_microphone,koi
+hiddenItems=Serviço de lembretes do KOrganizer,org.kde.kscreen,org.kde.plasma.printmanager,org.kde.plasma.keyboardindicator,org.kde.kdeconnect,org.kde.plasma.clipboard,org.kde.plasma.vault,org.kde.plasma.nightcolorcontrol,Koi,Plasma_microphone,koi
 knownItems=org.kde.plasma.clipboard,org.kde.plasma.keyboardindicator,org.kde.plasma.devicenotifier,org.kde.plasma.volume,org.kde.kdeconnect,org.kde.plasma.bluetooth,org.kde.plasma.printmanager,org.kde.plasma.notifications,org.kde.plasma.networkmanagement,org.kde.plasma.vault,org.kde.plasma.nightcolorcontrol,org.kde.plasma.mediacontroller,org.kde.plasma.battery
 shownItems=TelegramDesktop,org.kde.plasma.bluetooth,org.kde.plasma.battery,org.kde.plasma.networkmanagement,org.kde.plasma.volume
 
@@ -334,7 +337,7 @@ ToolBoxButtonState=topcenter
 ToolBoxButtonX=666
 
 [Containments][88][Wallpaper][org.kde.image][General]
-Image=file:///home/thales/Imagens/Wallpapers/79_nologo.jpg
+Image=file:///home/thales/Imagens/Wallpapers/HD KDE Plasma Abstract 345 NO LOGO.png
 
 [Containments][98]
 ItemGeometriesHorizontal=
@@ -361,7 +364,7 @@ labelWidth=0
 sortMode=-1
 
 [Containments][98][Wallpaper][org.kde.image][General]
-Image=file:///home/thales/Imagens/Wallpapers/79_nologo.jpg
+Image=file:///home/thales/Imagens/Wallpapers/HD KDE Plasma Abstract 345 NO LOGO.png
 
 [Containments30Appletsts][81][Configuration][General]
 favoritesPortedToKAstats=true

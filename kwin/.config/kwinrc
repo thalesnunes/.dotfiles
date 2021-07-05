@@ -179,3 +179,5 @@ BorderSizeAuto=false
 ButtonsOnLeft=F
 ButtonsOnRight=IAX
 ShowToolTips=false
+library=org.kde.breeze
+theme=

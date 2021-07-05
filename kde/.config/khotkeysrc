@@ -950,16 +950,16 @@ Type=SHORTCUT
 Uuid={5c90ce37-f009-46b4-8d86-1f73dd39082a}
 
 [Data_4_4]
-Comment=Launch Alacritty
+Comment=Launch Terminal
 Enabled=true
-Name=Launch Alacritty
+Name=Launch Terminal
 Type=SIMPLE_ACTION_DATA
 
 [Data_4_4Actions]
 ActionsCount=1
 
 [Data_4_4Actions0]
-CommandURL=alacritty
+CommandURL=konsole
 Type=COMMAND_URL
 
 [Data_4_4Conditions]

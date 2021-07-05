@@ -20,6 +20,11 @@ dark=Papirus-Dark
 enabled=false
 light=Papirus-Light
 
+[KFileDialog%20Settings]
+Recent%20Files%5B%24e%5D=79_nologo.jpg, file:$HOME/Imagens/Wallpapers/79_nologo.jpg, file:$HOME/Imagens/Wallpapers/HD KDE Plasma Abstract 345 NO LOGO.png
+Recent%20URLs%5B%24e%5D=file:$HOME/Imagens/Wallpapers/
+iconViewIconSize=43
+
 [KvantumStyle]
 dark=Sweet
 enabled=true
