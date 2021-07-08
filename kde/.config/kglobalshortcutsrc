@@ -60,6 +60,7 @@ _k_friendly_name=KDE Daemon
 {aa39d0c9-a757-402e-a220-acacef92b91e}=Meta+M,none,Launch Telegram
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Pesquisar
 {e4ec52fb-12e0-40ba-a7b0-b3bf26e3db2c}=Meta+T,none,Launch Terminal
+{ffbed138-c377-49ce-b226-ae7b82e055eb}=Meta+Space,none,Launch Rofi
 
 [kmix]
 _k_friendly_name=Volume do áudio
@@ -82,7 +83,7 @@ toggle_mainwindow_visibility=none,none,Exibir/ocultar o Konversation
 [krunner.desktop]
 RunClipboard=Alt+Shift+F2,Alt+Shift+F2,Executar comando no conteúdo da área de transferência
 _k_friendly_name=KRunner
-_launch=Meta+Space\tAlt+F2\tSearch,Alt+Space\tAlt+F2\tSearch,KRunner
+_launch=Meta+Alt+Space\tAlt+F2\tSearch,Alt+Space\tAlt+F2\tSearch,KRunner
 
 [ksmserver]
 Halt Without Confirmation=Ctrl+Alt+Shift+PgDown,none,Encerrar sem confirmação
@@ -262,7 +263,7 @@ Window to Screen 4=none,none,Janela para a tela 4
 Window to Screen 5=none,none,Janela para a tela 5
 Window to Screen 6=none,none,Janela para a tela 6
 Window to Screen 7=none,none,Janela para a tela 7
-_k_friendly_name=Plasma
+_k_friendly_name=Latte Dock
 addDesktop=none,none,Virtual Desktop Bar - Add Desktop
 moveCurrentDesktopToLeft=none,none,Virtual Desktop Bar - Move Current Desktop to Left
 moveCurrentDesktopToRight=none,none,Virtual Desktop Bar - Move Current Desktop to Right
@@ -488,7 +489,7 @@ _k_friendly_name=Controlo de volume PulseAudio
 _launch=none,none,Iniciar Controlo de volume PulseAudio
 
 [plasmashell]
-_k_friendly_name=Plasma
+_k_friendly_name=Latte Dock
 activate task manager entry 1=none,Meta+1,Ativar entrada 1 do gerenciador de tarefas
 activate task manager entry 10=none,Meta+0,Ativar entrada 10 do gerenciador de tarefas
 activate task manager entry 2=none,Meta+2,Ativar entrada 2 do gerenciador de tarefas

@@ -15,7 +15,7 @@ detailViewIconSize=0
 ShowMenuBarByDefault=false
 
 [MainWindow]
-Height 1080=1058
+Height 1080=1032
 MenuBar=Disabled
 State=AAAA/wAAAAD9AAAAAAAAB34AAAQcAAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled

@@ -861,7 +861,7 @@ Uuid={1d46e72f-9cc1-4de7-ab01-aa0bad1e0cc5}
 
 [Data_4]
 Comment=Comentário
-DataCount=7
+DataCount=8
 Enabled=true
 Name=Meus Atalhos
 SystemGroup=0
@@ -1052,6 +1052,32 @@ TriggersCount=1
 Key=Meta+C
 Type=SHORTCUT
 Uuid={2afb4543-5496-443a-9bfa-851c28f5ec9c}
+
+[Data_4_8]
+Comment=Launch Rofi
+Enabled=true
+Name=Launch Rofi
+Type=SIMPLE_ACTION_DATA
+
+[Data_4_8Actions]
+ActionsCount=1
+
+[Data_4_8Actions0]
+CommandURL=/home/thales/.config/rofi/bin/launcher_colorful
+Type=COMMAND_URL
+
+[Data_4_8Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_4_8Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_4_8Triggers0]
+Key=Meta+Space
+Type=SHORTCUT
+Uuid={ffbed138-c377-49ce-b226-ae7b82e055eb}
 
 [General]
 XftAntialias[$d]
