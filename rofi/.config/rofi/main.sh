@@ -11,8 +11,8 @@
 # style_1     style_2     style_3     style_4     style_5     style_6
 # style_7     style_8     style_9     style_10    style_11    style_12
 
-theme="style_9"
-dir="$HOME/.config/rofi/launchers/colorful"
+theme="style"
+dir="$HOME/.config/rofi"
 
 # dark
 ALPHA="#00000000"
@@ -48,5 +48,4 @@ EOF
 #themes=($(ls -p --hide="launcher.sh" --hide="colors.rasi" $dir))
 #theme="${themes[$(( $RANDOM % 12 ))]}"
 
-#rofi -no-lazy-grab -show drun -modi drun -theme $dir/"$theme"
 rofi -no-lazy-grab -theme $dir/"$theme" -monitor primary -show "$@"

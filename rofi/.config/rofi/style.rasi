@@ -13,7 +13,9 @@ configuration {
 	icon-theme: 					"BeautyLine";
     display-drun: 					"Apps";
     display-window: 				"Windows";
+    display-combi: 				    "Home";
     drun-display-format:            "{name}";
+    combi-hide-mode-prefix:         true;
     disable-history:                false;
     fullscreen:                     false;
 	hide-scrollbar: 				true;
@@ -28,7 +30,7 @@ window {
     text-color:                     @fg;
 	border:							0px;
 	border-color:					@ac;
-    border-radius:                  15px;
+    border-radius:                  10px;
 	width:							35%;
     location:                       center;
     x-offset:                       0;

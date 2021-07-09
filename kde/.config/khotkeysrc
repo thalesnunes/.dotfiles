@@ -1063,7 +1063,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_4_8Actions0]
-CommandURL=/home/thales/.config/rofi/bin/launcher_colorful
+CommandURL=/home/thales/.config/rofi/main.sh
 Type=COMMAND_URL
 
 [Data_4_8Conditions]
