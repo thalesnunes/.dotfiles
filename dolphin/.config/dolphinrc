@@ -38,16 +38,15 @@ Recent URLs[$e]=file:$HOME/Imagens/Icons/
 detailViewIconSize=0
 
 [KPropertiesDialog]
-Height 1080=618
-Width 1920=687
+Height 1080=482
+Width 1920=531
 
 [MainWindow]
-Height 1080=1046
+Height 1080=1032
 MenuBar=Disabled
-State=AAAA/wAAAAD9AAAAAwAAAAAAAACTAAAD3vwCAAAAAvsAAAAUAHAAbABhAGMAZQBzAEQAbwBjAGsBAAAAKgAAA94AAABYAP////sAAAAWAGYAbwBsAGQAZQByAHMARABvAGMAawAAAANgAAAAqgAAAAIA////AAAAAQAAALQAAAPg/AIAAAAB+wAAABAAaQBuAGYAbwBEAG8AYwBrAAAAACoAAAPgAAAAAgD///8AAAADAAADUgAAAWj8AQAAAAH7AAAAGAB0AGUAcgBtAGkAbgBhAGwARABvAGMAawAAAAAAAAADUgAAAAIA////AAACuwAAA94AAAAEAAAABAAAAAgAAAAI/AAAAAEAAAACAAAAAQAAABYAbQBhAGkAbgBUAG8AbwBsAEIAYQByAQAAAAD/////AAAAAAAAAAA=
+State=AAAA/wAAAAD9AAAAAwAAAAAAAACTAAAD4/wCAAAAAvsAAAAUAHAAbABhAGMAZQBzAEQAbwBjAGsBAAAAJQAAA+MAAABGAP////sAAAAWAGYAbwBsAGQAZQByAHMARABvAGMAawAAAANgAAAAqgAAAAIA////AAAAAQAAALQAAAPg/AIAAAAB+wAAABAAaQBuAGYAbwBEAG8AYwBrAAAAACoAAAPgAAAAAgD///8AAAADAAADUgAAAWj8AQAAAAH7AAAAGAB0AGUAcgBtAGkAbgBhAGwARABvAGMAawAAAAAAAAADUgAAAAIA////AAADFwAAA+MAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAACAAAAAQAAABYAbQBhAGkAbgBUAG8AbwBsAEIAYQByAQAAAAD/////AAAAAAAAAAA=
 ToolBarsMovable=Disabled
-Width 1920=1920
-Window-Maximized 1080x1920=true
+Width 1920=944
 
 [Open-with settings]
 CompletionMode=1
@@ -58,9 +57,6 @@ IconSize=22
 
 [PreviewSettings]
 Plugins=fontthumbnail,ffmpegthumbs,audiothumbnail,djvuthumbnail,blenderthumbnail,gsthumbnail,rawthumbnail,comicbookthumbnail,opendocumentthumbnail,kraorathumbnail,ebookthumbnail,windowsexethumbnail,imagethumbnail,windowsimagethumbnail,exrthumbnail,jpegthumbnail,svgthumbnail,directorythumbnail
-
-[Search]
-Location=Everywhere
 
 [SettingsDialog]
 Height 1080=578
