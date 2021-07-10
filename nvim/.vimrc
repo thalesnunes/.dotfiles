@@ -24,7 +24,7 @@ set undofile
 
 set scrolloff=8
 set termguicolors
-set colorcolumn=100
+set colorcolumn=80
 
 call plug#begin('~/.vim/plugged')
 " Python code formatter
@@ -40,6 +40,9 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Jupyter sync extension
 Plug 'untitled-ai/jupyter_ascending.vim'
 
+" Git integration
+Plug 'tpope/vim-fugitive'
+
 " Fuzzy finder
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -51,6 +54,8 @@ Plug 'itchyny/lightline.vim'
 call plug#end()
 
 syntax enable
+
+" Tree sitter highlight
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "python", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -58,6 +63,11 @@ require'nvim-treesitter.configs'.setup {
     enable = true,              -- false will disable the whole extension
   },
 }
+EOF
+
+" Enable LSP
+lua <<EOF
+require'lspconfig'.pyls.setup{ on_attach=on_attach }
 EOF
 
 set laststatus=2
