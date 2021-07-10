@@ -325,7 +325,7 @@ show latte global settings=none,Meta+W,Mostrar as configurações globais do Lat
 show latte view=Meta+`,Meta+`,Mostrar Dock/Painel do Latte
 show view settings=none,Meta+A,Circular pelas janelas das configurações do Dock/Painel
 show-barcode=none,none,Mostrar o código de barras...
-show-on-mouse-pos=Meta+V,none,Abrir o Klipper na posição do mouse
+show-on-mouse-pos=,none,Abrir o Klipper na posição do mouse
 
 [libreoffice-calc.desktop]
 _k_friendly_name=LibreOffice Calc
@@ -514,7 +514,7 @@ previous activity=Meta+Shift+Tab,Meta+Shift+Tab,Percorrer as atividades (inverso
 repeat_action=Ctrl+Alt+R,Ctrl+Alt+R,Invocar ação manualmente sobre a área de transferência atual
 show dashboard=Ctrl+F12,Ctrl+F12,Mostrar a Área de Trabalho
 show-barcode=none,none,Mostrar o código de barras...
-show-on-mouse-pos=,none,Abrir o Klipper na posição do mouse
+show-on-mouse-pos=Meta+V,none,Abrir o Klipper na posição do mouse
 stop current activity=none,Meta+S,Parar a atividade atual
 switch to next activity=none,none,Mudar para a próxima atividade
 switch to previous activity=none,none,Mudar para a atividade anterior
