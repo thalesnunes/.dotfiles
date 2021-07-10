@@ -37,6 +37,9 @@ Plug 'hrsh7th/nvim-compe'
 " Highlighter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+" Jupyter sync extension
+Plug 'untitled-ai/jupyter_ascending.vim'
+
 " Fuzzy finder
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -48,6 +51,14 @@ Plug 'itchyny/lightline.vim'
 call plug#end()
 
 syntax enable
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "python", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+}
+EOF
 
 set laststatus=2
 let g:lightline = {
@@ -89,6 +100,10 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Jupyter_ascending remaps
+nmap <space><space>x <Plug>JupyterExecute
+nmap <space><space>X <Plug>JupyterExecuteAll
 
 augroup highlight_yank
     autocmd!
