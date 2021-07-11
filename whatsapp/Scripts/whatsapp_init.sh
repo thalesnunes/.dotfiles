@@ -5,4 +5,4 @@ then
     rm -rf "/home/thales/.config/whatsappweb-nativefier-d40211/Service Worker/Database/"
 fi
 
-/home/thales/Apps/WhatsappWeb-linux-x64/WhatsappWeb
+/home/thales/Apps/WhatsappWeb-linux-x64/WhatsappWeb > /dev/null 2>&1 &
