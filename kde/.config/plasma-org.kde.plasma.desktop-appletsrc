@@ -45,7 +45,7 @@ ToolBoxButtonState=topcenter
 ToolBoxButtonX=666
 
 [Containments][88][Wallpaper][org.kde.image][General]
-Image=file:///home/thales/Imagens/Wallpapers/HD KDE Plasma Abstract 345 NO LOGO.png
+Image=file:///home/thales/Imagens/Wallpapers/79_nologo.jpg
 
 [Containments][98]
 ItemGeometriesHorizontal=
@@ -71,7 +71,7 @@ labelWidth=0
 sortMode=-1
 
 [Containments][98][Wallpaper][org.kde.image][General]
-Image=file:///home/thales/Imagens/Wallpapers/HD KDE Plasma Abstract 345 NO LOGO.png
+Image=file:///home/thales/Imagens/Wallpapers/79_nologo.jpg
 
 [Containments30Appletsts][81][Configuration][General]
 favoritesPortedToKAstats=true

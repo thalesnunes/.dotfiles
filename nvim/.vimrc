@@ -56,21 +56,6 @@ call plug#end()
 
 syntax enable
 
-" Tree sitter highlight
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "python", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-  },
-}
-EOF
-
-" Enable LSP
-lua <<EOF
-require'lspconfig'.pyls.setup{ on_attach=on_attach }
-EOF
-
 set laststatus=2
 let g:lightline = {
       \ 'colorscheme': 'darcula',
@@ -87,6 +72,21 @@ let g:lightline = {
       \ }
 colorscheme dracula
 highlight Normal guibg=none
+
+" Tree sitter highlight
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "python", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+}
+EOF
+
+" Enable LSP
+lua <<EOF
+require'lspconfig'.pyls.setup{ on_attach=on_attach }
+EOF
 
 let mapleader = " "
 
