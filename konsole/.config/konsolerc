@@ -19,7 +19,10 @@ Height 1080=1032
 MenuBar=Disabled
 State=AAAA/wAAAAD9AAAAAAAAB34AAAQcAAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
-Width 1920=1040
+Width 1920=944
+
+[Notification Messages]
+ShowPasteUnprintableWarning=false
 
 [TabBar]
 TabBarPosition=Top

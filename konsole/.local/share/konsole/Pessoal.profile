@@ -21,7 +21,7 @@ KeyBindings=linux
 
 [Scrolling]
 ScrollBarPosition=2
-ScrollFullPage=0
+ScrollFullPage=false
 
 [Terminal Features]
 BlinkingCursorEnabled=false
