@@ -1,27 +1,45 @@
 ! Fonts config
-URxvt.font: xft:MesloLGS NF:size=14
+URxvt.font: xft:MesloLGS NF:style=Regular:size=14
+URxvt.boldFont: xft:MesloLGS NF:style=Bold:size=14
 URxvt.urgentOnBell: false
 URxvt.scrollBar: false
+URxvt.intensityStyles: false
+URxvt.termName: rxvt-unicode-256color
+URxvt.depth: 32
 
 ! Disable scrollbar
 ! Dracula Xresources palette
-*.foreground: #F8F8F2
-*.background: #282A36
-*.color0:     #000000
-*.color8:     #4D4D4D
-*.color1:     #FF5555
-*.color9:     #FF6E67
-*.color2:     #50FA7B
-*.color10:    #5AF78E
-*.color3:     #F1FA8C
-*.color11:    #F4F99D
-*.color4:     #BD93F9
-*.color12:    #CAA9FA
-*.color5:     #FF79C6
-*.color13:    #FF92D0
-*.color6:     #8BE9FD
-*.color14:    #9AEDFE
-*.color7:     #BFBFBF
-*.color15:    #E6E6E6
+*.foreground: #c3c7d1
+*.background: [90]#2a2844
 
-URxvt.geometry: 80x80
+! Black
+*.color0:     #6b768b
+*.color8:     #6b768b
+
+! Red
+*.color1:     #ed254e
+*.color9:     #ed254e
+
+! Green
+*.color2:     #71f79f
+*.color10:    #71f79f
+
+! Yellow
+*.color3:     #f9dc5c
+*.color11:    #f9dc5c
+
+! Blue
+*.color4:     #7cb7ff
+*.color12:    #7cb7ff
+
+! Magenta
+*.color5:     #c74ded
+*.color13:    #c74ded
+
+! Cyan
+*.color6:     #00c1e4
+*.color14:    #00c1e4
+
+! White
+*.color7:     #dcdfe4
+*.color15:    #dcdfe4
