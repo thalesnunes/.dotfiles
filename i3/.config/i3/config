@@ -210,8 +210,8 @@ workspace $ws2 output HDMI-A-0
 workspace $ws3 output HDMI-A-0
 workspace $ws4 output eDP
 
-# Set up wallpaper (for now)
-exec_always ~/.fehbg
+# Set up wallpaper
+exec_always ~/Scripts/feh_init.sh
 
 # Set focus not to follow mouse
 focus_follows_mouse no
