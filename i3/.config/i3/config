@@ -122,37 +122,46 @@ bindsym $mod+a focus parent
 set $ws1 "1:Pessoal"
 set $ws2 "2:USP"
 set $ws3 "3:Trabalho"
-set $ws4 "4:Outros"
+set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
+set $ws10 "10:Outros"
 
 # switch to workspace
 bindsym $mod+F9 workspace $ws1
 bindsym $mod+F10 workspace $ws2
 bindsym $mod+F11 workspace $ws3
-bindsym $mod+F12 workspace $ws4
+bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+bindsym $mod+F12 workspace $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+F9 move container to workspace $ws1
 bindsym $mod+Shift+F10 move container to workspace $ws2
 bindsym $mod+Shift+F11 move container to workspace $ws3
-bindsym $mod+Shift+F12 move container to workspace $ws4
+bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+F12 move container to workspace $ws10
+
+###########################################################
+############### Assign apps to workspaces #################
+###########################################################
+assign [class="TelegramDesktop"] workspace $ws10
+assign [class="whatsappweb-nativefier-d40211"] workspace $ws10
+assign [class="Slack"] workspace $ws10
+
+for_window [class="flameshot"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -188,10 +197,14 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Personal Binds
-bindsym $mod+b exec firefox
+#################################################
+############### Personal Binds ##################
+#################################################
+bindsym $mod+b exec brave-browser --profile-directory="Profile 2"
+bindsym $mod+u exec brave-browser --profile-directory="Profile 3"
 bindsym $mod+m exec /home/thales/Apps/Telegram/Telegram -workdir /home/thales/.local/share/TelegramDesktop/ -- %u
 bindsym $mod+n exec /home/thales/Scripts/whatsapp_init.sh
+bindsym $mod+c exec korganizer
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -216,7 +229,7 @@ exec_always xrandr --output eDP --mode 1920x1080 --pos 1920x0 --rotate normal --
 workspace $ws1 output HDMI-A-0
 workspace $ws2 output HDMI-A-0
 workspace $ws3 output HDMI-A-0
-workspace $ws4 output eDP
+workspace $ws10 output eDP
 
 # Set focus not to follow mouse
 focus_follows_mouse no
@@ -228,12 +241,13 @@ mouse_warping none
 ################## i3-gaps ######################
 #################################################
 # Remove window title
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 4
 
 gaps inner 8
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #f0a830
+client.unfocused        #4c7899 #285578 #ffffff #2e9ef4   #907878
 
 # Run Picom
 exec picom --backend glx --vsync -b
@@ -246,6 +260,9 @@ exec xinput set-prop 17 293 1
 
 # Enable Night-Light (Redshift)
 exec redshift
+
+# Autostart Korgac (Calendar Reminders)
+exec korgac
 
 # Switch Esc with Caps-Lock
 exec setxkbmap -option "caps:swapescape"
