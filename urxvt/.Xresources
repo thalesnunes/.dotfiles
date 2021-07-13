@@ -1,10 +1,18 @@
 ! Fonts config
 URxvt.font: xft:MesloLGS NF:style=Regular:size=14
 URxvt.boldFont: xft:MesloLGS NF:style=Bold:size=14
+URxvt.italicFont: xft:MesloLGS NF:style=Italic:size=14
+URxvt.boldItalicFont: xft:MesloLGS NF:style=Bold Italic:size=14
 URxvt.urgentOnBell: false
 URxvt.scrollBar: false
 URxvt.intensityStyles: false
 URxvt.termName: rxvt-unicode-256color
+URxvt.letterSpace: 0
+URxvt.lineSpace: 0
+URxvt.cursorBlink: false
+URxvt.cursorUnderline: false
+URxvt.scrollBar_right: false
+URxvt.iso14755: false
 URxvt.depth: 32
 
 ! Disable scrollbar
@@ -43,3 +51,12 @@ URxvt.depth: 32
 ! White
 *.color7:     #dcdfe4
 *.color15:    #dcdfe4
+
+
+!! Common Keybinds for Navigations
+URxvt.keysym.Shift-Up: command:\033]720;1\007
+URxvt.keysym.Shift-Down: command:\033]721;1\007
+URxvt.keysym.Control-Up: \033[1;5A
+URxvt.keysym.Control-Down: \033[1;5B
+URxvt.keysym.Control-Right: \033[1;5C
+URxvt.keysym.Control-Left: \033[1;5D

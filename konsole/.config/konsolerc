@@ -15,11 +15,11 @@ detailViewIconSize=0
 ShowMenuBarByDefault=false
 
 [MainWindow]
-Height 1080=1032
+Height 1080=510
 MenuBar=Disabled
 State=AAAA/wAAAAD9AAAAAAAAB34AAAQcAAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
-Width 1920=850
+Width 1920=944
 
 [Notification Messages]
 ShowPasteUnprintableWarning=false
