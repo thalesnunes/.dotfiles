@@ -201,7 +201,15 @@ bindsym $mod+n exec /home/thales/Scripts/whatsapp_init.sh
 #       position top
 #       strip_workspace_numbers yes
 #}
-exec_always ${HOME}/.config/polybar/launch.sh --forest
+
+# Fetch sunrise and sunset times
+exec ${HOME}/Scripts/sunrise-sunset.sh
+
+# Start polybar
+exec_always ${HOME}/Scripts/polybar_starter.sh
+
+# Set up wallpaper
+exec_always ${HOME}/Scripts/feh_init.sh
 
 # Set up monitor resolution and positioning
 exec_always xrandr --output eDP --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-A-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal
@@ -209,9 +217,6 @@ workspace $ws1 output HDMI-A-0
 workspace $ws2 output HDMI-A-0
 workspace $ws3 output HDMI-A-0
 workspace $ws4 output eDP
-
-# Set up wallpaper
-exec_always ~/Scripts/feh_init.sh
 
 # Set focus not to follow mouse
 focus_follows_mouse no
