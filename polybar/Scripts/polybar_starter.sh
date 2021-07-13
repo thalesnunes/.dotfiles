@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DIR="${HOME}/.dotfiles/polybar/.config/polybar/"
-result=$(~/Scripts/sunrise-sunset.sh)
+result=$(cat ~/.sun)
 IFS=" " read -r sunrise sunset <<< "$result"
 
 now=$(date +%H:%M)

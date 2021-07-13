@@ -4,7 +4,7 @@ DIR="/home/thales/Imagens/Wallpapers"
 day="79_nologo.jpg"
 night="HD KDE Plasma Abstract 345 NO LOGO.png"
 
-result=$(~/Scripts/sunrise-sunset.sh)
+result=$(cat ~/.sun)
 IFS=" " read -r sunrise sunset <<< "$result"
 
 now=$(date +%H:%M)

@@ -92,10 +92,10 @@ bindsym $mod+Shift+period resize grow height 5 px or 5 ppt
 bindsym $mod+Shift+comma resize shrink height 5 px or 5 ppt
 
 # split in horizontal orientation
-bindsym $mod+g split h
+bindsym $alt+h split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $alt+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+Shift+f fullscreen toggle

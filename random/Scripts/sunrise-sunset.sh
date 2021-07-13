@@ -17,4 +17,4 @@ sunrise=$(date --date="$SUNR" +%R)
 sunset=$(date --date="$SUNS" +%R)
 
 # Use $sunrise and $sunset variables to fit your needs. Example:
-echo "$sunrise $sunset"
+echo "$sunrise $sunset" > ~/.sun
