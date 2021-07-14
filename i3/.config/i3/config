@@ -248,6 +248,9 @@ client.unfocused        #4c7899 #285578 #ffffff #2e9ef4   #907878
 # Run Picom
 exec picom --backend glx --vsync -b
 
+# Start notification manager (dunst)
+exec dunst
+
 # Touchpad configs
 # Enables Tap-to-Click
 exec xinput set-prop 17 311 1
