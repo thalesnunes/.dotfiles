@@ -47,7 +47,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+t exec xfce4-terminal
+bindsym $mod+t exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+BackSpace kill
@@ -199,7 +199,7 @@ bindsym $mod+b exec brave-browser --profile-directory="Profile 2"
 bindsym $mod+u exec brave-browser --profile-directory="Profile 3"
 bindsym $mod+m exec ${HOME}/Apps/Telegram/Telegram -workdir /home/thales/.local/share/TelegramDesktop/ -- %u
 bindsym $mod+n exec ${HOME}/Scripts/whatsapp_init.sh
-bindsym $mod+e exec xfce4-terminal -e ranger
+bindsym $mod+e exec i3-sensible-terminal -e ranger
 bindsym $mod+c exec korganizer
 
 # Start i3bar to display a workspace bar (plus the system information i3status
