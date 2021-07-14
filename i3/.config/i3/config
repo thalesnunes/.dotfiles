@@ -155,6 +155,7 @@ bindsym $mod+Shift+F12 move container to workspace $ws10
 assign [class="TelegramDesktop"] workspace $ws10
 assign [class="whatsappweb-nativefier-d40211"] workspace $ws10
 assign [class="Slack"] workspace $ws10
+assign [class="Google-chrome"] workspace $ws3
 
 for_window [class="flameshot"] floating enable
 
