@@ -53,13 +53,8 @@ bindsym $mod+t exec xfce4-terminal
 bindsym $mod+BackSpace kill
 bindsym $alt+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+space exec ${HOME}/.config/rofi/main.sh
-# A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec rofi -modi drun,run -show drun
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# start rofi (a program launcher)
+bindsym $mod+space exec ${HOME}/.config/rofi/main.sh -show combi
 
 # change focus
 bindsym $mod+h focus left
@@ -101,9 +96,9 @@ bindsym $alt+v split v
 bindsym $mod+Shift+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+Control+1 layout toggle split
+bindsym $mod+Control+2 layout tabbed
+bindsym $mod+Control+3 layout stacking
 
 # toggle tiling / floating
 bindsym $mod+f floating toggle
@@ -204,6 +199,7 @@ bindsym $mod+b exec brave-browser --profile-directory="Profile 2"
 bindsym $mod+u exec brave-browser --profile-directory="Profile 3"
 bindsym $mod+m exec /home/thales/Apps/Telegram/Telegram -workdir /home/thales/.local/share/TelegramDesktop/ -- %u
 bindsym $mod+n exec /home/thales/Scripts/whatsapp_init.sh
+bindsym $mod+e exec xfce4-terminal -e ranger
 bindsym $mod+c exec korganizer
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -262,7 +258,7 @@ exec xinput set-prop 17 293 1
 exec redshift
 
 # Autostart Korgac (Calendar Reminders)
-exec korgac
+#exec korgac
 
 # Switch Esc with Caps-Lock
 exec setxkbmap -option "caps:swapescape"
