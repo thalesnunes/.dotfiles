@@ -48,4 +48,4 @@ EOF
 #themes=($(ls -p --hide="launcher.sh" --hide="colors.rasi" $dir))
 #theme="${themes[$(( $RANDOM % 12 ))]}"
 
-rofi -no-lazy-grab -theme $dir/"$theme" -monitor primary -show "$@"
+rofi -no-lazy-grab -theme $dir/"$theme" -monitor primary -show combi

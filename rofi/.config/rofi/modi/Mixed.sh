@@ -7,7 +7,7 @@ then
     # Handle argument.
     if [ -n "$@" ]
     then
-        coproc ( ${ROFI}/main.sh "$@" & > /dev/null 2>&1 )
+        coproc ( ${ROFI}/pipeline.sh "$@" & > /dev/null 2>&1 )
     fi
 else
     echo "$(ls -1 --hide Mixed.sh "${ROFI}/modi" | sed -e 's/\..*$//')"
