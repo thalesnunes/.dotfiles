@@ -163,8 +163,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $alt+Control+Delete exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-
+bindsym $alt+Control+Delete exec ${HOME}/.config/rofi/pipeline.sh Power
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -197,8 +196,8 @@ bindsym $mod+r mode "resize"
 #################################################
 bindsym $mod+b exec brave-browser --profile-directory="Profile 2"
 bindsym $mod+u exec brave-browser --profile-directory="Profile 3"
-bindsym $mod+m exec /home/thales/Apps/Telegram/Telegram -workdir /home/thales/.local/share/TelegramDesktop/ -- %u
-bindsym $mod+n exec /home/thales/Scripts/whatsapp_init.sh
+bindsym $mod+m exec ${HOME}/Apps/Telegram/Telegram -workdir /home/thales/.local/share/TelegramDesktop/ -- %u
+bindsym $mod+n exec ${HOME}/Scripts/whatsapp_init.sh
 bindsym $mod+e exec xfce4-terminal -e ranger
 bindsym $mod+c exec korganizer
 
