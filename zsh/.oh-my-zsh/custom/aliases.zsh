@@ -31,3 +31,7 @@ alias i3config='nvim ~/.dotfiles/i3/.config/i3/config'
 alias stown='stow --adopt -nvt ~ */'
 
 alias stowv='stow --adopt -vt ~ */'
+
+alias spotifyd_init='systemctl --user start spotifyd.service'
+
+alias spotifyd_stop='systemctl --user stop spotifyd.service'
