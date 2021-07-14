@@ -27,3 +27,7 @@ alias polyconfig='cd ~/.dotfiles/polybar/.config/polybar/forest'
 alias roficonfig='cd ~/.dotfiles/rofi/.config/rofi'
 
 alias i3config='nvim ~/.dotfiles/i3/.config/i3/config'
+
+alias stown='stow --adopt -nvt ~ */'
+
+alias stowv='stow --adopt -vt ~ */'
