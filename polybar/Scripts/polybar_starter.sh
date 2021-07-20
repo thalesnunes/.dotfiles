@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR="${HOME}/.dotfiles/polybar/.config/polybar/"
+DIR="${HOME}/.config/polybar/"
 result=$(cat ~/.sun)
 IFS=" " read -r sunrise sunset <<< "$result"
 
