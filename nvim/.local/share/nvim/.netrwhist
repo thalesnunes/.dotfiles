@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/thales/.dotfiles/urxvt'
+let g:netrw_dirhist_8='/home/thales/.dotfiles'
+let g:netrw_dirhist_7='/home/thales'
+let g:netrw_dirhist_6='/home/thales/.local/share/virtualenv'
+let g:netrw_dirhist_5='/home/thales'
+let g:netrw_dirhist_4='/home/thales/.config/i3'
+let g:netrw_dirhist_3='/home/thales/.config'
+let g:netrw_dirhist_2='/home/thales'
+let g:netrw_dirhist_1='/home/thales/.screenlayout'

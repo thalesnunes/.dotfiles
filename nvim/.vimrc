@@ -84,7 +84,7 @@ EOF
 
 " Enable LSP
 lua <<EOF
-require'lspconfig'.pyls.setup{ on_attach=on_attach }
+require'lspconfig'.pyright.setup{}
 EOF
 
 let mapleader = " "
