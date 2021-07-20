@@ -25,12 +25,12 @@ XTerm*selectToClipboard: true
 *color8:                          #585858
 
 !! red dark/light
-*color1:                          #ab4642
-*color9:                          #ab4642
+*color1:                          #ed254e
+*color9:                          #ed254e
 
 !! green dark/light
-*color2:                          #7E807E
-*color10:                         #8D8F8D
+*color2:                          #71f79f
+*color10:                         #71f79f
 
 !! yellow dark/light
 *color3:                          #f7ca88
@@ -45,8 +45,8 @@ XTerm*selectToClipboard: true
 *color13:                         #ba8baf
 
 !! cyan dark/light
-*color6:                          #1ABB9B
-*color14:                         #1ABB9B
+*color6:                          #00c1e4
+*color14:                         #00c1e4
 
 !! white dark/light
 *color7:                          #d8d8d8
@@ -75,6 +75,7 @@ URxvt*saveLines:                  1000
 URxvt.urgentOnBell:               false
 URxvt.letterSpace:                0
 URxvt.lineSpace:                  0
+URxvt.internalBorder:             6
 
 ! for 'fake' transparency (without Compton) uncomment the following three lines
 ! URxvt*inheritPixmap:            true
