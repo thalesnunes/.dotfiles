@@ -160,6 +160,37 @@ assign [class="Google-chrome"] workspace $ws3
 
 for_window [class="flameshot"] floating enable
 
+# Open specific applications in floating mode
+for_window [title="alsamixer"] floating enable border pixel 1
+for_window [class="calamares"] floating enable border normal
+for_window [class="Clipgrab"] floating enable
+for_window [title="File Transfer*"] floating enable
+for_window [class="fpakman"] floating enable
+for_window [class="Galculator"] floating enable border pixel 1
+for_window [class="GParted"] floating enable border normal
+for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [class="Lightdm-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Manjaro-hello"] floating enable
+for_window [class="Manjaro Settings Manager"] floating enable border normal
+for_window [title="MuseScore: Play Panel"] floating enable
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+for_window [class="Oblogout"] fullscreen enable
+for_window [class="octopi"] floating enable
+for_window [title="About Pale Moon"] floating enable
+for_window [class="Pamac-manager"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="qt5ct"] floating enable sticky enable border normal
+for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
+for_window [class="Simple-scan"] floating enable border normal
+for_window [class="(?i)System-config-printer.py"] floating enable border normal
+for_window [class="Skype"] floating enable border normal
+for_window [class="Timeset-gui"] floating enable border normal
+for_window [class="(?i)virtualbox"] floating enable border normal
+for_window [class="Xfburn"] floating enable
+
+
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -196,9 +227,9 @@ bindsym $mod+r mode "resize"
 #################################################
 ############### Personal Binds ##################
 #################################################
-bindsym $mod+b exec brave-browser --profile-directory="Profile 2"
-bindsym $mod+u exec brave-browser --profile-directory="Profile 3"
-bindsym $mod+m exec ${HOME}/Apps/Telegram/Telegram -workdir /home/thales/.local/share/TelegramDesktop/ -- %u
+bindsym $mod+b exec brave --profile-directory="Default"
+bindsym $mod+u exec brave --profile-directory="Profile 1"
+bindsym $mod+m exec telegram-desktop
 bindsym $mod+n exec ${HOME}/Scripts/whatsapp_init.sh
 bindsym $mod+e exec i3-sensible-terminal -e ranger
 bindsym $mod+c exec korganizer
@@ -214,7 +245,7 @@ bindsym $mod+Shift+s exec flameshot gui
 #}
 
 # Fetch sunrise and sunset times
-exec ${HOME}/Scripts/sunrise-sunset.sh
+exec --no-startup-id ${HOME}/Scripts/sunrise-sunset.sh
 
 # Start polybar
 exec_always ${HOME}/Scripts/polybar_starter.sh
@@ -222,12 +253,6 @@ exec_always ${HOME}/Scripts/polybar_starter.sh
 # Set up wallpaper
 exec_always ${HOME}/Scripts/feh_init.sh
 
-# Set up monitor resolution and positioning
-exec_always xrandr --output eDP --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-A-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal
-workspace $ws1 output HDMI-A-0
-workspace $ws2 output HDMI-A-0
-workspace $ws3 output HDMI-A-0
-workspace $ws10 output eDP
 
 # Set focus not to follow mouse
 focus_follows_mouse no
@@ -239,7 +264,7 @@ mouse_warping none
 ################## i3-gaps ######################
 #################################################
 # Remove window title
-for_window [class=".*"] border pixel 4
+for_window [class=".*"] border pixel 3
 
 gaps inner 8
 
@@ -248,25 +273,47 @@ client.focused          #4c7899 #285577 #ffffff #2e9ef4   #f0a830
 client.unfocused        #4c7899 #285578 #ffffff #2e9ef4   #907878
 
 # Run Picom
-exec picom --backend glx --vsync -b
+exec --no-startup-id picom --backend glx --vsync -b
 
 # Touchpad configs
 # Enables Tap-to-Click
-exec xinput set-prop 17 311 1
+exec --no-startup-id xinput set-prop 17 311 1
 # Enables Natural Scrolling (right direction)
-exec xinput set-prop 17 293 1
+exec --no-startup-id xinput set-prop 17 293 1
 
 # Enable Night-Light (Redshift)
-exec redshift
+exec --no-startup-id redshift -l -23.536215622740578:-46.68497829306198
 
 # Autostart Korgac (Calendar Reminders)
 #exec korgac
 
 # Switch Esc with Caps-Lock
-exec setxkbmap -option "caps:swapescape"
+exec --no-startup-id setxkbmap -option "caps:swapescape"
 
 # Autostart blueman
 # exec blueman-applet
 
 # Autostart dunst
-exec systemctl --user restart dunst.service
+exec --no-startup-id systemctl --user restart dunst.service
+
+# Autostart applications
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#exec --no-startup-id xfce4-power-manager
+#exec --no-startup-id pamac-tray
+exec --no-startup-id pasystray
+exec --no-startup-id clipit
+exec --no-startup-id xautolock -time 10 -locker blurlock
+
+# Set up monitor resolution and positioning
+#exec_always xrandr --output eDP --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-A-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal
+#exec_always xrandr --output VGA-0 --off --output DVI-D-0 --mode 1920x1080 --pos 1920x0 --rotate left --output HDMI-0 --primary --mode 1920x1080 --pos 0x331 --rotate normal
+exec --no-startup-id ${HOME}/.screenlayout/dual.sh
+exec_always --no-startup-id xrandr --output VGA-0 --off --output DVI-D-0 --mode 1920x1080 --pos 1920x0 --rotate left --output HDMI-0 --primary --mode 1920x1080 --pos 0x330 --rotate normal
+#workspace $ws1 output HDMI-A-0
+#workspace $ws2 output HDMI-A-0
+#workspace $ws3 output HDMI-A-0
+#workspace $ws10 output eDP
+workspace $ws1 output HDMI-0
+workspace $ws2 output HDMI-0
+workspace $ws3 output HDMI-0
+workspace $ws10 output DVI-D-0
