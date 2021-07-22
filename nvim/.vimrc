@@ -4,7 +4,6 @@ set expandtab
 set smartindent
 
 set guicursor=n-c:block,v-i-ci-ve:ver25,r-cr:hor20
-		  \,a:blinkwait100-blinkoff400-blinkon250-Cursor/lCursor
 set relativenumber
 set nu
 
