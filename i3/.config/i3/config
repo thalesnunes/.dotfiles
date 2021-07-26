@@ -228,7 +228,7 @@ bindsym $mod+r mode "resize"
 ############### Personal Binds ##################
 #################################################
 bindsym $mod+b exec brave --profile-directory="Default"
-bindsym $mod+u exec brave --profile-directory="Profile 1"
+bindsym $mod+u workspace $ws2, exec brave --profile-directory="Profile 1"
 bindsym $mod+m exec telegram-desktop
 bindsym $mod+n exec ${HOME}/Scripts/whatsapp_init.sh
 bindsym $mod+e exec i3-sensible-terminal -e ranger
@@ -313,7 +313,7 @@ exec_always xrandr --output VGA-0 --off --output DVI-D-0 --mode 1920x1080 --pos 
 #workspace $ws2 output HDMI-A-0
 #workspace $ws3 output HDMI-A-0
 #workspace $ws10 output eDP
-workspace $ws1 output HDMI-0
-workspace $ws2 output HDMI-0
-workspace $ws3 output HDMI-0
+workspace $ws1 output primary
+workspace $ws2 output primary
+workspace $ws3 output primary
 workspace $ws10 output DVI-D-0
