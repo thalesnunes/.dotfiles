@@ -15,5 +15,4 @@ else
     Wallpaper=$night
 fi
 
-feh --no-fehbg --bg-scale "$DIR/$Wallpaper"
-
+feh --no-fehbg --bg-fill "$DIR/$Wallpaper" "$DIR/pawel-nolbert-4u2U8EO9OzY-unsplash.jpg"
