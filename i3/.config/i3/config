@@ -96,9 +96,9 @@ bindsym $alt+v split v
 bindsym $mod+Shift+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+Control+1 layout toggle split
-bindsym $mod+Control+2 layout tabbed
-bindsym $mod+Control+3 layout stacking
+bindsym $mod+Tab layout toggle splith tabbed
+#bindsym $mod+2 layout tabbed
+#bindsym $mod+3 layout stacking
 
 # toggle tiling / floating
 bindsym $mod+f floating toggle
@@ -307,7 +307,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id pasystray
 exec --no-startup-id clipit --no-icon
 exec --no-startup-id xautolock -time 20 -locker blurlock
-exec --no-startup-id ${HOME}/Scripts/imwheel_starter.sh
+#exec --no-startup-id ${HOME}/Scripts/imwheel_starter.sh
 
 #workspace $ws1 output HDMI-A-0
 #workspace $ws2 output HDMI-A-0
