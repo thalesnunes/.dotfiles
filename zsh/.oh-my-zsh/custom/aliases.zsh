@@ -9,8 +9,6 @@ alias yayup='yay -Syu'
 
 alias docker_init='sudo systemctl start docker.socket && sudo systemctl start docker'
 alias docker_stop='sudo systemctl stop docker && sudo systemctl stop docker.socket'
-alias pg_init='sudo systemctl start apache2'
-alias pg_stop='sudo systemctl stop apache2'
 
 alias gs='git status'
 alias ga='git add'
