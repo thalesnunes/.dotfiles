@@ -5,6 +5,7 @@ alias la="ls -A"
 alias lla='ls -la'
 
 alias aptup='sudo apt update && sudo apt upgrade'
+alias yayup='yay -Syu'
 
 alias docker_init='sudo systemctl start docker.socket && sudo systemctl start docker'
 alias docker_stop='sudo systemctl stop docker && sudo systemctl stop docker.socket'
