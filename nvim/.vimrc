@@ -33,6 +33,13 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+
+" Auto bracket pairs
+Plug 'jiangmiao/auto-pairs'
+
+" Commenter
+Plug 'tpope/vim-commentary'
+
 " Python code formatter
 Plug 'ambv/black'
 
@@ -60,6 +67,7 @@ Plug 'itchyny/lightline.vim'
 call plug#end()
 
 syntax enable
+filetype plugin on
 
 set laststatus=2
 let g:lightline = {
@@ -99,6 +107,24 @@ let mapleader = " "
 nnoremap ; :
 vnoremap ; :
 
+" Y behave like rest
+nnoremap Y y$
+
+" Copy/pasting remaps
+nnoremap x "_x
+nnoremap d "_d
+nnoremap D "_D
+vnoremap d "_d
+
+nnoremap <leader>d ""d
+nnoremap <leader>D ""D
+vnoremap <leader>d ""d
+
+" Keeping it centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
 " Explorer keys
 nnoremap <leader>ee :Ex<CR>
 vnoremap <leader>ee :Ex<CR>
@@ -120,6 +146,10 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " Jupyter_ascending remaps
 nmap <space><space>x <Plug>JupyterExecute
 nmap <space><space>X <Plug>JupyterExecuteAll
+
+" Commenting line
+nnoremap <leader>c <cmd>Commentary<cr>
+vnoremap <leader>c <cmd>'<,'>Commentary<cr>
 
 augroup highlight_yank
     autocmd!
