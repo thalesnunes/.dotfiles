@@ -201,44 +201,82 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $alt+Control+Delete exec ${HOME}/.config/rofi/pipeline.sh Power
+
 # resize window (you can also use the mouse for that)
 mode "RESIZE" {
-        # These bindings trigger as soon as you enter the resize mode
+   # Pressing left will shrink the window’s width.
+   # Pressing right will grow the window’s width.
+   # Pressing up will shrink the window’s height.
+   # Pressing down will grow the window’s height.
+   bindsym h resize shrink width 5 px or 5 ppt
+   bindsym j resize grow height 5 px or 5 ppt
+   bindsym k resize shrink height 5 px or 5 ppt
+   bindsym l resize grow width 5 px or 5 ppt
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 5 px or 5 ppt
-        bindsym j resize grow height 5 px or 5 ppt
-        bindsym k resize shrink height 5 px or 5 ppt
-        bindsym l resize grow width 5 px or 5 ppt
+   # same bindings, but for the arrow keys
+   # bindsym Left resize shrink width 5 px or 5 ppt
+   # bindsym Down resize grow height 5 px or 5 ppt
+   # bindsym Up resize shrink height 5 px or 5 ppt
+   # bindsym Right resize grow width 5 px or 5 ppt
 
-        # same bindings, but for the arrow keys
-        # bindsym Left resize shrink width 5 px or 5 ppt
-        # bindsym Down resize grow height 5 px or 5 ppt
-        # bindsym Up resize shrink height 5 px or 5 ppt
-        # bindsym Right resize grow width 5 px or 5 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+   # back to normal: Enter or Escape or $mod+r
+   bindsym Return mode "default"
+   bindsym Escape mode "default"
+   bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "RESIZE"
 
+# Rofi mode for launching different scripts
 mode "ROFI" {
-        bindsym space exec ${HOME}/.config/rofi/main.sh -show combi; mode "default"
-        bindsym Delete exec ${HOME}/.config/rofi/pipeline.sh Power; mode "default"
-        bindsym Return exec ${HOME}/.config/rofi/pipeline.sh CMD; mode "default"
-        bindsym k exec ${HOME}/.config/rofi/pipeline.sh Kill; mode "default"
-        bindsym c exec ${HOME}/.config/rofi/pipeline.sh Code; mode "default"
-        bindsym m exec ${HOME}/.config/rofi/pipeline.sh Calc; mode "default"
-        bindsym Escape mode "default"
+
+    # Lauch main script (app launcher and others)
+    bindsym space exec ${HOME}/.config/rofi/main.sh -show combi; mode "default"
+    # Lauch Power script
+    bindsym Delete exec ${HOME}/.config/rofi/pipeline.sh Power; mode "default"
+    # Lauch CMD script
+    bindsym Return exec ${HOME}/.config/rofi/pipeline.sh CMD; mode "default"
+    # Lauch script to kill processes
+    bindsym k exec ${HOME}/.config/rofi/pipeline.sh Kill; mode "default"
+    # Lauch Code rofi
+    bindsym c exec ${HOME}/.config/rofi/pipeline.sh Code; mode "default"
+    # Lauch Calc script
+    bindsym m exec ${HOME}/.config/rofi/pipeline.sh Calc; mode "default"
+    # Escape mode
+    bindsym Escape mode "default"
 }
 
 bindsym $mod+space mode "ROFI"
+
+# Flameshot mode for screenshotting
+mode "FLAMESHOT" {
+
+    # Screenshot region
+    bindsym s exec flameshot gui; mode "default"
+    # Screenshot screen 0
+    bindsym 1 exec flameshot screen -n 0 -c; mode "default"
+    # Screenshot screen 1
+    bindsym 2 exec flameshot screen -n 1 -c; mode "default"
+    # Screenshot full
+    bindsym Print exec flameshot full -c; mode "default"
+    # Escape mode
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+s mode "FLAMESHOT"
+
+# Flameshot mode for screenshotting
+mode "SYSTEM" {
+
+    # Launch pavucontrol
+    bindsym v exec pavucontrol; mode "default"
+    # Launch blueman
+    bindsym b exec blueman-manager; mode "default"
+    # Escape mode
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+c mode "SYSTEM"
 
 #################################################
 ############### Personal Binds ##################
@@ -250,7 +288,6 @@ bindsym $mod+n exec ${HOME}/Scripts/whatsapp_init.sh
 bindsym $mod+e exec i3-sensible-terminal -e ranger
 bindsym $mod+Shift+e exec pcmanfm
 #bindsym $mod+c exec korganizer
-bindsym $mod+Shift+s exec flameshot gui
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -260,16 +297,6 @@ bindsym $mod+Shift+s exec flameshot gui
 #       position top
 #       strip_workspace_numbers yes
 #}
-
-# Fetch sunrise and sunset times
-exec --no-startup-id ${HOME}/Scripts/sunrise-sunset.sh
-
-# Start polybar
-exec_always ${HOME}/Scripts/polybar_starter.sh
-
-# Set up wallpaper
-exec_always ${HOME}/Scripts/feh_init.sh
-
 
 # Set focus not to follow mouse
 focus_follows_mouse no
@@ -294,10 +321,19 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000
 client.background       #2B2C2B
 
 # Set up monitor resolution and positioning
-exec_always sleep 1 && xrandr --output VGA-0 --off --output DVI-D-0 --mode 1920x1080 --pos 1920x0 --rotate left --output HDMI-0 --primary --mode 1920x1080 --pos 0x215 --rotate normal
+exec sleep 0.5 && xrandr --output VGA-0 --off --output DVI-D-0 --mode 1920x1080 --pos 1920x0 --rotate left --output HDMI-0 --primary --mode 1920x1080 --pos 0x215 --rotate normal
 
 # Run Picom
 exec --no-startup-id picom -b
+
+# Fetch sunrise and sunset times
+exec --no-startup-id ${HOME}/Scripts/sunrise-sunset.sh
+
+# Start polybar
+exec_always ${HOME}/Scripts/polybar_starter.sh
+
+# Set up wallpaper
+exec_always sleep 1 && ${HOME}/Scripts/feh_init.sh
 
 # Touchpad configs
 # Enables Tap-to-Click
