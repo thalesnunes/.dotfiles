@@ -47,14 +47,14 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+t exec i3-sensible-terminal
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+BackSpace kill
 bindsym $alt+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+space exec ${HOME}/.config/rofi/main.sh -show combi
+# bindsym $mod+space exec ${HOME}/.config/rofi/main.sh -show combi
 
 # change focus
 bindsym $mod+h focus left
@@ -63,10 +63,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+# bindsym $mod+Left focus left
+# bindsym $mod+Down focus down
+# bindsym $mod+Up focus up
+# bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+h move left
@@ -75,10 +75,10 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# bindsym $mod+Shift+Left move left
+# bindsym $mod+Shift+Down move down
+# bindsym $mod+Shift+Up move up
+# bindsym $mod+Shift+Right move right
 
 # resize outside resize mode
 bindsym $mod+period resize grow width 5 px or 5 ppt
@@ -87,13 +87,13 @@ bindsym $mod+Shift+period resize grow height 5 px or 5 ppt
 bindsym $mod+Shift+comma resize shrink height 5 px or 5 ppt
 
 # split in horizontal orientation
-bindsym $alt+h split h
+bindsym $mod+Control+l split h
 
 # split in vertical orientation
-bindsym $alt+v split v
+bindsym $mod+Control+j split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+Shift+f fullscreen toggle
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+Tab layout toggle splith tabbed
@@ -101,13 +101,13 @@ bindsym $mod+Tab layout toggle splith tabbed
 #bindsym $mod+3 layout stacking
 
 # toggle tiling / floating
-bindsym $mod+f floating toggle
+bindsym $mod+Shift+f floating toggle
 
 # change focus between tiling / floating windows
 bindsym $alt+Tab focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -148,6 +148,10 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+F12 move container to workspace $ws10; workspace $ws10
+
+# change monitor focus
+bindsym $mod+i focus output left
+bindsym $mod+o focus output right
 
 ###########################################################
 ############### Assign apps to workspaces #################
@@ -198,7 +202,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $alt+Control+Delete exec ${HOME}/.config/rofi/pipeline.sh Power
 # resize window (you can also use the mouse for that)
-mode "resize" {
+mode "RESIZE" {
         # These bindings trigger as soon as you enter the resize mode
 
         # Pressing left will shrink the window’s width.
@@ -211,10 +215,10 @@ mode "resize" {
         bindsym l resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 5 px or 5 ppt
-        bindsym Down resize grow height 5 px or 5 ppt
-        bindsym Up resize shrink height 5 px or 5 ppt
-        bindsym Right resize grow width 5 px or 5 ppt
+        # bindsym Left resize shrink width 5 px or 5 ppt
+        # bindsym Down resize grow height 5 px or 5 ppt
+        # bindsym Up resize shrink height 5 px or 5 ppt
+        # bindsym Right resize grow width 5 px or 5 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -222,7 +226,19 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+r mode "RESIZE"
+
+mode "ROFI" {
+        bindsym space exec ${HOME}/.config/rofi/main.sh -show combi; mode "default"
+        bindsym Delete exec ${HOME}/.config/rofi/pipeline.sh Power; mode "default"
+        bindsym Return exec ${HOME}/.config/rofi/pipeline.sh CMD; mode "default"
+        bindsym k exec ${HOME}/.config/rofi/pipeline.sh Kill; mode "default"
+        bindsym c exec ${HOME}/.config/rofi/pipeline.sh Code; mode "default"
+        bindsym m exec ${HOME}/.config/rofi/pipeline.sh Calc; mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+space mode "ROFI"
 
 #################################################
 ############### Personal Binds ##################
@@ -270,14 +286,18 @@ for_window [class=".*"] border pixel 3
 gaps inner 8
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #4c7899 #285577 #ffffff #2e9ef4   #f0a830
-client.unfocused        #4c7899 #285578 #ffffff #2e9ef4   #907878
+client.focused          #556064 #556064 #80FFF9 #FDF6E3   #f0a830
+client.focused_inactive #2F3D44 #2F3D44 #AD69AF #454948   #907878
+client.unfocused        #2F3D44 #000000 #AD69AF #454948   #907878
+client.urgent           #CB4B16 #FDF6E3 #AD69AF #268BD2
+client.placeholder      #000000 #0c0c0c #ffffff #000000
+client.background       #2B2C2B
 
 # Set up monitor resolution and positioning
-exec_always xrandr --output VGA-0 --off --output DVI-D-0 --mode 1920x1080 --pos 1920x0 --rotate left --output HDMI-0 --primary --mode 1920x1080 --pos 0x215 --rotate normal
+exec_always sleep 1 && xrandr --output VGA-0 --off --output DVI-D-0 --mode 1920x1080 --pos 1920x0 --rotate left --output HDMI-0 --primary --mode 1920x1080 --pos 0x215 --rotate normal
 
 # Run Picom
-exec --no-startup-id picom --backend glx --vsync -b
+exec --no-startup-id picom -b
 
 # Touchpad configs
 # Enables Tap-to-Click
@@ -305,6 +325,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 #exec --no-startup-id xfce4-power-manager
 #exec --no-startup-id pamac-tray
 #exec --no-startup-id pasystray
+exec --no-startup-id keynav daemonize
 exec --no-startup-id clipit --no-icon
 exec --no-startup-id xautolock -time 20 -locker blurlock
 #exec --no-startup-id ${HOME}/Scripts/imwheel_starter.sh
