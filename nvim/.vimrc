@@ -115,21 +115,33 @@ nnoremap x "_x
 nnoremap d "_d
 nnoremap D "_D
 vnoremap d "_d
+nnoremap c "_c
+nnoremap C "_C
+vnoremap c "_c
 
 nnoremap <leader>d ""d
 nnoremap <leader>D ""D
 vnoremap <leader>d ""d
+nnoremap <leader>c ""c
+nnoremap <leader>C ""C
+vnoremap <leader>c ""c
 
 " Keeping it centered
 nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap J mzJ`z
 
+" Add blank line
+nnoremap <leader>o o<esc>
+nnoremap <leader>O O<esc>
+
 " Explorer keys
 nnoremap <leader>ee :Ex<CR>
 vnoremap <leader>ee :Ex<CR>
 nnoremap <leader>ve :Vex<CR>
 vnoremap <leader>ve :Vex<CR>
+nnoremap <leader>he :Sex<CR>
+vnoremap <leader>he :Sex<CR>
 
 " Copy and paste to system's clipboard
 nnoremap <leader>y "+y
