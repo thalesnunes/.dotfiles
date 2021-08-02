@@ -138,10 +138,16 @@ nnoremap <leader>O O<esc>
 " Explorer keys
 nnoremap <leader>ee :Ex<CR>
 vnoremap <leader>ee :Ex<CR>
-nnoremap <leader>ve :Vex<CR>
-vnoremap <leader>ve :Vex<CR>
-nnoremap <leader>he :Sex<CR>
-vnoremap <leader>he :Sex<CR>
+nnoremap <leader>ev :Vex<CR>
+vnoremap <leader>ev :Vex<CR>
+nnoremap <leader>eh :Sex<CR>
+vnoremap <leader>eh :Sex<CR>
+
+" Buffer switching
+nnoremap <leader>l :bnext<CR>
+vnoremap <leader>l :bnext<CR>
+nnoremap <leader>h :bprev<CR>
+vnoremap <leader>h :bprev<CR>
 
 " Copy and paste to system's clipboard
 nnoremap <leader>y "+y
