@@ -44,3 +44,9 @@ function pg_stop() {
         echo "OS not supported";
     fi
 }
+
+function create() {
+    cd ~/Projects/Project_Initializer/
+    pipenv run python3 ~/Projects/Project_Initializer/create.py "$@"
+    cd ~
+}

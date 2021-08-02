@@ -19,8 +19,6 @@ alias dot='cd /home/thales/.dotfiles'
 
 alias dbcrawler_docker='docker run --name dbcrawler -p 8888:8888 -it -e JUPYTER_ENABLE_LAB=yes --rm -d -v ~/Projects/db-crawler:/usr/src/app -w /usr/src/app thalesnunes1/db-crawler:latest ; sleep 2 ; jupyter_url=$(docker logs dbcrawler | grep -o "http:\/\/127\.0\.0\.1:8888\/lab?token=.*" | tail -1) && google-chrome $jupyter_url </dev/null &>/dev/null & ; disown'
 
-alias create='python3 ~/Projects/Project_Initializer/create.py'
-
 alias polyconfig='cd ~/.dotfiles/polybar/.config/polybar/forest'
 
 alias roficonfig='cd ~/.dotfiles/rofi/.config/rofi'
