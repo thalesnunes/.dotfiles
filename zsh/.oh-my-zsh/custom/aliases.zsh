@@ -11,6 +11,7 @@ alias docker_init='sudo systemctl start docker.socket && sudo systemctl start do
 alias docker_stop='sudo systemctl stop docker && sudo systemctl stop docker.socket'
 
 alias gs='git status'
+alias gd='git diff'
 alias ga='git add'
 alias gc='git commit -m'
 alias gp='git push'
