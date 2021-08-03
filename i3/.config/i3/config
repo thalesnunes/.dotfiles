@@ -278,6 +278,21 @@ mode "SYSTEM" {
 
 bindsym $mod+c mode "SYSTEM"
 
+# Trabalho
+mode "LABI" {
+
+    # Launch Chrome
+    bindsym b exec google-chrome-stable; mode "default"
+    # Launch Slack
+    bindsym s exec slack; mode "default"
+    # Launch Code with db-crawler
+    bindsym c exec code /home/thales/Projects/db-crawler; mode "default"
+    # Escape mode
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+w mode "LABI"
+
 #################################################
 ############### Personal Binds ##################
 #################################################
@@ -330,7 +345,7 @@ exec --no-startup-id picom -b
 exec --no-startup-id ${HOME}/Scripts/sunrise-sunset.sh
 
 # Start polybar
-exec_always ${HOME}/Scripts/polybar_starter.sh
+exec_always sleep 1 && ${HOME}/Scripts/polybar_starter.sh
 
 # Set up wallpaper
 exec_always sleep 1 && ${HOME}/Scripts/feh_init.sh
