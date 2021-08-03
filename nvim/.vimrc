@@ -57,10 +57,11 @@ Plug 'untitled-ai/jupyter_ascending.vim'
 " Git integration
 Plug 'tpope/vim-fugitive'
 
-" Fuzzy finder
+" Telescope and Harpoon
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'ThePrimeagen/harpoon'
 
 " Themeing
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -132,9 +133,18 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap J mzJ`z
 
+" Exit terminal mode
+tnoremap <Esc> <C-\><C-n>
+
 " Add blank line
 nnoremap <leader>o o<esc>
 nnoremap <leader>O O<esc>
+
+" Copy and paste to system's clipboard
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
 
 " Explorer keys
 nnoremap <leader>ee :Ex<CR>
@@ -144,31 +154,37 @@ vnoremap <leader>ev :Vex<CR>
 nnoremap <leader>eh :Sex<CR>
 vnoremap <leader>eh :Sex<CR>
 
-" Buffer switching
+" Buffer switching and delete
 nnoremap <leader>l :bnext<CR>
 vnoremap <leader>l :bnext<CR>
 nnoremap <leader>h :bprev<CR>
 vnoremap <leader>h :bprev<CR>
-
-" Copy and paste to system's clipboard
-nnoremap <leader>y "+y
-vnoremap <leader>y "+y
-nnoremap <leader>p "+p
-vnoremap <leader>p "+p
+nnoremap <leader>q :bdelete<CR>
 
 " Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>ff :Telescope find_files<CR>
+nnoremap <leader>fg :Telescope live_grep<CR>
+nnoremap <leader>fb :Telescope buffers<CR>
+nnoremap <leader>fh :Telescope help_tags<CR>
+
+" Fast file switching with Harpoon
+nnoremap <leader>a :lua require("harpoon.mark").add_file()<CR>
+nnoremap <C-e> :lua require("harpoon.ui").toggle_quick_menu()<CR>
+
+nnoremap <leader>1 :lua require("harpoon.ui").nav_file(1)<CR>
+nnoremap <leader>2 :lua require("harpoon.ui").nav_file(2)<CR>
+nnoremap <leader>3 :lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <leader>4 :lua require("harpoon.ui").nav_file(4)<CR>
+nnoremap <leader>t :lua require("harpoon.term").gotoTerminal(1)<CR>
+nnoremap <leader>t :lua require("harpoon.term").gotoTerminal(2)<CR>
 
 " Jupyter_ascending remaps
 nmap <space><space>x <Plug>JupyterExecute
 nmap <space><space>X <Plug>JupyterExecuteAll
 
 " Commenting line
-nnoremap <leader>c <cmd>Commentary<cr>
-vnoremap <leader>c <cmd>'<,'>Commentary<cr>
+nnoremap <leader>c :Commentary<CR>
+vnoremap <leader>c :'<,'>Commentary<CR>
 
 augroup highlight_yank
     autocmd!
