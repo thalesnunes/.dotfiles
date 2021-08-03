@@ -2,6 +2,7 @@ set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
+set nowrap
 
 set guicursor=n-c:block,v-i-ci-ve:ver25,r-cr:hor20
 set relativenumber
