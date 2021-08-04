@@ -50,3 +50,10 @@ function create() {
     pipenv run python3 ~/Projects/Project_Initializer/create.py "$@"
     cd ~
 }
+
+function gcala() {
+    args=$@
+    for dir in ~/.config/gcalcli/*/; do
+        gcalcli --config-folder $dir $args;
+    done
+}

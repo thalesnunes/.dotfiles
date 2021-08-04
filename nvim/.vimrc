@@ -82,7 +82,7 @@ let g:lightline = {
       \              [ 'gitbranch'] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
+      \   'gitbranch': 'FugitiveHead'
       \ },
       \ }
 colorscheme dracula
