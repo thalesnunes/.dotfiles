@@ -11,6 +11,7 @@
 
 set $mod Mod4
 set $alt Mod1
+set $terminal urxvtc
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -47,7 +48,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvtc
+bindsym $mod+Return exec $terminal
 
 # kill focused window
 bindsym $mod+BackSpace kill
@@ -273,6 +274,10 @@ mode "SYSTEM" {
     bindsym v exec pavucontrol; mode "default"
     # Launch blueman
     bindsym b exec blueman-manager; mode "default"
+    # Launch nm-connection-editor
+    bindsym n exec nm-connection-editor; mode "default"
+    # Launch htop
+    bindsym h exec $terminal -e htop; mode "default"
     # Escape mode
     bindsym Escape mode "default"
 }
@@ -283,7 +288,7 @@ bindsym $mod+c mode "SYSTEM"
 mode "LABI" {
 
     # Launch Chrome
-    bindsym b exec google-chrome-stable; mode "default"
+    bindsym b workspace $ws3, exec google-chrome-stable; mode "default"
     # Launch Slack
     bindsym m exec slack; mode "default"
     # Launch Code with db-crawler
@@ -303,7 +308,7 @@ bindsym $mod+b exec brave --profile-directory="Default"
 bindsym $mod+u workspace $ws2, exec brave --profile-directory="Profile 1"
 bindsym $mod+m exec telegram-desktop
 bindsym $mod+n exec ${HOME}/Scripts/whatsapp_init.sh
-bindsym $mod+e exec urxvtc -e ranger
+bindsym $mod+e exec $terminal -e ranger
 bindsym $mod+Shift+e exec pcmanfm
 #bindsym $mod+c exec korganizer
 
@@ -387,10 +392,6 @@ exec --no-startup-id xautolock -time 20 -locker blurlock
 #exec --no-startup-id pasystray
 #exec --no-startup-id ${HOME}/Scripts/imwheel_starter.sh
 
-#workspace $ws1 output HDMI-A-0
-#workspace $ws2 output HDMI-A-0
-#workspace $ws3 output HDMI-A-0
-#workspace $ws10 output eDP
 workspace $ws1 output primary
 workspace $ws2 output primary
 workspace $ws3 output primary
