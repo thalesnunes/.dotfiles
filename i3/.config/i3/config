@@ -47,7 +47,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvtc
 
 # kill focused window
 bindsym $mod+BackSpace kill
@@ -232,6 +232,7 @@ mode "ROFI" {
 
     # Lauch main script (app launcher and others)
     bindsym space exec ${HOME}/.config/rofi/main.sh -show combi; mode "default"
+    bindsym $mod+space exec ${HOME}/.config/rofi/main.sh -show combi; mode "default"
     # Lauch Power script
     bindsym Delete exec ${HOME}/.config/rofi/pipeline.sh Power; mode "default"
     # Lauch CMD script
@@ -284,9 +285,11 @@ mode "LABI" {
     # Launch Chrome
     bindsym b exec google-chrome-stable; mode "default"
     # Launch Slack
-    bindsym s exec slack; mode "default"
+    bindsym m exec slack; mode "default"
     # Launch Code with db-crawler
     bindsym c exec code /home/thales/Projects/db-crawler; mode "default"
+    # Launch Notion
+    bindsym n exec /home/thales/Apps/Notion-linux-x64/Notion; mode "default"
     # Escape mode
     bindsym Escape mode "default"
 }
@@ -300,7 +303,7 @@ bindsym $mod+b exec brave --profile-directory="Default"
 bindsym $mod+u workspace $ws2, exec brave --profile-directory="Profile 1"
 bindsym $mod+m exec telegram-desktop
 bindsym $mod+n exec ${HOME}/Scripts/whatsapp_init.sh
-bindsym $mod+e exec i3-sensible-terminal -e ranger
+bindsym $mod+e exec urxvtc -e ranger
 bindsym $mod+Shift+e exec pcmanfm
 #bindsym $mod+c exec korganizer
 
@@ -350,6 +353,9 @@ exec_always sleep 1 && ${HOME}/Scripts/polybar_starter.sh
 # Set up wallpaper
 exec_always sleep 1 && ${HOME}/Scripts/feh_init.sh
 
+# Exec urxvt daemon
+exec --no-startup-id urxvtd -q -o -f
+
 # Touchpad configs
 # Enables Tap-to-Click
 exec --no-startup-id xinput set-prop 17 311 1
@@ -373,12 +379,12 @@ exec --no-startup-id systemctl --user restart dunst.service
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-#exec --no-startup-id xfce4-power-manager
-#exec --no-startup-id pamac-tray
-#exec --no-startup-id pasystray
 exec --no-startup-id keynav daemonize
 exec --no-startup-id clipit --no-icon
 exec --no-startup-id xautolock -time 20 -locker blurlock
+#exec --no-startup-id xfce4-power-manager
+#exec --no-startup-id pamac-tray
+#exec --no-startup-id pasystray
 #exec --no-startup-id ${HOME}/Scripts/imwheel_starter.sh
 
 #workspace $ws1 output HDMI-A-0

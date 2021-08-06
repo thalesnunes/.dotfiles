@@ -35,8 +35,9 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-" Auto bracket pairs
+" Auto bracket pairs and surround
 Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
 
 " Commenter
 Plug 'tpope/vim-commentary'
