@@ -220,7 +220,7 @@
     background = "#900000"
     foreground = "#ffffff"
     frame_color = "#ff0000"
-    timeout = 5
+    timeout = 0
 
 
 # Every section that isn't one of the above is interpreted as a rules to
