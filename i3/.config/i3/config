@@ -11,6 +11,7 @@
 
 set $mod Mod4
 set $alt Mod1
+set $terminal xfce4-terminal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -47,7 +48,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec $terminal
 
 # kill focused window
 bindsym $mod+BackSpace kill
@@ -79,6 +80,10 @@ bindsym $mod+Shift+l move right
 # bindsym $mod+Shift+Down move down
 # bindsym $mod+Shift+Up move up
 # bindsym $mod+Shift+Right move right
+
+# change monitor focus
+bindsym $mod+i focus output left
+bindsym $mod+o focus output right
 
 # resize outside resize mode
 bindsym $mod+period resize grow width 5 px or 5 ppt
@@ -149,10 +154,6 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 bindsym $mod+Shift+F12 move container to workspace $ws10; workspace $ws10
 
-# change monitor focus
-bindsym $mod+i focus output left
-bindsym $mod+o focus output right
-
 ###########################################################
 ############### Assign apps to workspaces #################
 ###########################################################
@@ -161,8 +162,6 @@ assign [class="whatsappweb-nativefier-d40211"] workspace $ws10
 assign [class="notion-nativefier-46aee8"] workspace $ws10
 assign [class="Slack"] workspace $ws10
 assign [class="Google-chrome"] workspace $ws3
-
-for_window [class="flameshot"] floating enable
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -182,6 +181,7 @@ for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
 for_window [title="About Pale Moon"] floating enable
+for_window [class="flameshot"] floating enable
 for_window [class="Pamac-manager"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="qt5ct"] floating enable sticky enable border normal
@@ -192,8 +192,6 @@ for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
-
-
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -273,6 +271,10 @@ mode "SYSTEM" {
     bindsym v exec pavucontrol; mode "default"
     # Launch blueman
     bindsym b exec blueman-manager; mode "default"
+    # Launch nm-connection-editor
+    bindsym n exec nm-connection-editor; mode "default"
+    # Launch htop
+    bindsym h exec $terminal -e htop; mode "default"
     # Escape mode
     bindsym Escape mode "default"
 }
@@ -283,7 +285,7 @@ bindsym $mod+c mode "SYSTEM"
 mode "LABI" {
 
     # Launch Chrome
-    bindsym b exec google-chrome-stable; mode "default"
+    bindsym b workspace $ws3, exec google-chrome-stable; mode "default"
     # Launch Slack
     bindsym m exec slack; mode "default"
     # Launch Code with db-crawler
@@ -303,7 +305,7 @@ bindsym $mod+b exec brave-browser --profile-directory="Profile 2"
 bindsym $mod+u workspace $ws2, exec brave-browser --profile-directory="Profile 3"
 bindsym $mod+m exec /home/thales/Apps/Telegram/Telegram -workdir /home/thales/.local/share/TelegramDesktop/ -- %u
 bindsym $mod+n exec ${HOME}/Scripts/whatsapp_init.sh
-bindsym $mod+e exec i3-sensible-terminal -e ranger
+bindsym $mod+e exec $terminal -e ranger
 bindsym $mod+Shift+e exec pcmanfm
 #bindsym $mod+c exec korganizer
 
@@ -382,6 +384,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id keynav daemonize
 exec --no-startup-id clipit --no-icon
 exec --no-startup-id xautolock -time 20 -locker blurlock
+#exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
 #exec --no-startup-id xfce4-power-manager
 #exec --no-startup-id pamac-tray
 #exec --no-startup-id pasystray
