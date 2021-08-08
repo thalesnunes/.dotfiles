@@ -360,9 +360,9 @@ exec_always ${HOME}/Scripts/feh_init.sh
 
 # Touchpad configs
 # Enables Tap-to-Click
-exec --no-startup-id xinput set-prop 11 293 1
+exec --no-startup-id xinput set-prop "Elan Touchpad" "libinput Tapping Enabled" 1
 # Enables Natural Scrolling (right direction)
-exec --no-startup-id xinput set-prop 11 301 1
+exec --no-startup-id xinput set-prop "Elan Touchpad" "libinput Natural Scrolling Enabled" 1
 
 # Enable Night-Light (Redshift)
 exec --no-startup-id redshift -l -23.536215622740578:-46.68497829306198
