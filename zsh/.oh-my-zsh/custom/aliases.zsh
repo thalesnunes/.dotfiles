@@ -1,5 +1,5 @@
-# alias python="python3"
-# alias pip="pip3"
+alias python="python3"
+alias pip="pip3"
 
 alias la="ls -A"
 alias lla='ls -la'
