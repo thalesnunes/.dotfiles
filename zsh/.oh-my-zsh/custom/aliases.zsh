@@ -7,8 +7,8 @@ alias lla='ls -la'
 alias aptup='sudo apt update && sudo apt upgrade'
 alias yayup='yay -Syu'
 
-alias docker_init='sudo systemctl start docker.socket && sudo systemctl start docker'
-alias docker_stop='sudo systemctl stop docker && sudo systemctl stop docker.socket'
+alias dockerinit='sudo systemctl start docker.socket && sudo systemctl start docker'
+alias dockerstop='sudo systemctl stop docker && sudo systemctl stop docker.socket'
 
 alias gs='git status'
 alias gd='git diff'
@@ -32,8 +32,8 @@ alias tokenconfig='nvim ~/.oh-my-zsh/custom/tokens.zsh'
 alias stown='stow -nvt ~'
 alias stowv='stow -vt ~'
 
-alias spotifyd_init='systemctl --user start spotifyd.service'
-alias spotifyd_stop='systemctl --user stop spotifyd.service'
+alias spotifydinit='systemctl --user start spotifyd.service'
+alias spotifydstop='systemctl --user stop spotifyd.service'
 
 alias gcalp='gcalcli --config-folder ~/.config/gcalcli/personal'
 alias gcalw='gcalcli --config-folder ~/.config/gcalcli/work'
