@@ -7,8 +7,8 @@ alias lla='ls -la'
 alias aptup='sudo apt update && sudo apt upgrade'
 alias yayup='yay -Syu'
 
-alias docker_init='sudo systemctl start docker.socket && sudo systemctl start docker'
-alias docker_stop='sudo systemctl stop docker && sudo systemctl stop docker.socket'
+alias dockerinit='sudo systemctl start docker.socket && sudo systemctl start docker'
+alias dockerstop='sudo systemctl stop docker && sudo systemctl stop docker.socket'
 
 alias gs='git status'
 alias gd='git diff'
