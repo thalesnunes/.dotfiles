@@ -101,8 +101,15 @@ EOF
 
 " Enable LSP
 lua <<EOF
-require'lspconfig'.pyright.setup{}
+require'lspconfig'.jedi_language_server.setup{
+    on_attach=on_attach,
+}
 EOF
+" lua <<EOF
+" require'lspconfig'.pyright.setup{
+"     on_attach=on_attach,
+" }
+" EOF
 
 let mapleader = " "
 
