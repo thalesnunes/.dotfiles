@@ -2,7 +2,7 @@ function gi() {
     curl -sL https://www.toptal.com/developers/gitignore/api/$@ > .gitignore ;
 }
 
-function update_db() {
+function updatedb() {
     cd ~/Projects/db-crawler/scripts
     for file in `ls | sort`;
     do
@@ -17,21 +17,23 @@ function dolph() {
     dolphin $@ &!
 }
 
-function pg_init() {
+function pginit() {
     OS=$(lsb_release -is)
     if [[ $OS == "Ubuntu" ]]; then
         sudo systemctl start apache2;
         echo "Started successfully"
+        google-chrome-stable 'localhost/pgadmin4'
     elif [[ $OS == "ManjaroLinux" ]]; then
         docker_init
         docker start pgadmin
         echo "Started successfully"
+        google-chrome-stable 'localhost'
     else
         echo "OS not supported";
     fi
 }
 
-function pg_stop() {
+function pgstop() {
     OS=$(lsb_release -is)
     if [[ $OS == "Ubuntu" ]]; then
         sudo systemctl stop apache2
