@@ -22,12 +22,12 @@ function pginit() {
     if [[ $OS == "Ubuntu" ]]; then
         sudo systemctl start apache2;
         echo "Started successfully"
-        google-chrome-stable 'localhost/pgadmin4'
+        google-chrome-stable 'localhost/pgadmin4' &!
     elif [[ $OS == "ManjaroLinux" ]]; then
         docker_init
         docker start pgadmin
         echo "Started successfully"
-        google-chrome-stable 'localhost'
+        google-chrome-stable 'localhost' &!
     else
         echo "OS not supported";
     fi
