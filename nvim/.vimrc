@@ -37,7 +37,7 @@ call plug#begin('~/.vim/plugged')
 
 " Auto bracket pairs and surround
 Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 
 " Commenter
 Plug 'tpope/vim-commentary'
