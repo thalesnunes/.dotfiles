@@ -29,8 +29,8 @@ alias exportconfig='nvim ~/.oh-my-zsh/custom/exports.zsh'
 alias functionconfig='nvim ~/.oh-my-zsh/custom/functions.zsh'
 alias tokenconfig='nvim ~/.oh-my-zsh/custom/tokens.zsh'
 
-alias stown='stow -nvt ~'
-alias stowv='stow -vt ~'
+alias stown='stow --no-folding -nvt ~'
+alias stowv='stow --no-folding -vt ~'
 
 alias spotifydinit='systemctl --user start spotifyd.service'
 alias spotifydstop='systemctl --user stop spotifyd.service'
