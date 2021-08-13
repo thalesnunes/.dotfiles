@@ -12,7 +12,6 @@ set nohlsearch
 set incsearch
 set hidden
 set noerrorbells
-set noshowmode
 
 set ignorecase
 set smartcase
@@ -66,31 +65,52 @@ Plug 'ThePrimeagen/harpoon'
 
 " Themeing
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'itchyny/lightline.vim'
+Plug 'hoob3rt/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
 
 syntax enable
 filetype plugin on
 
 set laststatus=2
-let g:lightline = {
-      \ 'colorscheme': 'darcula',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             ['readonly', 'filename', 'modified' ] ],
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'filetype' ],
-      \              [ 'gitbranch'] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
-      \ },
-      \ }
 colorscheme dracula
+set noshowmode
 highlight Normal guibg=none
 
-" Tree sitter highlight
 lua <<EOF
+-- Lualine config
+require'lualine'.setup {
+  options = {
+    icons_enabled = true,
+    theme = 'dracula',
+    component_separators = {'|', '|'},
+    section_separators = {'', ''},
+    disabled_filetypes = {}
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch'},
+    lualine_c = {
+        'filename',
+        {
+            'diagnostics',
+            sources = {'nvim_lsp'}
+        }
+    },
+    lualine_x = {'filetype'},
+    lualine_y = {
+        {
+            'diff',
+            color_added = '#02f702',
+            color_modified = '#efd402',
+            color_removed = '#ea000f'
+        }
+    },
+    lualine_z = {'location'}
+  }
+}
+
+-- Tree sitter highlight
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "python", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
