@@ -4,9 +4,9 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$PYTHON_BIN_PATH"
 
 if [ -x "$(command -v nvim)" ]; then
-    export EDITOR='/usr/bin/nvim'
-    export VISUAL='/usr/bin/nvim'
+    export EDITOR='nvim'
+    export VISUAL='nvim'
 else
-    export EDITOR='/usr/bin/vim'
-    export VISUAL='/usr/bin/vim'
+    export EDITOR='vim'
+    export VISUAL='vim'
 fi
