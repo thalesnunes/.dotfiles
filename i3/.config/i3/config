@@ -80,6 +80,10 @@ bindsym $mod+Shift+l move right
 bindsym $mod+i focus output left
 bindsym $mod+o focus output right
 
+# move windows between monitors
+bindsym $mod+Shift+i move container output left, focus output left
+bindsym $mod+Shift+o move container output right, focus output right
+
 # resize outside resize mode
 bindsym $mod+period resize grow width 5 px or 5 ppt
 bindsym $mod+comma resize shrink width 5 px or 5 ppt
@@ -373,6 +377,7 @@ exec --no-startup-id keynav daemonize
 exec --no-startup-id clipit --no-icon
 exec --no-startup-id xautolock -time 20 -locker blurlock
 exec --no-startup-id /usr/lib/kdeconnectd
+exec --no-startup-id xset b off s off -dpms
 #exec --no-startup-id ${HOME}/Scripts/imwheel_starter.sh
 
 workspace $ws1 output primary
