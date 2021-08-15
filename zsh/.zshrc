@@ -81,6 +81,8 @@ POWERLEVEL9K_MODE="nerdfont-complete"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting vi-mode)
 
+export KEYTIMEOUT=1
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
