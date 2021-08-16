@@ -24,7 +24,7 @@ function pginit() {
         echo "Started successfully"
         google-chrome-stable 'localhost/pgadmin4' &!
     elif [[ $OS == "ManjaroLinux" ]]; then
-        docker_init
+        dockerinit
         docker start pgadmin
         echo "Started successfully"
         google-chrome-stable 'localhost' &!
@@ -40,7 +40,7 @@ function pgstop() {
         echo "Stopped successfully"
     elif [[ $OS == "ManjaroLinux" ]]; then
         docker stop pgadmin
-        docker_stop
+        dockerstop
         echo "Stopped successfully"
     else
         echo "OS not supported";

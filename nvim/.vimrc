@@ -141,7 +141,7 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   -- buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  -- buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<leader>sd', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
@@ -252,11 +252,11 @@ nnoremap <leader>eh :Sex<CR>
 vnoremap <leader>eh :Sex<CR>
 
 " Buffer switching and delete
-nnoremap <leader>l :bnext<CR>
-vnoremap <leader>l :bnext<CR>
-nnoremap <leader>h :bprev<CR>
-vnoremap <leader>h :bprev<CR>
-nnoremap <leader>q :bdelete<CR>
+nnoremap <silent><leader>l :bnext<CR>
+vnoremap <silent><leader>l :bnext<CR>
+nnoremap <silent><leader>h :bprev<CR>
+vnoremap <silent><leader>h :bprev<CR>
+nnoremap <silent><leader>q :bdelete<CR>
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff :Telescope find_files<CR>
@@ -273,21 +273,23 @@ nnoremap <leader>2 :lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <leader>3 :lua require("harpoon.ui").nav_file(3)<CR>
 nnoremap <leader>4 :lua require("harpoon.ui").nav_file(4)<CR>
 nnoremap <leader>t :lua require("harpoon.term").gotoTerminal(1)<CR>
-nnoremap <leader>t :lua require("harpoon.term").gotoTerminal(2)<CR>
 
 " Jupyter_ascending remaps
 nnoremap <space><space>x <Plug>JupyterExecute
 nnoremap <space><space>X <Plug>JupyterExecuteAll
 
 " Commenting line
-nnoremap <leader>c :Commentary<CR>
-vnoremap <leader>c :'<,'>Commentary<CR>
+nnoremap <silent><leader>c :Commentary<CR>
+vnoremap <silent><leader>c :'<,'>Commentary<CR>
 
+" Compe remaps
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+inoremap <silent><expr> <TAB>     pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <silent><expr> <S-TAB>   pumvisible() ? "\<C-p>" : "\<C-h>"
 
 augroup highlight_yank
     autocmd!
