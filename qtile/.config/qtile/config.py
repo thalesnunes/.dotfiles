@@ -2,7 +2,7 @@ import os
 import subprocess
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget, hook
+from libqtile import bar, layout, widget, hook, qtile
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -55,11 +55,11 @@ keys = [
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
     Key(
-        [mod], 'comma', lazy.layout.grow_left(),
+        [mod], 'comma', lazy.layout.shrink(),
         desc='Grow window to the left'
     ),
     Key(
-        [mod], 'period', lazy.layout.grow_right(),
+        [mod], 'period', lazy.layout.grow(),
         desc='Grow window to the right'
     ),
     Key(
@@ -127,7 +127,6 @@ keys = [
     ),
     Key(
         [mod], 'u',
-        lazy.group['USP'].toscreen(),
         lazy.spawn("brave --profile-directory='Profile 1'"),
         desc='Launch Brave on USP Profile',
     ),
@@ -143,7 +142,7 @@ keys = [
         [mod, 'shift'], 's', lazy.spawn('flameshot gui'),
         desc='Launch Pcmanfm'
     ),
-    KeyChord([mod, 'space'])
+    # KeyChord([mod, 'space'])
 ]
 
 ############################################
@@ -151,23 +150,67 @@ keys = [
 ############################################
 
 group_names = [
-    ('Pessoal', 'F9', {'layout': 'monadtall'}),
-    ('USP', 'F10', {'layout': 'monadtall'}),
-    (
-        'Trabalho',
-        'F11',
-        {'layout': 'monadtall', 'matches': [Match(wm_class='Google-chrome')]},
-    ),
-    ('4', '4', {'layout': 'monadtall'}),
-    ('5', '5', {'layout': 'monadtall'}),
-    ('6', '6', {'layout': 'monadtall'}),
-    ('7', '7', {'layout': 'monadtall'}),
-    ('8', '8', {'layout': 'monadtall'}),
-    ('9', '9', {'layout': 'monadtall'}),
-    (
-        'Outros',
-        'F12',
-        {
+    {
+        'name': 'Pessoal',
+        'key': 'F9',
+        'args': {'layout': 'monadtall'},
+        'screen': 0
+    },
+    {
+        'name': 'USP',
+        'key': 'F10',
+        'args': {'layout': 'monadtall'},
+        'screen': 0
+    },
+    {
+        'name': 'Trabalho',
+        'key': 'F11',
+        'args': {
+            'layout': 'monadtall',
+            'matches': [Match(wm_class='Google-chrome')]
+        },
+        'screen': 0
+    },
+    {
+        'name': '4',
+        'key': '4',
+        'args': {'layout': 'monadtall'},
+        'screen': 0
+    },
+    {
+        'name': '5',
+        'key': '5',
+        'args': {'layout': 'monadtall'},
+        'screen': 0
+    },
+    {
+        'name': '6',
+        'key': '6',
+        'args': {'layout': 'monadtall'},
+        'screen': 0
+    },
+    {
+        'name': '7',
+        'key': '7',
+        'args': {'layout': 'monadtall'},
+        'screen': 0
+    },
+    {
+        'name': '8',
+        'key': '8',
+        'args': {'layout': 'monadtall'},
+        'screen': 0
+    },
+    {
+        'name': '9',
+        'key': '9',
+        'args': {'layout': 'monadtall'},
+        'screen': 1
+    },
+    {
+        'name': 'Outros',
+        'key': 'F12',
+        'args': {
             'layout': 'verticaltile',
             'matches': [
                 Match(wm_class='TelegramDesktop'),
@@ -176,34 +219,37 @@ group_names = [
                 Match(wm_class='Slack'),
             ],
         },
-    ),
+        'screen': 1,
+    },
 ]
 
 groups = []
 
-for name, key, args in group_names:
+for group in group_names:
     # Create Group
-    groups.append(Group(name, **args))
+    groups.append(Group(group['name'], **group['args']))
     # Switch to Group
     keys.append(
         Key(
-            [mod], key,
-            lazy.group[name].toscreen(toggle=False),
-            desc='Switch to group {}'.format(name),
+            [mod], group['key'],
+            lazy.group[group['name']].toscreen(group['screen'], toggle=False),
+            lazy.to_screen(group['screen']),
+            desc='Switch to group {}'.format(group['name']),
         )
     )
     # Move container to Group
     keys.append(
         Key(
-            [mod, 'shift'], key,
-            lazy.window.togroup(name, switch_group=True),
-            lazy.group[name].toscreen(toggle=False),
-            desc='Switch to & move focused window to group {}'.format(name),
+            [mod, 'shift'], group['key'],
+            lazy.window.togroup(group['name']),
+            lazy.to_screen(group['screen']),
+            desc='Switch to & move focused window to group {}'
+            .format(group['name']),
         )
     )
 
 layout_theme = {
-    'border_width': 3,
+    'border_width': 2,
     'margin': 8,
     'border_focus': 'f0a830',
     'border_normal': '907878',
@@ -244,8 +290,8 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.Clock(format='%H:%M | %d %b'),
-                widget.Systray(),
                 widget.GroupBox(),
+                widget.Systray(),
             ],
             24,
             background='#FFFFFF00',
@@ -287,7 +333,7 @@ floating_layout = layout.Floating(
     ]
 )
 auto_fullscreen = True
-focus_on_window_activation = 'smart'
+focus_on_window_activation = 'focus'
 reconfigure_screens = True
 
 
@@ -299,6 +345,10 @@ def start_once():
 @hook.subscribe.startup
 def start_always():
     subprocess.call([home + '/.config/qtile/autostart_always.sh'])
+
+
+# def focus_group():
+#     curr_screen = qtile.screens
 
 
 # If things like steam games want to auto-minimize themselves when losing
