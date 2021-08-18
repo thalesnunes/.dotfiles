@@ -2,7 +2,7 @@ import os
 import subprocess
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget, hook, qtile
+from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -26,19 +26,25 @@ keys = [
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
     Key(
-        [mod, 'shift'], 'h', lazy.layout.shuffle_left(),
+        [mod, 'shift'], 'h',
+        lazy.layout.shuffle_left(),
+        lazy.layout.swap_left(),
         desc='Move window to the left'
     ),
     Key(
-        [mod, 'shift'], 'l', lazy.layout.shuffle_right(),
+        [mod, 'shift'], 'l',
+        lazy.layout.shuffle_right(),
+        lazy.layout.swap_right(),
         desc='Move window to the right',
     ),
     Key(
-        [mod, 'shift'], 'j', lazy.layout.shuffle_down(),
+        [mod, 'shift'], 'j',
+        lazy.layout.shuffle_down(),
         desc='Move window down'
     ),
     Key(
-        [mod, 'shift'], 'k', lazy.layout.shuffle_up(),
+        [mod, 'shift'], 'k',
+        lazy.layout.shuffle_up(),
         desc='Move window up'
     ),
 
@@ -55,19 +61,25 @@ keys = [
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
     Key(
-        [mod], 'comma', lazy.layout.shrink(),
+        [mod], 'comma',
+        lazy.layout.grow_left(),
+        lazy.layout.grow(),
         desc='Grow window to the left'
     ),
     Key(
-        [mod], 'period', lazy.layout.grow(),
+        [mod], 'period',
+        lazy.layout.grow_right(),
+        lazy.layout.shrink(),
         desc='Grow window to the right'
     ),
     Key(
-        [mod, 'shift'], 'comma', lazy.layout.grow_down(),
+        [mod, 'shift'], 'comma',
+        lazy.layout.grow_down(),
         desc='Grow window down'
     ),
     Key(
-        [mod, 'shift'], 'period', lazy.layout.grow_up(),
+        [mod, 'shift'], 'period',
+        lazy.layout.grow_up(),
         desc='Grow window up'
     ),
     Key(
@@ -152,71 +164,72 @@ keys = [
 group_names = [
     {
         'name': 'Pessoal',
-        'key': 'F9',
-        'args': {'layout': 'monadtall'},
+        'key': 'Print',
+        'args': {'layout': 'columns'},
         'screen': 0
     },
     {
         'name': 'USP',
-        'key': 'F10',
-        'args': {'layout': 'monadtall'},
+        'key': 'Scroll_Lock',
+        'args': {'layout': 'columns'},
         'screen': 0
     },
     {
         'name': 'Trabalho',
-        'key': 'F11',
+        'key': 'Pause',
         'args': {
-            'layout': 'monadtall',
-            'matches': [Match(wm_class='Google-chrome')]
+            'layout': 'columns',
+            'matches': [
+                Match(wm_class='Google-chrome'),
+                Match(wm_class='Code')
+            ]
         },
         'screen': 0
     },
     {
         'name': '4',
-        'key': '4',
-        'args': {'layout': 'monadtall'},
+        'key': 'Insert',
+        'args': {'layout': 'columns'},
         'screen': 0
     },
     {
         'name': '5',
-        'key': '5',
-        'args': {'layout': 'monadtall'},
+        'key': 'Home',
+        'args': {'layout': 'columns'},
         'screen': 0
     },
     {
         'name': '6',
-        'key': '6',
-        'args': {'layout': 'monadtall'},
+        'key': 'Prior',
+        'args': {'layout': 'columns'},
         'screen': 0
     },
     {
         'name': '7',
-        'key': '7',
-        'args': {'layout': 'monadtall'},
-        'screen': 0
-    },
-    {
-        'name': '8',
-        'key': '8',
-        'args': {'layout': 'monadtall'},
-        'screen': 0
-    },
-    {
-        'name': '9',
-        'key': '9',
-        'args': {'layout': 'monadtall'},
+        'key': 'Delete',
+        'args': {'layout': 'verticaltile'},
         'screen': 1
     },
     {
-        'name': 'Outros',
-        'key': 'F12',
+        'name': 'Chat',
+        'key': 'End',
         'args': {
             'layout': 'verticaltile',
             'matches': [
                 Match(wm_class='TelegramDesktop'),
                 Match(wm_class='whatsappweb-nativefier*'),
-                Match(wm_class='notion-nativefier*'),
                 Match(wm_class='Slack'),
+            ],
+        },
+        'screen': 1
+    },
+    {
+        'name': 'Outros',
+        'key': 'Next',
+        'args': {
+            'layout': 'verticaltile',
+            'matches': [
+                Match(wm_class='notion-nativefier*'),
             ],
         },
         'screen': 1,
@@ -250,18 +263,24 @@ for group in group_names:
 
 layout_theme = {
     'border_width': 2,
-    'margin': 8,
+    'margin': 7,
     'border_focus': 'f0a830',
     'border_normal': '907878',
 }
 
 layouts = [
-    # layout.Columns(**layout_theme),
+    layout.Columns(
+        border_on_single=True,
+        inset_position=1,
+        **layout_theme),
     # layout.Max(**layout_theme),
     # layout.Stack(num_stacks=2**layout_theme),
     # layout.Bsp(**layout_theme),
     # layout.Matrix(**layout_theme),
-    layout.MonadTall(**layout_theme),
+    layout.MonadTall(
+        align=1,
+        **layout_theme
+    ),
     # layout.MonadWide(**layout_theme),
     # layout.RatioTile(**layout_theme),
     # layout.Tile(**layout_theme),
@@ -272,7 +291,7 @@ layouts = [
 
 widget_defaults = dict(
     font='Noto Sans',
-    fontsize=11,
+    fontsize=14,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
@@ -281,17 +300,24 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.Prompt(),
-                widget.WindowName(),
+                # widget.Prompt(),
+                widget.WindowName(**widget_defaults),
                 widget.Chord(
                     chords_colors={
                         'launch': ('#ff0000', '#ffffff'),
                     },
                     name_transform=lambda name: name.upper(),
+                    **widget_defaults,
                 ),
-                widget.Clock(format='%H:%M | %d %b'),
-                widget.GroupBox(),
-                widget.Systray(),
+                widget.Spacer(**widget_defaults),
+                widget.Clock(
+                    format='%H:%M | %d %b',
+                    width=bar.CALCULATED,
+                    **widget_defaults,
+                ),
+                widget.Spacer(**widget_defaults),
+                widget.GroupBox(**widget_defaults),
+                widget.Systray(**widget_defaults),
             ],
             24,
             background='#FFFFFF00',
