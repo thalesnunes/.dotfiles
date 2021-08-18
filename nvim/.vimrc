@@ -205,6 +205,8 @@ let mapleader = " "
 " So I don't need to press Shift all the time
 nnoremap ; :
 vnoremap ; :
+nnoremap : ;
+vnoremap : ;
 
 " Y behave like rest
 nnoremap Y y$
