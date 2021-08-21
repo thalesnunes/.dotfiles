@@ -51,8 +51,8 @@ Plug 'hrsh7th/nvim-compe'
 " Highlighter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-" Jupyter sync extension
-Plug 'untitled-ai/jupyter_ascending.vim'
+" Jupyter plugin
+Plug 'jupyter-vim/jupyter-vim'
 
 " Git integration
 Plug 'tpope/vim-fugitive'
@@ -64,6 +64,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'ThePrimeagen/harpoon'
 
 " Themeing
+Plug 'mboughaba/i3config.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -205,6 +206,8 @@ let mapleader = " "
 " So I don't need to press Shift all the time
 nnoremap ; :
 vnoremap ; :
+nnoremap : ;
+vnoremap : ;
 
 " Y behave like rest
 nnoremap Y y$
@@ -274,13 +277,31 @@ nnoremap <leader>3 :lua require("harpoon.ui").nav_file(3)<CR>
 nnoremap <leader>4 :lua require("harpoon.ui").nav_file(4)<CR>
 nnoremap <leader>t :lua require("harpoon.term").gotoTerminal(1)<CR>
 
-" Jupyter_ascending remaps
-nnoremap <space><space>x <Plug>JupyterExecute
-nnoremap <space><space>X <Plug>JupyterExecuteAll
+" Jupyter-vim remaps
+let g:jupyter_mapkeys = 0
+
+" Connect to kernel
+nnoremap <silent><leader>jc :JupyterConnect<CR>
+
+" Send cell to kernel
+nnoremap <silent><leader><CR> :JupyterSendCell<CR>
+nnoremap <silent><leader>j<CR> :JupyterSendRange<CR>
+
+" Send a selection of lines
+vnoremap <silent><leader><CR> :JupyterRunVisual<CR>
+
+" Update shell
+nnoremap <silent><leader>ju :JupyterUpdateShell<CR>
+
+" Change to directory of current file
+nnoremap <silent><leader>jd :JupyterCd %:p:h<CR>
+
+" Debugging maps
+nnoremap <silent><localleader>jb :PythonSetBreak<CR>
 
 " Commenting line
 nnoremap <silent><leader>c :Commentary<CR>
-vnoremap <silent><leader>c :'<,'>Commentary<CR>
+vnoremap <silent><leader>c :Commentary<CR>
 
 " Compe remaps
 inoremap <silent><expr> <C-Space> compe#complete()

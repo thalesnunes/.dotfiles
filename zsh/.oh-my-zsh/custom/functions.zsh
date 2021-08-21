@@ -27,6 +27,7 @@ function pginit() {
         dockerinit
         docker start pgadmin
         echo "Started successfully"
+        sleep 1
         google-chrome-stable 'localhost' &!
     else
         echo "OS not supported";
