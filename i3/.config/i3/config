@@ -89,38 +89,41 @@ set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8:Chat"
-set $ws9 "9:Outros"
+set $ws8 "8:Música"
+set $ws9 "9:Terminal"
+set $ws10 "10:Outros"
 
 # switch to workspace
-bindsym $mod+Print workspace $ws1
-bindsym $mod+Scroll_Lock workspace $ws2
-bindsym $mod+Pause workspace $ws3
-bindsym $mod+Insert workspace $ws4
-bindsym $mod+Home workspace $ws5
-bindsym $mod+Prior workspace $ws6
-bindsym $mod+Delete workspace $ws7
-bindsym $mod+End workspace $ws8
-bindsym $mod+Next workspace $ws9
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+Print move container to workspace $ws1; workspace $ws1
-bindsym $mod+Shift+Scroll_Lock move container to workspace $ws2; workspace $ws2
-bindsym $mod+Shift+Pause move container to workspace $ws3; workspace $ws3
-bindsym $mod+Shift+Insert move container to workspace $ws4; workspace $ws4
-bindsym $mod+Shift+Home move container to workspace $ws5; workspace $ws5
-bindsym $mod+Shift+Prior move container to workspace $ws6; workspace $ws6
-bindsym $mod+Shift+Delete move container to workspace $ws7; workspace $ws7
-bindsym $mod+Shift+End move container to workspace $ws8; workspace $ws8
-bindsym $mod+Shift+Next move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 
 ###########################################################
 ############### Assign apps to workspaces #################
 ###########################################################
-assign [class="TelegramDesktop"] workspace $ws8
-assign [class="whatsappweb-nativefier-d40211"] workspace $ws8
-assign [class="notion-nativefier-46aee8"] workspace $ws9
-assign [class="Slack"] workspace $ws8
+assign [class="TelegramDesktop"] workspace $ws10
+assign [class="whatsappweb-nativefier-d40211"] workspace $ws10
+assign [class="notion-nativefier-46aee8"] workspace $ws10
+assign [class="Slack"] workspace $ws10
 assign [class="Google-chrome"] workspace $ws3
 assign [class="Code"] workspace $ws3
 
@@ -315,6 +318,7 @@ exec --no-startup-id clipit --no-icon
 # exec --no-startup-id xautolock -time 20 -locker blurlock
 exec --no-startup-id /usr/lib/kdeconnectd
 exec --no-startup-id xset b off s off -dpms
+exec --no-startup-id xmodmap -e "keycode 97 = Super_L NoSymbol Super_L"
 #exec --no-startup-id ${HOME}/Scripts/imwheel_starter.sh
 
 workspace $ws1 output primary
@@ -323,6 +327,9 @@ workspace $ws3 output primary
 workspace $ws4 output primary
 workspace $ws5 output primary
 workspace $ws6 output primary
-workspace $ws9 output DVI-D-0
+workspace $ws10 output DVI-D-0
 workspace $ws7 output DVI-D-0
 workspace $ws8 output DVI-D-0
+workspace $ws9 output DVI-D-0
+
+# vim:filetype=i3config

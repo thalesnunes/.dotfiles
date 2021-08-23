@@ -50,7 +50,7 @@ function pgstop() {
 
 function create() {
     cd ~/Projects/Project_Initializer/
-    pipenv run python3 ~/Projects/Project_Initializer/create.py "$@"
+    pipenv run python3 ~/Projects/Project_Initializer/create.py $@
     cd ~
 }
 
@@ -59,4 +59,10 @@ function gcala() {
     for dir in ~/.config/gcalcli/*/; do
         gcalcli --config-folder $dir $args;
     done
+}
+
+function dbcrawler() {
+    terminal -e jupyter console --kernel=dbcrawler
+    cd ~/Projects/db-crawler
+    pipenv run nvim .
 }

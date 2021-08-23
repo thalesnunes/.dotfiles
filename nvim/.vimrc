@@ -283,6 +283,9 @@ let g:jupyter_mapkeys = 0
 " Connect to kernel
 nnoremap <silent><leader>jc :JupyterConnect<CR>
 
+" Add cell
+nnoremap <silent><leader>ja o# %%<Esc>o<Esc>
+
 " Send cell to kernel
 nnoremap <silent><leader><CR> :JupyterSendCell<CR>
 nnoremap <silent><leader>j<CR> :JupyterSendRange<CR>
