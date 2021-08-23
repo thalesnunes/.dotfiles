@@ -62,7 +62,7 @@ function gcala() {
 }
 
 function dbcrawler() {
-    terminal -e jupyter console --kernel=dbcrawler
     cd ~/Projects/db-crawler
+    terminal -e jupyter console --kernel=dbcrawler
     pipenv run nvim .
 }
