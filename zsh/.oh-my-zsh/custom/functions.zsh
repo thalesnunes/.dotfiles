@@ -3,13 +3,18 @@ function gi() {
 }
 
 function updatedb() {
-    cd ~/Projects/db-crawler/scripts
-    for file in `ls | sort`;
-    do
-        echo "Running $file"
-        pipenv run python "$file"
-    done
-    echo "Finished running"
+    # cd ~/Projects/db-crawler/scripts
+    # for file in `ls | sort`;
+    # do
+    #     echo "Running $file"
+    #     pipenv run python "$file"
+    # done
+    # echo "Finished running"
+    # cd ~
+    cd ~/Projects/db-crawler
+    echo "Starting daily update"
+    pipenv run python daily.py
+    echo "Finished updating"
     cd ~
 }
 
