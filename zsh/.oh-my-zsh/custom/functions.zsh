@@ -1,15 +1,20 @@
 function gi() {
-    curl -sL https://www.toptal.com/developers/gitignore/api/$@ > .gitignore ;
+    curl -sL https://www.toptal.com/developers/gitignore/api/$@ >> .gitignore ;
 }
 
 function updatedb() {
-    cd ~/Projects/db-crawler/scripts
-    for file in `ls | sort`;
-    do
-        echo "Running $file"
-        pipenv run python "$file"
-    done
-    echo "Finished running"
+    # cd ~/Projects/db-crawler/scripts
+    # for file in `ls | sort`;
+    # do
+    #     echo "Running $file"
+    #     pipenv run python "$file"
+    # done
+    # echo "Finished running"
+    # cd ~
+    cd ~/Projects/db-crawler
+    echo "Starting daily update"
+    pipenv run python daily.py
+    echo "Finished updating"
     cd ~
 }
 
@@ -50,7 +55,7 @@ function pgstop() {
 
 function create() {
     cd ~/Projects/Project_Initializer/
-    pipenv run python3 ~/Projects/Project_Initializer/create.py "$@"
+    pipenv run python3 ~/Projects/Project_Initializer/create.py $@
     cd ~
 }
 
@@ -59,4 +64,10 @@ function gcala() {
     for dir in ~/.config/gcalcli/*/; do
         gcalcli --config-folder $dir $args;
     done
+}
+
+function dbcrawler() {
+    cd ~/Projects/db-crawler
+    terminal -e jupyter console --kernel=dbcrawler
+    pipenv run nvim .
 }
