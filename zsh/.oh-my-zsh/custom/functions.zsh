@@ -13,8 +13,12 @@ function updatedb() {
     # cd ~
     cd ~/Projects/db-crawler
     echo "Starting daily update"
-    pipenv run python daily.py
-    echo "Finished updating"
+    for file in `ls -1 scripts | sed -e 's/\..*$//'`;
+    do
+        echo "\nRunning $file";
+        pipenv run python -c "from scripts import $file";
+    done
+    echo "\nFinished updating"
     cd ~
 }
 
