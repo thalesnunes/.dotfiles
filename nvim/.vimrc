@@ -37,6 +37,7 @@ call plug#begin('~/.vim/plugged')
 " Auto bracket pairs and surround
 Plug 'jiangmiao/auto-pairs'
 Plug 'machakann/vim-sandwich'
+Plug 'AckslD/nvim-neoclip.lua'
 
 " Commenter
 Plug 'tpope/vim-commentary'
@@ -148,7 +149,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   -- buf_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  -- buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 end
 
@@ -199,6 +200,30 @@ require'compe'.setup {
         luasnip = false;
     };
 }
+
+
+-- Telescope
+require("telescope").setup {
+    defaults = {
+        initial_mode = 'normal'
+    },
+    pickers = {
+        buffers = {
+            previewer = false,
+            mappings = {
+                i = {
+                    ["<leader>q"] = "delete_buffer"
+                },
+                n = {
+                    ["<leader>q"] = "delete_buffer"
+                }
+            }
+        }
+    }
+}
+
+-- Enable neoclip
+require('neoclip').setup()
 EOF
 
 let mapleader = " "
@@ -264,8 +289,7 @@ nnoremap <silent><leader>q :bdelete<CR>
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff :Telescope find_files<CR>
 nnoremap <leader>fg :Telescope live_grep<CR>
-nnoremap <leader>fb :Telescope buffers<CR>
-nnoremap <leader>fh :Telescope help_tags<CR>
+nnoremap <leader>b :Telescope buffers<CR>
 
 " Fast file switching with Harpoon
 nnoremap <leader>a :lua require("harpoon.mark").add_file()<CR>
@@ -276,6 +300,9 @@ nnoremap <leader>2 :lua require("harpoon.ui").nav_file(2)<CR>
 nnoremap <leader>3 :lua require("harpoon.ui").nav_file(3)<CR>
 nnoremap <leader>4 :lua require("harpoon.ui").nav_file(4)<CR>
 nnoremap <leader>t :lua require("harpoon.term").gotoTerminal(1)<CR>
+
+" Clipboard manager
+nnoremap <silent><C-p> :lua require("telescope").extensions.neoclip.default()<CR>
 
 " Jupyter-vim remaps
 let g:jupyter_mapkeys = 0
@@ -288,13 +315,13 @@ nnoremap <silent><leader>ja o# %%<Esc>o<Esc>
 
 " Send cell to kernel
 nnoremap <silent><leader><CR> :JupyterSendCell<CR>
-nnoremap <silent><leader>j<CR> :JupyterSendRange<CR>
+vnoremap <silent><leader><CR> :JupyterSendRange<CR>
 
-" Send a selection of lines
-vnoremap <silent><leader><CR> :JupyterRunVisual<CR>
+" " Send a selection of lines
+" vnoremap <silent><leader><CR> :JupyterRunVisual<CR>
 
-" Update shell
-nnoremap <silent><leader>ju :JupyterUpdateShell<CR>
+" " Update shell
+" nnoremap <silent><leader>ju :JupyterUpdateShell<CR>
 
 " Change to directory of current file
 nnoremap <silent><leader>jd :JupyterCd %:p:h<CR>
