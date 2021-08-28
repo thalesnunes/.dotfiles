@@ -47,7 +47,12 @@ Plug 'ambv/black'
 
 " LSP plugin
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
+
+" Install nvim-cmp
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-path'
 
 " Highlighter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -166,44 +171,33 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Enable auto-completion
-vim.o.completeopt = "menuone,noselect"
-require'compe'.setup {
-    enabled = true;
-    autocomplete = true;
-    debug = false;
-    min_length = 1;
-    preselect = 'enable';
-    throttle_time = 80;
-    source_timeout = 200;
-    resolve_timeout = 800;
-    incomplete_delay = 400;
-    max_abbr_width = 100;
-    max_kind_width = 100;
-    max_menu_width = 100;
-    documentation = {
-        border = { '', '' ,'', ' ', '', '', '', ' ' }, -- the border option is the same as `|help nvim_open_win|`
-        winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
-        max_width = 120,
-        min_width = 60,
-        max_height = math.floor(vim.o.lines * 0.3),
-        min_height = 1,
-    };
-
-    source = {
-        path = true;
-        buffer = true;
-        calc = true;
-        nvim_lsp = true;
-        nvim_lua = false;
-        vsnip = false;
-        ultisnips = false;
-        luasnip = false;
-    };
+local cmp = require('cmp')
+cmp.setup {
+-- You can set mappings if you want
+    mapping = {
+        ['<C-j>'] = cmp.mapping.select_next_item(),
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
+        ['<Tab>'] = cmp.mapping.select_next_item(),
+        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+        -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.close(),
+        ['<CR>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = true,
+        })
+    },
+    -- You should specify your *installed* sources.
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
+        { name = 'path' },
+    },
 }
 
-
 -- Telescope
-require("telescope").setup {
+require'telescope'.setup {
     defaults = {
         initial_mode = 'normal'
     },
@@ -223,7 +217,7 @@ require("telescope").setup {
 }
 
 -- Enable neoclip
-require('neoclip').setup()
+require'neoclip'.setup()
 EOF
 
 let mapleader = " "
@@ -333,14 +327,6 @@ nnoremap <silent><localleader>jb :PythonSetBreak<CR>
 nnoremap <silent><leader>c :Commentary<CR>
 vnoremap <silent><leader>c :Commentary<CR>
 
-" Compe remaps
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
-inoremap <silent><expr> <TAB>     pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <silent><expr> <S-TAB>   pumvisible() ? "\<C-p>" : "\<C-h>"
 
 augroup highlight_yank
     autocmd!
