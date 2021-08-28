@@ -37,18 +37,17 @@ call plug#begin('~/.vim/plugged')
 " Auto bracket pairs and surround
 Plug 'jiangmiao/auto-pairs'
 Plug 'machakann/vim-sandwich'
+
+" Clipboard manager
 Plug 'AckslD/nvim-neoclip.lua'
 
 " Commenter
-Plug 'tpope/vim-commentary'
-
-" Python code formatter
-Plug 'ambv/black'
+Plug 'terrortylor/nvim-comment'
 
 " LSP plugin
 Plug 'neovim/nvim-lspconfig'
 
-" Install nvim-cmp
+" Code auto-completion with nvim-cmp
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -57,13 +56,10 @@ Plug 'hrsh7th/cmp-path'
 " Highlighter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-" Jupyter plugin
-Plug 'jupyter-vim/jupyter-vim'
-
 " Git integration
 Plug 'tpope/vim-fugitive'
 
-" Telescope and Harpoon
+" Telescope and Harpoon, fuzzy finder and file switcher
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -74,6 +70,13 @@ Plug 'mboughaba/i3config.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+
+" Python code formatter
+Plug 'ambv/black'
+
+" Jupyter plugin
+Plug 'jupyter-vim/jupyter-vim'
+
 call plug#end()
 
 syntax enable
@@ -86,7 +89,7 @@ highlight Normal guibg=none
 
 lua <<EOF
 -- Lualine config
-require'lualine'.setup {
+require('lualine').setup {
   options = {
     icons_enabled = true,
     theme = 'dracula',
@@ -118,7 +121,7 @@ require'lualine'.setup {
 }
 
 -- Tree sitter highlight
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
   ensure_installed = "python", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true,              -- false will disable the whole extension
@@ -197,7 +200,7 @@ cmp.setup {
 }
 
 -- Telescope
-require'telescope'.setup {
+require('telescope').setup {
     defaults = {
         initial_mode = 'normal'
     },
@@ -217,7 +220,13 @@ require'telescope'.setup {
 }
 
 -- Enable neoclip
-require'neoclip'.setup()
+require('neoclip').setup()
+
+-- Commentary toggling
+require('nvim_comment').setup {
+    comment_empty = false,
+    create_mappings = false,
+}
 EOF
 
 let mapleader = " "
@@ -243,9 +252,6 @@ vnoremap c "_c
 nnoremap <leader>d ""d
 nnoremap <leader>D ""D
 vnoremap <leader>d ""d
-nnoremap <leader>c ""c
-nnoremap <leader>C ""C
-vnoremap <leader>c ""c
 
 " Keeping it centered
 nnoremap n nzzzv
@@ -311,10 +317,10 @@ nnoremap <silent><leader>ja o# %%<Esc>o<Esc>
 nnoremap <silent><leader><CR> :JupyterSendCell<CR>
 vnoremap <silent><leader><CR> :JupyterSendRange<CR>
 
-" " Send a selection of lines
+" Send a selection of lines
 " vnoremap <silent><leader><CR> :JupyterRunVisual<CR>
 
-" " Update shell
+" Update shell
 " nnoremap <silent><leader>ju :JupyterUpdateShell<CR>
 
 " Change to directory of current file
@@ -324,9 +330,8 @@ nnoremap <silent><leader>jd :JupyterCd %:p:h<CR>
 nnoremap <silent><localleader>jb :PythonSetBreak<CR>
 
 " Commenting line
-nnoremap <silent><leader>c :Commentary<CR>
-vnoremap <silent><leader>c :Commentary<CR>
-
+nnoremap <silent><leader>c :CommentToggle<CR>
+vnoremap <silent><leader>c :CommentToggle<CR>
 
 augroup highlight_yank
     autocmd!
