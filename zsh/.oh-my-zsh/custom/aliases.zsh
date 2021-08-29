@@ -1,6 +1,3 @@
-# alias python="python3"
-# alias pip="pip3"
-
 alias la="ls -A"
 alias lla='ls -la'
 
@@ -20,14 +17,14 @@ alias dot='cd /home/thales/.dotfiles'
 
 alias dbcrawler_docker='docker run --name dbcrawler -p 8888:8888 -it -e JUPYTER_ENABLE_LAB=yes --rm -d -v ~/Projects/db-crawler:/usr/src/app -w /usr/src/app thalesnunes1/db-crawler:latest ; sleep 2 ; jupyter_url=$(docker logs dbcrawler | grep -o "http:\/\/127\.0\.0\.1:8888\/lab?token=.*" | tail -1) && google-chrome $jupyter_url </dev/null &>/dev/null & ; disown'
 
-alias polyconfig='cd ~/.dotfiles/polybar/.config/polybar/forest'
-alias roficonfig='cd ~/.dotfiles/rofi/.config/rofi'
+alias polyconfig='cd ~/.dotfiles/polybar/.config/polybar/forest && nvim .'
+alias roficonfig='cd ~/.dotfiles/rofi/.config/rofi && nvim .'
 alias i3config='nvim ~/.dotfiles/i3/.config/i3/config'
-alias nvimconfig='nvim ~/.dotfiles/nvim/.config/nvim/init.vim'
 alias aliasconfig='nvim ~/.dotfiles/zsh/.oh-my-zsh/custom/aliases.zsh'
 alias exportconfig='nvim ~/.dotfiles/zsh/.oh-my-zsh/custom/exports.zsh'
 alias functionconfig='nvim ~/.dotfiles/zsh/.oh-my-zsh/custom/functions.zsh'
 alias tokenconfig='nvim ~/.dotfiles/zsh/.oh-my-zsh/custom/tokens.zsh'
+alias nvimconfig='cd ~/.dotfiles/nvim/.config/nvim && nvim .'
 
 alias stown='stow --no-folding -nvt ~'
 alias stowv='stow --no-folding -vt ~'
