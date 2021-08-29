@@ -282,6 +282,14 @@ vnoremap <leader>ev :Vex<CR>
 nnoremap <leader>eh :Sex<CR>
 vnoremap <leader>eh :Sex<CR>
 
+" Keep indenting selected
+vnoremap <silent> < <gv
+vnoremap <silent> > >gv
+
+" Move selected lines up/down
+xnoremap <silent> J :move '>+1<CR>gv-gv
+xnoremap <silent> K :move '<-2<CR>gv-gv
+
 " Buffer switching and delete
 nnoremap <silent><leader>l :bnext<CR>
 vnoremap <silent><leader>l :bnext<CR>
