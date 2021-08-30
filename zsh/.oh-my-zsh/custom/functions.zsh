@@ -28,33 +28,41 @@ function dolph() {
 
 function pginit() {
     OS=$(lsb_release -is)
-    if [[ $OS == "Ubuntu" ]]; then
-        sudo systemctl start apache2;
-        echo "Started successfully"
-        google-chrome-stable 'localhost/pgadmin4' &!
-    elif [[ $OS == "ManjaroLinux" ]]; then
-        dockerinit
-        docker start pgadmin
-        echo "Started successfully"
-        sleep 1
-        google-chrome-stable 'localhost' &!
-    else
-        echo "OS not supported";
-    fi
+    case $OS in
+        Ubuntu)
+            sudo systemctl start apache2;
+            echo "Started successfully"
+            google-chrome-stable 'localhost/pgadmin4' &!
+            ;;
+        ManjaroLinux)
+            dockerinit
+            docker start pgadmin
+            echo "Started successfully"
+            sleep 1
+            google-chrome-stable 'localhost' &!
+            ;;
+        *)
+            echo "OS not supported"
+            ;;
+    esac
 }
 
 function pgstop() {
     OS=$(lsb_release -is)
-    if [[ $OS == "Ubuntu" ]]; then
-        sudo systemctl stop apache2
-        echo "Stopped successfully"
-    elif [[ $OS == "ManjaroLinux" ]]; then
-        docker stop pgadmin
-        dockerstop
-        echo "Stopped successfully"
-    else
-        echo "OS not supported";
-    fi
+    case $OS in
+        Ubuntu)
+            sudo systemctl stop apache2
+            echo "Stopped successfully"
+            ;;
+        ManjaroLinux)
+            docker stop pgadmin
+            dockerstop
+            echo "Stopped successfully"
+            ;;
+        *)
+            echo "OS not supported"
+            ;;
+    esac
 }
 
 function create() {
@@ -74,4 +82,55 @@ function dbcrawler() {
     cd ~/Projects/db-crawler
     terminal -e jupyter console --kernel=dbcrawler
     pipenv run nvim .
+}
+
+function dbcrawler_docker() {
+    docker run --name dbcrawler -p 8888:8888 -it -e JUPYTER_ENABLE_LAB=yes \
+        --rm -d -v ~/Projects/db-crawler:/usr/src/app -w /usr/src/app \
+        thalesnunes1/db-crawler:latest
+    sleep 2
+    jupyter_url=$(docker logs dbcrawler | grep -o "http:\/\/127\.0\.0\.1:8888\/lab?token=.*" | tail -1)
+    google-chrome $jupyter_url &!
+}
+
+function config() {
+    PROG=$1
+    case $PROG in
+        nvim)
+            cd ~/.dotfiles/nvim/.config/nvim
+            nvim .
+            ;;
+        i3)
+            cd ~/.dotfiles/i3/.config/i3
+            nvim config
+            ;;
+        poly*)
+            cd ~/.dotfiles/polybar/.config/polybar/forest
+            nvim .
+            ;;
+        rofi)
+            cd ~/.dotfiles/rofi/.config/rofi
+            nvim .
+            cd
+            ;;
+        ali*)
+            cd ~/.dotfiles/zsh/.oh-my-zsh/custom
+            nvim aliases.zsh
+            ;;
+        func*)
+            cd ~/.dotfiles/zsh/.oh-my-zsh/custom
+            nvim functions.zsh
+            ;;
+        exp*)
+            cd ~/.dotfiles/zsh/.oh-my-zsh/custom
+            nvim exports.zsh
+            ;;
+        tok*)
+            cd ~/.dotfiles/zsh/.oh-my-zsh/custom
+            nvim tokens.zsh
+            ;;
+        *)
+            ;;
+    esac
+    cd
 }
