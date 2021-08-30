@@ -15,6 +15,8 @@ alias gp='git push'
 
 alias dot='cd /home/thales/.dotfiles'
 
+alias per='pipenv run'
+
 alias stown='stow --no-folding -nvt ~'
 alias stowv='stow --no-folding -vt ~'
 
