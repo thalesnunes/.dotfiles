@@ -2,7 +2,7 @@
 V.g['jupyter_mapkeys'] = 0
 
 -- Connect to kernel
-V.keymap('n', '<leader>jc', ':JupyterConnect<CR>', {silent = false})
+V.keymap('n', '<leader>jc', ':JupyterConnect<CR>')
 
 -- Add cell
 V.keymap('n', '<leader>ja', 'o# %%<Esc>o<Esc>')
