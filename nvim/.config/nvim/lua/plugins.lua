@@ -100,6 +100,7 @@ return require('packer').startup(function(use)
     -- Jupyter plugin
     use {
         'jupyter-vim/jupyter-vim',
+        ft = 'python',
         config = function() require('plugins.jupyter') end
     }
 end)
