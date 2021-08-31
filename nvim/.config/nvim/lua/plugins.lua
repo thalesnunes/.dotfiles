@@ -29,6 +29,13 @@ return require('packer').startup(function(use)
         config = function() require('plugins.comment') end
     }
 
+    -- Faster movement inside file
+    use {
+        'phaazon/hop.nvim',
+        as = 'hop',
+        config = function() require('plugins.hop') end
+    }
+
     -- LSP plugin
     use {
         'neovim/nvim-lspconfig',
