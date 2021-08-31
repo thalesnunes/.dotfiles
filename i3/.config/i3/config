@@ -225,7 +225,7 @@ bindsym $mod+c mode "SYSTEM"
 mode "LABI" {
 
     # Launch Chrome
-    bindsym b workspace $ws3, exec google-chrome-stable; mode "default"
+    bindsym b exec google-chrome-stable; mode "default"
     # Launch Slack
     bindsym m exec slack; mode "default"
     # Launch Code with db-crawler
@@ -260,8 +260,14 @@ bindsym $mod+Shift+e exec pcmanfm
 # Set focus not to follow mouse
 focus_follows_mouse no
 
+# Auto focus on new window
+focus_on_window_activation focus
+
 # Set no mouse warping with multiple monitors
 mouse_warping none
+
+# Align title
+title_align center
 
 #################################################
 ################## i3-gaps ######################
