@@ -120,12 +120,13 @@ bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 ###########################################################
 ############### Assign apps to workspaces #################
 ###########################################################
+assign [class="Google-chrome"] workspace $ws3
+assign [class="Code"] workspace $ws3
 assign [class="TelegramDesktop"] workspace $ws10
 assign [class="whatsappweb-nativefier-d40211"] workspace $ws10
 assign [class="notion-nativefier-46aee8"] workspace $ws10
 assign [class="Slack"] workspace $ws10
-assign [class="Google-chrome"] workspace $ws3
-assign [class="Code"] workspace $ws3
+assign [class="zoom"] workspace $ws10
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
