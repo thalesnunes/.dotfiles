@@ -94,6 +94,7 @@ function dbcrawler_docker() {
 }
 
 function config() {
+    NOW=$(pwd)
     PROG=$1
     case $PROG in
         nvim)
@@ -132,5 +133,5 @@ function config() {
         *)
             ;;
     esac
-    cd
+    cd $NOW
 }
