@@ -353,4 +353,4 @@ exec --no-startup-id xset b off s off -dpms
 exec --no-startup-id xmodmap -e "keycode 97 = Super_L NoSymbol Super_L"
 
 
-# vim:filetype=i3config daemon
+# vim:filetype=i3config
