@@ -84,6 +84,11 @@ function dbcrawler() {
     pipenv run nvim .
 }
 
+function dbconsole() {
+    cd ~/Projects/db-crawler
+    jupyter console --kernel=dbcrawler
+}
+
 function dbcrawler_docker() {
     docker run --name dbcrawler -p 8888:8888 -it -e JUPYTER_ENABLE_LAB=yes \
         --rm -d -v ~/Projects/db-crawler:/usr/src/app -w /usr/src/app \
