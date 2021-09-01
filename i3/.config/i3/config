@@ -290,6 +290,8 @@ mode "LABI" {
     bindsym c exec code /home/thales/Projects/db-crawler; mode "default"
     # Launch Notion
     bindsym n exec /home/thales/Apps/Notion-linux-x64/Notion; mode "default"
+    # Launch DBeaver
+    bindsym d exec dbeaver; mode "default"
     # Escape mode
     bindsym Escape mode "default"
 }
