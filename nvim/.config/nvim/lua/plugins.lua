@@ -100,6 +100,13 @@ return require('packer').startup(function(use)
             'kyazdani42/nvim-web-devicons'
         }
     }
+    use {
+        'kyazdani42/nvim-tree.lua',
+        config = function() require('plugins.nvimtree') end,
+        requires = {
+            'kyazdani42/nvim-web-devicons'
+        }
+    }
 
     -- Python code formatter
     use { 'ambv/black' }

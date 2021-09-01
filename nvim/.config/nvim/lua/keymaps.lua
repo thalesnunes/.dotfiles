@@ -42,12 +42,12 @@ V.keymap('n', '<leader>p', '"+p')
 V.keymap('v', '<leader>p', '"+p')
 
 -- Explorer keys
-V.keymap('n', '<leader>ee', ':Ex<CR>')
-V.keymap('v', '<leader>ee', ':Ex<CR>')
-V.keymap('n', '<leader>ev', ':Vex<CR>')
-V.keymap('v', '<leader>ev', ':Vex<CR>')
-V.keymap('n', '<leader>eh', ':Sex<CR>')
-V.keymap('v', '<leader>eh', ':Sex<CR>')
+-- V.keymap('n', '<leader>ee', ':Ex<CR>')
+-- V.keymap('v', '<leader>ee', ':Ex<CR>')
+-- V.keymap('n', '<leader>ev', ':Vex<CR>')
+-- V.keymap('v', '<leader>ev', ':Vex<CR>')
+-- V.keymap('n', '<leader>eh', ':Sex<CR>')
+-- V.keymap('v', '<leader>eh', ':Sex<CR>')
 
 -- Keep indenting selected
 V.keymap('v', '<', '<gv')
