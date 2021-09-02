@@ -87,15 +87,13 @@ return require('packer').startup(function(use)
     -- Git integration
     use {
         'tpope/vim-fugitive',
-        cmd = {
-            'Git',
-            'Gdiff',
-            'Gdiffsplit',
-            'Gvdiffsplit',
-            'Gwrite',
-            'Gw',
-            'G',
+        keys = {
+            '<leader>ga',
+            '<leader>gc',
+            '<leader>gp',
+            '<leader>gl',
         },
+        config = function() require('plugins.fugitive') end,
     }
 
     -- Fuzzy finder
