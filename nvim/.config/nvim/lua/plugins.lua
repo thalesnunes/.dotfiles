@@ -93,6 +93,10 @@ return require('packer').startup(function(use)
             '<leader>gp',
             '<leader>gl',
         },
+        cmd = {
+            'Git',
+            'G',
+        },
         config = function() require('plugins.fugitive') end,
     }
 
