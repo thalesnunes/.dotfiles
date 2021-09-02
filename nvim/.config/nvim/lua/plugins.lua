@@ -6,115 +6,158 @@ if V.fn.empty(V.fn.glob(install_path)) > 0 then
         'git', 'clone', 'https://github.com/wbthomason/packer.nvim',
         install_path
     })
-    V.cmd [[packadd packer.nvim]]
+    V.cmd 'packadd packer.nvim'
 end
 
-V.cmd [[packadd packer.nvim]]
-
 -- autocompile on save
-V.cmd [[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]]
+V.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
 
 return require('packer').startup(function(use)
 
     -- Packer can manage itself
     use { 'wbthomason/packer.nvim' }
 
-    -- Auto bracket pairs and surround
+    -- Auto bracket pairs
     use { 'jiangmiao/auto-pairs' }
+
+    -- Adding and removing pairs
     use { 'machakann/vim-sandwich' }
+
+    -- Themeing
+    use {
+        'dracula/vim',
+        as = 'dracula',
+    }
+
+    -- Status line
+    use {
+        'hoob3rt/lualine.nvim',
+        config = function() require('plugins.lualine') end,
+        requires = {
+            'kyazdani42/nvim-web-devicons',
+        },
+    }
+
+    -- File tree
+    use {
+        'kyazdani42/nvim-tree.lua',
+        config = function() require('plugins.nvimtree') end,
+        requires = {
+            'kyazdani42/nvim-web-devicons',
+        },
+    }
 
     -- Commenter
     use {
         'terrortylor/nvim-comment',
-        config = function() require('plugins.comment') end
-    }
-
-    -- Faster movement inside file
-    use {
-        'phaazon/hop.nvim',
-        as = 'hop',
-        config = function() require('plugins.hop') end
-    }
-
-    -- LSP plugin
-    use {
-        'neovim/nvim-lspconfig',
-        config = function() require('plugins.lsp') end
-    }
-
-    -- Code auto-completion with nvim-cmp
-    use {
-        'hrsh7th/nvim-cmp',
-        config = function() require('plugins.cmp') end,
-        requires = {
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-path'
-        }
+        config = function() require('plugins.comment') end,
     }
 
     -- Highlighter
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
-        config = function() require('plugins.treesitter') end
+        config = function() require('plugins.treesitter') end,
+    }
+
+    -- LSP plugin
+    use {
+        'neovim/nvim-lspconfig',
+        after = 'nvim-treesitter',
+        config = function() require('plugins.lsp') end,
+    }
+
+    -- Code auto-completion with nvim-cmp
+    use {
+        'hrsh7th/nvim-cmp',
+        after = 'nvim-lspconfig',
+        config = function() require('plugins.cmp') end,
+        requires = {
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path',
+        },
     }
 
     -- Git integration
-    use { 'tpope/vim-fugitive' }
+    use {
+        'tpope/vim-fugitive',
+        cmd = {
+            'Git',
+            'Gdiff',
+            'Gdiffsplit',
+            'Gvdiffsplit',
+            'Gwrite',
+            'Gw',
+            'G',
+        },
+    }
 
-    -- Telescope and Harpoon, fuzzy finder and file switcher
+    -- Fuzzy finder
     use {
         'nvim-telescope/telescope.nvim',
         config = function() require('plugins.telescope') end,
+        event = 'BufRead',
         requires = {
             'nvim-lua/plenary.nvim',
-            'nvim-lua/popup.nvim'
-        }
-    }
-    use {
-        'ThePrimeagen/harpoon',
-        config = function() require('plugins.harpoon') end,
-        requires = {
-            'nvim-lua/plenary.nvim',
-            'nvim-lua/popup.nvim'
-        }
+            'nvim-lua/popup.nvim',
+        },
     }
 
     -- Clipboard manager
     use {
         'AckslD/nvim-neoclip.lua',
-        config = function() require('plugins.neoclip') end
+        after = 'telescope.nvim',
+        config = function() require('plugins.neoclip') end,
     }
 
-    -- Themeing
-    use { 'mboughaba/i3config.vim' }
+    -- File switcher
     use {
-        'dracula/vim',
-        as = 'dracula'
-    }
-    use {
-        'hoob3rt/lualine.nvim',
-        config = function() require('plugins.lualine') end,
+        'ThePrimeagen/harpoon',
+        config = function() require('plugins.harpoon') end,
+        after = 'nvim-neoclip.lua',
         requires = {
-            'kyazdani42/nvim-web-devicons'
+            'nvim-lua/plenary.nvim',
+            'nvim-lua/popup.nvim',
         }
     }
+
+    -- Faster movement inside file
     use {
-        'kyazdani42/nvim-tree.lua',
-        config = function() require('plugins.nvimtree') end,
-        requires = {
-            'kyazdani42/nvim-web-devicons'
-        }
+        'phaazon/hop.nvim',
+        as = 'hop',
+        keys = {
+            '<leader>fd',
+        },
+        config = function() require('plugins.hop') end,
     }
 
     -- Python code formatter
-    use { 'ambv/black' }
+    use {
+        'ambv/black',
+        cmd = {
+            'Black',
+        },
+    }
 
     -- Jupyter plugin
     use {
         'jupyter-vim/jupyter-vim',
-        ft = 'python',
-        config = function() require('plugins.jupyter') end
+        keys = {
+            '<leader>jc',
+        },
+        config = function() require('plugins.jupyter') end,
     }
+
+    -- i3 highlighting
+    use {
+        'mboughaba/i3config.vim',
+        ft = 'i3config',
+    }
+
 end)
