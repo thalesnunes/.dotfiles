@@ -81,7 +81,7 @@ function gcala() {
 function dbcrawler() {
     cd ~/Projects/db-crawler
     terminal -e jupyter console --kernel=dbcrawler
-    pipenv run nvim .
+    pipenv run nvim
 }
 
 function dbconsole() {
@@ -104,7 +104,7 @@ function config() {
     case $PROG in
         nvim)
             cd ~/.dotfiles/nvim/.config/nvim
-            nvim .
+            nvim
             ;;
         i3)
             cd ~/.dotfiles/i3/.config/i3
@@ -112,11 +112,11 @@ function config() {
             ;;
         poly*)
             cd ~/.dotfiles/polybar/.config/polybar/forest
-            nvim .
+            nvim
             ;;
         rofi)
             cd ~/.dotfiles/rofi/.config/rofi
-            nvim .
+            nvim
             cd
             ;;
         ali*)
