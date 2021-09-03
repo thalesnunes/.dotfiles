@@ -37,3 +37,6 @@ alias spotifydstop='systemctl --user stop spotifyd.service'
 
 alias gcalp='gcalcli --config-folder ~/.config/gcalcli/personal'
 alias gcalw='gcalcli --config-folder ~/.config/gcalcli/work'
+
+alias conservation_on="sudo modprobe ideapad_laptop && sudo tee /sys/bus/platform/drivers/ideapad_acpi/*/conservation_mode <<< '1'"
+alias conservation_off="sudo modprobe ideapad_laptop && sudo tee /sys/bus/platform/drivers/ideapad_acpi/*/conservation_mode <<< '0'"
