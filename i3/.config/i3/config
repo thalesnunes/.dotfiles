@@ -202,7 +202,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Return exec $terminal
 
 # Exit i3 (logs you out of your X session)
-bindsym $alt+Control+Delete exec ${HOME}/.config/rofi/pipeline.sh Power
+bindsym $alt+Control+Delete exec ${HOME}/.config/rofi/pipeline Power
 
 # Open browsers
 bindsym $mod+b exec brave --profile-directory="Default"
@@ -212,7 +212,7 @@ bindsym $mod+u workspace $ws2, exec brave --profile-directory="Profile 1"
 bindsym $mod+m exec telegram-desktop
 
 # Whatsapp
-bindsym $mod+n exec ${HOME}/Scripts/whatsapp_init.sh
+bindsym $mod+n exec ${HOME}/Scripts/whatsapp_init
 
 # File Managers
 bindsym $mod+e exec $terminal -e ranger
@@ -233,18 +233,18 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 mode "ROFI" {
 
     # Lauch main script (app launcher and others)
-    bindsym space exec ${HOME}/.config/rofi/main.sh -show combi; mode "default"
-    bindsym $mod+space exec ${HOME}/.config/rofi/main.sh -show combi; mode "default"
+    bindsym space exec ${HOME}/.config/rofi/main -show combi; mode "default"
+    bindsym $mod+space exec ${HOME}/.config/rofi/main -show combi; mode "default"
     # Lauch Power script
-    bindsym Delete exec ${HOME}/.config/rofi/pipeline.sh Power; mode "default"
+    bindsym Delete exec ${HOME}/.config/rofi/pipeline Power; mode "default"
     # Lauch CMD script
-    bindsym Return exec ${HOME}/.config/rofi/pipeline.sh CMD; mode "default"
+    bindsym Return exec ${HOME}/.config/rofi/pipeline CMD; mode "default"
     # Lauch script to kill processes
-    bindsym k exec ${HOME}/.config/rofi/pipeline.sh Kill; mode "default"
+    bindsym k exec ${HOME}/.config/rofi/pipeline Kill; mode "default"
     # Lauch Code rofi
-    bindsym c exec ${HOME}/.config/rofi/pipeline.sh Code; mode "default"
+    bindsym c exec ${HOME}/.config/rofi/pipeline Code; mode "default"
     # Lauch Calc script
-    bindsym m exec ${HOME}/.config/rofi/pipeline.sh Calc; mode "default"
+    bindsym m exec ${HOME}/.config/rofi/pipeline Calc; mode "default"
     # Escape mode
     bindsym Escape mode "default"
 }
@@ -328,13 +328,10 @@ exec_always sleep 0.5 && \
 exec --no-startup-id picom -b
 
 # Fetch sunrise and sunset times
-exec --no-startup-id ${HOME}/Scripts/sunrise-sunset.sh
+exec --no-startup-id ${HOME}/Scripts/sunrise-sunset
 
-# Polybar
-exec_always sleep 1 && ${HOME}/Scripts/polybar_starter.sh
-
-# Set up wallpaper
-exec_always sleep 1 && ${HOME}/Scripts/feh_init.sh
+# Set modes (polybar and feh)
+exec sleep 1 && ${HOME}/Scripts/light-dark-mode
 
 # urxvt daemon
 exec --no-startup-id urxvtd -q -o -f

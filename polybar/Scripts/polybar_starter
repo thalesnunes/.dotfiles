@@ -1,12 +1,8 @@
 #!/bin/bash
 
 DIR="${HOME}/.config/polybar/"
-result=$(cat ~/.sun)
-IFS=" " read -r sunrise sunset <<< "$result"
 
-now=$(date +%H:%M)
-
-if [[ "$now" > "$sunrise" ]] && [[ "$now" < "$sunset" ]]; then
+if [[ $1 = "light" ]]; then
     COLORS=colors.day
 else
     COLORS=colors.night

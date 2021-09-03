@@ -1,0 +1,21 @@
+#!/bin/bash
+
+while :
+do
+    result=$(cat ~/.sun)
+    IFS=" " read -r sunrise sunset <<< "$result"
+    now=$(date +%s)
+
+    if [[ "$now" > "$sunrise" ]] && [[ "$now" < "$sunset" ]]; then
+        MODE=light
+        next=$sunset
+    else
+        MODE=dark
+        next=$sunrise
+    fi
+
+    /home/thales/Scripts/feh_init $MODE &!
+    /home/thales/Scripts/polybar_starter $MODE &!
+
+    sleep $((next - now))
+done

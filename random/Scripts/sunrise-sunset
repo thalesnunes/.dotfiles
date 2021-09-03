@@ -13,8 +13,8 @@ SUNR=$(grep SunriseSunset "$tmpfile" | grep -oE '((1[0-2]|0?[1-9]):([0-5][0-9]) 
 SUNS=$(grep SunriseSunset "$tmpfile" | grep -oE '((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))' | tail -1)
 
 
-sunrise=$(date --date="$SUNR" +%R)
-sunset=$(date --date="$SUNS" +%R)
+sunrise=$(date --date="$SUNR" +%s)
+sunset=$(date --date="$SUNS" +%s)
 
 # Use $sunrise and $sunset variables to fit your needs. Example:
 echo "$sunrise $sunset" > ~/.sun
