@@ -4,7 +4,7 @@ DIR="${HOME}/.config/polybar/"
 
 if [[ $1 = "light" ]]; then
     COLORS=colors.day
-else
+elif [[ $1 = "dark" ]]; then
     COLORS=colors.night
 fi
 

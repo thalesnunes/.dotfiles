@@ -330,8 +330,11 @@ exec --no-startup-id picom -b
 # Fetch sunrise and sunset times
 exec --no-startup-id ${HOME}/Scripts/sunrise-sunset
 
-# Set modes (polybar and feh)
-exec sleep 1 && ${HOME}/Scripts/light-dark-mode
+# Run crontab manager to set light and dark jobs
+exec_always ${HOME}/Scripts/ctab.py
+
+# Set mode on boot
+exec --no-startup-id sleep 1 && ${HOME}/Scripts/light-dark-mode
 
 # urxvt daemon
 exec --no-startup-id urxvtd -q -o -f

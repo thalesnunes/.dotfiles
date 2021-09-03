@@ -6,7 +6,7 @@ night="cropped-1920-1080-959309.png"
 
 if [[ $1 = "light" ]]; then
     Wallpaper=$day
-else
+elif [[ $1 = "dark" ]]; then
     Wallpaper=$night
 fi
 
