@@ -37,6 +37,7 @@ V.keymap('n', '<leader>O', 'O<esc>')
 
 -- Copy and paste to system's clipboard
 V.keymap('n', '<leader>y', '"+y')
+V.keymap('n', '<leader>Y', '"+y$')
 V.keymap('v', '<leader>y', '"+y')
 V.keymap('n', '<leader>p', '"+p')
 V.keymap('v', '<leader>p', '"+p')
