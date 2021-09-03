@@ -3,15 +3,15 @@ require('neogit').setup {
   disable_commit_confirmation = true,
   disable_context_highlighting = true,
   commit_popup = {
-      kind = "split",
+      kind = 'split',
   },
 
   -- customize displayed signs
   signs = {
     -- { CLOSED, OPENED }
-    section = { ">", "v" },
-    item = { ">", "v" },
-    hunk = { "", "" },
+    section = { '>', 'v' },
+    item = { '>', 'v' },
+    hunk = { '', '' },
   },
 
   integrations = {
@@ -23,7 +23,9 @@ require('neogit').setup {
     -- modify status buffer mappings
     status = {
       -- Bind 'o' to toggle diff
-      ["o"] = "Toggle",
+      ['o'] = 'Toggle',
+      ['p'] = 'PushPopup',
+      ['P'] = 'PullPopup',
     },
   },
 }
