@@ -86,18 +86,15 @@ return require('packer').startup(function(use)
 
     -- Git integration
     use {
-        'tpope/vim-fugitive',
+        'TimUntersberger/neogit',
         keys = {
-            '<leader>ga',
-            '<leader>gc',
-            '<leader>gp',
-            '<leader>gl',
+            '<leader>g'
         },
-        cmd = {
-            'Git',
-            'G',
+        config = function() require('plugins.neogit') end,
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'sindrets/diffview.nvim'
         },
-        config = function() require('plugins.fugitive') end,
     }
 
     -- Fuzzy finder
