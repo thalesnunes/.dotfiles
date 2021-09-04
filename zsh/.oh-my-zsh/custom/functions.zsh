@@ -100,42 +100,49 @@ function dbcrawler_docker() {
 
 function config() {
     NOW=$(pwd)
+    DOT="$HOME/.dotfiles"
     PROG=$1
     case $PROG in
-        nvim)
-            cd ~/.dotfiles/nvim/.config/nvim
-            nvim
-            ;;
-        i3)
-            cd ~/.dotfiles/i3/.config/i3
-            nvim config
-            ;;
         poly*)
-            cd ~/.dotfiles/polybar/.config/polybar/forest
+            cd $DOT/polybar/.config/polybar/forest
             nvim
-            ;;
-        rofi)
-            cd ~/.dotfiles/rofi/.config/rofi
-            nvim
-            cd
             ;;
         ali*)
-            cd ~/.dotfiles/zsh/.oh-my-zsh/custom
+            cd $DOT/zsh/.oh-my-zsh/custom
             nvim aliases.zsh
             ;;
         func*)
-            cd ~/.dotfiles/zsh/.oh-my-zsh/custom
+            cd $DOT/zsh/.oh-my-zsh/custom
             nvim functions.zsh
             ;;
         exp*)
-            cd ~/.dotfiles/zsh/.oh-my-zsh/custom
+            cd $DOT/zsh/.oh-my-zsh/custom
             nvim exports.zsh
             ;;
         tok*)
-            cd ~/.dotfiles/zsh/.oh-my-zsh/custom
+            cd $DOT/zsh/.oh-my-zsh/custom
             nvim tokens.zsh
             ;;
         *)
+            ENTER=true
+            DIR=$DOT/$PROG
+            if [ -d $DIR ]; then
+                cd $DIR
+                if [ -d $DIR/.config ]; then
+                    cd .config
+                    if [ -d $DIR/.config/$PROG ]; then
+                        cd $PROG
+                        files=$(ls -1q)
+                        if [ $(echo $files | wc -l) -eq 1 ]; then
+                            ENTER=false
+                            nvim $files
+                        fi
+                    fi
+                fi
+                if $ENTER; then
+                    nvim
+                fi
+            fi
             ;;
     esac
     cd $NOW
