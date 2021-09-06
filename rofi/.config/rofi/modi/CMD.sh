@@ -5,6 +5,6 @@ then
     # Handle argument.
     if [ -n "$@" ]
     then
-        coproc ( terminal -hold -e "$@" )
+        coproc ( terminal -hold -e "zsh -i $@" )
     fi
 fi

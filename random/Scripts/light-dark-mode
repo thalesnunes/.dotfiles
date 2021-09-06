@@ -1,7 +1,6 @@
 #!/bin/bash
 
 if [ $# -eq 0 ]; then
-
     result=$(cat ~/.sun)
     IFS=" " read -r sunrise sunset <<< "$result"
     now=$(date +%R)
@@ -15,5 +14,6 @@ else
     MODE=$1
 fi
 
-/home/thales/Scripts/feh_init $MODE &!
-/home/thales/Scripts/polybar_starter $MODE &!
+$HOME/Scripts/feh_init $MODE > /dev/null 2>&1 &
+$HOME/Scripts/polybar_starter $MODE > /dev/null 2>&1 &
+cp $HOME/.config/rofi/colors.$MODE $HOME/.config/rofi/colors.rasi
