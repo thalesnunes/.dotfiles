@@ -16,4 +16,3 @@ fi
 
 $HOME/Scripts/feh_init $MODE > /dev/null 2>&1 &
 $HOME/Scripts/polybar_starter $MODE > /dev/null 2>&1 &
-cp $HOME/.config/rofi/colors.$MODE $HOME/.config/rofi/colors.rasi
