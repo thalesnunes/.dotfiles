@@ -19,7 +19,7 @@ function updatedb() {
         pipenv run python -c "from scripts import $file";
     done
     echo "\nFinished updating"
-    cd ~
+    cd "$OLDPWD"
 }
 
 function dolph() {
@@ -68,7 +68,7 @@ function pgstop() {
 function create() {
     cd ~/Projects/Project_Initializer/
     pipenv run python3 ~/Projects/Project_Initializer/create.py $@
-    cd ~
+    cd "$OLDPWD"
 }
 
 function gcala() {
@@ -82,6 +82,7 @@ function dbcrawler() {
     cd ~/Projects/db-crawler
     terminal -e jupyter console --kernel=dbcrawler
     pipenv run nvim
+    cd "$OLDPWD"
 }
 
 function dbconsole() {
@@ -99,51 +100,47 @@ function dbcrawler_docker() {
 }
 
 function config() {
-    NOW=$(pwd)
     DOT="$HOME/.dotfiles"
+    TOCD=$DOT
     PROG=$1
     case $PROG in
         poly*)
-            cd $DOT/polybar/.config/polybar/forest
-            nvim
+            TOCD="$DOT/polybar/.config/polybar/forest"
+            FILE=""
             ;;
         ali*)
-            cd $DOT/zsh/.oh-my-zsh/custom
-            nvim aliases.zsh
+            TOCD="$DOT/zsh/.oh-my-zsh/custom"
+            FILE="aliases.zsh"
             ;;
         func*)
-            cd $DOT/zsh/.oh-my-zsh/custom
-            nvim functions.zsh
+            TOCD="$DOT/zsh/.oh-my-zsh/custom"
+            FILE="functions.zsh"
             ;;
         exp*)
-            cd $DOT/zsh/.oh-my-zsh/custom
-            nvim exports.zsh
+            TOCD="$DOT/zsh/.oh-my-zsh/custom"
+            FILE="exports.zsh"
             ;;
         tok*)
-            cd $DOT/zsh/.oh-my-zsh/custom
-            nvim tokens.zsh
+            TOCD="$DOT/zsh/.oh-my-zsh/custom"
+            FILE="tokens.zsh"
             ;;
         *)
-            ENTER=true
-            DIR=$DOT/$PROG
-            if [ -d $DIR ]; then
-                cd $DIR
-                if [ -d $DIR/.config ]; then
-                    cd .config
-                    if [ -d $DIR/.config/$PROG ]; then
-                        cd $PROG
-                        files=$(ls -1q)
+            if [ -d $DOT/$PROG ]; then
+                TOCD="$DOT/$PROG"
+                if [ -d $TOCD/.config ]; then
+                    TOCD="$TOCD/.config"
+                    if [ -d $TOCD/$PROG ]; then
+                        TOCD="$TOCD/$PROG"
+                        files=$(ls -1q $TOCD)
                         if [ $(echo $files | wc -l) -eq 1 ]; then
-                            ENTER=false
-                            nvim $files
+                            FILE=$files
                         fi
                     fi
-                fi
-                if $ENTER; then
-                    nvim
                 fi
             fi
             ;;
     esac
-    cd $NOW
+    cd $TOCD
+    nvim $FILE
+    cd "$OLDPWD"
 }
