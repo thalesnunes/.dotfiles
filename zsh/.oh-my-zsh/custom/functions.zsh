@@ -102,6 +102,7 @@ function dbcrawler_docker() {
 function config() {
     DOT="$HOME/.dotfiles"
     TOCD=$DOT
+    FILE=""
     PROG=$1
     case $PROG in
         poly*)
