@@ -149,6 +149,7 @@ return require('packer').startup(function(use)
         'jupyter-vim/jupyter-vim',
         keys = {
             '<leader>jc',
+            '<leader>ja',
         },
         config = function() require('plugins.jupyter') end,
     }
