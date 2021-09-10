@@ -5,7 +5,7 @@ V.g['jupyter_mapkeys'] = 0
 V.keymap('n', '<leader>jc', ':JupyterConnect<CR>')
 
 -- Add cell
-V.keymap('n', '<leader>ja', 'o# %%<Esc>o<Esc>')
+V.keymap('n', '<leader>ja', 'o<CR># %%<CR><Esc>')
 
 -- Send cell to kernel
 V.keymap('n', '<leader><CR>', ':JupyterSendCell<CR>')
