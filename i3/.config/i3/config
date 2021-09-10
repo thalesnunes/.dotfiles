@@ -185,6 +185,7 @@ for_window [class="Xfburn"] floating enable
 
 for_window [class="URxvt" title="pginit"] floating enable
 for_window [class="URxvt" title="pgstop"] floating enable
+for_window [class="URxvt" title="octave-cli"] floating enable
 
 
 ###########################################################
@@ -246,8 +247,8 @@ mode "ROFI" {
     bindsym k exec ${HOME}/.config/rofi/pipeline Kill; mode "default"
     # Lauch Code rofi
     bindsym c exec ${HOME}/.config/rofi/pipeline Code; mode "default"
-    # Lauch Calc script
-    bindsym m exec ${HOME}/.config/rofi/pipeline Calc; mode "default"
+    # Lauch Calc
+    bindsym m exec $terminal -e octave-cli --silent; mode "default"
     # Escape mode
     bindsym Escape mode "default"
 }
