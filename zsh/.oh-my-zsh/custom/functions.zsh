@@ -3,27 +3,15 @@ function gi() {
 }
 
 function updatedb() {
-    # cd ~/Projects/db-crawler/scripts
-    # for file in `ls | sort`;
-    # do
-    #     echo "Running $file"
-    #     pipenv run python "$file"
-    # done
-    # echo "Finished running"
-    # cd ~
     cd ~/Projects/db-crawler
     echo "Starting daily update"
     for file in `ls -1 scripts | sed -e 's/\..*$//'`;
     do
         echo "\nRunning $file";
-        pipenv run python -c "from scripts import $file";
+        time pipenv run python -c "from scripts import $file";
     done
     echo "\nFinished updating"
     cd "$OLDPWD"
-}
-
-function dolph() {
-    dolphin $@ &!
 }
 
 function pginit() {
@@ -71,17 +59,10 @@ function create() {
     cd "$OLDPWD"
 }
 
-function gcala() {
-    args=$@
-    for dir in ~/.config/gcalcli/*/; do
-        gcalcli --config-folder $dir $args;
-    done
-}
-
 function dbcrawler() {
     cd ~/Projects/db-crawler
     terminal -e jupyter console --kernel=dbcrawler
-    pipenv run nvim
+    pipenv run $EDITOR
     cd "$OLDPWD"
 }
 
@@ -142,6 +123,6 @@ function config() {
             ;;
     esac
     cd $TOCD
-    nvim $FILE
+    $EDITOR $FILE
     cd "$OLDPWD"
 }
