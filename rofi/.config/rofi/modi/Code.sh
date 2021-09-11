@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-PROJECTS="${HOME}/Projects"
+PROJECTS="$HOME/Projects"
 
 if [ ! -z "$@" ]
 then
     # Handle argument.
     if [ -n "$@" ]
     then
-        coproc ( $EDITOR "${PROJECTS}/$@" & > /dev/null 2>&1 )
+        terminal -e "cd \"$PROJECTS/$@\" && $EDITOR"
     fi
 else
-    echo "$(ls -1 "${PROJECTS}" | sed -e 's/\..*$//')"
+    echo "$(ls -1 "$PROJECTS" | sed -e 's/\..*$//')"
 fi
