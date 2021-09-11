@@ -18,15 +18,15 @@ function pginit() {
     OS=$(lsb_release -is)
     case $OS in
         Ubuntu)
-            sudo systemctl start apache2;
-            echo "Started successfully"
+            sudo systemctl start apache2 &&
+            echo "Started successfully" &&
             google-chrome-stable 'localhost/pgadmin4' &!
             ;;
         ManjaroLinux)
-            dockerinit
-            docker start pgadmin
-            echo "Started successfully"
-            sleep 1
+            dockerinit &&
+            docker start pgadmin &&
+            echo "Started successfully" &&
+            sleep 1 &&
             google-chrome-stable 'localhost' &!
             ;;
         *)
@@ -39,12 +39,12 @@ function pgstop() {
     OS=$(lsb_release -is)
     case $OS in
         Ubuntu)
-            sudo systemctl stop apache2
+            sudo systemctl stop apache2 &&
             echo "Stopped successfully"
             ;;
         ManjaroLinux)
-            docker stop pgadmin
-            dockerstop
+            docker stop pgadmin &&
+            dockerstop &&
             echo "Stopped successfully"
             ;;
         *)
@@ -74,9 +74,9 @@ function dbconsole() {
 function dbcrawler_docker() {
     docker run --name dbcrawler -p 8888:8888 -it -e JUPYTER_ENABLE_LAB=yes \
         --rm -d -v ~/Projects/db-crawler:/usr/src/app -w /usr/src/app \
-        thalesnunes1/db-crawler:latest
-    sleep 2
-    jupyter_url=$(docker logs dbcrawler | grep -o "http:\/\/127\.0\.0\.1:8888\/lab?token=.*" | tail -1)
+        thalesnunes1/db-crawler:latest &&
+    sleep 2 &&
+    jupyter_url=$(docker logs dbcrawler | grep -o "http:\/\/127\.0\.0\.1:8888\/lab?token=.*" | tail -1) &&
     google-chrome $jupyter_url &!
 }
 
@@ -113,15 +113,16 @@ function config() {
                     TOCD="$TOCD/.config"
                     if [ -d $TOCD/$PROG ]; then
                         TOCD="$TOCD/$PROG"
-                        files=$(ls -1q $TOCD)
-                        if [ $(echo $files | wc -l) -eq 1 ]; then
-                            FILE=$files
-                        fi
                     fi
                 fi
             fi
+            files=$(ls -A1q $TOCD)
+            if [ $(echo $files | wc -l) -eq 1 ]; then
+                FILE=$files
+            fi
             ;;
     esac
+
     cd $TOCD
     $EDITOR $FILE
     cd "$OLDPWD"
