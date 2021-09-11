@@ -7,7 +7,7 @@ then
     # Handle argument.
     if [ -n "$@" ]
     then
-        coproc ( code "${PROJECTS}/$@" & > /dev/null 2>&1 )
+        coproc ( $EDITOR "${PROJECTS}/$@" & > /dev/null 2>&1 )
     fi
 else
     echo "$(ls -1 "${PROJECTS}" | sed -e 's/\..*$//')"
