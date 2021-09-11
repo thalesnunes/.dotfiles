@@ -1,4 +1,7 @@
-alias la="ls -A"
+alias ..='cd ..'
+alias ...='cd ../..'
+
+alias la='ls -A'
 alias lla='ls -la'
 
 alias aptup='sudo apt update && sudo apt upgrade'
