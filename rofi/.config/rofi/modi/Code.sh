@@ -7,7 +7,7 @@ then
     # Handle argument.
     if [ -n "$@" ]
     then
-        terminal -e "cd \"$PROJECTS/$@\" && $EDITOR"
+        terminal -cd "$PROJECTS/$@" -e nvim
     fi
 else
     echo "$(ls -1 "$PROJECTS" | sed -e 's/\..*$//')"

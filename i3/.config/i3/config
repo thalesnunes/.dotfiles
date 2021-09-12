@@ -149,6 +149,7 @@ assign [class="Google-chrome"] workspace $ws3
 assign [class="Code"] workspace $ws3
 assign [class="TelegramDesktop"] workspace $ws10
 assign [class="whatsappweb-nativefier-d40211"] workspace $ws10
+assign [instance="crx_hnpfjngllnobngcgfapefoaidbinmjnm"] workspace $ws10
 assign [class="notion-nativefier-46aee8"] workspace $ws10
 assign [class="Slack"] workspace $ws10
 assign [class="zoom"] workspace $ws10
@@ -183,9 +184,11 @@ for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 
-for_window [class="URxvt" title="pginit"] floating enable
-for_window [class="URxvt" title="pgstop"] floating enable
-for_window [class="URxvt" title="octave-cli"] floating enable
+for_window [class="URxvt" instance="^pginit$"] floating enable
+for_window [class="URxvt" instance="^pgstop$"] floating enable
+for_window [class="URxvt" instance="^qalc$"] floating enable
+for_window [class="URxvt" instance="^cmd$"] floating enable
+for_window [class="URxvt" instance="^htop$"] floating enable
 
 
 ###########################################################
@@ -216,7 +219,7 @@ bindsym $mod+u workspace $ws2, exec brave --profile-directory="Profile 1"
 bindsym $mod+m exec telegram-desktop
 
 # Whatsapp
-bindsym $mod+n exec ${HOME}/Scripts/whatsapp_init
+bindsym $mod+n exec brave --profile-directory="Default" --app-id=hnpfjngllnobngcgfapefoaidbinmjnm
 
 # File Managers
 bindsym $mod+e exec $terminal -e ranger
@@ -233,8 +236,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 #                        Modes
 ###########################################################
 
-# Rofi mode for launching different scripts
-mode "ROFI" {
+# General launching utilities
+mode "APPS" {
 
     # Lauch main script (app launcher and others)
     bindsym space exec ${HOME}/.config/rofi/main -show combi; mode "default"
@@ -242,18 +245,26 @@ mode "ROFI" {
     # Lauch Power script
     bindsym Delete exec ${HOME}/.config/rofi/pipeline Power; mode "default"
     # Lauch CMD script
-    bindsym Return exec ${HOME}/.config/rofi/pipeline CMD; mode "default"
+    bindsym Return exec $terminal -name cmd; mode "default"
     # Lauch script to kill processes
     bindsym k exec ${HOME}/.config/rofi/pipeline Kill; mode "default"
     # Lauch Code rofi
     bindsym c exec ${HOME}/.config/rofi/pipeline Code; mode "default"
     # Lauch Calc
-    bindsym m exec $terminal -e octave-cli --silent; mode "default"
+    bindsym m exec $terminal -name qalc -e qalc -t; mode "default"
+    # Launch pavucontrol
+    bindsym v exec pavucontrol; mode "default"
+    # Launch blueman
+    bindsym b exec blueman-manager; mode "default"
+    # Launch nm-connection-editor
+    bindsym n exec nm-connection-editor; mode "default"
+    # Launch htop
+    bindsym h exec $terminal -name htop -e htop; mode "default"
     # Escape mode
     bindsym Escape mode "default"
 }
 
-bindsym $mod+space mode "ROFI"
+bindsym $mod+space mode "APPS"
 
 # Flameshot mode for screenshotting
 mode "FLAMESHOT" {
@@ -272,23 +283,6 @@ mode "FLAMESHOT" {
 
 bindsym $mod+s mode "FLAMESHOT"
 
-# Flameshot mode for screenshotting
-mode "SYSTEM" {
-
-    # Launch pavucontrol
-    bindsym v exec pavucontrol; mode "default"
-    # Launch blueman
-    bindsym b exec blueman-manager; mode "default"
-    # Launch nm-connection-editor
-    bindsym n exec nm-connection-editor; mode "default"
-    # Launch htop
-    bindsym h exec $terminal -e htop; mode "default"
-    # Escape mode
-    bindsym Escape mode "default"
-}
-
-bindsym $mod+c mode "SYSTEM"
-
 # Trabalho
 mode "LABI" {
 
@@ -301,9 +295,9 @@ mode "LABI" {
     # Launch Notion
     bindsym n exec /home/thales/Apps/Notion-linux-x64/Notion; mode "default"
     # Launch PGAdmin
-    bindsym i exec $terminal -title pginit -e zsh -i -c "pginit"; mode "default"
+    bindsym i exec $terminal -name pginit -e zsh -i -c "pginit"; mode "default"
     # Stop PGAdmin
-    bindsym s exec $terminal -title pgstop -e zsh -i -c "pgstop"; mode "default"
+    bindsym s exec $terminal -name pgstop -e zsh -i -c "pgstop"; mode "default"
     # Launch DBeaver
     bindsym d exec dbeaver; mode "default"
     # Escape mode
