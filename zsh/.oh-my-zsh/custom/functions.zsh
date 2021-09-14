@@ -127,3 +127,19 @@ function config() {
     $EDITOR $FILE
     cd "$OLDPWD"
 }
+
+function proj() {
+    PROJ=$PROJECTS
+    TOCD=`ls -1q $PROJ | fzf`
+    if [[ -n "$TOCD" ]]; then
+        cd $PROJ/$TOCD
+        if [[ -f "poetry.lock" ]]; then
+            poetry run $EDITOR
+        elif [[ -f "Pipfile.lock" ]]; then
+            pipenv run $EDITOR
+        else
+            $EDITOR
+        fi
+        cd "$OLDPWD"
+    fi
+}
