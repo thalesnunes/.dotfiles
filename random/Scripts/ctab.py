@@ -16,7 +16,7 @@ dark_hour, dark_min = sunset.split(":")
 with CronTab(user=USER) as cron:
 
     light, dark = None, None
-    for job in cron.find_command("light-dark-mode"):
+    for job in cron.find_command("i3-msg"):
         if job.comment == "light mode":
             light = job
         elif job.comment == "dark mode":
