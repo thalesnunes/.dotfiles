@@ -11,5 +11,4 @@ if [[ -n "$TOCD" ]]; then
     else
         $EDITOR
     fi
-    cd "$OLDPWD"
 fi
