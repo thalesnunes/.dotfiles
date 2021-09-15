@@ -295,9 +295,9 @@ mode "LABI" {
     # Launch Notion
     bindsym n exec /home/thales/Apps/Notion-linux-x64/Notion; mode "default"
     # Launch PGAdmin
-    bindsym i exec $terminal -name pginit -e zsh -i -c "pginit"; mode "default"
+    bindsym i exec $terminal -name pginit -e pginit; mode "default"
     # Stop PGAdmin
-    bindsym s exec $terminal -name pgstop -e zsh -i -c "pgstop"; mode "default"
+    bindsym s exec $terminal -name pgstop -e pgstop; mode "default"
     # Launch DBeaver
     bindsym d exec dbeaver; mode "default"
     # Escape mode

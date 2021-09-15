@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 cd ~/Projects/db-crawler
 echo "Starting daily update"
