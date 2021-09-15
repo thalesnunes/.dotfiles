@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+RUNNING=$(ps aux | awk '/jupyter-console --kernel=dbcrawler/ && !/awk/ {print $2}')
+if [[ -n "$RUNNING" ]]; then
+    kill $RUNNING
+fi
+
+cd ~/Projects/db-crawler
+jupyter console --kernel=dbcrawler

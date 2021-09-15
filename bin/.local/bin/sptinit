@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+systemctl --user start spotifyd.service && spt
+

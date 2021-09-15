@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+cd ~/Projects/db-crawler
+echo "Starting daily update"
+for file in `ls -1 scripts | sed -e 's/\..*$//'`;
+do
+    echo "\nRunning $file";
+    time pipenv run python -c "from scripts import $file";
+done
+echo "\nFinished updating"
+cd "$OLDPWD"
