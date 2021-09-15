@@ -10,9 +10,9 @@ case $OS in
     ManjaroLinux)
         SUCCESS=$(dockerinit && docker start pgadmin)
         if [[ "$SUCCESS" == "pgadmin" ]]; then
-            echo "Started successfully" &&
-            sleep 1 &&
-            google-chrome-stable 'localhost' &!;
+            echo "Started successfully"
+            sleep 1
+            google-chrome-stable 'localhost' &
         fi
         ;;
     *)
