@@ -22,3 +22,6 @@ V.keymap('n', '<leader>jd', ':JupyterCd %:p:h<CR>')
 
 -- Debugging maps
 -- V.keymap('n', '<localleader>jb', ':PythonSetBreak<CR>')
+
+-- Restart console
+V.keymap('n', '<leader>jr', ':!i3-msg -q "workspace 9:Terminal, exec terminal -e dbconsole"<CR><CR>')
