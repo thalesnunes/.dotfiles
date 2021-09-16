@@ -23,7 +23,7 @@ return require('packer').startup(function(use)
     use { 'wbthomason/packer.nvim' }
 
     -- Auto bracket pairs
-    use { 'jiangmiao/auto-pairs' }
+    use { 'jiangmiao/auto-pairs', disable = true }
 
     -- Adding and removing pairs
     use { 'machakann/vim-sandwich' }
