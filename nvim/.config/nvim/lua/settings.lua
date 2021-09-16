@@ -8,6 +8,7 @@ V.opt.wrap = false
 V.opt.guicursor = 'n-c:block,v-i-ci-ve:ver25,r-cr:hor20'
 V.opt.relativenumber = true
 V.opt.nu = true
+V.opt.mouse = "a"
 
 V.opt.hlsearch = false
 V.opt.incsearch = true
