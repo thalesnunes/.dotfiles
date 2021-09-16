@@ -69,7 +69,7 @@ function config() {
     cd "$OLDPWD"
 }
 
-function proj(){
+function proj() {
     PROJ=$PROJECTS
     TOCD=`ls -1q $PROJ | fzf`
     if [[ -n "$TOCD" ]]; then
