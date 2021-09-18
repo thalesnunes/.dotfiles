@@ -13,7 +13,7 @@ alias ga='git add'
 alias gc='git commit -m'
 alias gp='git push'
 
-alias dot='cd /home/thales/.dotfiles'
+alias dot='cd $DOT'
 
 alias per='pipenv run'
 alias por='poetry run'
