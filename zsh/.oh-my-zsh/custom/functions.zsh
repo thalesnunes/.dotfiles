@@ -70,17 +70,53 @@ function config() {
 }
 
 function proj() {
+
     PROJ=$PROJECTS
-    TOCD=`ls -1q $PROJ | fzf`
-    if [[ -n "$TOCD" ]]; then
-        cd $PROJ/$TOCD
-        if [[ -f "poetry.lock" ]]; then
-            poetry run $EDITOR
-        elif [[ -f "Pipfile.lock" ]]; then
-            pipenv run $EDITOR
-        else
-            $EDITOR
-        fi
+    if [[ $# -eq 1 ]]; then
+        TOCD=$1
+    else
+        TOCD=$(ls -1q $PROJ | fzf)
     fi
-    cd "$OLDPWD"
+
+    if [[ -z "$TOCD" ]]; then
+        exit 0
+    fi
+
+    TOCD="$PROJ/$TOCD"
+    CMD=""
+    if [[ -f "$TOCD/poetry.lock" ]]; then
+        CMD="poetry run "
+    elif [[ -f "$TOCD/Pipfile.lock" ]]; then
+        CMD="pipenv run "
+    fi
+    CMD="$CMD$EDITOR"
+
+    selected_name=$(basename "$TOCD" | tr . _)
+    case $selected_name in
+        db-crawler)
+            selected_name="crawler"
+            ;;
+        gcal_notifier)
+            selected_name="gcal"
+            ;;
+        labidw-*)
+            selected_name="lambda"
+            ;;
+    esac
+
+    tmux_running=$(pgrep tmux)
+    if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+        tmux new-session -s $selected_name -c $TOCD $CMD
+        exit 0
+    fi
+
+    if ! tmux has-session -t $selected_name 2> /dev/null; then
+        tmux new-session -ds $selected_name -c $TOCD $CMD
+    fi
+
+    if [[ -z $TMUX ]]; then
+        tmux attach-session -t $selected_name
+    else
+        tmux switch-client -t $selected_name
+    fi
 }
