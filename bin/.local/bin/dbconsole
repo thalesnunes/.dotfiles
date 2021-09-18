@@ -5,5 +5,4 @@ if [[ -n "$RUNNING" ]]; then
     kill $RUNNING
 fi
 
-cd ~/Projects/db-crawler
-jupyter console --kernel=dbcrawler
+tmuxinit -d ~/Projects/db-crawler -n console "jupyter console --kernel=dbcrawler"
