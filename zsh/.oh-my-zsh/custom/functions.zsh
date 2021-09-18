@@ -46,10 +46,6 @@ function config() {
             TOCD="$DOT/zsh/.oh-my-zsh/custom"
             FILE="tokens.zsh"
             ;;
-        tmux*)
-            TOCD="$DOT/tmux"
-            FILE=""
-            ;;
         *)
             if [ -d $DOT/$PROG ]; then
                 TOCD="$DOT/$PROG"
