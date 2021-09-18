@@ -1,13 +1,9 @@
-export DOCKER_FORMAT="ID\t{{.ID}}\n"\
-"NAME\t{{.Names}}\n"\
-"IMAGE\t{{.Image}}\n"\
-"PORTS\t{{.Ports}}\n"\
-"COMMAND\t{{.Command}}\n"\
-"CREATED\t{{.CreatedAt}}\n"\
-"STATUS\t{{.Status}}"
-export PROJECTS="/home/thales/Projects"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$PYTHON_BIN_PATH"
+
+export DOT="$HOME/.dotfiles"
+export PROJECTS="$HOME/Projects"
+
 export TIMEFMT='%J   %U  user %S system'$'\n'\
 'cpu %%:                     %P'$'\n'\
 'elapsed time:              %E'$'\n'\
@@ -17,6 +13,14 @@ export TIMEFMT='%J   %U  user %S system'$'\n'\
 'total (sum):               %K KB'$'\n'\
 'page faults from disk:     %F'$'\n'\
 'other page faults:         %R'
+
+export DOCKER_FORMAT="ID\t{{.ID}}\n"\
+"NAME\t{{.Names}}\n"\
+"IMAGE\t{{.Image}}\n"\
+"PORTS\t{{.Ports}}\n"\
+"COMMAND\t{{.Command}}\n"\
+"CREATED\t{{.CreatedAt}}\n"\
+"STATUS\t{{.Status}}"
 
 if [ -x "$(command -v nvim)" ]; then
     export EDITOR='nvim'
