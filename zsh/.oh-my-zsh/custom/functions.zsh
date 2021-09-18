@@ -3,7 +3,7 @@ function gi() {
 }
 
 function create() {
-    cd ~/Projects/Project_Initializer/
+    cd "$PROJECTS/Project_Initializer"
     pipenv run python3 ~/Projects/Project_Initializer/create.py $@
     cd "$OLDPWD"
 }
@@ -18,7 +18,6 @@ function dbcrawler_docker() {
 }
 
 function config() {
-    DOT="$HOME/.dotfiles"
     TOCD=$DOT
     FILE=""
     PROG=$1
@@ -47,6 +46,10 @@ function config() {
             TOCD="$DOT/zsh/.oh-my-zsh/custom"
             FILE="tokens.zsh"
             ;;
+        tmux*)
+            TOCD="$DOT/tmux"
+            FILE=""
+            ;;
         *)
             if [ -d $DOT/$PROG ]; then
                 TOCD="$DOT/$PROG"
@@ -71,18 +74,17 @@ function config() {
 
 function proj() {
 
-    PROJ=$PROJECTS
     if [[ $# -eq 1 ]]; then
-        TOCD=$1
+        NAME=$1
     else
-        TOCD=$(ls -1q $PROJ | fzf)
+        NAME=$(ls -1q $PROJECTS | fzf)
     fi
 
-    if [[ -z "$TOCD" ]]; then
-        exit 0
+    if [[ -z "$NAME" ]] || [[ ! -d "$PROJECTS/$NAME" ]]; then
+        return
     fi
 
-    TOCD="$PROJ/$TOCD"
+    TOCD="$PROJECTS/$NAME"
     CMD=""
     if [[ -f "$TOCD/poetry.lock" ]]; then
         CMD="poetry run "
@@ -91,32 +93,17 @@ function proj() {
     fi
     CMD="$CMD$EDITOR"
 
-    selected_name=$(basename "$TOCD" | tr . _)
-    case $selected_name in
+    case $NAME in
         db-crawler)
-            selected_name="crawler"
+            NAME="crawler"
             ;;
         gcal_notifier)
-            selected_name="gcal"
+            NAME="gcal"
             ;;
         labidw-*)
-            selected_name="lambda"
+            NAME="lambda"
             ;;
     esac
 
-    tmux_running=$(pgrep tmux)
-    if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-        tmux new-session -s $selected_name -c $TOCD $CMD
-        exit 0
-    fi
-
-    if ! tmux has-session -t $selected_name 2> /dev/null; then
-        tmux new-session -ds $selected_name -c $TOCD $CMD
-    fi
-
-    if [[ -z $TMUX ]]; then
-        tmux attach-session -t $selected_name
-    else
-        tmux switch-client -t $selected_name
-    fi
+    tmuxinit -d $TOCD -n $NAME $CMD
 }
