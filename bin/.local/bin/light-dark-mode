@@ -14,5 +14,5 @@ else
     MODE=$1
 fi
 
-$HOME/Scripts/feh_init $MODE > /dev/null 2>&1 &
-$HOME/Scripts/polybar_starter $MODE > /dev/null 2>&1 &
+feh_init $MODE > /dev/null 2>&1 &
+polybar_starter $MODE > /dev/null 2>&1 &
