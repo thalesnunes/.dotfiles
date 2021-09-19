@@ -22,9 +22,6 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use { 'wbthomason/packer.nvim' }
 
-    -- Auto bracket pairs
-    use { 'jiangmiao/auto-pairs', disable = true }
-
     -- Adding and removing pairs
     use { 'machakann/vim-sandwich' }
 
@@ -84,6 +81,13 @@ return require('packer').startup(function(use)
         },
     }
 
+    -- Auto bracket pairs
+    use {
+        'windwp/nvim-autopairs',
+        after = 'nvim-cmp',
+        config = function() require('plugins.autopairs') end,
+    }
+
     -- Git integration
     use {
         'TimUntersberger/neogit',
@@ -101,7 +105,7 @@ return require('packer').startup(function(use)
     use {
         'nvim-telescope/telescope.nvim',
         config = function() require('plugins.telescope') end,
-        event = 'BufRead',
+        event = 'VimEnter',
         requires = {
             'nvim-lua/plenary.nvim',
             'nvim-lua/popup.nvim',
@@ -130,6 +134,7 @@ return require('packer').startup(function(use)
     use {
         'phaazon/hop.nvim',
         as = 'hop',
+        disable = true,
         keys = {
             '<leader>fd',
         },
