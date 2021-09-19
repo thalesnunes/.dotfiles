@@ -30,7 +30,7 @@ window {
     text-color:                     @fg;
 	border:							0px;
 	border-color:					@ac;
-    border-radius:                  10px;
+    border-radius:                  15px;
 	width:							35%;
     location:                       center;
     x-offset:                       0;
@@ -105,15 +105,17 @@ element {
 }
 
 element-icon {
-    background-color:               inherit;
-    text-color:                     inherit;
+    background-color: 				inherit;
+    text-color:       				inherit;
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
     size:                           24px;
     border:                         0px;
 }
 
 element-text {
-    background-color:               inherit;
-    text-color:                     inherit;
+    background-color: 				@al;
+    text-color:       				inherit;
     expand:                         true;
     horizontal-align:               0;
     vertical-align:                 0.5;
