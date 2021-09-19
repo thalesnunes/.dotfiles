@@ -64,3 +64,6 @@ V.keymap('v', '<leader>l', ':bnext<CR>')
 V.keymap('n', '<leader>h', ':bprev<CR>')
 V.keymap('v', '<leader>h', ':bprev<CR>')
 V.keymap('n', '<leader>q', ':bdelete<CR>')
+
+-- Reload config
+V.keymap('n', '<leader>r', ':so ~/.dotfiles/nvim/.config/nvim/init.lua<CR>')
