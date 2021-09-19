@@ -8,14 +8,14 @@ end
 cmp.setup {
 -- You can set mappings if you want
     mapping = {
-        ['<C-j>'] = cmp.mapping.select_next_item(),
-        ['<C-k>'] = cmp.mapping.select_prev_item(),
-        ['<Tab>'] = cmp.mapping.select_next_item(),
-        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.close(),
+        ['<C-J>'] = cmp.mapping.select_next_item(),
+        ['<C-K>'] = cmp.mapping.select_prev_item(),
+        ['<TAB>'] = cmp.mapping.select_next_item(),
+        ['<S-TAB>'] = cmp.mapping.select_prev_item(),
+        ['<C-D>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-F>'] = cmp.mapping.scroll_docs(4),
+        ['<C-SPACE>'] = cmp.mapping.complete(),
+        ['<C-E>'] = cmp.mapping.close(),
     },
     -- You should specify your *installed* sources.
     sources = {
