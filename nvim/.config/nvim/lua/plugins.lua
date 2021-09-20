@@ -100,6 +100,10 @@ return require('packer').startup(function(use)
             'sindrets/diffview.nvim'
         },
     }
+    use {
+        'tpope/vim-fugitive',
+        cmd = 'Git',
+    }
 
     -- Fuzzy finder
     use {
