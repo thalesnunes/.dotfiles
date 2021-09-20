@@ -151,6 +151,7 @@ assign [class="TelegramDesktop"] workspace $ws10
 assign [class="whatsappweb-nativefier-d40211"] workspace $ws10
 assign [instance="crx_hnpfjngllnobngcgfapefoaidbinmjnm"] workspace $ws10
 assign [class="notion-nativefier-46aee8"] workspace $ws10
+assign [instance="crx_gpmngigldijofdhcmpepkjelnjhoddlh"] workspace $ws10
 assign [class="Slack"] workspace $ws10
 assign [class="zoom"] workspace $ws10
 
@@ -293,7 +294,7 @@ mode "LABI" {
     # Launch Code with db-crawler
     bindsym c exec code /home/thales/Projects/db-crawler; mode "default"
     # Launch Notion
-    bindsym n exec /home/thales/Apps/Notion-linux-x64/Notion; mode "default"
+    bindsym n exec brave --profile-directory="Default" --app-id=gpmngigldijofdhcmpepkjelnjhoddlh; mode "default"
     # Launch PGAdmin
     bindsym i exec $terminal -name pginit -e pginit; mode "default"
     # Stop PGAdmin
