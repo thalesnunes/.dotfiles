@@ -155,6 +155,7 @@ return require('packer').startup(function(use)
         keys = {
             '<leader>jc',
             '<leader>ja',
+            '<leader>jr',
         },
         config = function() require('plugins.jupyter') end,
     }
