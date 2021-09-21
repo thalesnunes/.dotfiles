@@ -334,7 +334,7 @@ exec --no-startup-id picom -b
 exec --no-startup-id sunrise-sunset
 
 # Run crontab manager to set light and dark jobs
-exec ctab.py
+exec --no-startup-id sleep 3 && ctab.py
 
 # Set mode on boot
 exec_always sleep 1 && light-dark-mode
