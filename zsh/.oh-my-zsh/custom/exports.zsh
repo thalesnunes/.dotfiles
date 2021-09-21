@@ -4,6 +4,11 @@ export PATH="$PATH:$PYTHON_BIN_PATH"
 export DOT="$HOME/.dotfiles"
 export PROJECTS="$HOME/Projects"
 
+export FZF_DEFAULT_OPTS="--color=fg:#f8f8f2,hl:#bd93f9 "\
+"--color=fg+:#f8f8f2,hl+:#bd93f9 "\
+"--color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 "\
+"--color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4 "
+
 export TIMEFMT='%J   %U  user %S system'$'\n'\
 'cpu %%:                     %P'$'\n'\
 'elapsed time:              %E'$'\n'\
