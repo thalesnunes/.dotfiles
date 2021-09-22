@@ -166,4 +166,11 @@ return require('packer').startup(function(use)
         ft = 'i3config',
     }
 
+    -- Color code highlighting
+    use {
+        'norcalli/nvim-colorizer.lua',
+        cmd = 'ColorizerAttachToBuffer',
+        config = function() require('colorizer').setup() end,
+    }
+
 end)
