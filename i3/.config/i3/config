@@ -22,13 +22,13 @@ mouse_warping none
 # Align title
 title_align center
 
-# class                 border  backgr. text    indicator child_border
-client.focused          #556064 #556064 #80FFF9 #FDF6E3   #f0a830
-client.focused_inactive #2F3D44 #2F3D44 #AD69AF #454948   #907878
-client.unfocused        #2F3D44 #000000 #AD69AF #454948   #907878
-client.urgent           #CB4B16 #FDF6E3 #AD69AF #268BD2
-client.placeholder      #000000 #0c0c0c #ffffff #000000
-client.background       #2B2C2B
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #50FA7B
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+client.background       #F8F8F2
 
 
 ###########################################################
