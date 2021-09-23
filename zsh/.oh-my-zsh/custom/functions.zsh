@@ -17,6 +17,13 @@ function dbcrawler_docker() {
     google-chrome $jupyter_url &!
 }
 
+function gcala() {
+    args=$@
+    for dir in ~/.config/gcalcli/*/; do
+        gcalcli --config-folder $dir $args;
+    done
+}
+
 function config() {
     TOCD=$DOT
     FILE=""
