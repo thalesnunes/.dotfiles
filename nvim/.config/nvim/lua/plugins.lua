@@ -169,8 +169,11 @@ return require('packer').startup(function(use)
     -- Color code highlighting
     use {
         'norcalli/nvim-colorizer.lua',
-        cmd = 'ColorizerAttachToBuffer',
-        config = function() require('colorizer').setup() end,
+        cmd = {
+            'ColorizerAttachToBuffer',
+            'ColorizerToggle',
+        },
+        config = function() require('plugins.colorizer') end,
     }
 
 end)
