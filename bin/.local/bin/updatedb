@@ -1,11 +1,11 @@
 #!/usr/bin/env zsh
 
-cd ~/Projects/db-crawler
+cd ~/Projects/labidw-etl
 echo "Starting daily update"
-for file in `ls -1 scripts | sed -e 's/\..*$//'`;
+for dir in $(cat .packages);
 do
-    echo "\nRunning $file";
-    time pipenv run python -c "from scripts import $file";
+    echo "\nRunning $dir";
+    pipenv run python -c "from $dir import lambda_function ; lambda_funtion(None, None)";
 done
 echo "\nFinished updating"
 cd "$OLDPWD"
