@@ -104,9 +104,9 @@ function proj() {
             NAME="gcal"
             ;;
         labidw-*)
-            NAME="lambda"
+            NAME="etl"
             ;;
     esac
 
-    tmuxinit -d $TOCD -n $NAME $CMD
+    tmuxinit -s $NAME -d $TOCD $CMD
 }
