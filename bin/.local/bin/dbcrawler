@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-cd ~/Projects/db-crawler
-terminal -e dbconsole
-pipenv run $EDITOR
-cd "$OLDPWD"

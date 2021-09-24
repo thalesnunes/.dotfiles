@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-RUNNING=$(ps aux | awk '/jupyter-console --kernel=dbcrawler/ && !/awk/ {print $2}')
+kernel=$1
+RUNNING=$(ps aux | awk '/jupyter-console --kernel='"$kernel"'/ && !/awk/ {print $2}')
 if [[ -n "$RUNNING" ]]; then
     kill $RUNNING
 fi
 
-tmuxinit -d ~/Projects/db-crawler -n console "jupyter console --kernel=dbcrawler"
+tmuxinit -s console -w $kernel -d ~/Projects/$kernel "jupyter console --kernel=$kernel"
