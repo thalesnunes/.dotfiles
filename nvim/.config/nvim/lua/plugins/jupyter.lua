@@ -1,6 +1,10 @@
 -- Jupyter-vim remaps
 V.g['jupyter_mapkeys'] = 0
 
+-- Jupyter-vim cell separators
+V.g['jupyter_cell_separators'] = {'##', '#%%', '# %%', '# <codecell>', '    # %%'}
+V.g['jupyter_mapkeys'] = 0
+
 -- Connect to kernel
 V.keymap('n', '<leader>jc', ':JupyterConnect<CR>')
 
