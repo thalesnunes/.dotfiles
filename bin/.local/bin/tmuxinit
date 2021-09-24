@@ -2,27 +2,31 @@
 
 CMD=""
 TOCD=$HOME
-NAME="cli"
+SESS="cli"
 
-while getopts d:n: flag; do
+while getopts d:s:w: flag; do
     case "$flag" in
         d) TOCD=$OPTARG;;
-        n) NAME=$(echo $OPTARG | tr . _);;
+        s) SESS=$(echo $OPTARG | tr . _);;
+        w) WINDOW="-n$(echo $OPTARG | tr . _)";;
     esac
 done
 CMD=${@:$OPTIND:1}
 
 if [[ -z $TMUX ]] && [[ -z $(pgrep tmux) ]]; then
-    tmux new-session -s $NAME -c $TOCD $CMD
+    tmux new-session -s $SESS $WINDOW -c $TOCD $CMD
     exit 0
 fi
 
-if ! tmux has-session -t $NAME 2> /dev/null; then
-    tmux new-session -ds $NAME -c $TOCD $CMD
+if tmux has-session -t $SESS 2> /dev/null; then
+    tmux new-window -t $SESS $WINDOW -c $TOCD $CMD
+else
+    tmux new-session -ds $SESS $WINDOW -c $TOCD $CMD
+
+    if [[ -z $TMUX ]]; then
+        tmux attach-session -t $SESS
+    else
+        tmux switch-client -t $SESS
+    fi
 fi
 
-if [[ -z $TMUX ]]; then
-    tmux attach-session -t $NAME
-else
-    tmux switch-client -t $NAME
-fi
