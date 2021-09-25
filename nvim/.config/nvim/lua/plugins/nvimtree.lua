@@ -4,8 +4,6 @@ local tree_cb = require("nvim-tree.config").nvim_tree_callback
 V.g.nvim_tree_width = 25
 -- ignore dirs
 V.g.nvim_tree_ignore = { ".git", "node_modules", ".cache", "__pycache__" }
--- opens the tree when typing `vim $DIR` or `vim`
-V.g.nvim_tree_auto_open = 1
 -- don't auto open tree on specific filetypes.
 V.g.nvim_tree_auto_ignore_ft = { "startify", "dashboard" }
 -- closes the tree when you open a file
@@ -79,6 +77,15 @@ V.g.nvim_tree_bindings = {
    { key = "-", cb = tree_cb "dir_up" },
    { key = "q", cb = tree_cb "close" },
    { key = "g?", cb = tree_cb "toggle_help" },
+}
+
+require('nvim-tree').setup {
+  -- open the tree when running this setup function
+  open_on_setup = true,
+  -- closes neovim automatically when the tree is the last **WINDOW** in the view
+  auto_close = true,
+  -- hijack the cursor in the tree to put it at the start of the filename
+  hijack_cursor = true,
 }
 
 -- NvimTree
