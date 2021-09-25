@@ -42,14 +42,6 @@ V.keymap('v', '<leader>y', '"+y')
 V.keymap('n', '<leader>p', '"+p')
 V.keymap('v', '<leader>p', '"+p')
 
--- Explorer keys
--- V.keymap('n', '<leader>ee', ':Ex<CR>')
--- V.keymap('v', '<leader>ee', ':Ex<CR>')
--- V.keymap('n', '<leader>ev', ':Vex<CR>')
--- V.keymap('v', '<leader>ev', ':Vex<CR>')
--- V.keymap('n', '<leader>eh', ':Sex<CR>')
--- V.keymap('v', '<leader>eh', ':Sex<CR>')
-
 -- Keep indenting selected
 V.keymap('v', '<', '<gv')
 V.keymap('v', '>', '>gv')
@@ -67,3 +59,6 @@ V.keymap('n', '<leader>q', ':bdelete<CR>')
 
 -- Reload config
 V.keymap('n', '<leader>r', ':luafile $MYVIMRC<CR>')
+
+-- Add docstrings to current file
+V.keymap('n', '<leader>jg', ':silent !doq --formatter google -w -f %<CR>')
