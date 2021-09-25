@@ -141,6 +141,16 @@ return require('packer').startup(function(use)
         config = function() require('plugins.hop') end,
     }
 
+    -- Color code highlighting
+    use {
+        'norcalli/nvim-colorizer.lua',
+        cmd = {
+            'ColorizerAttachToBuffer',
+            'ColorizerToggle',
+        },
+        config = function() require('plugins.colorizer') end,
+    }
+
     -- Python code formatter
     use {
         'ambv/black',
@@ -164,16 +174,6 @@ return require('packer').startup(function(use)
     use {
         'mboughaba/i3config.vim',
         ft = 'i3config',
-    }
-
-    -- Color code highlighting
-    use {
-        'norcalli/nvim-colorizer.lua',
-        cmd = {
-            'ColorizerAttachToBuffer',
-            'ColorizerToggle',
-        },
-        config = function() require('plugins.colorizer') end,
     }
 
 end)
