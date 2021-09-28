@@ -22,9 +22,6 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use { 'wbthomason/packer.nvim' }
 
-    -- Adding and removing pairs
-    use { 'machakann/vim-sandwich' }
-
     -- Themeing
     use {
         'dracula/vim',
@@ -47,6 +44,15 @@ return require('packer').startup(function(use)
         requires = {
             'kyazdani42/nvim-web-devicons',
         },
+    }
+
+    -- Adding and removing pairs
+    use { 'machakann/vim-sandwich' }
+
+    -- Auto bracket pairs
+    use {
+        'windwp/nvim-autopairs',
+        config = function() require('plugins.autopairs') end,
     }
 
     -- Commenter
@@ -79,13 +85,6 @@ return require('packer').startup(function(use)
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
         },
-    }
-
-    -- Auto bracket pairs
-    use {
-        'windwp/nvim-autopairs',
-        after = 'nvim-cmp',
-        config = function() require('plugins.autopairs') end,
     }
 
     -- Git integration
