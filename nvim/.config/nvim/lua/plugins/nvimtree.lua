@@ -50,7 +50,10 @@ require('nvim-tree').setup {
     hijack_cursor = true,
     view = {
         -- set initial width
-        width = 25,
+        width = 30,
+        -- auto resize tree
+        auto_resize = true,
+        -- keymaps
         mappings = {
             list = {
                 { key = { "<CR>", "l", "<2-LeftMouse>" }, cb = tree_cb("edit") },
