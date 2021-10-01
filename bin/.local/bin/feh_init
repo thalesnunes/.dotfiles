@@ -1,8 +1,8 @@
 #!/bin/bash
 
 DIR="/home/thales/Imagens/Wallpapers"
-day="cropped-1920-1080-679478.jpg"
-night="cropped-1920-1080-959309.png"
+day="day_valley.jpg"
+night="night_firewatch.png"
 
 if [[ $1 = "light" ]]; then
     Wallpaper=$day
