@@ -111,6 +111,12 @@ return require('packer').startup(function(use)
         },
     }
 
+    -- Fzf support
+    use {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'make'
+    }
+
     -- Clipboard manager
     use {
         'AckslD/nvim-neoclip.lua',
@@ -129,15 +135,13 @@ return require('packer').startup(function(use)
         }
     }
 
-    -- Faster movement inside file
+    -- Manage undo tree easily
     use {
-        'phaazon/hop.nvim',
-        as = 'hop',
-        disable = true,
+        'mbbill/undotree',
         keys = {
-            '<leader>fd',
+            '<leader>u',
         },
-        config = function() require('plugins.hop') end,
+        config = function() require('plugins.undotree') end,
     }
 
     -- Color code highlighting
