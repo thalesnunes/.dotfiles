@@ -248,8 +248,8 @@ mode "APPS" {
     bindsym Return exec $terminal -name cmd; mode "default"
     # Lauch script to kill processes
     bindsym k exec ${HOME}/.config/rofi/pipeline Kill; mode "default"
-    # Lauch Code rofi
-    bindsym c exec ${HOME}/.config/rofi/pipeline Code; mode "default"
+    # Lauch Project with tmux
+    bindsym c exec $terminal -e zsh -i -c proj; mode "default"
     # Lauch Calc
     bindsym m exec $terminal -name qalc -e qalc -t; mode "default"
     # Launch pavucontrol
