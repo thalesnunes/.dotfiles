@@ -12,8 +12,8 @@
 ;; Use pywal.sh in scripts directory to use colors from an image/wallpaper.
 
 ;; main colors
-background = #212B3000
-foreground = #DCDFE4
+background = #00000000
+foreground = #FFFFFFFF
 sep = #3F5360
 
 white = #FFFFFF
