@@ -1,13 +1,20 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-DIR="/home/thales/Imagens/Wallpapers"
-day="day_valley.jpg"
-night="night_firewatch.png"
+# DIR="/home/thales/Imagens/Wallpapers"
+# day="day_valley.jpg"
+# night="night_firewatch.png"
 
-if [[ $1 = "light" ]]; then
-    Wallpaper=$day
-elif [[ $1 = "dark" ]]; then
-    Wallpaper=$night
-fi
+# if [[ $1 = "light" ]]; then
+#     Wallpaper=$day
+# elif [[ $1 = "dark" ]]; then
+#     Wallpaper=$night
+# fi
 
-feh --no-fehbg --bg-fill "$DIR/$Wallpaper"
+# feh --no-fehbg --bg-fill "$DIR/$Wallpaper"
+
+DIR="/home/thales/Imagens/Wallpapers/Lakeside Day-Night"
+
+cd "$DIR"
+img=$(ls $(printf "%02d" $(date +%H))*)
+
+feh --no-fehbg --bg-fill "$img"
