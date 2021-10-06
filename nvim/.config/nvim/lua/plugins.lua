@@ -90,15 +90,29 @@ return require('packer').startup(function(use)
     -- Git integration
     use {
         'TimUntersberger/neogit',
-        keys = {
-            '<leader>g'
-        },
+        disable = true,
+        -- keys = {
+        --     '<leader>g'
+        -- },
         config = function() require('plugins.neogit') end,
         requires = {
             'nvim-lua/plenary.nvim',
             'sindrets/diffview.nvim'
         },
     }
+
+    -- Toggle floating terminals with tools
+    use {
+        'akinsho/toggleterm.nvim',
+        keys = {
+            '<leader>t',
+            '<leader>g',
+        },
+        config = function() require('plugins.toggleterm') end,
+    }
+
+    -- Plenary
+    use { 'nvim-lua/plenary.nvim' }
 
     -- Fuzzy finder
     use {
@@ -114,7 +128,7 @@ return require('packer').startup(function(use)
     -- Fzf support
     use {
         'nvim-telescope/telescope-fzf-native.nvim',
-        run = 'make'
+        run = 'make',
     }
 
     -- Clipboard manager
@@ -127,6 +141,7 @@ return require('packer').startup(function(use)
     -- File switcher
     use {
         'ThePrimeagen/harpoon',
+        disable = true,
         config = function() require('plugins.harpoon') end,
         after = 'nvim-neoclip.lua',
         requires = {

@@ -29,8 +29,8 @@ local lazygit = Terminal:new({
     dir = 'git_dir',
     hidden = true,
     float_opts = {
-        width = 150,
-        height = 35,
+  width = vim.o.columns - 10,
+  height = vim.o.lines - 6,
     },
     -- function to run on opening the terminal
     on_open = function(term)
