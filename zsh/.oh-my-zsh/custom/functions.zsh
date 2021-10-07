@@ -110,3 +110,7 @@ function proj() {
 
     tmuxinit -s $NAME -d $TOCD $CMD
 }
+
+function pretty_csv() {
+    cat $1 | sed 's/,/ ,/g' | column -t -s, | less -S
+}
