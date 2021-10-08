@@ -121,7 +121,6 @@ return require('packer').startup(function(use)
         event = 'VimEnter',
         requires = {
             'nvim-lua/plenary.nvim',
-            'nvim-lua/popup.nvim',
         },
     }
 
