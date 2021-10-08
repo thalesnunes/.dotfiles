@@ -7,7 +7,7 @@
 default
 xkb_symbols "abnt2-imp" {
 
-    name[Group1]="Brazilian ABNT2 Improved (Brazilian)";
+    name[Group1]="Brazilian ABNT2 Improved";
 
 // Numeric row
     key <TLDE> { [   apostrophe,        quotedbl,              notsign,             notsign ] };
