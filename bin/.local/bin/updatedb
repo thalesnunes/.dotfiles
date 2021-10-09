@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+cd ~/Projects/labidw-etl
+echo "Starting daily update"
+for dir in $(cat .packages);
+do
+    echo "\nRunning $dir";
+    time pipenv run python -c "from $dir.lambda_function import lambda_handler ; lambda_handler(None, None)";
+done
+echo "\nFinished updating"
+cd "$OLDPWD"

@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+CMD=""
+TOCD=$HOME
+SESS="cli"
+
+while getopts d:s:w: flag; do
+    case "$flag" in
+        d) TOCD=$OPTARG;;
+        s) SESS=$(echo $OPTARG | tr . _);;
+        w) WINDOW="-n$(echo $OPTARG | tr . _)";;
+    esac
+done
+CMD=${@:$OPTIND:1}
+
+if [[ -z $TMUX ]] && [[ -z $(pgrep tmux) ]]; then
+    tmux new-session -s $SESS $WINDOW -c $TOCD $CMD
+    exit 0
+fi
+
+if tmux has-session -t $SESS 2> /dev/null; then
+    tmux new-window -t $SESS $WINDOW -c $TOCD $CMD
+else
+    tmux new-session -ds $SESS $WINDOW -c $TOCD $CMD
+
+    if [[ -z $TMUX ]]; then
+        tmux attach-session -t $SESS
+    else
+        tmux switch-client -t $SESS
+    fi
+fi
+

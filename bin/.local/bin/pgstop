@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+OS=$(lsb_release -is)
+case $OS in
+    Ubuntu)
+        sudo systemctl stop apache2 &&
+        echo "Stopped successfully"
+        ;;
+    ManjaroLinux)
+        docker stop pgadmin &&
+        dockerstop &&
+        echo "Stopped successfully"
+        ;;
+    *)
+        echo "OS not supported"
+        ;;
+esac

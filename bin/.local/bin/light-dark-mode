@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+    result=$(cat ~/.sun)
+    IFS=" " read -r sunrise sunset <<< "$result"
+    now=$(date +%R)
+
+    if [[ "$now" > "$sunrise" ]] && [[ "$now" < "$sunset" ]]; then
+        MODE=light
+    else
+        MODE=dark
+    fi
+else
+    MODE=$1
+fi
+
+feh_init $MODE > /dev/null 2>&1 &
+polybar_starter $MODE > /dev/null 2>&1 &

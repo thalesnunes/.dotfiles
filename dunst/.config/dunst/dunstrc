@@ -108,7 +108,7 @@
 
     # Should a notification popped up from history be sticky or timeout
     # as if it would normally do.
-    sticky_history = no
+    sticky_history = yes
 
     # Maximum amount of notifications kept in history
     history_length = 20
@@ -199,17 +199,17 @@
     # Redisplay last message(s).
     # On the US keyboard layout "grave" is normally above TAB and left
     # of "1".
-    history = ctrl+mod4+h
+    history = ctrl+mod1+h
 
     # Context menu.
-    context = ctrl+mod4+c
+    context = ctrl+mod1+c
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#263238"
     foreground = "#556064"
-    timeout = 3
+    timeout = 5
 
 [urgency_normal]
     background = "#263238"
@@ -299,10 +299,10 @@
 #    foreground = "#FFFFFF"
 #
 [irc]
-        appname = weechat
-        timeout = 0
-        background = "#0033bb"
-        foreground = "#dddddd"
+    appname = weechat
+    timeout = 0
+    background = "#0033bb"
+    foreground = "#dddddd"
 #
 [weechat hl]
      appname = weechat
@@ -315,6 +315,11 @@
      category = weechat.PM
      background = "#D53B84"
      foreground = "#FFFFFF"
+#
+[kdeconnect agenda]
+     appname = kdeconnect
+     summary = "Agenda"
+     urgency = critical
 #
 #[CMUS]
 #    appname = CMUS

@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# DIR="/home/thales/Imagens/Wallpapers"
+# day="day_valley.jpg"
+# night="night_firewatch.png"
+
+# if [[ $1 = "light" ]]; then
+#     Wallpaper=$day
+# elif [[ $1 = "dark" ]]; then
+#     Wallpaper=$night
+# fi
+
+# feh --no-fehbg --bg-fill "$DIR/$Wallpaper"
+
+DIR="/home/thales/Imagens/Wallpapers/Lakeside Day-Night"
+
+cd "$DIR"
+HOUR=$(expr $(date +%H))
+if [ $(expr $HOUR % 2) -eq 0 ]; then
+    HOUR=$(expr $HOUR - 1)
+    img=$(ls $(printf "%02d" $HOUR)*)
+else
+    img=$(ls $HOUR*)
+fi
+
+feh --no-fehbg --bg-fill "$img"
