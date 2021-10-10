@@ -87,20 +87,6 @@ return require('packer').startup(function(use)
         },
     }
 
-    -- Git integration
-    use {
-        'TimUntersberger/neogit',
-        disable = true,
-        -- keys = {
-        --     '<leader>g'
-        -- },
-        config = function() require('plugins.neogit') end,
-        requires = {
-            'nvim-lua/plenary.nvim',
-            'sindrets/diffview.nvim'
-        },
-    }
-
     -- Toggle floating terminals with tools
     use {
         'akinsho/toggleterm.nvim',
@@ -135,18 +121,6 @@ return require('packer').startup(function(use)
         'AckslD/nvim-neoclip.lua',
         after = 'telescope.nvim',
         config = function() require('plugins.neoclip') end,
-    }
-
-    -- File switcher
-    use {
-        'ThePrimeagen/harpoon',
-        disable = true,
-        config = function() require('plugins.harpoon') end,
-        after = 'nvim-neoclip.lua',
-        requires = {
-            'nvim-lua/plenary.nvim',
-            'nvim-lua/popup.nvim',
-        }
     }
 
     -- Manage undo tree easily
