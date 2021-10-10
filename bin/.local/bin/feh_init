@@ -12,7 +12,7 @@
 
 # feh --no-fehbg --bg-fill "$DIR/$Wallpaper"
 
-DIR="/home/thales/Imagens/Wallpapers/Lakeside Day-Night"
+DIR="/home/thales/Images/Wallpapers/Lakeside Day-Night"
 
 cd "$DIR"
 HOUR=$(expr $(date +%H))
