@@ -211,7 +211,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Return exec $terminal
 
 # Exit i3 (logs you out of your X session)
-bindsym $alt+Control+Delete exec ${HOME}/.config/rofi/pipeline Power
+bindsym $alt+Control+Delete exec ${HOME}/.config/rofi/launch Power
 
 # Open browsers
 bindsym $mod+b exec brave --profile-directory="Default"
@@ -226,6 +226,9 @@ bindsym $mod+n exec brave --profile-directory="Default" --app-id=hnpfjngllnobngc
 # File Managers
 bindsym $mod+e exec $terminal -e ranger
 bindsym $mod+Shift+e exec pcmanfm
+
+# Clipboard Manager
+bindsym $mod+v exec ${HOME}/.config/rofi/launch Clipboard
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
@@ -242,12 +245,12 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym $mod+space mode "APPS"
 mode "APPS" {
     # Lauch main script (app launcher and others)
-    bindsym space exec ${HOME}/.config/rofi/main -show combi; mode "default"
-    bindsym $mod+space exec ${HOME}/.config/rofi/main -show combi; mode "default"
+    bindsym space exec ${HOME}/.config/rofi/launch; mode "default"
+    bindsym $mod+space exec ${HOME}/.config/rofi/launch; mode "default"
     # Lauch CMD script
     bindsym Return exec $terminal -name cmd; mode "default"
     # Lauch script to kill processes
-    bindsym k exec ${HOME}/.config/rofi/pipeline Kill; mode "default"
+    bindsym k exec ${HOME}/.config/rofi/launch Kill; mode "default"
     # Lauch Project with tmux
     bindsym c exec $terminal -e zsh -i -c proj; mode "default"
     # Lauch Calc
@@ -367,7 +370,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id keynav daemonize
 
 # Clipboard manager
-exec --no-startup-id clipit --no-icon
+exec --no-startup-id greenclip daemon
 
 # Disable bell and auto-suspension
 exec --no-startup-id xset r rate 330 30 b off s off -dpms

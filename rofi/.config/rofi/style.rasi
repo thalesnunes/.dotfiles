@@ -10,10 +10,8 @@
 configuration {
 	font:							"MesloLGS NF 13";
     show-icons:                     true;
-	icon-theme: 					"BeautyLine";
     display-drun: 					"Apps";
     display-window: 				"Windows";
-    display-combi: 				    "Home";
     drun-display-format:            "{name}";
     combi-hide-mode-prefix:         true;
     disable-history:                false;

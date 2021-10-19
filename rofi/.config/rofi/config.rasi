@@ -2,7 +2,5 @@
 
 configuration {
   show-icons:         true;
-  icon-theme:         "BeautyLine";
-  combi-modi:         "drun,Mixed:~/.config/rofi/modi/Mixed.sh";
-  modi:               "combi";
+  modi:               "drun";
 }
