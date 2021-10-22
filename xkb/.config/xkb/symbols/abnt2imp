@@ -5,7 +5,7 @@
 // Thales Nunes
 //
 default
-xkb_symbols "abnt2-imp" {
+xkb_symbols "abnt2imp" {
 
     name[Group1]="Brazilian ABNT2 Improved";
 
@@ -67,10 +67,10 @@ xkb_symbols "abnt2-imp" {
     key <AB11> { [        slash,        question,               degree,         questiondown ] };
 
 // Add comma to keypad
-    include "improved-abnt2(comma)"
+    include "abnt2imp(comma)"
 
 // Enable ISO_Level3_Shift
-    include "improved-abnt2(ralt_switch)"
+    include "abnt2imp(ralt_switch)"
 };
 
 // Legacy <KPDL> #2
@@ -91,7 +91,7 @@ xkb_symbols "ralt_switch" {
         type[Group1]="ONE_LEVEL",
         symbols[Group1] = [ ISO_Level3_Shift ]
     };
-    include "improved-abnt2(modifier_mapping)"
+    include "abnt2imp(modifier_mapping)"
 };
 
 // Ensure a mapping to a real modifier for LevelThree.
