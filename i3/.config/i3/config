@@ -360,9 +360,6 @@ exec --no-startup-id urxvtd -q -o -f
 # Enable Night-Light (Redshift)
 exec --no-startup-id redshift -l -23.536215622740578:-46.68497829306198
 
-# Switch Esc with Caps-Lock
-exec --no-startup-id setxkbmap -option "caps:swapescape"
-
 # Keyring
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
@@ -375,8 +372,8 @@ exec --no-startup-id greenclip daemon
 # Disable bell and auto-suspension
 exec --no-startup-id xset r rate 330 30 b off s off -dpms
 
-# Set Slash/? key to Super
-exec --no-startup-id xmodmap -e "keycode 97 = Super_L NoSymbol Super_L"
+# Set Escape to extra modifier key
+exec --no-startup-id xcape -t 250 -e "ISO_Level3_Shift=Escape"
 
 
 # vim:filetype=i3config
