@@ -11,16 +11,16 @@ custom_dracula.inactive.c.bg = new_bg
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'dracula',
-    component_separators = {'|', '|'},
-    section_separators = {'', ''},
+    theme = custom_dracula,
+    component_separators = {left = '|', right = '|'},
+    section_separators = {left = '', right = ''},
     disabled_filetypes = {}
   },
   sections = {
     lualine_a = {
         {
             'mode',
-            format=function(mode) return mode:sub(1,1) end
+            fmt = function(mode) return mode:sub(1,1) end,
         }
     },
     lualine_b = {'branch'},
