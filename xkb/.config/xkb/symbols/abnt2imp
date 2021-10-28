@@ -1,6 +1,6 @@
 //
 // Brazilian ABNT2 Improved                      2021-10-08
-// "Melhor teclas de suporte para o ABNT2"
+// "Melhores teclas de suporte para o ABNT2"
 //
 // Thales Nunes
 //
@@ -45,10 +45,10 @@ xkb_symbols "abnt2imp" {
     key <AC03> { [            d,               D,                  eth,                 ETH ] };
     key <AC04> { [            f,               F,              dstroke,         ordfeminine ] };
     key <AC05> { [            g,               G,                  eng,                 ENG ] };
-    key <AC06> { [            h,               H,              hstroke,             Hstroke ] };
-    key <AC07> { [            j,               J,            dead_hook,           dead_horn ] };
-    key <AC08> { [            k,               K,                  kra,           ampersand ] };
-    key <AC09> { [            l,               L,              lstroke,             Lstroke ] };
+    key <AC06> { [            h,               H,                 Left,                Left ] };
+    key <AC07> { [            j,               J,                 Down,                Down ] };
+    key <AC08> { [            k,               K,                   Up,                  Up ] };
+    key <AC09> { [            l,               L,                Right,               Right ] };
     key <AC10> { [     ccedilla,        Ccedilla,           dead_acute,    dead_doubleacute ] };
     key <AC11> { [   dead_tilde, dead_circumflex,           asciitilde,         asciicircum ] };
 
@@ -64,7 +64,7 @@ xkb_symbols "abnt2imp" {
     key <AB08> { [        comma,            less,       horizconnector,             multiply ] };
     key <AB09> { [       period,         greater,       periodcentered,             division ] };
     key <AB10> { [    semicolon,           colon,        dead_belowdot,        dead_abovedot ] };
-    key <AB11> { [        slash,        question,               degree,         questiondown ] };
+    key <AB11> { [      Super_R,        NoSymbol,               degree,         questiondown ] };
 
 // Add comma to keypad
     include "abnt2imp(comma)"
