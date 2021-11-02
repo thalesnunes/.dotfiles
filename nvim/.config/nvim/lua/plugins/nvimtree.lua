@@ -1,7 +1,5 @@
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
--- ignore dirs
-V.g.nvim_tree_ignore = { ".git", "node_modules", ".cache", "__pycache__" }
 -- don't auto open tree on specific filetypes.
 V.g.nvim_tree_auto_ignore_ft = { "startify", "dashboard" }
 -- closes the tree when you open a file
@@ -48,6 +46,15 @@ require('nvim-tree').setup {
     open_on_setup = true,
     -- hijack the cursor in the tree to put it at the start of the filename
     hijack_cursor = true,
+    -- ignore dirs
+    filters = {
+        custom = {
+            ".git",
+            "node_modules",
+            ".cache",
+            "__pycache__",
+        },
+    },
     view = {
         -- set initial width
         width = 30,
