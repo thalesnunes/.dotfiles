@@ -68,6 +68,14 @@ return require('packer').startup(function(use)
         config = function() require('plugins.treesitter') end,
     }
 
+    -- Rainbow pairs
+    use {
+        'p00f/nvim-ts-rainbow',
+        requires = {
+            'nvim-treesitter/nvim-treesitter',
+        },
+    }
+
     -- LSP plugin
     use {
         'neovim/nvim-lspconfig',
