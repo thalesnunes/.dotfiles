@@ -20,11 +20,11 @@ xkb_symbols "abnt2imp" {
 
 // Home row
     key <CAPS> { [ ISO_Level3_Shift ] };
-    key <AC06> { [            h,               H,                 Left ] };
-    key <AC07> { [            j,               J,                 Down ] };
-    key <AC08> { [            k,               K,                   Up ] };
-    key <AC09> { [            l,               L,                Right ] };
+    key <AC06> { [ h, H, Left ] };
+    key <AC07> { [ j, J, Down ] };
+    key <AC08> { [ k, K, Up ] };
+    key <AC09> { [ l, L, Right ] };
 
 // Lower row
-    key <AB11> { [      Super_R,        NoSymbol,               degree,         questiondown ] };
+    key <AB11> { [      Super_R,        NoSymbol] };
 };
