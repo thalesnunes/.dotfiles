@@ -369,11 +369,15 @@ exec --no-startup-id keynav daemonize
 # Clipboard manager
 exec --no-startup-id greenclip daemon
 
+# Set brim keyboard layout
+exec --no-startup-id setxkbmap "brim" -option -print \
+                     | xkbcomp -w 0 -I"/home/thales/.config/xkb" - "$DISPLAY"
+
 # Disable bell and auto-suspension
 exec --no-startup-id xset r rate 330 30 b off s off -dpms
 
 # Set Escape to extra modifier key
-exec --no-startup-id xcape -t 250 -e "ISO_Level3_Shift=Escape"
+exec --no-startup-id xcape -t 250 -e "Caps_Lock=Escape"
 
 
 # vim:filetype=i3config
