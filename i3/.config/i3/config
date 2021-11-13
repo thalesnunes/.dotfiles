@@ -257,8 +257,8 @@ mode "APPS" {
     bindsym m exec $terminal -name qalc -e qalc -t; mode "default"
     # Launch pavucontrol
     bindsym v exec pavucontrol; mode "default"
-    # Launch blueman
-    bindsym b exec blueman-manager; mode "default"
+    # Launch bluetooth script
+    bindsym b exec ${HOME}/.config/rofi/launch Bluetooth; mode "default"
     # Launch nm-connection-editor
     bindsym n exec nm-connection-editor; mode "default"
     # Launch htop
