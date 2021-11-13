@@ -8,6 +8,9 @@ if [ $# -eq 0 ]; then
 elif [ $1 == "Clipboard" ]; then
     rofi -no-lazy-grab -theme $dir/"$theme" -monitor primary \
         -modi "Clip:greenclip print" -show Clip -run-command '{cmd}'
+elif [ $1 == "Bluetooth" ]; then
+    $dir/modi/Bluetooth.sh "rofi -no-lazy-grab -theme $dir/$theme \
+        -monitor primary -dmenu -p Bluetooth"
 else
     rofi -no-lazy-grab -theme $dir/"$theme" -monitor primary \
         -modi "$1:$dir/modi/$1.sh" -show $1
