@@ -28,3 +28,5 @@ alias lg='lazygit'
 
 alias gcalp='gcalcli --config-folder ~/.config/gcalcli/personal'
 alias gcalw='gcalcli --config-folder ~/.config/gcalcli/work'
+
+alias brim='setxkbmap "brim" -option -print | xkbcomp -w 0 -I"$HOME/.config/xkb" - "$DISPLAY"'
