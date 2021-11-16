@@ -52,15 +52,20 @@ xkb_symbols "base" {
 
     // row over HJKL
     key <AD06> {
-        actions =   [ NoAction(), NoAction(), Redirect(key=<HOME>), Redirect(key=<HOME>) ]
+        actions = [ NoAction(), NoAction(), Redirect(key=<HOME>), Redirect(key=<HOME>) ]
     };
     key <AD07> {
-        actions =   [ NoAction(), NoAction(), Redirect(key=<PGDN>), Redirect(key=<PGDN>) ]
+        actions = [ NoAction(), NoAction(), Redirect(key=<PGDN>), Redirect(key=<PGDN>) ]
     };
     key <AD08> {
-        actions =   [ NoAction(), NoAction(), Redirect(key=<PGUP>), Redirect(key=<PGUP>) ]
+        actions = [ NoAction(), NoAction(), Redirect(key=<PGUP>), Redirect(key=<PGUP>) ]
     };
     key <AD09> {
-        actions =   [ NoAction(), NoAction(), Redirect(key=<END>), Redirect(key=<END>) ]
+        actions = [ NoAction(), NoAction(), Redirect(key=<END>), Redirect(key=<END>) ]
+    };
+
+    //
+    key <BKSP> {
+        actions = [ NoAction(), NoAction(), Redirect(key=<DELE>), Redirect(key=<DELE>) ]
     };
 };
