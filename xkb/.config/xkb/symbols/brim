@@ -64,8 +64,16 @@ xkb_symbols "base" {
         actions = [ NoAction(), NoAction(), Redirect(key=<END>), Redirect(key=<END>) ]
     };
 
-    //
+    // Map Mod5+Backspace to Delete
     key <BKSP> {
         actions = [ NoAction(), NoAction(), Redirect(key=<DELE>), Redirect(key=<DELE>) ]
+    };
+
+    // Map Escape and Shift+Escape to apostrophe and double quotes
+    key <> {
+        symbols[Group1]= [ Escape ]
+    };
+    key <ESC> {
+        symbols[Group1]= [      apostrophe,        quotedbl,         notsign,         notsign ]
     };
 };
