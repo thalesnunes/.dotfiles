@@ -1,17 +1,35 @@
 #!/usr/bin/env bash
 
-theme="style"
 dir="$HOME/.config/rofi"
 
-if [ $# -eq 0 ]; then
-    rofi -no-lazy-grab -theme $dir/"$theme" -monitor primary -show drun
-elif [ $1 == "Clipboard" ]; then
-    rofi -no-lazy-grab -theme $dir/"$theme" -monitor primary \
-        -modi "Clip:greenclip print" -show Clip -run-command '{cmd}'
-elif [ $1 == "Bluetooth" ]; then
-    $dir/modi/Bluetooth.sh "rofi -no-lazy-grab -theme $dir/$theme \
-        -monitor primary -dmenu -p Bluetooth"
-else
-    rofi -no-lazy-grab -theme $dir/"$theme" -monitor primary \
-        -modi "$1:$dir/modi/$1.sh" -show $1
-fi
+themes="$dir/themes"
+dracula="$themes/dracula"
+sidetext="$themes/sidetext"
+
+cmd="rofi -no-lazy-grab -monitor primary"
+
+case "$1" in
+    "")
+        theme=$dracula
+        show="drun"
+        modi="drun"
+        ;;
+    "Clipboard")
+        theme=$sidetext
+        show="Clip"
+        modi="$show:greenclip print"
+        extra="-run-command '{cmd}'"
+        ;;
+    "Bluetooth")
+        theme=$sidetext
+        $dir/modi/$1.sh "$cmd -theme $sidetext -dmenu -p  -i"
+        exit 0
+        ;;
+    *)
+        theme=$sidetext
+        show=$1
+        modi="$show:$dir/modi/$1.sh"
+        ;;
+esac
+
+$cmd -theme $theme -modi "$modi" -show $show $extra
