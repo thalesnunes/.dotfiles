@@ -33,10 +33,6 @@ function config() {
             TOCD="$DOT/bin/.local/bin"
             FILE=""
             ;;
-        poly*)
-            TOCD="$DOT/polybar/.config/polybar/forest"
-            FILE=""
-            ;;
         ali*)
             TOCD="$DOT/zsh/.oh-my-zsh/custom"
             FILE="aliases.zsh"
