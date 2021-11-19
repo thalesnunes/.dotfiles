@@ -74,6 +74,12 @@ xkb_symbols "base" {
         symbols[Group1]= [ Escape ]
     };
     key <ESC> {
-        symbols[Group1]= [      apostrophe,        quotedbl,         notsign,         notsign ]
+        symbols[Group1]= [ apostrophe, quotedbl, notsign, notsign ]
+    };
+
+    // Map Backslash and Bar
+    key <BKSL> {
+        type= "FOUR_LEVEL",
+        symbols[Group1]= [ bracketright, braceright, backslash, bar ]
     };
 };
