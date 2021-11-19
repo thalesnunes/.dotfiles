@@ -377,7 +377,7 @@ exec --no-startup-id setxkbmap "brim" -option -print \
 exec --no-startup-id xset r rate 330 30 b off s off -dpms
 
 # Set Escape to extra modifier key
-exec --no-startup-id xcape -t 250 -e "Caps_Lock=Escape"
+exec --no-startup-id xcape -t 250 -e "Caps_Lock=Escape;Super_R=Menu"
 
 
 # vim:filetype=i3config
