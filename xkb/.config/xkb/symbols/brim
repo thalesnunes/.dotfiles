@@ -29,12 +29,14 @@ xkb_symbols "base" {
     };
     modifier_map Mod5 { <CAPS> };
 
-    replace key <AB11> {
+
+    // Map menu to Super_R
+    replace key <COMP> {
         type[Group1] = "ONE_LEVEL",
         symbols[Group1] = [ Super_R ],
         actions[Group1] = [ SetMods(modifiers=Mod4) ]
     };
-    modifier_map Mod4 { <AB11> };
+    modifier_map Mod4 { <COMP> };
 
     // arrow keys (like vim)
     key <AC06> {
@@ -70,9 +72,6 @@ xkb_symbols "base" {
     };
 
     // Map Escape and Shift+Escape to apostrophe and double quotes
-    key <> {
-        symbols[Group1]= [ Escape ]
-    };
     key <ESC> {
         symbols[Group1]= [ apostrophe, quotedbl, notsign, notsign ]
     };
@@ -81,5 +80,13 @@ xkb_symbols "base" {
     key <BKSL> {
         type= "FOUR_LEVEL",
         symbols[Group1]= [ bracketright, braceright, backslash, bar ]
+    };
+
+    // Map commands to unexisting keys so xcape can use them
+    key <> {
+        symbols[Group1]= [ Escape ]
+    };
+    key <I252> {
+        symbols[Group1]= [ Menu ]
     };
 };
