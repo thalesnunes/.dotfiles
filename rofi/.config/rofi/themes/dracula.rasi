@@ -46,7 +46,7 @@ prompt {
   background-color: @blue;
   enabled: true;
   font: "MesloLGS NF 13";
-  padding: 13 0 0 13;
+  padding: 13 2 2 13;
   text-color: @fg;
 }
 
