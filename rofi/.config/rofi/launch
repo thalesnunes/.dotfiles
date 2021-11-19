@@ -25,9 +25,14 @@ case "$1" in
         $dir/modi/$1.sh "$cmd -theme $sidetext -dmenu -p  -i"
         exit 0
         ;;
-    *)
+    "Kill")
         theme=$sidetext
-        show=$1
+        show="✗"
+        modi="$show:$dir/modi/$1.sh"
+        ;;
+    "Power")
+        theme=$sidetext
+        show="⏻"
         modi="$show:$dir/modi/$1.sh"
         ;;
 esac
