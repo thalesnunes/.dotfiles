@@ -211,7 +211,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Return exec $terminal
 
 # Exit i3 (logs you out of your X session)
-bindsym $alt+Control+Delete exec ${HOME}/.config/rofi/launch Power
+bindsym $alt+Control+BackSpace exec ${HOME}/.config/rofi/launch Power
 
 # Open browsers
 bindsym $mod+b exec brave --profile-directory="Default"
@@ -265,6 +265,8 @@ mode "APPS" {
     bindsym h exec $terminal -name htop -e htop; mode "default"
     # Open SPOTIFY mode
     bindsym s mode "SPOTIFY"
+    # Launch bluetooth script
+    bindsym BackSpace exec ${HOME}/.config/rofi/launch Power; mode "default"
     # Escape mode
     bindsym Escape mode "default"
 }
