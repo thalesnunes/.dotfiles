@@ -1,5 +1,5 @@
 function gi() {
-    curl -sL https://www.toptal.com/developers/gitignore/api/$@ >> .gitignore ;
+    curl -sL https://www.toptal.com/developers/gitignore/api/$@ >> .gitignore
 }
 
 function create() {
@@ -8,12 +8,13 @@ function create() {
     cd "$OLDPWD"
 }
 
-function dbcrawler_docker() {
-    docker run --name dbcrawler -p 8888:8888 -it -e JUPYTER_ENABLE_LAB=yes \
+function jupyter_docker() {
+    docker run --name jupyter -p 8888:8888 -it -e JUPYTER_ENABLE_LAB=yes \
         --rm -d -v ~/Projects/db-crawler:/usr/src/app -w /usr/src/app \
         thalesnunes1/db-crawler:latest &&
     sleep 2 &&
-    jupyter_url=$(docker logs dbcrawler | grep -o "http:\/\/127\.0\.0\.1:8888\/lab?token=.*" | tail -1) &&
+    jupyter_url=$(docker logs jupyter | \
+            grep -o "http:\/\/127\.0\.0\.1:8888\/lab?token=.*" | tail -1) &&
     google-chrome $jupyter_url &!
 }
 
@@ -93,14 +94,8 @@ function proj() {
     CMD="$CMD$EDITOR"
 
     case $NAME in
-        db-crawler)
-            NAME="crawler"
-            ;;
         gcal_notifier)
             NAME="gcal"
-            ;;
-        labidw-*)
-            NAME="etl"
             ;;
     esac
 
