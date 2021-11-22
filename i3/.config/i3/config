@@ -236,6 +236,16 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
+# Dunst keybinds for closing and history
+# Close notification.
+bindsym $alt+space exec --no-startup-id dunstctl close
+# Close all notifications.
+bindsym $alt+Control+space exec --no-startup-id dunstctl close-all
+# Redisplay last message(s).
+bindsym $alt+Control+h exec --no-startup-id dunstctl history-pop
+# Context menu.
+bindsym $alt+Control+c exec --no-startup-id dunstctl context
+
 
 ###########################################################
 #                        Modes
@@ -338,11 +348,12 @@ gaps inner 8
 #                     Autostart Apps
 ###########################################################
 
-# Set up monitor resolution and positioning
+# Set up monitor resolution and positioning, then theme mode
 exec_always sleep 0.5 && \
             xrandr --output VGA-0 --off \
             --output DVI-D-0 --mode 1920x1080 --pos 1920x0 --rotate left \
-            --output HDMI-0 --primary --mode 1920x1080 --pos 0x215 --rotate normal
+            --output HDMI-0 --primary --mode 1920x1080 --pos 0x215 --rotate normal && \
+            /home/thales/.local/bin/light-dark-mode
 
 # Picom daemon
 exec --no-startup-id picom -b
@@ -354,7 +365,7 @@ exec --no-startup-id picom -b
 # exec --no-startup-id sleep 3 && ctab.py
 
 # Set mode on boot
-exec_always sleep 1 && light-dark-mode
+# exec_always sleep 1 && light-dark-mode
 
 # urxvt daemon
 exec --no-startup-id urxvtd -q -o -f
@@ -365,21 +376,16 @@ exec --no-startup-id redshift -l -23.536215622740578:-46.68497829306198
 # Keyring
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-# Mouse control from keyboard
-exec --no-startup-id keynav daemonize
-
 # Clipboard manager
 exec --no-startup-id greenclip daemon
 
-# Set brim keyboard layout
-exec --no-startup-id setxkbmap "brim" -option -print \
-                     | xkbcomp -w 0 -I"/home/thales/.config/xkb" - "$DISPLAY"
-
-# Disable bell and auto-suspension
-exec --no-startup-id xset r rate 330 30 b off s off -dpms
-
-# Set Escape to extra modifier key
-exec --no-startup-id xcape -t 250 -e "Caps_Lock=Escape;Super_R=Menu"
+# Set keyboard rate, bell and suspension, then keyboard layout and xcape
+# then keyboard mouse control
+exec --no-startup-id xset r rate 330 30 b off s off -dpms && \
+                     setxkbmap "brim" -option -print | \
+                     xkbcomp -w 0 -I"/home/thales/.config/xkb" - "$DISPLAY" \
+                     xcape -t 250 -e "Caps_Lock=Escape;Super_R=Menu" \
+                     keynav daemonize
 
 
 # vim:filetype=i3config
