@@ -349,8 +349,7 @@ gaps inner 8
 ###########################################################
 
 # Set up monitor resolution and positioning, then theme mode
-exec_always sleep 0.5 && \
-            xrandr --output VGA-0 --off \
+exec_always xrandr --output VGA-0 --off \
             --output DVI-D-0 --mode 1920x1080 --pos 1920x0 --rotate left \
             --output HDMI-0 --primary --mode 1920x1080 --pos 0x215 --rotate normal && \
             /home/thales/.local/bin/light-dark-mode
