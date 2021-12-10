@@ -27,7 +27,7 @@ if ! is_installed "yay"; then
     sudo rm -rf yay
 fi
 
-if [ -d "$HOME/.dotfiles" ]; then
+if [ ! -d "$HOME/.dotfiles" ]; then
     git clone https://github.com/thalesnunes/.dotfiles
 fi
 
