@@ -18,6 +18,8 @@ function is_installed() {
     fi
 }
 
+sudo pacman -Syuu
+
 if ! is_installed "yay"; then
     sudo pacman -S --needed git base-devel
     git clone https://aur.archlinux.org/yay.git
