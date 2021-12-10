@@ -28,6 +28,7 @@ if ! is_installed "yay"; then
 fi
 
 if [ ! -d "$HOME/.dotfiles" ]; then
+    cd ~
     git clone https://github.com/thalesnunes/.dotfiles
 fi
 
