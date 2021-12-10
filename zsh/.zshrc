@@ -14,7 +14,7 @@ POWERLEVEL9K_MODE="nerdfont-complete"
 
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting poetry)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 export KEYTIMEOUT=1
 
