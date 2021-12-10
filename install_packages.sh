@@ -36,15 +36,19 @@ cd "$HOME/.dotfiles"
 
 packages=$(cat packages | tr "\n" " ")
 
-yn_pr "Do you want to install the default packages? [Y/n]: " && yay -S $packages &&
-sudo sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+if yn_pr "Do you want to install the default packages? [Y/n]: "; then
+    yay -S $packages
+    sudo sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
 
 echo
 
 is_installed "pip"
 
 python_packages=$(cat python_packages | tr "\n" " ")
-yn_pr "Do you want to install the default python packages? [Y/n]: " && pip install -U $python_packages
+if yn_pr "Do you want to install the default python packages? [Y/n]: "; then
+    pip install -U $python_packages
+fi
 
 echo
 echo "Done!"
