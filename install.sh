@@ -31,7 +31,7 @@ if [ -n "$conflicts" ]; then
 fi
 
 echo
-stow -nvt ~ */
+stow --no-folding -nvt ~ */
 echo
 
-yn_pr "Do you accept these changes? [Y/n]: " && stow -vt ~ */ || exit 0
+yn_pr "Do you accept these changes? [Y/n]: " && stow --no-folding -vt ~ */ || exit 0
