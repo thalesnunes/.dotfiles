@@ -40,7 +40,7 @@ packages=$(cat packages | tr "\n" " ")
 
 if yn_pr "Do you want to install the default packages? [Y/n]: "; then
     yay -S $packages
-    sudo sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
 echo
