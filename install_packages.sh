@@ -27,6 +27,12 @@ if ! is_installed "yay"; then
     sudo rm -rf yay
 fi
 
+if [ -d "$HOME/.dotfiles" ]; then
+    git clone https://github.com/thalesnunes/.dotfiles
+fi
+
+cd "$HOME/.dotfiles"
+
 packages=$(cat packages | tr "\n" " ")
 
 yn_pr "Do you want to install the default packages? [Y/n]: " && yay -S $packages
