@@ -37,6 +37,7 @@ cd "$HOME/.dotfiles"
 packages=$(cat packages | tr "\n" " ")
 
 yn_pr "Do you want to install the default packages? [Y/n]: " && yay -S $packages
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo
 
