@@ -14,11 +14,18 @@ function is_installed() {
     if ! command -v "$1" &> /dev/null; then
         echo "The '$1' package is not installed."
         echo "Please install '$1' so the process can continue"
-        exit 1
+        return 1
     fi
 }
 
-is_installed "yay"
+if ! is_installed "yay"; then
+    sudo pacman -S --needed git base-devel
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    cd ..
+    sudo rm -rf yay
+fi
 
 packages=$(cat packages | tr "\n" " ")
 
