@@ -40,6 +40,7 @@ packages=$(cat packages | tr "\n" " ")
 
 if yn_pr "Do you want to install the default packages? [Y/n]: "; then
     yay -S $packages
+    unset ZSH
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
