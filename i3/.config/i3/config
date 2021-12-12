@@ -238,6 +238,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use brightnessctl to adjust brightness.
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 10%+
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+
 # Dunst keybinds for closing and history
 # Close notification.
 bindsym $alt+space exec --no-startup-id dunstctl close
@@ -351,9 +352,7 @@ gaps inner 8
 ###########################################################
 
 # Set up monitor resolution and positioning, then theme mode
-exec_always xrandr --output VGA-0 --off \
-            --output DVI-D-0 --mode 1920x1080 --pos 1920x0 --rotate left \
-            --output HDMI-0 --primary --mode 1920x1080 --pos 0x215 --rotate normal && \
+exec_always xrandr --output eDP --primary --mode 1920x1080 --rotate normal && \
             /home/thales/.local/bin/light-dark-mode
 
 # Picom daemon
