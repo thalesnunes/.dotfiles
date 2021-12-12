@@ -40,17 +40,24 @@ packages=$(cat packages | tr "\n" " ")
 
 if yn_pr "Do you want to install the default packages? [Y/n]: "; then
     yay -S $packages
-    unset ZSH
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
 echo
 
-is_installed "pip"
+if yn_pr "Do you want to install ohmyzsh and change shell? [Y/n]: "; then
+    unset ZSH
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+fi
 
-python_packages=$(cat python_packages | tr "\n" " ")
-if yn_pr "Do you want to install the default python packages? [Y/n]: "; then
-    pip install -U $python_packages
+echo
+
+if is_installed "pip"; then
+    python_packages=$(cat python_packages | tr "\n" " ")
+    if yn_pr "Do you want to install the default python packages? [Y/n]: "; then
+        pip install -U $python_packages
+    fi
 fi
 
 echo
