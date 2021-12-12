@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -eq 0 ]; then
+if [ $# -eq 0 ] && [ -e "$HOME/.sun" ]; then
     result=$(cat ~/.sun)
     IFS=" " read -r sunrise sunset <<< "$result"
     now=$(date +%R)
