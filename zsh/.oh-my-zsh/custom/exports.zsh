@@ -25,7 +25,7 @@ export DOCKER_FORMAT="ID\t{{.ID}}\n"\
 "PORTS\t{{.Ports}}\n"\
 "COMMAND\t{{.Command}}\n"\
 "CREATED\t{{.CreatedAt}}\n"\
-"STATUS\t{{.Status}}"
+"STATUS\t{{.Status}}\n"
 
 if [ -x "$(command -v nvim)" ]; then
     export EDITOR='nvim'

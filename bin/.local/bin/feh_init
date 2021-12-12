@@ -15,16 +15,6 @@
 DIR="/home/thales/Images/Wallpapers/Lakeside Day-Night"
 
 cd "$DIR"
-HOUR=$(expr $(date +%H))
-if [ $(expr $HOUR % 2) -eq 0 ]; then
-    if [ $HOUR -eq 0 ]; then
-        HOUR=23
-    else
-        HOUR=$(expr $HOUR - 1)
-    fi
-    img=$(ls $(printf "%02d" $HOUR)*)
-else
-    img=$(ls $HOUR*)
-fi
+img=$(ls *$(date +%H)*)
 
 feh --no-fehbg --bg-fill "$img"

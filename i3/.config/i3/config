@@ -182,7 +182,6 @@ for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
-for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 for_window [title="^zoom$"] floating enable
 
@@ -211,7 +210,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Return exec $terminal
 
 # Exit i3 (logs you out of your X session)
-bindsym $alt+Control+Delete exec ${HOME}/.config/rofi/pipeline Power
+bindsym $alt+Control+BackSpace exec ${HOME}/.config/rofi/launch Power
 
 # Open browsers
 bindsym $mod+b exec brave --profile-directory="Default"
@@ -227,6 +226,9 @@ bindsym $mod+n exec brave --profile-directory="Default" --app-id=hnpfjngllnobngc
 bindsym $mod+e exec $terminal -e ranger
 bindsym $mod+Shift+e exec pcmanfm
 
+# Clipboard Manager
+bindsym $mod+v exec ${HOME}/.config/rofi/launch Clipboard
+
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
@@ -236,6 +238,15 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use brightnessctl to adjust brightness.
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 10%+
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+# Dunst keybinds for closing and history
+# Close notification.
+bindsym $alt+space exec --no-startup-id dunstctl close
+# Close all notifications.
+bindsym $alt+Control+space exec --no-startup-id dunstctl close-all
+# Redisplay last message(s).
+bindsym $alt+Control+h exec --no-startup-id dunstctl history-pop
+# Context menu.
+bindsym $alt+Control+c exec --no-startup-id dunstctl context
 
 
 ###########################################################
@@ -246,26 +257,28 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 bindsym $mod+space mode "APPS"
 mode "APPS" {
     # Lauch main script (app launcher and others)
-    bindsym space exec ${HOME}/.config/rofi/main -show combi; mode "default"
-    bindsym $mod+space exec ${HOME}/.config/rofi/main -show combi; mode "default"
+    bindsym space exec ${HOME}/.config/rofi/launch; mode "default"
+    bindsym $mod+space exec ${HOME}/.config/rofi/launch; mode "default"
     # Lauch CMD script
     bindsym Return exec $terminal -name cmd; mode "default"
     # Lauch script to kill processes
-    bindsym k exec ${HOME}/.config/rofi/pipeline Kill; mode "default"
+    bindsym k exec ${HOME}/.config/rofi/launch Kill; mode "default"
     # Lauch Project with tmux
     bindsym c exec $terminal -e zsh -i -c proj; mode "default"
     # Lauch Calc
     bindsym m exec $terminal -name qalc -e qalc -t; mode "default"
     # Launch pavucontrol
     bindsym v exec pavucontrol; mode "default"
-    # Launch blueman
-    bindsym b exec blueman-manager; mode "default"
+    # Launch bluetooth script
+    bindsym b exec ${HOME}/.config/rofi/launch Bluetooth; mode "default"
     # Launch nm-connection-editor
     bindsym n exec nm-connection-editor; mode "default"
     # Launch htop
     bindsym h exec $terminal -name htop -e htop; mode "default"
     # Open SPOTIFY mode
     bindsym s mode "SPOTIFY"
+    # Launch bluetooth script
+    bindsym BackSpace exec ${HOME}/.config/rofi/launch Power; mode "default"
     # Escape mode
     bindsym Escape mode "default"
 }
@@ -337,9 +350,11 @@ gaps inner 8
 #                     Autostart Apps
 ###########################################################
 
-# Set up monitor resolution and positioning
-exec_always sleep 0.5 && xrandr --output eDP --primary --mode 1920x1080 \
-                        --pos 0x0 --rotate normal --output HDMI-A-0 --off
+# Set up monitor resolution and positioning, then theme mode
+exec_always xrandr --output VGA-0 --off \
+            --output DVI-D-0 --mode 1920x1080 --pos 1920x0 --rotate left \
+            --output HDMI-0 --primary --mode 1920x1080 --pos 0x215 --rotate normal && \
+            /home/thales/.local/bin/light-dark-mode
 
 # Picom daemon
 exec --no-startup-id picom -b
@@ -357,7 +372,7 @@ exec --no-startup-id xinput set-prop "Elan Touchpad" "libinput Natural Scrolling
 # exec --no-startup-id sleep 3 && ctab.py
 
 # Set mode on boot
-exec_always sleep 1 && light-dark-mode
+# exec_always sleep 1 && light-dark-mode
 
 # urxvt daemon
 exec --no-startup-id urxvtd -q -o -f
@@ -365,23 +380,19 @@ exec --no-startup-id urxvtd -q -o -f
 # Enable Night-Light (Redshift)
 exec --no-startup-id redshift -l -23.536215622740578:-46.68497829306198
 
-# Switch Esc with Caps-Lock
-exec --no-startup-id setxkbmap -option "caps:swapescape"
-
 # Keyring
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-# Mouse control from keyboard
-exec --no-startup-id keynav daemonize
-
 # Clipboard manager
-exec --no-startup-id clipit --no-icon
+exec --no-startup-id greenclip daemon
 
-# Disable bell and auto-suspension
-exec --no-startup-id xset r rate 330 30 b off s off -dpms
-
-# Set Slash/? key to Super
-exec --no-startup-id xmodmap -e "keycode 97 = Super_L NoSymbol Super_L"
+# Set keyboard rate, bell and suspension, then keyboard layout and xcape
+# then keyboard mouse control
+exec --no-startup-id xset r rate 330 30 b off s off -dpms && \
+                     setxkbmap "brim" -option -print | \
+                     xkbcomp -w 0 -I"/home/thales/.config/xkb" - "$DISPLAY" && \
+                     xcape -t 250 -e "Caps_Lock=Escape;Super_R=Menu" && \
+                     keynav daemonize
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.

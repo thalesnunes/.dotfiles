@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-languages="$HOME/.dotfiles/chtsh/languages"
-utils="$HOME/.dotfiles/chtsh/utils"
+languages="$HOME/.config/chtsh/languages"
+utils="$HOME/.config/chtsh/utils"
 
 selected=$(cat $languages $utils | fzf)
 if [[ -z $selected ]]; then

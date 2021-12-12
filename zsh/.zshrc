@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/thales/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Themeing
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -14,7 +14,7 @@ POWERLEVEL9K_MODE="nerdfont-complete"
 
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting poetry)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 export KEYTIMEOUT=1
 

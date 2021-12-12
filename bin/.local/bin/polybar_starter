@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR="${HOME}/.config/polybar/"
+DIR="${HOME}/.config/polybar"
 
 if [[ $1 = "light" ]]; then
     COLORS=colors.day
@@ -9,5 +9,5 @@ elif [[ $1 = "dark" ]]; then
 fi
 COLORS=colors.night
 
-cp $DIR/forest/$COLORS $DIR/forest/colors.ini
-${HOME}/.config/polybar/launch.sh --forest > /dev/null 2>&1 &
+cp $DIR/minimal/$COLORS $DIR/minimal/colors.ini
+${HOME}/.config/polybar/launch.sh > /dev/null 2>&1 &

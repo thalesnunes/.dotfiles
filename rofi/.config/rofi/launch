@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+dir="$HOME/.config/rofi"
+
+themes="$dir/themes"
+dracula="$themes/dracula"
+sidetext="$themes/sidetext"
+
+cmd="rofi -no-lazy-grab -monitor primary"
+
+case "$1" in
+    "")
+        theme=$dracula
+        show="drun"
+        modi="drun"
+        ;;
+    "Clipboard")
+        theme=$sidetext
+        show="Clip"
+        modi="$show:greenclip print"
+        extra="-run-command '{cmd}'"
+        ;;
+    "Bluetooth")
+        theme=$sidetext
+        $dir/modi/$1.sh "$cmd -theme $sidetext -dmenu -p  -i"
+        exit 0
+        ;;
+    "Kill")
+        theme=$sidetext
+        show="✗"
+        modi="$show:$dir/modi/$1.sh"
+        ;;
+    "Power")
+        theme=$sidetext
+        show="⏻"
+        modi="$show:$dir/modi/$1.sh"
+        ;;
+esac
+
+$cmd -theme $theme -modi "$modi" -show $show $extra

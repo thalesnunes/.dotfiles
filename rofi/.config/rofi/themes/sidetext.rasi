@@ -1,0 +1,16 @@
+configuration {
+  font: "MesloLGS NF 13";
+  show-icons: false;
+}
+
+@import "dracula.rasi"
+
+window {
+  location: west;
+  height: 100%;
+  width: 15%;
+}
+
+listview {
+  columns: 1;
+}

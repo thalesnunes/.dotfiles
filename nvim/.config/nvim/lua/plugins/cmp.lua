@@ -8,10 +8,20 @@ end
 cmp.setup {
 -- You can set mappings if you want
     mapping = {
-        ['<C-J>'] = cmp.mapping.select_next_item(),
-        ['<C-K>'] = cmp.mapping.select_prev_item(),
-        ['<TAB>'] = cmp.mapping.select_next_item(),
-        ['<S-TAB>'] = cmp.mapping.select_prev_item(),
+        ['<TAB>'] = function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            fallback()
+          end
+        end,
+        ['<S-TAB>'] = function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          else
+            fallback()
+          end
+        end,
         ['<C-D>'] = cmp.mapping.scroll_docs(-4),
         ['<C-F>'] = cmp.mapping.scroll_docs(4),
         ['<C-SPACE>'] = cmp.mapping.complete(),
