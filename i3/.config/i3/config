@@ -306,8 +306,8 @@ mode "FLAMESHOT" {
 }
 
 # Trabalho
-bindsym $mod+w mode "LABI"
-mode "LABI" {
+bindsym $mod+w mode "WORK"
+mode "WORK" {
     # Launch Chrome
     bindsym b exec google-chrome-stable; mode "default"
     # Launch Slack
