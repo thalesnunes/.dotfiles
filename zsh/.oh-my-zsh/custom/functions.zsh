@@ -2,9 +2,9 @@ function gi() {
     curl -sL https://www.toptal.com/developers/gitignore/api/$@ >> .gitignore
 }
 
-function create() {
-    cd "$PROJECTS/Project_Initializer"
-    pipenv run python3 ~/Projects/Project_Initializer/create.py $@
+function proj_init() {
+    cd "$PROJECTS/proj_init"
+    pipenv run python proj_init/create.py $@
     cd "$OLDPWD"
 }
 
