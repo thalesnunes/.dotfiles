@@ -2,12 +2,6 @@ function gi() {
     curl -sL https://www.toptal.com/developers/gitignore/api/$@ >> .gitignore
 }
 
-function proj_init() {
-    cd "$PROJECTS/proj_init"
-    pipenv run python proj_init/create.py $@
-    cd "$OLDPWD"
-}
-
 function jupyter_docker() {
     docker run --name jupyter -p 8888:8888 -it -e JUPYTER_ENABLE_LAB=yes \
         --rm -d -v ~/Projects/db-crawler:/usr/src/app -w /usr/src/app \
