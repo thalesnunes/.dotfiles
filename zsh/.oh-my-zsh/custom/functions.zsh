@@ -87,12 +87,6 @@ function proj() {
     fi
     CMD="$CMD$EDITOR"
 
-    case $NAME in
-        gcal_notifier)
-            NAME="gcal"
-            ;;
-    esac
-
     tmuxinit -s $NAME -d $TOCD $CMD
 }
 
