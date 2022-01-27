@@ -5,5 +5,6 @@ neovim
 numpy
 pandas
 pipenv
+proj-init
 python-crontab
 python-language-server

@@ -2,12 +2,6 @@ function gi() {
     curl -sL https://www.toptal.com/developers/gitignore/api/$@ >> .gitignore
 }
 
-function create() {
-    cd "$PROJECTS/Project_Initializer"
-    pipenv run python3 ~/Projects/Project_Initializer/create.py $@
-    cd "$OLDPWD"
-}
-
 function jupyter_docker() {
     docker run --name jupyter -p 8888:8888 -it -e JUPYTER_ENABLE_LAB=yes \
         --rm -d -v ~/Projects/db-crawler:/usr/src/app -w /usr/src/app \
@@ -92,12 +86,6 @@ function proj() {
         CMD="pipenv run "
     fi
     CMD="$CMD$EDITOR"
-
-    case $NAME in
-        gcal_notifier)
-            NAME="gcal"
-            ;;
-    esac
 
     tmuxinit -s $NAME -d $TOCD $CMD
 }
