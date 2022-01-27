@@ -61,6 +61,7 @@ if is_installed "pip"; then
     python_packages=$(cat python_packages | tr "\n" " ")
     if yn_pr "Do you want to install the default python packages? [Y/n]: "; then
         pip install -U $python_packages
+        curl -sSL https://install.python-poetry.org | python -
     fi
 fi
 
