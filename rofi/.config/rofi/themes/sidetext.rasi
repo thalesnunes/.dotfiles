@@ -6,9 +6,9 @@ configuration {
 @import "dracula.rasi"
 
 window {
-  location: west;
+  location: east;
   height: 100%;
-  width: 15%;
+  width: 20%;
 }
 
 listview {

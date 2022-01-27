@@ -86,7 +86,7 @@ xkb_symbols "base" {
     key <> {
         symbols[Group1]= [ Escape ]
     };
-    key <I252> {
+    key <KP0> {
         symbols[Group1]= [ Menu ]
     };
 };
