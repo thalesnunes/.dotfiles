@@ -3,8 +3,8 @@ require('toggleterm').setup{
     open_mapping = [[<leader>t]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
     start_in_insert = true,
-    insert_mappings = false, -- whether or not the open mapping applies in insert mode
-    persist_size = true,
+    terminal_mappings = false,
+    persist_size = false,
     direction = 'float',
     close_on_exit = true, -- close the terminal window when the process exits
     -- This field is only relevant if direction is set to 'float'
@@ -22,15 +22,15 @@ require('toggleterm').setup{
     },
 }
 
-local Terminal  = require('toggleterm.terminal').Terminal
+local Terminal = require('toggleterm.terminal').Terminal
 
 local lazygit = Terminal:new({
     cmd = 'lazygit',
     dir = 'git_dir',
     hidden = true,
     float_opts = {
-  width = vim.o.columns - 10,
-  height = vim.o.lines - 6,
+        width = vim.o.columns - 10,
+        height = vim.o.lines - 6,
     },
     -- function to run on opening the terminal
     on_open = function(term)
