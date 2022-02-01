@@ -57,7 +57,10 @@ def magnet2torrent(
 ):
 
     output_name = Path(output_name)
-    output_name.mkdir(exist_ok=True, parents=True)
+    if output_name.is_dir():
+        output_name.mkdir(exist_ok=True, parents=True)
+    else:
+        output_name.parent.mkdir(exist_ok=True, parents=True)
 
     tempdir = tempfile.mkdtemp()
     ses = lt.session()
