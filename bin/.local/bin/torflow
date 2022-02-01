@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-torrent=$1
+torrent="$1"
 
-/usr/bin/pidof -q transmission-daemon || /usr/bin/transmission-daemon
+/usr/bin/env pidof -q transmission-daemon || /usr/bin/env transmission-daemon
 
-/usr/bin/stig add --stopped $torrent
+/usr/bin/env stig add --stopped "$torrent"
 
-if [ -f $torrent ]; then
-    rm $torrent
+if [ -f "$torrent" ]; then
+    rm "$torrent"
 fi
