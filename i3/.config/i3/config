@@ -154,6 +154,7 @@ assign [class="notion-nativefier-46aee8"] workspace $ws10
 assign [instance="crx_gpmngigldijofdhcmpepkjelnjhoddlh"] workspace $ws10
 assign [class="Slack"] workspace $ws10
 assign [class="zoom"] workspace $ws10
+assign [class="URxvt" instance="^stig$"] workspace $ws10
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
