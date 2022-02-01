@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
-torrent="$1"
+input="$1"
+
+if [[ $input == magnet:?* ]]; then
+    $HOME/.local/bin/mag2tor.py --magnet "$input" --output $HOME/.cache/stig/tmp.torrent
+    torrent="$HOME/.cache/stig/tmp.torrent"
+else
+    torrent="$input"
+fi
 
 /usr/bin/env pidof -q transmission-daemon || /usr/bin/env transmission-daemon
 
@@ -9,3 +16,5 @@ torrent="$1"
 if [ -f "$torrent" ]; then
     rm "$torrent"
 fi
+
+/usr/bin/env pidof -q stig || terminal -name stig -e stig
