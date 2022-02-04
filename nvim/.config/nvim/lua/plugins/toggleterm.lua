@@ -3,6 +3,7 @@ require('toggleterm').setup{
     open_mapping = [[<leader>t]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
     start_in_insert = true,
+    insert_mappings = false,
     terminal_mappings = false,
     persist_size = false,
     direction = 'float',
