@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [ -n "$1" ]; then
+    file="$1"
+else
+    file="$HOME/.config/xrandrrc"
+fi
+
+if [ -f "$file" ]; then
+    flags=$(cat "$file" | tr "\n" " ")
+else
+    flags=""
+fi
+
+xrandr $flags
