@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# DIR="/home/thales/Imagens/Wallpapers"
+# DIR="$HOME/Imagens/Wallpapers"
 # day="day_valley.jpg"
 # night="night_firewatch.png"
 
@@ -12,7 +12,7 @@
 
 # feh --no-fehbg --bg-fill "$DIR/$Wallpaper"
 
-DIR="/home/thales/Imagens/Wallpapers/Lakeside Day-Night"
+DIR="$HOME/Imagens/Wallpapers/Lakeside Day-Night"
 
 cd "$DIR"
 img=$(ls *$(date +%H)*)
