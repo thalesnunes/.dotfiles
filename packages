@@ -38,6 +38,7 @@ os-prober
 pavucontrol
 pcmanfm
 picom
+polkit-gnome
 polybar
 pulseaudio
 pulseaudio-alsa
