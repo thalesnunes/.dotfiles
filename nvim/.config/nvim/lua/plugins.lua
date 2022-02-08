@@ -2,11 +2,10 @@ local install_path = V.fn.stdpath('data') ..
                          '/site/pack/packer/start/packer.nvim'
 
 if V.fn.empty(V.fn.glob(install_path)) > 0 then
-    V.fn.system({
+    packer_bootstrap = V.fn.system({
         'git', 'clone', 'https://github.com/wbthomason/packer.nvim',
-        install_path
+        '--depth', '1', install_path
     })
-    V.cmd 'packadd packer.nvim'
 end
 
 -- autocompile on save
@@ -174,5 +173,9 @@ return require('packer').startup(function(use)
         'mboughaba/i3config.vim',
         ft = 'i3config',
     }
+
+    if packer_bootstrap then
+        require('packer').sync()
+    end
 
 end)
