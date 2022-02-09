@@ -6,6 +6,7 @@ if V.fn.empty(V.fn.glob(install_path)) > 0 then
         'git', 'clone', 'https://github.com/wbthomason/packer.nvim',
         '--depth', '1', install_path
     })
+    V.o.runtimepath = V.fn.stdpath('data') .. '/site/pack/*/start/*,' .. V.o.runtimepath
 end
 
 -- autocompile on save
