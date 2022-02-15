@@ -17,4 +17,4 @@ if [ -f "$torrent" ]; then
     rm "$torrent"
 fi
 
-/usr/bin/env pidof -q stig || terminal -name stig -e stig
+ps -Ao comm | grep -q stig || terminal -name stig -e stig
