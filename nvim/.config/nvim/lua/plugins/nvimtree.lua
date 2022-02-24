@@ -46,6 +46,8 @@ require('nvim-tree').setup {
     open_on_setup = true,
     -- hijack the cursor in the tree to put it at the start of the filename
     hijack_cursor = true,
+    -- Open directory on starup, and delete empty buffer when done
+    hijack_unnamed_buffer_when_opening = true,
     -- ignore dirs
     filters = {
         custom = {
