@@ -299,13 +299,17 @@ mode "SPOTIFY" {
 bindsym $mod+s mode "SCREENSHOT"
 mode "SCREENSHOT" {
     # Screenshot region
-    bindsym s exec flameshot gui; mode "default"
-    # Screenshot screen 0
-    bindsym 1 exec flameshot screen -n 0 -c; mode "default"
+    bindsym s exec "maim -sl -c 0.31,0.98,0.48,0.1 | xclip -se c -t image/png"; mode "default"
     # Screenshot screen 1
-    bindsym 2 exec flameshot screen -n 1 -c; mode "default"
-    # Screenshot full
-    bindsym Print exec flameshot full -c; mode "default"
+    bindsym 1 exec $bin/maim_monitor 0; mode "default"
+    # Screenshot screen 2
+    bindsym 2 exec $bin/maim_monitor 1; mode "default"
+    # Screenshot all screens
+    bindsym f exec "maim | xclip -se c -t image/png"; mode "default"
+    # Screenshot active window
+    bindsym a exec "maim -Bui $(xdotool getactivewindow) | xclip -se c -t image/png"; mode "default"
+    # Save clipboard image to file in screenshot directory
+    bindsym Shift+s exec "xclip -se c -t image/png -o > ~/Imagens/Screenshots/$(date +%Y%m%d%H%M%S).png"; mode "default"
     # Escape mode
     bindsym Escape mode "default"
 }

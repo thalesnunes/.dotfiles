@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+if [ $# != 1 ]; then
+    echo "Error: Exactly one argument must be passed"
+    exit 1
+fi
+
+_displays=$(xrandr --listactivemonitors | awk '/+/ {print $1, $3}' | awk -F'[x/+*: ]' '{print $1,$3"x"$5"+"$7"+"$8}')
+
+IFS=$'\n'
+for i in ${_displays}; do
+    if [[ $1 == ${i%% *} ]]; then
+        maim --hidecursor --quiet --geometry "${i##* }" | xclip -selection clipboard -t image/png
+        exit 0
+    fi
+done
+unset IFS
+
+echo "Error: No monitor index found"
+exit 1
