@@ -16,7 +16,6 @@ docker
 dunst
 exa
 feh
-flameshot
 fzf
 git
 grep
@@ -24,6 +23,7 @@ highlight
 htim
 lazygit
 libqalculate
+maim
 neofetch
 neovim
 nerd-fonts-noto-sans-mono

@@ -295,7 +295,7 @@ mode "SPOTIFY" {
     bindsym Escape mode "default"
 }
 
-# Flameshot mode for screenshotting
+# Screenshot mode
 bindsym $mod+s mode "SCREENSHOT"
 mode "SCREENSHOT" {
     # Screenshot region
