@@ -6,7 +6,6 @@ V.opt.smartindent = true
 V.opt.wrap = false
 
 V.opt.guicursor = 'n-c:block,v-i-ci-ve:ver25,r-cr:hor20'
-V.opt.relativenumber = true
 V.opt.nu = true
 V.opt.mouse = "a"
 
@@ -26,6 +25,8 @@ V.opt.undodir = V.fn.stdpath('cache') .. '/undodir'
 V.opt.scrolloff = 8
 V.opt.termguicolors = true
 V.opt.colorcolumn = '80'
+V.opt.cursorline = true
+V.opt.cursorlineopt = "number"
 
 V.opt.laststatus = 2
 V.opt.showmode = false
@@ -66,6 +67,7 @@ V.cmd [[
         autocmd BufWritePost init.lua PackerCompile
         autocmd BufWritePost keymaps.lua PackerCompile
         autocmd BufWritePost plugins.lua PackerCompile
+        autocmd BufWritePost settings.lua PackerCompile
     augroup end
 
     augroup highlight_yank
