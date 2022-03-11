@@ -57,7 +57,7 @@ return require('packer').startup(function(use)
 
     -- Commenter
     use {
-        'terrortylor/nvim-comment',
+        'numToStr/Comment.nvim',
         config = function() require('plugins.comment') end,
     }
 
