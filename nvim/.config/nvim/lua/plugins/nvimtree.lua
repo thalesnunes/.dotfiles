@@ -2,8 +2,6 @@ local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
 -- don't auto open tree on specific filetypes.
 V.g.nvim_tree_auto_ignore_ft = { "startify", "dashboard" }
--- this option shows indent markers when folders are open
-V.g.nvim_tree_indent_markers = 1
 -- will enable file highlight for git attributes (can be used without the icons).
 V.g.nvim_tree_git_hl = 1
 -- will enable folder and file icon highlight for opened files/directories.
@@ -103,6 +101,12 @@ require('nvim-tree').setup {
             quit_on_open = true,
         },
     },
+    renderer = {
+        indent_markers = {
+            -- this option shows indent markers when folders are open
+            enable = true,
+        }
+    }
 }
 
 -- NvimTree
