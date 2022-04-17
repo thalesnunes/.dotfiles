@@ -24,6 +24,7 @@ htim
 lazygit
 libqalculate
 maim
+mpv
 neofetch
 neovim
 nerd-fonts-noto-sans-mono
@@ -67,7 +68,6 @@ ttf-liberation
 ttf-meslo-nerd-font-powerlevel10k
 ttf-ms-fonts
 ttf-opensans
-vlc
 xcape
 xdg-utils
 xorg-xev
