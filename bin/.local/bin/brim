@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+killall --ignore-case --quiet --user $(whoami) "xcape"
+
+xset r rate 330 30 b off s off -dpms
+
+setxkbmap "brim" -option -print | xkbcomp -w 0 -I"$HOME/.config/xkb" - "$DISPLAY"
+
+xcape -t 250 -e "Caps_Lock=Escape;Super_R=Menu"

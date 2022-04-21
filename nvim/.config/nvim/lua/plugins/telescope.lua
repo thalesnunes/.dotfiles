@@ -40,6 +40,25 @@ require('telescope').setup {
                 ['G'] = 'move_to_bottom',
             },
         },
+        vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--no-ignore',
+            '--hidden',
+            '--trim',
+        },
+        file_ignore_patterns = {
+            '.git',
+            'node_modules',
+            '.cache',
+            '__pycache__',
+            '%.pyc',
+        },
     },
     pickers = {
         buffers = {
@@ -64,7 +83,6 @@ require('telescope').setup {
 require('telescope').load_extension('fzf')
 
 -- Find files using Telescope command-line sugar.
-V.keymap('n', '<leader>ff', ':Telescope find_files<CR>')
-V.keymap('n', '<leader>fa', ':Telescope find_files hidden=true <CR>')
+V.keymap('n', '<leader>ff', ':Telescope find_files hidden=true <CR>')
 V.keymap('n', '<leader>fw', ':Telescope live_grep<CR>')
 V.keymap('n', '<leader>b', ':Telescope buffers<CR>')

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+input="$1"
+
+if [[ $input == magnet:?* ]]; then
+    $HOME/.local/bin/mag2tor.py --magnet "$input" --output $HOME/.cache/stig/tmp.torrent
+    torrent="$HOME/.cache/stig/tmp.torrent"
+else
+    torrent="$input"
+fi
+
+/usr/bin/env pidof -q transmission-daemon || /usr/bin/env transmission-daemon
+
+/usr/bin/env stig add --stopped "$torrent"
+
+if [ -f "$torrent" ]; then
+    rm "$torrent"
+fi
+
+ps -Ao comm | grep -q stig || terminal -name stig -e stig

@@ -4,6 +4,7 @@ M.cmd = vim.cmd
 M.opt = vim.opt
 M.fn = vim.fn
 M.g = vim.g
+M.o = vim.o
 M.execute = vim.api.nvim_command
 M.lsp = vim.lsp
 

@@ -63,7 +63,7 @@ if is_installed "pip"; then
         pip install -U $python_packages
         curl -sSL https://install.python-poetry.org | python -
         mkdir ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/poetry
-        poetry completions zsh > ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/poetry/_poetry
+        $HOME/.local/bin/poetry completions zsh > ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/poetry/_poetry
     fi
 fi
 

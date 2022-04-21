@@ -8,3 +8,5 @@ pipenv
 proj-init
 python-crontab
 python-language-server
+stig
+wheel
