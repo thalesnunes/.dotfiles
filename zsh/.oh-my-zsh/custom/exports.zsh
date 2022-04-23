@@ -1,6 +1,15 @@
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$PYTHON_BIN_PATH"
 
+if [ -x "$(command -v nvim)" ]; then
+    export EDITOR='nvim'
+    export VISUAL='nvim'
+else
+    export EDITOR='vim'
+    export VISUAL='vim'
+fi
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 export DOT="$HOME/.dotfiles"
 export PROJECTS="$HOME/Projects"
 
@@ -26,11 +35,3 @@ export DOCKER_FORMAT="ID\t{{.ID}}\n"\
 "COMMAND\t{{.Command}}\n"\
 "CREATED\t{{.CreatedAt}}\n"\
 "STATUS\t{{.Status}}\n"
-
-if [ -x "$(command -v nvim)" ]; then
-    export EDITOR='nvim'
-    export VISUAL='nvim'
-else
-    export EDITOR='vim'
-    export VISUAL='vim'
-fi
