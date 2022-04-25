@@ -129,7 +129,17 @@ handle_extension() {
         dff|dsf|wv|wvc)
             mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
-            ;; # Continue with next handler on failure
+            ;;
+
+        ## Config files
+        conf | *rc)
+            env bat --color always --theme Dracula -pp --language bash \
+                -- "${FILE_PATH}" && exit 5
+            ;;
+
+        ini)
+            env bat --color always --theme Dracula -pp --language ini \
+                -- "${FILE_PATH}" && exit 5
     esac
 }
 
