@@ -8,7 +8,7 @@ else
     export EDITOR='vim'
     export VISUAL='vim'
 fi
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="sh -c 'col -bx | bat --theme \"Monokai Extended\" -l man -p'"
 
 export DOT="$HOME/.dotfiles"
 export PROJECTS="$HOME/Projects"
@@ -35,3 +35,5 @@ export DOCKER_FORMAT="ID\t{{.ID}}\n"\
 "COMMAND\t{{.Command}}\n"\
 "CREATED\t{{.CreatedAt}}\n"\
 "STATUS\t{{.Status}}\n"
+
+export BAT_THEME='base16'
