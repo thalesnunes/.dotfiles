@@ -56,8 +56,6 @@ require('nvim-tree').setup {
     view = {
         -- set initial width
         width = 30,
-        -- auto resize tree
-        auto_resize = true,
         -- keymaps
         mappings = {
             list = {
@@ -99,6 +97,8 @@ require('nvim-tree').setup {
         open_file = {
             -- closes the tree when you open a file
             quit_on_open = true,
+            -- auto resize tree
+            resize_window = true,
         },
     },
     renderer = {
