@@ -1,5 +1,6 @@
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$PYTHON_BIN_PATH"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 if [ -x "$(command -v nvim)" ]; then
     export EDITOR='nvim'
