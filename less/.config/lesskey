@@ -1,0 +1,20 @@
+#command
+# Moving left and right by one character
+J forw-scroll
+K back-scroll
+
+h noaction 1\e(
+l noaction 1\e)
+H left-scroll
+L right-scroll
+
+#env
+# Make lesss use case-insensitive search by default (-i)
+# and display color (-R).
+LESS = -i -R
+
+# Turn off command and search history.
+LESSHISTFILE = -
+
+
+# vim ft=conf
