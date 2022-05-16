@@ -7,9 +7,11 @@ else
 fi
 
 if [ -f "$file" ]; then
-    flags=$(cat "$file" | tr "\n" " ")
+    while read flags; do
+        xrandr $flags 2> /dev/null && exit 0
+    done < "$file"
+    notify-send -u critical -a "Xrandr" "Error on screen setup"
 else
-    flags=""
+    notify-send -u critical -a "Xrandr" "No xrandrrc file available"
 fi
 
-xrandr $flags
