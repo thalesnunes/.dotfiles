@@ -35,6 +35,11 @@ case "$1" in
         show="⏻"
         modi="$show:$dir/modi/$1.sh"
         ;;
+    "MPV")
+        theme=$sidetext
+        show="▶"
+        modi="$show:$dir/modi/$1.sh"
+        ;;
 esac
 
 $cmd -theme $theme -modi "$modi" -show $show $extra

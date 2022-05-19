@@ -1,3 +1,6 @@
+from __future__ import (absolute_import, division, print_function)
+
+# You always need to import ranger.api.commands here to get the Command class:
 from ranger.api.commands import Command
 
 
@@ -78,4 +81,18 @@ class fzf_select(Command):
 
 class add_mpv_playlist(Command):
     def execute(self):
-        pass
+        from pathlib import Path
+
+        cache_file = Path('~/.cache/mpv/playlist_history').expanduser()
+        cache_file.parent.mkdir(parents=True, exist_ok=True)
+        path = Path(str(self.fm.thisfile))
+
+        if path.is_dir():
+            target = path.absolute()
+        else:
+            target = path.parent.absolute()
+
+        with open(cache_file, 'a') as file_obj:
+            file_obj.write(f'{str(path.name)}={str(target)}')
+
+        self.fm.notify(f'{str(path.name)} added to saved playlists')

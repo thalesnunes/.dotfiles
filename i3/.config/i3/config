@@ -277,6 +277,8 @@ mode "APPS" {
     bindsym n exec nm-connection-editor; mode "default"
     # Launch htop
     bindsym h exec $terminal -name htop -e htop; mode "default"
+    # Launch MPV script
+    bindsym p exec $config/rofi/launch MPV; mode "default"
     # Open SPOTIFY mode
     bindsym s mode "SPOTIFY"
     # Launch bluetooth script
