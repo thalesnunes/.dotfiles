@@ -93,6 +93,6 @@ class add_mpv_playlist(Command):
             target = path.parent.absolute()
 
         with open(cache_file, 'a') as file_obj:
-            file_obj.write(f'{str(path.name)}={str(target)}')
+            file_obj.write(f'{str(path.name)}={str(target)}\n')
 
         self.fm.notify(f'{str(path.name)} added to saved playlists')
