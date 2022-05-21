@@ -21,5 +21,5 @@ if [ ! -z "$@" ]; then
         done < "$history_file"
     fi
 else
-    sed 's/=.*//' "$history_file"
+    sed 's/=.*//' "$history_file" | sort
 fi
