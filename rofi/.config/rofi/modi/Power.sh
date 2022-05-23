@@ -1,34 +1,26 @@
 #!/usr/bin/env bash
 
-
-if [ ! -z "$@" ]
-then
-    # Handle argument.
-    if [ -n "$@" ]
-    then
+case "$ROFI_RETV" in
+    0)  # Initial execution
+        echo "Shutdown"
+        echo "Suspend"
+        echo "Reboot"
+        echo "Logout"
+        ;;
+    1)  # Selected entry with Enter
         OPTION="$@"
         case $OPTION in
         Shutdown)
-        systemctl poweroff
-        ;;
-
-        Reboot)
-        systemctl reboot
-        ;;
-
-        Logout)
-        i3-msg exit
-        ;;
-
+            systemctl poweroff
+            ;;
         Suspend)
-        systemctl suspend
-        ;;
-
+            systemctl suspend
+            ;;
+        Reboot)
+            systemctl reboot
+            ;;
+        Logout)
+            i3-msg exit
+            ;;
         esac
-    fi
-else
-    echo "Shutdown"
-    echo "Reboot"
-    echo "Logout"
-    echo "Suspend"
-fi
+esac
