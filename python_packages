@@ -6,6 +6,7 @@ numpy
 pandas
 pipenv
 proj-init
+pulsemixer
 python-crontab
 python-language-server
 stig

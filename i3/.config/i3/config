@@ -191,6 +191,7 @@ for_window [class="URxvt" instance="^pgstop$"] floating enable
 for_window [class="URxvt" instance="^qalc$"] floating enable
 for_window [class="URxvt" instance="^cmd$"] floating enable
 for_window [class="URxvt" instance="^htop$"] floating enable
+for_window [class="URxvt" instance="^pulsemixer$"] floating enable
 
 
 ###########################################################
@@ -269,8 +270,8 @@ mode "APPS" {
     bindsym c exec $terminal -e zsh -i -c proj; mode "default"
     # Lauch Calc
     bindsym m exec $terminal -name qalc -e qalc -t; mode "default"
-    # Launch pavucontrol
-    bindsym v exec pavucontrol; mode "default"
+    # Launch pulsemixer
+    bindsym v exec $terminal -name pulsemixer -e pulsemixer; mode "default"
     # Launch bluetooth script
     bindsym b exec $config/rofi/launch Bluetooth; mode "default"
     # Launch nm-connection-editor
