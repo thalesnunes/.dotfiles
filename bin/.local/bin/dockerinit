@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-sudo systemctl start docker.socket && sudo systemctl start docker
+if [[ -z "$(ps aux | awk '/dockerd/ && !/awk/ {print}')" ]]; then
+    sudo systemctl start docker.socket && sudo systemctl start docker
+fi

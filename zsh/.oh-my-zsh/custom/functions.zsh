@@ -1,5 +1,5 @@
 function gi() {
-    curl -sL https://www.toptal.com/developers/gitignore/api/$@ >> .gitignore
+    curl -sL https://www.toptal.com/developers/gitignore/api/$@
 }
 
 function jupyter_docker() {
@@ -91,5 +91,5 @@ function proj() {
 }
 
 function pretty_csv() {
-    cat $1 | sed 's/,/ ,/g' | column -t -s, | less -S
+    cat $1 | sed 's/,/ ,/g' | column -t -s, | bat
 }

@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+if [[ $1 == "start" || $1 == "" ]]; then
+    CONFIG_DIR="$HOME/.config/jellyfin"
+    CACHE_DIR="$HOME/.cache/jellyfin"
+    MEDIA_DIR="/run/media/thales/External HD/ANIMES_FILMES_SERIES"
+
+    mkdir -p "$CONFIG_DIR" "$CACHE_DIR"
+
+    RESULT="$(awk -F: "\$1 == \"$USER\" { print \$3, \$4 }" /etc/passwd)"
+    IFS=" " read -r USER_UID USER_GID <<< "$RESULT"
+    unset IFS
+
+    dockerinit
+    udisksctl mount --object-path block_devices/sdb2 &> /dev/null
+
+    JELLY_CONTAINER="$(docker ps -a | awk '$NF == "jellyfin" { print $NF }')"
+    if [ "$JELLY_CONTAINER" == "jellyfin" ]; then
+        docker start jellyfin
+    else
+        docker run -d \
+         --name jellyfin \
+         --user $USER_UID:$USER_GID \
+         --net=host \
+         --volume "$CONFIG_DIR":/config \
+         --volume "$CACHE_DIR":/cache \
+         --mount type=bind,source="$MEDIA_DIR",target=/media \
+         --restart=unless-stopped \
+         --gpus all \
+         jellyfin/jellyfin:latest
+    fi
+elif [ $1 == "stop" ]; then
+    docker stop jellyfin
+fi

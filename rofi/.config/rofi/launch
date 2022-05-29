@@ -35,6 +35,12 @@ case "$1" in
         show="⏻"
         modi="$show:$dir/modi/$1.sh"
         ;;
+    "MPV")
+        theme=$sidetext
+        show="▶"
+        modi="$show:$dir/modi/$1.sh"
+        extra='-kb-remove-char-forward Delete -kb-custom-1 Control+d'
+        ;;
 esac
 
 $cmd -theme $theme -modi "$modi" -show $show $extra
