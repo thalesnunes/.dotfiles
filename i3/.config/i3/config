@@ -386,5 +386,8 @@ exec --no-startup-id greenclip daemon
 # then keyboard mouse control
 exec --no-startup-id $bin/brim && keynav daemonize
 
+# Move cursor out of the way by default
+exec --no-startup-id xdotool mousemove_relative -- 10000 10000
+
 
 # vim:filetype=i3config
