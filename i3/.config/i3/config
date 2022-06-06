@@ -291,9 +291,9 @@ mode "APPS" {
 # Spotifyd and Spotify-TUI mode
 mode "SPOTIFY" {
     # Run sptinit (start spotifyd and spt)
-    bindsym i exec sptinit; mode "default"
+    bindsym i exec --no-startup-id $bin/sptinit; mode "default"
     # Run sptstop (stop spotifyd)
-    bindsym s exec sptstop; mode "default"
+    bindsym s exec --no-startup-id $bin/sptstop; mode "default"
     # Escape mode
     bindsym Escape mode "default"
 }
