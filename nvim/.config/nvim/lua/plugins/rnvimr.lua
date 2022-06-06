@@ -34,40 +34,6 @@ V.g.rnvimr_shadow_winblend = 100
 --     ['yw'] = 'EmitRangerCwd'
 -- }
 
--- Add views for Ranger to adapt the size of floating window
--- V.g.rnvimr_ranger_views = {
---     {'minwidth' = 90, 'ratio' = {}},
---     {'minwidth' = 50, 'maxwidth' = 89, 'ratio' = {1,1}},
---     {'maxwidth' = 49, 'ratio' = {1}}
--- }
-
--- Customize the initial layout
--- V.g.rnvimr_layout = {
---     'relative' = 'editor',
---     'width' = float2nr(round(0.7 * &columns)),
---     'height' = float2nr(round(0.7 * &lines)),
---     'col' = float2nr(round(0.15 * &columns)),
---     'row' = float2nr(round(0.15 * &lines)),
---     'style' = 'minimal'
--- }
-
--- Customize multiple preset layouts
--- '{}' represents the initial layout
--- V.g.rnvimr_presets = {
---     {'width' = 0.600, 'height' = 0.600},
---     {},
---     {'width' = 0.800, 'height' = 0.800},
---     {'width' = 0.950, 'height' = 0.950},
---     {'width' = 0.500, 'height' = 0.500, 'col' = 0, 'row' = 0},
---     {'width' = 0.500, 'height' = 0.500, 'col' = 0, 'row' = 0.5},
---     {'width' = 0.500, 'height' = 0.500, 'col' = 0.5, 'row' = 0},
---     {'width' = 0.500, 'height' = 0.500, 'col' = 0.5, 'row' = 0.5},
---     {'width' = 0.500, 'height' = 1.000, 'col' = 0, 'row' = 0},
---     {'width' = 0.500, 'height' = 1.000, 'col' = 0.5, 'row' = 0},
---     {'width' = 1.000, 'height' = 0.500, 'col' = 0, 'row' = 0},
---     {'width' = 1.000, 'height' = 0.500, 'col' = 0, 'row' = 0.5}
--- }
-
 -- Fullscreen for initial layout
 V.g.rnvimr_layout = {
     ['relative'] = 'editor',
@@ -78,13 +44,16 @@ V.g.rnvimr_layout = {
     ['style'] = 'minimal',
 }
 
--- Only use initial preset layout
--- V.g.rnvimr_presets = {{}}
---
 -- Link CursorLine into RnvimrNormal highlight in the Floating window
 V.cmd('highlight link RnvimrNormal CursorLine')
 
 V.keymap('n', '<leader>e', ':RnvimrToggle<CR>')
+V.cmd [[
+    augroup ranger
+        au!
+        autocmd Filetype rnvimr tnoremap <buffer><nowait> <ESC> <ESC>
+    augroup end
+]]
 
 -- Run Rnvimr on startup when opened object is directory or [No name]
 -- Else open ranger as background process
@@ -99,12 +68,3 @@ V.defer_fn(
     end,
     0
 )
-
--- Resize floating window by all preset layouts
--- V.keymap('t', '<M-i> <C-\><C-n>', ':RnvimrResize<CR>')
-
--- Resize floating window by special preset layouts
--- V.keymap('t', '<M-l> <C-\><C-n>', ':RnvimrResize 1,8,9,11,5<CR>')
-
--- Resize floating window by single preset layout
--- V.keymap('t', '<M-y> <C-\><C-n>', ':RnvimrResize 6<CR>')
