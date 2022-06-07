@@ -3,11 +3,14 @@
 input="$1"
 
 if [[ $input == magnet:?* ]]; then
+    mkdir -p "$HOME/.cache/stig"
     $HOME/.local/bin/mag2tor.py --magnet "$input" --output $HOME/.cache/stig/tmp.torrent
     torrent="$HOME/.cache/stig/tmp.torrent"
 else
     torrent="$input"
 fi
+
+/usr/bin/env udisksctl mount --object-path block_devices/sdb2 &> /dev/null
 
 /usr/bin/env pidof -q transmission-daemon || /usr/bin/env transmission-daemon
 
