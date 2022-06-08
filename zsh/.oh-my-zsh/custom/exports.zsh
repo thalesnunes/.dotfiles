@@ -37,4 +37,4 @@ export DOCKER_FORMAT="ID\t{{.ID}}\n"\
 "CREATED\t{{.CreatedAt}}\n"\
 "STATUS\t{{.Status}}\n"
 
-export BAT_THEME='base16'
+export BAT_THEME='Dracula'
