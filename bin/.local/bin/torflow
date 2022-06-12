@@ -2,10 +2,19 @@
 
 input="$1"
 
+notify() {
+    notify-send -a "TorFlow" "$1"
+}
+
 if [[ $input == magnet:?* ]]; then
     mkdir -p "$HOME/.cache/stig"
-    $HOME/.local/bin/mag2tor.py --magnet "$input" --output $HOME/.cache/stig/tmp.torrent
-    torrent="$HOME/.cache/stig/tmp.torrent"
+
+    notify "Starting magnet conversion to torrent"
+
+    torrent="$HOME/.cache/stig/$(date +%s).torrent"
+    $HOME/.local/bin/mag2tor.py --magnet "$input" --output "$torrent"
+
+    notify "Magnet conversion to torrent successful"
 else
     torrent="$input"
 fi
@@ -15,6 +24,8 @@ fi
 /usr/bin/env pidof -q transmission-daemon || /usr/bin/env transmission-daemon
 
 /usr/bin/env stig add --stopped "$torrent"
+
+notify "Torrent added to stig"
 
 if [ -f "$torrent" ]; then
     rm "$torrent"
