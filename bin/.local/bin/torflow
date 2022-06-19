@@ -19,7 +19,8 @@ else
     torrent="$input"
 fi
 
-/usr/bin/env udisksctl mount --object-path block_devices/sdb2 &> /dev/null
+udisksctl mount --object-path block_devices/sdb2 &> /dev/null
+sleep 2
 
 /usr/bin/env pidof -q transmission-daemon || /usr/bin/env transmission-daemon
 
