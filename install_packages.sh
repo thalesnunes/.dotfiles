@@ -48,9 +48,9 @@ if is_installed "zsh"; then
     if yn_pr "Do you want to install ohmyzsh and change shell? [Y/n]: "; then
         unset ZSH
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.config/oh-my-zsh/custom}/plugins/zsh-autosuggestions
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.config/oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.config/oh-my-zsh/custom}/themes/powerlevel10k
         chsh -s "$(which zsh)"
     fi
 fi
@@ -62,7 +62,7 @@ if is_installed "pip"; then
     if yn_pr "Do you want to install the default python packages? [Y/n]: "; then
         pip install -U $python_packages
         curl -sSL https://install.python-poetry.org | python -
-        mkdir ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/poetry
+        mkdir ${ZSH_CUSTOM:-$HOME/.config/oh-my-zsh/custom}/plugins/poetry
         $HOME/.local/bin/poetry completions zsh > ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/poetry/_poetry
     fi
 fi
