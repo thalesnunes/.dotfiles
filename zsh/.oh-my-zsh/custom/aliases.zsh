@@ -29,3 +29,9 @@ alias lg='lazygit'
 
 alias gcalp='gcalcli --config-folder ~/.config/gcalcli/personal'
 alias gcalw='gcalcli --config-folder ~/.config/gcalcli/work'
+
+alias dockerps='docker ps -a --format=$DOCKER_FORMAT'
+
+# HOME cleanup
+alias svn="svn --config-dir $XDG_CONFIG_HOME/subversion"
+alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"
