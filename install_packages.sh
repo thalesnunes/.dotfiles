@@ -39,7 +39,7 @@ cd "$HOME/.dotfiles"
 packages=$(cat packages | tr "\n" " ")
 
 if yn_pr "Do you want to install the default packages? [Y/n]: "; then
-    yay -S $packages
+    yay --noconfirm -S $packages
 fi
 
 echo
