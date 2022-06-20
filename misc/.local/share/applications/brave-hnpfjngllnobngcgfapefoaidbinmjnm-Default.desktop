@@ -7,4 +7,3 @@ Name=WhatsApp
 Exec=/usr/bin/brave --profile-directory=Default --app-id=hnpfjngllnobngcgfapefoaidbinmjnm
 Icon=brave-hnpfjngllnobngcgfapefoaidbinmjnm-Default
 StartupWMClass=crx_hnpfjngllnobngcgfapefoaidbinmjnm
-OnlyShowIn=Old;

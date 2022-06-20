@@ -7,4 +7,3 @@ Name=Notion
 Exec=/usr/bin/brave --profile-directory=Default --app-id=gpmngigldijofdhcmpepkjelnjhoddlh
 Icon=brave-gpmngigldijofdhcmpepkjelnjhoddlh-Default
 StartupWMClass=crx_gpmngigldijofdhcmpepkjelnjhoddlh
-OnlyShowIn=Old;

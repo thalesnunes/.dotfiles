@@ -7,4 +7,3 @@ Name=Prime Video
 Exec=/usr/bin/brave --profile-directory=Default --app-id=dhehceoabmcddigfnadgnpockbkdjhof
 Icon=brave-dhehceoabmcddigfnadgnpockbkdjhof-Default
 StartupWMClass=crx_dhehceoabmcddigfnadgnpockbkdjhof
-OnlyShowIn=Old;
