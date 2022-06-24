@@ -22,26 +22,34 @@ function gcala() {
 function config() {
     TOCD=$DOT
     FILE=""
-    PROG=$1
+
+    if [[ $# -eq 1 ]]; then
+        PROG=$1
+    else
+        PROG=$(echo "all\n$(ls -l $DOT | awk '/^d/ { print $NF }')" | fzf)
+    fi
+
+    [[ -z "$PROG" ]] && return
+
     case $PROG in
         bin)
             TOCD="$DOT/bin/.local/bin"
             FILE=""
             ;;
         ali*)
-            TOCD="$DOT/zsh/.oh-my-zsh/custom"
+            TOCD="$DOT/zsh/.config/oh-my-zsh/custom"
             FILE="aliases.zsh"
             ;;
         func*)
-            TOCD="$DOT/zsh/.oh-my-zsh/custom"
+            TOCD="$DOT/zsh/.config/oh-my-zsh/custom"
             FILE="functions.zsh"
             ;;
         exp*)
-            TOCD="$DOT/zsh/.oh-my-zsh/custom"
+            TOCD="$DOT/zsh/.config/oh-my-zsh/custom"
             FILE="exports.zsh"
             ;;
         tok*)
-            TOCD="$DOT/zsh/.oh-my-zsh/custom"
+            TOCD="$DOT/zsh/.config/oh-my-zsh/custom"
             FILE="tokens.zsh"
             ;;
         *)
