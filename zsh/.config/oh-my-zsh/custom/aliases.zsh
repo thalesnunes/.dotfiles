@@ -34,3 +34,8 @@ alias conservation_on="sudo modprobe ideapad_laptop && sudo tee /sys/bus/platfor
 alias conservation_off="sudo modprobe ideapad_laptop && sudo tee /sys/bus/platform/drivers/ideapad_acpi/*/conservation_mode <<< '0'"
 
 alias brim='setxkbmap "brim" -option -print | xkbcomp -w 0 -I"$HOME/.config/xkb" - "$DISPLAY"'
+alias dockerps='docker ps -a --format=$DOCKER_FORMAT'
+
+# HOME cleanup
+alias svn="svn --config-dir $XDG_CONFIG_HOME/subversion"
+alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"

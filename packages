@@ -6,7 +6,7 @@ bluez
 bluez-hid2hci
 bluez-libs
 bluez-utils
-brave-bin
+brave-browser
 cronie
 cups
 cups-filters
@@ -20,7 +20,6 @@ feh
 fzf
 git
 grep
-highlight
 htim
 lazygit
 libqalculate

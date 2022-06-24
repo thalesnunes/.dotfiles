@@ -1,5 +1,7 @@
 #!/bin/bash
 
+bin="$HOME/.local/bin"
+
 if [ $# -eq 0 ] && [ -e "$HOME/.sun" ]; then
     result=$(cat ~/.sun)
     IFS=" " read -r sunrise sunset <<< "$result"
@@ -14,5 +16,5 @@ else
     MODE=$1
 fi
 
-feh_init $MODE > /dev/null 2>&1 &
-polybar_starter $MODE > /dev/null 2>&1 &
+$bin/feh_init $MODE > /dev/null 2>&1 &
+$bin/polybar_starter $MODE > /dev/null 2>&1 &

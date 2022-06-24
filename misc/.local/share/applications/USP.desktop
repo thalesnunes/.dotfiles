@@ -1,0 +1,8 @@
+[Desktop Entry]
+Exec=brave --profile-directory="Profile 1"
+GenericName=Brave USP
+Icon=gnome-books
+Name=USP
+NoDisplay=false
+StartupNotify=true
+Type=Application

@@ -14,6 +14,7 @@ done
 CMD=${@:$OPTIND:1}
 
 if [[ -z $TMUX ]] && [[ -z $(pgrep tmux) ]]; then
+    cd "$TOCD"
     tmux new-session -s $SESS $WINDOW -c $TOCD $CMD
     exit 0
 fi
@@ -21,6 +22,7 @@ fi
 if tmux has-session -t $SESS 2> /dev/null; then
     tmux new-window -t $SESS $WINDOW -c $TOCD $CMD
 else
+    cd "$TOCD"
     tmux new-session -ds $SESS $WINDOW -c $TOCD $CMD
 
     if [[ -z $TMUX ]]; then

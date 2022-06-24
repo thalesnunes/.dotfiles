@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Stig
+GenericName=Stig
+Comment=Torrent Terminal User Interface
+Exec=/home/thales/.local/bin/torflow %U
+Keywords=Torrent;TUI;
+Icon=torrents
+MimeType=application/x-bittorrent;x-scheme-handler/magnet;
+Terminal=true

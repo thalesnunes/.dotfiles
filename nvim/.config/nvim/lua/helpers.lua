@@ -3,6 +3,7 @@ local M = {}
 M.cmd = vim.cmd
 M.opt = vim.opt
 M.fn = vim.fn
+M.defer_fn = vim.defer_fn
 M.g = vim.g
 M.o = vim.o
 M.execute = vim.api.nvim_command

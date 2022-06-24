@@ -39,11 +39,8 @@ return require('packer').startup(function(use)
 
     -- File tree
     use {
-        'kyazdani42/nvim-tree.lua',
-        config = function() require('plugins.nvimtree') end,
-        requires = {
-            'kyazdani42/nvim-web-devicons',
-        },
+        'kevinhwang91/rnvimr',
+        config = function() require('plugins.rnvimr') end,
     }
 
     -- Adding and removing pairs
@@ -92,6 +89,15 @@ return require('packer').startup(function(use)
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
+            'saadparwaiz1/cmp_luasnip',
+        },
+    }
+
+    -- Snippets plugin
+    use {
+        'L3MON4D3/LuaSnip',
+        requires = {
+            'rafamadriz/friendly-snippets',
         },
     }
 

@@ -2,40 +2,6 @@ local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
 -- don't auto open tree on specific filetypes.
 V.g.nvim_tree_auto_ignore_ft = { "startify", "dashboard" }
--- will enable file highlight for git attributes (can be used without the icons).
-V.g.nvim_tree_git_hl = 1
--- will enable folder and file icon highlight for opened files/directories.
-V.g.nvim_tree_highlight_opened_files = 1
--- root folder format
-V.g.nvim_tree_root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" }
-
-V.g.nvim_tree_show_icons = {
-    folders = 1,
-    files = 1,
-    git = 1,
-}
-
-V.g.nvim_tree_icons = {
-    default = "",
-    symlink = "",
-    git = {
-        deleted = "",
-        ignored = "◌",
-        renamed = "➜",
-        staged = "✓",
-        unmerged = "",
-        unstaged = "✗",
-        untracked = "★",
-    },
-    folder = {
-        default = "",
-        empty = "",
-        empty_open = "",
-        open = "",
-        symlink = "",
-        symlink_open = "",
-    },
-}
 
 require('nvim-tree').setup {
     -- open the tree when running this setup function
@@ -102,10 +68,43 @@ require('nvim-tree').setup {
         },
     },
     renderer = {
+        -- will enable folder and file icon highlight for opened files/directories.
+        highlight_opened_files = 'all',
+        -- will enable file highlight for git attributes (can be used without the icons).
+        highlight_git = true,
+        -- root folder format
+        root_folder_modifier = table.concat { ":t:gs?$?/..", string.rep(" ", 1000), "?:gs?^??" },
         indent_markers = {
             -- this option shows indent markers when folders are open
             enable = true,
-        }
+        },
+        icons = {
+            show = {
+                file = true,
+                folder = true,
+            },
+            glyphs = {
+                default = "",
+                symlink = "",
+                git = {
+                    deleted = "",
+                    ignored = "◌",
+                    renamed = "➜",
+                    staged = "✓",
+                    unmerged = "",
+                    unstaged = "✗",
+                    untracked = "★",
+                },
+                folder = {
+                    default = "",
+                    empty = "",
+                    empty_open = "",
+                    open = "",
+                    symlink = "",
+                    symlink_open = "",
+                },
+            },
+        },
     }
 }
 
