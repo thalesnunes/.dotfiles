@@ -64,6 +64,8 @@ set recolor true
 set recolor-reverse-video "true"
 set recolor-keephue "true"
 
+map <A-A> recolor toggle
+
 unmap f
 map f toggle_fullscreen
 map [fullscreen] f toggle_fullscreen
@@ -72,3 +74,11 @@ unmap h
 map h navigate previous
 unmap l
 map l navigate next
+
+unmap d
+unmap <C-d>
+map d scroll half-down
+map <C-d> toggle_page_mode
+
+unmap <C-u>
+map u scroll half-up
