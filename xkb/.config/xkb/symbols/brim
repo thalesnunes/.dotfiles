@@ -31,12 +31,12 @@ xkb_symbols "base" {
 
 
     // Map menu to Super_R
-    replace key <COMP> {
+    replace key <AB11> {
         type[Group1] = "ONE_LEVEL",
         symbols[Group1] = [ Super_R ],
         actions[Group1] = [ SetMods(modifiers=Mod4) ]
     };
-    modifier_map Mod4 { <COMP> };
+    modifier_map Mod4 { <AB11> };
 
     // arrow keys (like vim)
     key <AC06> {
