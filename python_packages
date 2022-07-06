@@ -8,6 +8,6 @@ pipenv
 proj-init
 pulsemixer
 python-crontab
-python-language-server
+python-lsp-server
 stig
 wheel
