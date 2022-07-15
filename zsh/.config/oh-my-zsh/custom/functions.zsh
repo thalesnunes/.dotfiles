@@ -4,7 +4,7 @@ function gi() {
 
 function jupyter_docker() {
     docker run --name jupyter -p 8888:8888 -it -e JUPYTER_ENABLE_LAB=yes \
-        --rm -d -v ~/Projects/db-crawler:/usr/src/app -w /usr/src/app \
+        --rm -d -v "$PROJECTS"/db-crawler:/usr/src/app -w /usr/src/app \
         thalesnunes1/db-crawler:latest &&
     sleep 2 &&
     jupyter_url=$(docker logs jupyter | \

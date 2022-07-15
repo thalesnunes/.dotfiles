@@ -30,7 +30,7 @@ export MANPAGER="sh -c 'col -bx | bat --theme \"Monokai Extended\" -l man -p'"
 
 # User dotfiles and projects directories
 export DOT="$HOME/.dotfiles"
-export PROJECTS="$HOME/Projects"
+export PROJECTS="$HOME/projects"
 
 # FZF dracula colorscheme
 export FZF_DEFAULT_OPTS="--color=fg:#f8f8f2,hl:#bd93f9 "\
