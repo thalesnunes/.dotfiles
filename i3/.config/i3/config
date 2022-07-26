@@ -389,5 +389,8 @@ exec --no-startup-id $bin/brim && keynav daemonize
 # Move cursor out of the way by default
 exec --no-startup-id xdotool mousemove_relative -- 10000 10000
 
+# Merge custom Xresources on startup
+exec --no-startup-id xrdb -merge ${XDG_CONFIG_HOME}/X11/.Xresources
+
 
 # vim:filetype=i3config

@@ -37,7 +37,7 @@ function config() {
             FILE=""
             ;;
         ali*)
-            TOCD="$DOT/zsh/.config/oh-my-zsh/custom"
+            TOCD="$DOT/zsh/.config/zsh/oh-my-zsh/custom"
             FILE="aliases.zsh"
             ;;
         func*)
@@ -45,11 +45,11 @@ function config() {
             FILE="functions.zsh"
             ;;
         exp*)
-            TOCD="$DOT/zsh/.config/oh-my-zsh/custom"
+            TOCD="$DOT/zsh/.config/zsh/oh-my-zsh/custom"
             FILE="exports.zsh"
             ;;
         tok*)
-            TOCD="$DOT/zsh/.config/oh-my-zsh/custom"
+            TOCD="$DOT/zsh/.config/zsh/oh-my-zsh/custom"
             FILE="tokens.zsh"
             ;;
         *)

@@ -78,9 +78,6 @@ export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$HOST"
 # URXVT
 export RXVT_SOCKET="$XDG_RUNTIME_DIR/urxvtd"
 
-# Xsession errors
-export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
-
 
 # MISC
 export QT_QPA_PLATFORMTHEME="qt5ct"
