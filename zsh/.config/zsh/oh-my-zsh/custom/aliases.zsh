@@ -33,6 +33,3 @@ alias gcalw='gcalcli --config-folder ~/.config/gcalcli/work'
 alias dockerps='docker ps -a --format=$DOCKER_FORMAT'
 
 alias yt_down='yt-dlp -o "~/Downloads/%(title)s.%(ext)s" -f "[ext=mp4][height<=1080]"'
-
-# HOME cleanup
-alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"
