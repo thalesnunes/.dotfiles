@@ -68,6 +68,8 @@ ttf-liberation
 ttf-meslo-nerd-font-powerlevel10k
 ttf-ms-fonts
 ttf-opensans
+urxvt-perls
+urxvt-resize-font-git
 xcape
 xdg-utils
 xorg-xev
