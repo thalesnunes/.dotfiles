@@ -36,6 +36,7 @@ alias conservation_off="sudo modprobe ideapad_laptop && sudo tee /sys/bus/platfo
 alias brim='setxkbmap "brim" -option -print | xkbcomp -w 0 -I"$HOME/.config/xkb" - "$DISPLAY"'
 alias dockerps='docker ps -a --format=$DOCKER_FORMAT'
 
-# HOME cleanup
-alias svn="svn --config-dir $XDG_CONFIG_HOME/subversion"
-alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"
+alias yt_down='yt-dlp -o "~/Downloads/%(title)s.%(ext)s" -f "[ext=mp4][height<=1080]"'
+
+# HOME DIR CLEANUP
+alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME/nvidia/settings"'

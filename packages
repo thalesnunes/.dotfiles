@@ -36,7 +36,7 @@ ntp
 onlyoffice
 os-prober
 pavucontrol
-pcmanfm
+pcmanfm-gtk3
 picom
 polkit-gnome
 polybar
@@ -68,6 +68,8 @@ ttf-liberation
 ttf-meslo-nerd-font-powerlevel10k
 ttf-ms-fonts
 ttf-opensans
+urxvt-perls
+urxvt-resize-font-git
 xcape
 xdg-utils
 xorg-xev

@@ -47,8 +47,8 @@ echo
 if is_installed "zsh"; then
     if yn_pr "Do you want to install ohmyzsh and change shell? [Y/n]: "; then
         unset ZSH
-        export ZSH="$HOME/.config/oh-my-zsh"
-        export ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
+        export ZSH="$HOME/.config/zsh/oh-my-zsh"
+        export ZSH_CUSTOM="$HOME/.config//zsh/oh-my-zsh/custom"
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
         git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting

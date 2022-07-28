@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Path to your oh-my-zsh installation.
-export ZSH="${XDG_CONFIG_HOME:-$HOME/.config}/oh-my-zsh"
+export ZSH="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/oh-my-zsh"
 
 # Themeing
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -21,5 +21,5 @@ export KEYTIMEOUT=1
 source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f "$XDG_CONFIG_HOME/p10k.zsh" ]] || source "$XDG_CONFIG_HOME/p10k.zsh"
+[[ ! -f "$XDG_CONFIG_HOME/zsh/p10k.zsh" ]] || source "$XDG_CONFIG_HOME/zsh/p10k.zsh"
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme

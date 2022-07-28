@@ -6,4 +6,4 @@ if [[ -n "$RUNNING" ]]; then
     kill $RUNNING
 fi
 
-tmuxinit -s console -w $kernel -d ~/Projects/$kernel "jupyter console --kernel=$kernel"
+tmuxinit -s console -w $kernel -d $PROJECTS/$kernel "jupyter console --kernel=$kernel"
