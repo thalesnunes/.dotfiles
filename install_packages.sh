@@ -79,4 +79,14 @@ if is_installed "nvim"; then
 fi
 
 echo
+
+if is_installed "gsettings"; then
+    if yn_pr "Do you want to install the Dracula theme and icons? [Y/n]: "; then
+        yay --noconfirm -S dracula-gtk-theme dracula-icons-git
+        # gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
+        # gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
+        # gsettings set org.gnome.desktop.interface icon-theme "Dracula"
+    fi
+
+echo
 echo "Done!"
