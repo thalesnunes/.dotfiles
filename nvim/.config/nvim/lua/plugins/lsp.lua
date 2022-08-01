@@ -1,7 +1,7 @@
 -- Enable LSP
 local nvim_lsp = require('lspconfig')
 
-local servers = { 'pylsp', 'texlab' }
+local servers = { 'pylsp', 'texlab', 'bashls' }
 
 local basic_keybinds = function(bufnr)
     V.buf_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
@@ -17,8 +17,8 @@ local basic_keybinds = function(bufnr)
     -- V.buf_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
     V.buf_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
     V.buf_keymap(bufnr, 'n', '<leader>sd', '<cmd>lua vim.diagnostic.open_float()<CR>')
-    V.buf_keymap(bufnr, 'n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
-    V.buf_keymap(bufnr, 'n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
+    V.buf_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+    V.buf_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
     -- V.buf_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
     -- V.buf_keymap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
 end
