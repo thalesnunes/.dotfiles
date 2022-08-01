@@ -1,21 +1,12 @@
 #!/usr/bin/env sh
 
-function yn_pr() {
-    while true; do
-        read -p "$1" yn
-        case $yn in
-            [Yy]* | "" ) return 0;;
-            [Nn]* ) return 1;;
-        esac
-    done
-}
+source install_utils.sh
 
-function is_installed() {
-    if ! command -v "$1" &> /dev/null; then
-        echo "The '$1' package is not installed."
-        yn_pr "Do you want to install $1 with yay? [Y/n]: " && yay -S stow || exit 0
-    fi
-}
+if [ ! -d "$DOT" ]; then
+    git clone https://github.com/thalesnunes/.dotfiles "$DOT"
+fi
+
+cd "$DOT"
 
 is_installed "stow"
 is_installed "awk"
@@ -27,7 +18,8 @@ if [ -n "$conflicts" ]; then
     echo "$conflicts"
 
     rm_pr="Do you want to REMOVE all the conflicted files? [Y/n]: "
-    yn_pr "$rm_pr" && echo "$conflicts" | xargs rm || exit 0
+    mv_pr="Do you want to MOVE all the conflicted files to .old files? [Y/n]: "
+    yn_pr "$rm_pr" && echo "$conflicts" | xargs rm || yn_pr "$mv_pr" && echo "$conflicts" | xargs mv {} {}.old || exit 0
 fi
 
 echo
