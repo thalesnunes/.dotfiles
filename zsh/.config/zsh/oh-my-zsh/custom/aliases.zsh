@@ -34,5 +34,7 @@ alias dockerps='docker ps -a --format=$DOCKER_FORMAT'
 
 alias yt_down='yt-dlp -o "~/Downloads/%(title)s.%(ext)s" -f "[ext=mp4][height<=1080]"'
 
+alias hist="history | awk -F' ' '{ \$1=\"\"; print }' | fzf"
+
 # HOME DIR CLEANUP
 alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME/nvidia/settings"'
