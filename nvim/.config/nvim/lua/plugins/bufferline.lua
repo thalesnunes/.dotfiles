@@ -34,29 +34,6 @@ require('bufferline').setup {
             },
         },
     },
-    -- highlights = {
-    --     separator_selected = {
-    --         guibg = nil,
-    --         guifg = nil,
-    --     },
-    --     separator_visible = {
-    --         guibg = nil,
-    --         guifg = nil,
-    --     },
-    --     separator = {
-    --         guibg = nil,
-    --         guifg = nil,
-    --     },
-    --     buffer = {
-    --         guibg = '#262626',
-    --     },
-    --     buffer_visible = {
-    --         guibg = '#262626',
-    --     },
-    --     buffer_selected = {
-    --         guibg = '#262626',
-    --     },
-    -- },
 }
 
 -- These commands will navigate through buffers in order regardless of which mode you are using
