@@ -38,6 +38,15 @@ return require('packer').startup(function(use)
         },
     }
 
+    -- Bufferline
+    use {
+        'akinsho/bufferline.nvim',
+        config = function() require('plugins.bufferline') end,
+        requires = {
+            'kyazdani42/nvim-web-devicons',
+        },
+    }
+
     -- File tree
     use {
         'kevinhwang91/rnvimr',

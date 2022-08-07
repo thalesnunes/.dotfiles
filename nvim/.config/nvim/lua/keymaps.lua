@@ -51,10 +51,6 @@ V.keymap('x', 'J', ':move \'>+1<CR>gv-gv')
 V.keymap('x', 'K', ':move \'<-2<CR>gv-gv')
 
 -- Buffer switching and delete
-V.keymap('n', '<leader>l', ':bnext<CR>')
-V.keymap('v', '<leader>l', ':bnext<CR>')
-V.keymap('n', '<leader>h', ':bprev<CR>')
-V.keymap('v', '<leader>h', ':bprev<CR>')
 V.keymap('n', '<leader>q', ':bdelete<CR>')
 
 -- Shortcuts for search and replace yanked text
