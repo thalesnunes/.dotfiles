@@ -1,32 +1,32 @@
 -- Make Ranger replace Netrw and be the file explorer
-V.g.rnvimr_enable_ex = 1
+vim.g.rnvimr_enable_ex = 1
 
 -- Make Ranger to be hidden after picking a file
-V.g.rnvimr_enable_picker = 1
+vim.g.rnvimr_enable_picker = 1
 
 -- Replace `$EDITOR` candidate with this command to open the selected file
-V.g.rnvimr_edit_cmd = 'drop'
+vim.g.rnvimr_edit_cmd = 'drop'
 
 -- Disable a border for floating window
-V.g.rnvimr_draw_border = 1
+vim.g.rnvimr_draw_border = 1
 
 -- Hide the files included in gitignore
-V.g.rnvimr_hide_gitignore = 0
+vim.g.rnvimr_hide_gitignore = 0
 
 -- Change the border's color
--- V.g.rnvimr_border_attr = {'fg' = 14, 'bg' = -1}
+-- vim.g.rnvimr_border_attr = {'fg' = 14, 'bg' = -1}
 
 -- Make Neovim wipe the buffers corresponding to the files deleted by Ranger
-V.g.rnvimr_enable_bw = 1
+vim.g.rnvimr_enable_bw = 1
 
 -- Add a shadow window, value is equal to 100 will disable shadow
-V.g.rnvimr_shadow_winblend = 100
+vim.g.rnvimr_shadow_winblend = 100
 
 -- Draw border with both
--- V.g.rnvimr_ranger_cmd = {'ranger', '--cmd=set draw_borders both'}
+-- vim.g.rnvimr_ranger_cmd = {'ranger', '--cmd=set draw_borders both'}
 
 -- Map Rnvimr action
--- V.g.rnvimr_action = {
+-- vim.g.rnvimr_action = {
 --     ['<C-t>'] = 'NvimEdit tabedit',
 --     ['<C-x>'] = 'NvimEdit split',
 --     ['<C-v>'] = 'NvimEdit vsplit',
@@ -35,35 +35,37 @@ V.g.rnvimr_shadow_winblend = 100
 -- }
 
 -- Fullscreen for initial layout
-V.g.rnvimr_layout = {
+vim.g.rnvimr_layout = {
     ['relative'] = 'editor',
-    ['width'] = V.fn.winwidth('%'),
-    ['height'] = V.fn.winheight('%')-2,
+    ['width'] = vim.fn.winwidth('%'),
+    ['height'] = vim.fn.winheight('%')-2,
     ['col'] = 0,
     ['row'] = 0,
     ['style'] = 'minimal',
 }
 
 -- Link CursorLine into RnvimrNormal highlight in the Floating window
-V.cmd('highlight link RnvimrNormal CursorLine')
+vim.cmd('highlight link RnvimrNormal CursorLine')
 
 V.keymap('n', '<leader>e', ':RnvimrToggle<CR>')
-V.cmd [[
-    augroup ranger
-        au!
-        autocmd Filetype rnvimr tnoremap <buffer><nowait> <ESC> <ESC>
-    augroup end
-]]
+
+vim.api.nvim_create_autocmd('Filetype', {
+    group = vim.api.nvim_create_augroup('ranger', { clear = true }),
+    pattern = 'rnvimr',
+    callback = function()
+        V.buf_keymap(0, 't', '<ESC>', '<ESC>', { nowait = true })
+    end,
+})
 
 -- Run Rnvimr on startup when opened object is directory or [No name]
 -- Else open ranger as background process
-V.defer_fn(
+vim.defer_fn(
     function()
-        curr_path = V.fn.expand('%:p')
-        if (V.fn.isdirectory(curr_path) == 1 or curr_path == '') then
-            V.cmd('RnvimrToggle')
+        local curr_path = vim.fn.expand('%:p')
+        if (vim.fn.isdirectory(curr_path) == 1 or curr_path == '') then
+            vim.cmd('RnvimrToggle')
         else
-            V.cmd('RnvimrStartBackground')
+            vim.cmd('RnvimrStartBackground')
         end
     end,
     0

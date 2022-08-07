@@ -1,26 +1,26 @@
 -- Enable LSP
 local nvim_lsp = require('lspconfig')
 
-local servers = { 'pylsp', 'texlab', 'bashls' }
+local servers = { 'pylsp', 'texlab', 'bashls', 'sumneko_lua' }
 
 local basic_keybinds = function(bufnr)
-    V.buf_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-    V.buf_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-    V.buf_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
-    V.buf_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-    V.buf_keymap(bufnr, 'n', '<a-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-    -- V.buf_keymap(bufnr, 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
-    -- V.buf_keymap(bufnr, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
-    -- V.buf_keymap(bufnr, 'n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
-    -- V.buf_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-    V.buf_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
-    -- V.buf_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-    V.buf_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-    V.buf_keymap(bufnr, 'n', '<leader>sd', '<cmd>lua vim.diagnostic.open_float()<CR>')
-    V.buf_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-    V.buf_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-    -- V.buf_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
-    -- V.buf_keymap(bufnr, 'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+    V.buf_keymap(bufnr, 'n', 'gD', vim.lsp.buf.declaration)
+    V.buf_keymap(bufnr, 'n', 'gd', vim.lsp.buf.definition)
+    V.buf_keymap(bufnr, 'n', 'K', vim.lsp.buf.hover)
+    V.buf_keymap(bufnr, 'n', 'gi', vim.lsp.buf.implementation)
+    V.buf_keymap(bufnr, 'n', '<a-k>', vim.lsp.buf.signature_help)
+    -- V.buf_keymap(bufnr, 'n', '<leader>wa', vim.lsp.buf.add_workspace_folder)
+    -- V.buf_keymap(bufnr, 'n', '<leader>wr', vim.lsp.buf.remove_workspace_folder)
+    -- V.buf_keymap(bufnr, 'n', '<leader>wl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end)
+    -- V.buf_keymap(bufnr, 'n', '<leader>D', vim.lsp.buf.type_definition)
+    V.buf_keymap(bufnr, 'n', '<leader>rn', vim.lsp.buf.rename)
+    -- V.buf_keymap(bufnr, 'n', '<leader>ca', vim.lsp.buf.code_action)
+    V.buf_keymap(bufnr, 'n', 'gr', vim.lsp.buf.references)
+    V.buf_keymap(bufnr, 'n', '<leader>sd', vim.diagnostic.open_float)
+    V.buf_keymap(bufnr, 'n', '[d', vim.diagnostic.goto_prev)
+    V.buf_keymap(bufnr, 'n', ']d', vim.diagnostic.goto_next)
+    -- V.buf_keymap(bufnr, 'n', '<leader>q', vim.lsp.diagnostic.set_loclist)
+    -- V.buf_keymap(bufnr, 'n', '<leader>f', vim.lsp.buf.formatting)
 end
 
 local texlab_keybinds = function(bufnr)
@@ -28,7 +28,7 @@ local texlab_keybinds = function(bufnr)
     V.buf_keymap(bufnr, 'v', 'j', 'gj')
     V.buf_keymap(bufnr, 'n', 'k', 'gk')
     V.buf_keymap(bufnr, 'v', 'k', 'gk')
-    V.cmd(':set wrap')
+    vim.cmd(':set wrap')
 end
 
 local languages_keybinds = {
@@ -45,15 +45,26 @@ local on_attach = function(server, bufnr)
     end
 end
 
+local custom_settings = {
+    sumneko_lua = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' },
+            },
+        },
+    },
+}
+
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 for _, server in ipairs(servers) do
-  nvim_lsp[server].setup {
-    on_attach = function(client, bufnr)
-        on_attach(server, bufnr)
-    end,
-    flags = {
-      debounce_text_changes = 150,
+    nvim_lsp[server].setup {
+        on_attach = function(client, bufnr)
+            on_attach(server, bufnr)
+        end,
+        flags = {
+            debounce_text_changes = 150,
+        },
+        settings = custom_settings[server]
     }
-  }
 end
