@@ -7,9 +7,6 @@ alias lla='exa -al --color=always --group-directories-first'
 alias lt='exa -aT --color=always --group-directories-first'
 alias tree='exa -T --color=always'
 
-alias aptup='sudo apt update && sudo apt upgrade'
-alias yayup='yay -Syu'
-
 alias gs='git status'
 alias gd='git diff'
 alias ga='git add'
