@@ -2,7 +2,6 @@ require('bufferline').setup {
     options = {
         diagnostics = 'nvim_lsp',
         separator_style = { '', '' },
-        always_show_bufferline = false,
         show_close_icon = false,
         show_buffer_close_icons = false,
         tab_size = 15,
