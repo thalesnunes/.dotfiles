@@ -2,7 +2,7 @@ local install_path = vim.fn.stdpath('data') ..
                             '/site/pack/packer/start/packer.nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    packer_bootstrap = vim.fn.system({
+    PACKER_BOOTSTRAP = vim.fn.system({
         'git', 'clone', 'https://github.com/wbthomason/packer.nvim',
         '--depth', '1', install_path
     })
@@ -147,6 +147,13 @@ return require('packer').startup(function(use)
         config = function() require('plugins.neoclip') end,
     }
 
+    -- Gitsigns
+    use {
+        'lewis6991/gitsigns.nvim',
+        after = 'telescope.nvim',
+        config = function() require('plugins.gitsigns') end,
+    }
+
     -- Manage undo tree easily
     use {
         'mbbill/undotree',
@@ -191,7 +198,7 @@ return require('packer').startup(function(use)
         ft = 'i3config',
     }
 
-    if packer_bootstrap then
+    if PACKER_BOOTSTRAP then
         require('packer').sync()
     end
 
