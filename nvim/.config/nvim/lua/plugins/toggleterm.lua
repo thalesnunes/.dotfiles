@@ -35,7 +35,7 @@ local lazygit = Terminal:new({
     },
     -- function to run on opening the terminal
     on_open = function(term)
-        V.cmd('startinsert!')
+        vim.cmd('startinsert!')
         V.buf_keymap(term.bufnr, 'n', 'q', ':close<CR>')
         V.buf_keymap(term.bufnr, 't', '<Esc>', '<Esc>')
     end,

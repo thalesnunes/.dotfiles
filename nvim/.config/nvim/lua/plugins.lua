@@ -1,16 +1,17 @@
-local install_path = V.fn.stdpath('data') ..
-                         '/site/pack/packer/start/packer.nvim'
+local install_path = vim.fn.stdpath('data') ..
+                            '/site/pack/packer/start/packer.nvim'
 
-if V.fn.empty(V.fn.glob(install_path)) > 0 then
-    packer_bootstrap = V.fn.system({
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+    PACKER_BOOTSTRAP = vim.fn.system({
         'git', 'clone', 'https://github.com/wbthomason/packer.nvim',
         '--depth', '1', install_path
     })
-    V.o.runtimepath = V.fn.stdpath('data') .. '/site/pack/*/start/*,' .. V.o.runtimepath
+    vim.o.runtimepath = vim.fn.stdpath('data') .. '/site/pack/*/start/*,' ..
+                            vim.o.runtimepath
 end
 
 -- autocompile on save
-V.cmd([[
+vim.cmd([[
   augroup packer_user_config
     autocmd!
     autocmd BufWritePost plugins.lua source <afile> | PackerCompile
@@ -32,6 +33,15 @@ return require('packer').startup(function(use)
     use {
         'hoob3rt/lualine.nvim',
         config = function() require('plugins.lualine') end,
+        requires = {
+            'kyazdani42/nvim-web-devicons',
+        },
+    }
+
+    -- Bufferline
+    use {
+        'akinsho/bufferline.nvim',
+        config = function() require('plugins.bufferline') end,
         requires = {
             'kyazdani42/nvim-web-devicons',
         },
@@ -137,6 +147,13 @@ return require('packer').startup(function(use)
         config = function() require('plugins.neoclip') end,
     }
 
+    -- Gitsigns
+    use {
+        'lewis6991/gitsigns.nvim',
+        after = 'telescope.nvim',
+        config = function() require('plugins.gitsigns') end,
+    }
+
     -- Manage undo tree easily
     use {
         'mbbill/undotree',
@@ -181,7 +198,7 @@ return require('packer').startup(function(use)
         ft = 'i3config',
     }
 
-    if packer_bootstrap then
+    if PACKER_BOOTSTRAP then
         require('packer').sync()
     end
 

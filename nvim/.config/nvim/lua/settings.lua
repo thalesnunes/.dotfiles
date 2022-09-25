@@ -1,35 +1,35 @@
-V.opt.tabstop = 4
-V.opt.softtabstop = 4
-V.opt.shiftwidth = 4
-V.opt.expandtab = true
-V.opt.smartindent = true
-V.opt.wrap = false
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.wrap = false
 
-V.opt.guicursor = 'n-c:block,v-i-ci-ve:ver25,r-cr:hor20'
-V.opt.nu = true
-V.opt.mouse = "a"
+vim.opt.guicursor = 'n-c:block,v-i-ci-ve:ver25,r-cr:hor20'
+vim.opt.nu = true
+vim.opt.mouse = "a"
 
-V.opt.hlsearch = false
-V.opt.incsearch = true
-V.opt.hidden = true
-V.opt.errorbells = false
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+vim.opt.hidden = true
+vim.opt.errorbells = false
 
-V.opt.ignorecase = true
-V.opt.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
-V.opt.swapfile = false
-V.opt.backup = false
-V.opt.undofile = true
-V.opt.undodir = V.fn.stdpath('cache') .. '/undodir'
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath('cache') .. '/undodir'
 
-V.opt.scrolloff = 8
-V.opt.termguicolors = true
-V.opt.colorcolumn = '80'
-V.opt.cursorline = true
-V.opt.cursorlineopt = "number"
+vim.opt.scrolloff = 8
+vim.opt.termguicolors = true
+vim.opt.colorcolumn = '80'
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "number"
 
-V.opt.laststatus = 2
-V.opt.showmode = false
+vim.opt.laststatus = 2
+vim.opt.showmode = false
 
 -- Disable distribution plugins
 local disabled_built_ins = {
@@ -53,30 +53,41 @@ local disabled_built_ins = {
   'matchit'
 }
 for _, plugin in pairs(disabled_built_ins) do
-  V.g['loaded_' .. plugin] = 1
+  vim.g['loaded_' .. plugin] = 1
 end
 
-V.cmd [[
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
+local packer_group = augroup('Packer', { clear = true })
+local yank_group = augroup('highlight_yank', { clear = true })
+local thales_group = augroup('thales', { clear = true })
+
+autocmd('BufWritePost', {
+    group = packer_group,
+    pattern = { 'init.lua', 'keymaps.lua', 'plugins.lua', 'settings.lua' },
+    command = 'PackerCompile',
+})
+
+autocmd('TextYankPost', {
+    group = yank_group,
+    pattern = '*',
+    callback = function()
+        vim.highlight.on_yank({
+            timeout = 40,
+        })
+    end,
+})
+
+autocmd('BufWritePre', {
+    group = thales_group,
+    pattern = '*',
+    command = [[%s/\s\+$//e]],
+})
+
+vim.cmd [[
     syntax enable
     colorscheme dracula
     filetype plugin on
     highlight Normal guibg=none
-
-    augroup Packer
-        autocmd!
-        autocmd BufWritePost init.lua PackerCompile
-        autocmd BufWritePost keymaps.lua PackerCompile
-        autocmd BufWritePost plugins.lua PackerCompile
-        autocmd BufWritePost settings.lua PackerCompile
-    augroup end
-
-    augroup highlight_yank
-        autocmd!
-        autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
-    augroup END
-
-    augroup thales
-        autocmd!
-        autocmd BufWritePre * %s/\s\+$//e
-    augroup END
 ]]

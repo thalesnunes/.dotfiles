@@ -1,5 +1,5 @@
-V.g.mapleader = ' '
-V.g.maplocalleader = ' '
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- So I don't need to press Shift all the time
 V.keymap('n', ';', ':')
@@ -51,10 +51,6 @@ V.keymap('x', 'J', ':move \'>+1<CR>gv-gv')
 V.keymap('x', 'K', ':move \'<-2<CR>gv-gv')
 
 -- Buffer switching and delete
-V.keymap('n', '<leader>l', ':bnext<CR>')
-V.keymap('v', '<leader>l', ':bnext<CR>')
-V.keymap('n', '<leader>h', ':bprev<CR>')
-V.keymap('v', '<leader>h', ':bprev<CR>')
 V.keymap('n', '<leader>q', ':bdelete<CR>')
 
 -- Shortcuts for search and replace yanked text
@@ -62,7 +58,7 @@ V.keymap('n', '<leader>sr', ':%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>', { silent 
 V.keymap('v', '<leader>sr', ':s/<C-r>"/<C-r>"/g<Left><Left>', { silent = false })
 
 -- Reload config
-V.keymap('n', '<leader>r', ':luafile $MYVIMRC<CR>')
+V.keymap('n', '<leader>r', ':so $MYVIMRC<CR>')
 
 -- Add docstrings to current file
 V.keymap('n', '<leader>jg', ':silent !doq --formatter google -w -f %<CR>')

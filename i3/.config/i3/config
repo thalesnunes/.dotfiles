@@ -223,7 +223,7 @@ bindsym $mod+b exec brave --profile-directory="Default"
 bindsym $mod+u workspace $ws2, exec brave --profile-directory="Profile 1"
 
 # Telegram
-bindsym $mod+m exec telegram-desktop
+bindsym $mod+m exec --no-startup-id telegram-desktop
 
 # Whatsapp
 bindsym $mod+n exec brave --profile-directory="Default" --app-id=hnpfjngllnobngcgfapefoaidbinmjnm
