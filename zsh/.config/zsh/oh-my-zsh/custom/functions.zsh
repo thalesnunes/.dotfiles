@@ -36,6 +36,25 @@ function install() {
     fi
 }
 
+function remove() {
+    if command -v paru > /dev/null; then
+        paru -Rns $1
+        return 0
+    elif command -v yay > /dev/null; then
+        yay -Rns $1
+        return 0
+    elif command -v pacman > /dev/null; then
+        sudo pacman -Rns $1
+        return 0
+    elif command -v apt > /dev/null; then
+        sudo apt purge $1
+        return 0
+    else
+        echo "No default installation tool was found"
+        return 1
+    fi
+}
+
 function gi() {
     curl -sL https://www.toptal.com/developers/gitignore/api/$@
 }
