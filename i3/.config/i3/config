@@ -317,30 +317,6 @@ mode "SCREENSHOT" {
     bindsym Escape mode "default"
 }
 
-# Trabalho
-bindsym $mod+w mode "WORK"
-mode "WORK" {
-    # Launch Chrome
-    bindsym b exec google-chrome-stable; mode "default"
-    # Launch Slack
-    bindsym m exec slack; mode "default"
-    # Launch Notion
-    bindsym n exec brave --profile-directory="Default" --app-id=gpmngigldijofdhcmpepkjelnjhoddlh; mode "default"
-    # Open DB mode
-    bindsym d mode "DB"
-    # Escape mode
-    bindsym Escape mode "default"
-}
-
-mode "DB" {
-    # Launch PGAdmin
-    bindsym i exec $terminal -name pginit -e zsh -i -c pginit; mode "default"
-    # Stop PGAdmin
-    bindsym s exec $terminal -name pgstop -e pgstop; mode "default"
-    # Escape mode
-    bindsym Escape mode "default"
-}
-
 
 ###########################################################
 #                        i3-gaps
