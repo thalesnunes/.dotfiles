@@ -196,6 +196,7 @@ for_window [class="URxvt" instance="^qalc$"] floating enable
 for_window [class="URxvt" instance="^cmd$"] floating enable
 for_window [class="URxvt" instance="^htop$"] floating enable
 for_window [class="URxvt" instance="^pulsemixer$"] floating enable
+for_window [class="URxvt" instance="^scratchpad$"] floating enable
 
 
 ###########################################################
@@ -278,6 +279,8 @@ mode "APPS" {
     bindsym n exec nm-connection-editor; mode "default"
     # Launch htop
     bindsym h exec $terminal -name htop -e htop; mode "default"
+    # Launch htop
+    bindsym t exec $terminal -name scratchpad -e nvim /tmp/tmp; mode "default"
     # Launch MPV script
     bindsym p exec $config/rofi/launch MPV; mode "default"
     # Open SPOTIFY mode
