@@ -4,7 +4,7 @@
 
 set $mod Mod4
 set $alt Mod1
-set $terminal urxvtc
+set $terminal wezterm
 
 # Executables and config directories
 set $bin ${HOME}/.local/bin
@@ -190,13 +190,13 @@ for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 for_window [title="^zoom$"] floating enable
 
-for_window [class="URxvt" instance="^pginit$"] floating enable
-for_window [class="URxvt" instance="^pgstop$"] floating enable
-for_window [class="URxvt" instance="^qalc$"] floating enable
-for_window [class="URxvt" instance="^cmd$"] floating enable
-for_window [class="URxvt" instance="^htop$"] floating enable
-for_window [class="URxvt" instance="^pulsemixer$"] floating enable
-for_window [class="URxvt" instance="^scratchpad$"] floating enable
+for_window [class="^pginit$"] floating enable
+for_window [class="^pgstop$"] floating enable
+for_window [class="^qalc$"] floating enable
+for_window [class="^cmd$"] floating enable
+for_window [class="^htop$"] floating enable
+for_window [class="^pulsemixer$"] floating enable
+for_window [class="^scratchpad$"] floating enable
 
 
 ###########################################################
@@ -230,7 +230,7 @@ bindsym $mod+m exec --no-startup-id telegram-desktop
 bindsym $mod+n exec brave --profile-directory="Default" --app-id=hnpfjngllnobngcgfapefoaidbinmjnm
 
 # File Managers
-bindsym $mod+e exec $terminal -e ranger
+bindsym $mod+e exec $terminal start -- ranger
 bindsym $mod+Shift+e exec pcmanfm
 
 # Clipboard Manager
@@ -264,23 +264,23 @@ mode "APPS" {
     bindsym space exec $config/rofi/launch; mode "default"
     bindsym $mod+space exec $config/rofi/launch; mode "default"
     # Lauch CMD script
-    bindsym Return exec $terminal -name cmd; mode "default"
+    bindsym Return exec $terminal start --class cmd; mode "default"
     # Lauch script to kill processes
     bindsym k exec $config/rofi/launch Kill; mode "default"
     # Lauch Project with tmux
-    bindsym c exec $terminal -e zsh -i -c proj; mode "default"
+    bindsym c exec $terminal start -- zsh -i -c proj; mode "default"
     # Lauch Calc
-    bindsym m exec $terminal -name qalc -e qalc -t; mode "default"
+    bindsym m exec $terminal start --class qalc -- qalc -t; mode "default"
     # Launch pulsemixer
-    bindsym v exec $terminal -name pulsemixer -e pulsemixer; mode "default"
+    bindsym v exec $terminal start --class qalc -- pulsemixer; mode "default"
     # Launch bluetooth script
     bindsym b exec $config/rofi/launch Bluetooth; mode "default"
     # Launch nm-connection-editor
     bindsym n exec nm-connection-editor; mode "default"
     # Launch htop
-    bindsym h exec $terminal -name htop -e htop; mode "default"
+    bindsym h exec $terminal start --class htop -- htop; mode "default"
     # Launch htop
-    bindsym t exec $terminal -name scratchpad -e nvim /tmp/tmp; mode "default"
+    bindsym t exec $terminal start --class scratchpad -- nvim /tmp/tmp; mode "default"
     # Launch MPV script
     bindsym p exec $config/rofi/launch MPV; mode "default"
     # Open SPOTIFY mode
