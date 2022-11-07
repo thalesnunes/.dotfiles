@@ -47,8 +47,6 @@ redshift
 ripgrep
 rofi
 rofi-greenclip
-rxvt-unicode
-rxvt-unicode-terminfo
 simplescreenrecorder
 speedtest-cli
 spotify-tui-bin
@@ -64,12 +62,12 @@ ttf-droid
 ttf-font-icons
 ttf-inconsolata
 ttf-indic-otf
+ttf-jetbrains-mono
 ttf-liberation
 ttf-meslo-nerd-font-powerlevel10k
 ttf-ms-fonts
 ttf-opensans
-urxvt-perls
-urxvt-resize-font-git
+wezterm
 xcape
 xdg-utils
 xorg-xev

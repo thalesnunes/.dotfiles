@@ -28,4 +28,4 @@ V.keymap('n', '<leader>jd', ':JupyterCd %:p:h<CR>')
 -- V.keymap('n', '<localleader>jb', ':PythonSetBreak<CR>')
 
 -- Restart console
-V.keymap('n', '<leader>jr', ':silent !i3-msg -q "workspace 9:Terminal, exec terminal -e jupyconsole $(basename $(pwd))"<CR>')
+V.keymap('n', '<leader>jr', ':silent !i3-msg -q "workspace 9:Terminal, exec wezterm start -- jupyconsole $(basename $(pwd))"<CR>')
