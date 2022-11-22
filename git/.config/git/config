@@ -48,7 +48,7 @@
     hunk-header-decoration-style = blue box ul
     hunk-header-file-style = purple ul bold
     hunk-header-line-number-style = yellow box bold
-    hunk-header-style = syntax bold italic
+    hunk-header-style = file syntax bold italic
     line-numbers = true
     line-numbers-left-format = "{nm:>1}|"
     line-numbers-left-style = blue
