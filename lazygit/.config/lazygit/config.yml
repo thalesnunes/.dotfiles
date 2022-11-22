@@ -1,6 +1,7 @@
 gui:
   scrollPastBottom: false # enable scrolling past the bottom
   showFileTree: true
+  sidePanelWidth: 0.25
   theme:
     activeBorderColor:
       - blue
@@ -136,3 +137,7 @@ keybinding:
     init: 'i'
     update: 'u'
     bulkMenu: 'b'
+git:
+  paging:
+    colorArg: always
+    pager: DELTA_FEATURES='mantis-shrimp-lite no-side-by-side' delta --paging=never
