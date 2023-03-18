@@ -39,6 +39,7 @@ FILE_EXTENSION="${FILE_PATH##*.}"
 FILE_EXTENSION_LOWER="$(printf "%s" "${FILE_EXTENSION}" | tr '[:upper:]' '[:lower:]')"
 
 ## Settings
+MAX_FILE_SIZE_GB=5
 HIGHLIGHT_SIZE_MAX=262143  # 256KiB
 HIGHLIGHT_TABWIDTH="${HIGHLIGHT_TABWIDTH:-8}"
 HIGHLIGHT_STYLE="${HIGHLIGHT_STYLE:-base16}"
@@ -46,6 +47,13 @@ HIGHLIGHT_OPTIONS="--replace-tabs=${HIGHLIGHT_TABWIDTH} --style=${HIGHLIGHT_STYL
 PYGMENTIZE_STYLE="${PYGMENTIZE_STYLE:-autumn}"
 OPENSCAD_IMGSIZE="${RNGR_OPENSCAD_IMGSIZE:-1000,1000}"
 OPENSCAD_COLORSCHEME="${RNGR_OPENSCAD_COLORSCHEME:-Tomorrow Night}"
+
+drop_bigfile() {
+    if [[ `du "${FILE_PATH}" | cut -f1` -gt $(echo "$MAX_FILE_SIZE_GB * 1024^2" | bc) ]]; then
+        echo '----- TOO BIG FILE -----'
+        exit 0
+    fi
+}
 
 handle_extension() {
     case "${FILE_EXTENSION_LOWER}" in
@@ -392,9 +400,13 @@ handle_fallback() {
 
 
 MIMETYPE="$( file --dereference --brief --mime-type -- "${FILE_PATH}" )"
+
+drop_bigfile
+
 if [[ "${PV_IMAGE_ENABLED}" == 'True' ]]; then
     handle_image "${MIMETYPE}"
 fi
+
 handle_extension
 handle_mime "${MIMETYPE}"
 handle_fallback
