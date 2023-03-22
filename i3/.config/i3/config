@@ -276,7 +276,7 @@ mode "APPS" {
     # Lauch Calc
     bindsym m exec $terminal start --class qalc -- qalc -t; mode "default"
     # Launch pulsemixer
-    bindsym v exec $terminal start --class qalc -- pulsemixer; mode "default"
+    bindsym v exec $terminal start --class pulsemixer -- pulsemixer; mode "default"
     # Launch bluetooth script
     bindsym b exec $config/rofi/launch Bluetooth; mode "default"
     # Launch nm-connection-editor
