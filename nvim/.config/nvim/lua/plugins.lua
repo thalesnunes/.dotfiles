@@ -47,6 +47,12 @@ return require('packer').startup(function(use)
         },
     }
 
+    -- Indent lines
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        config = function() require('plugins.indentline') end,
+    }
+
     -- File tree
     use {
         'kevinhwang91/rnvimr',
