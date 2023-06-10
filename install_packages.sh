@@ -35,9 +35,9 @@ if is_installed "pip"; then
     if yn_pr "Do you want to install the default python packages? [Y/n]: "; then
         pip install -U $python_packages
         export ZSH_CUSTOM="$XDG_CONFIG_HOME/zsh/oh-my-zsh/custom"
-        curl -sSL https://install.python-poetry.org | python -
+        pipx install poetry
         mkdir -p ${ZSH_CUSTOM}/plugins/poetry
-        $HOME/.local/bin/poetry completions zsh > ${ZSH_CUSTOM}/plugins/poetry/_poetry
+        $XDG_USER_BIN/poetry completions zsh > ${ZSH_CUSTOM}/plugins/poetry/_poetry
     fi
 fi
 
