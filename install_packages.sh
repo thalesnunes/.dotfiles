@@ -37,6 +37,7 @@ if is_installed "pip"; then
         for package in $([ -f "$DOT/pipx_packages" ] && cat "$DOT/pipx_packages" || curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/pipx_packages); do
             pipx install "$package"
         done
+        pipx inject ranger-fm pynvim
         export ZSH_CUSTOM="$XDG_CONFIG_HOME/zsh/oh-my-zsh/custom"
         mkdir -p ${ZSH_CUSTOM}/plugins/poetry
         $XDG_USER_BIN/poetry completions zsh > ${ZSH_CUSTOM}/plugins/poetry/_poetry
