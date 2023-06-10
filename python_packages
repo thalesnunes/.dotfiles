@@ -10,5 +10,4 @@ proj-init
 pulsemixer
 python-crontab
 python-lsp-server
-stig
 wheel
