@@ -5,6 +5,7 @@ neovim
 numpy
 pandas
 pipenv
+pipx
 proj-init
 pulsemixer
 python-crontab
