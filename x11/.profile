@@ -1,8 +1,3 @@
-# Adding python and other scripts to PATH
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$PATH:$PYTHON_BIN_PATH"
-export PATH="$PATH:$HOME/.poetry/bin"
-
 # XDG default directories
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -16,6 +11,11 @@ export XDG_DOCUMENTS_DIR="$HOME/Documentos"
 export XDG_MUSIC_DIR="$HOME/Music"
 export XDG_PICTURES_DIR="$HOME/Imagens"
 export XDG_VIDEOS_DIR="$HOME/Videos"
+export XDG_USER_BIN="$HOME/.local/bin"
+
+# Adding python and other scripts to PATH
+export PATH="$XDG_USER_BIN:$PATH"
+export PATH="$PATH:$PYTHON_BIN_PATH"
 
 # EDITOR & VISUAL
 if [ -x "$(command -v nvim)" ]; then
