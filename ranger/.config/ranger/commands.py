@@ -279,3 +279,62 @@ class bulkrename_torrent(Command):
                         tags_changed = True
             if tags_changed:
                 self.fm.tags.dump()
+
+
+class paste_torrent(Command):
+    """:paste_torrent
+    Paste the selected items into the current directory or to dest
+    if provided, using stig interface when applicable.
+    """
+    overwrite = False
+    append = False
+    dest = None
+
+    @staticmethod
+    def read_stig_output(cmd_return) -> str:
+        return cmd_return.stdout.read().decode("utf-8").split("\n")[:-1]
+
+    def execute(self):
+        import subprocess
+        from pathlib import Path
+        from ranger.ext.safe_path import get_safe_path
+
+        self.make_safe_path = get_safe_path
+
+        # Getting all torrents from stig
+        torrents_cmd = self.fm.run(
+            ['stig', 'ls', '-c', 'id,name'],
+            stdout=subprocess.PIPE
+        )
+
+        if torrents_cmd.returncode == 0:
+            torrents = {}
+            for tor in self.read_stig_output(torrents_cmd):
+                tor_id, tor_name = tor.split("\t")
+                torrents[tor_name] = int(tor_id)
+        else:
+            self.fm.notify("There was an error fetching the torrent list")
+            return
+
+
+        if self.dest is None:
+            self.dest = Path(self.fm.thistab.path)
+
+        if self.dest.is_dir():
+
+            files_to_move = [Path(file.path) for file in self.fm.copy_buffer]
+            for file in files_to_move:
+
+                if torrents.get(file.name) is None:
+                    self.fm.run(
+                        ['mv', str(file.absolute()), str(self.dest.absolute())]
+                    )
+
+                else:
+                    self.fm.run(
+                        ['stig', 'mv', f'id={torrents[file.name]}', str(self.dest.absolute())]
+                    )
+
+            self.fm.do_cut = False
+        else:
+            self.notify('Failed to paste. The destination is invalid.', bad=True)
