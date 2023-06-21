@@ -126,34 +126,13 @@ class bulkrename_torrent(Command):
         assert len(new_filelist) == len(join_dict), "Filelist and join are not the same length"
         return new_filelist, join_dict
 
-    def execute(self):
-        import tempfile
-        import os
-        from pathlib import Path
+
+    def create_torrents_match(self, torrent_list: list, ranger_files: list):
+        """Create torrents and fetch its attributes
+        """
         import subprocess
-        from ranger.container.file import File
-        from ranger.ext.shell_escape import shell_escape as esc
-        from ranger.ext.keybinding_parser import PY3
+        from pathlib import Path
 
-        # Getting all torrents from stig
-        torrents_cmd = self.fm.run(
-            ['stig', 'ls', '-c', 'id,name,path'],
-            stdout=subprocess.PIPE
-        )
-
-        if torrents_cmd.returncode == 0:
-            torrent_list = self.read_stig_output(torrents_cmd)
-        else:
-            self.fm.notify("There was an error fetching the torrent list")
-            return
-
-        # Getting selected files and their full and relative paths
-        ranger_files = []
-        for f in self.fm.thistab.get_selection():
-            ranger_files.append(Path(f.path.replace(".part", "")))
-
-
-        # creating torrents and fetching its attributes
         torrents = {}
         join_dict = {}
         for tor in torrent_list:
@@ -183,6 +162,36 @@ class bulkrename_torrent(Command):
                             "files": filelist
                         }
                     join_dict.update(join)
+
+        return torrents, join_dict
+
+    def execute(self):
+        import tempfile
+        import os
+        from pathlib import Path
+        import subprocess
+        from ranger.container.file import File
+        from ranger.ext.shell_escape import shell_escape as esc
+        from ranger.ext.keybinding_parser import PY3
+
+        # Getting all torrents from stig
+        torrents_cmd = self.fm.run(
+            ['stig', 'ls', '-c', 'id,name,path'],
+            stdout=subprocess.PIPE
+        )
+
+        if torrents_cmd.returncode == 0:
+            torrent_list = self.read_stig_output(torrents_cmd)
+        else:
+            self.fm.notify("There was an error fetching the torrent list")
+            return
+
+        # Getting selected files and their full and relative paths
+        ranger_files = []
+        for f in self.fm.thistab.get_selection():
+            ranger_files.append(Path(f.path.replace(".part", "")))
+
+        torrents, join_dict = self.create_torrents_match(torrent_list, ranger_files)
 
         filenames = [
                 str(file.absolute()).replace(f"{self.fm.thistab.path}/", "")
@@ -232,7 +241,7 @@ class bulkrename_torrent(Command):
                         )
                     else:
                         script_lines.append(
-                            f"stig rename --unique -- id={tor_id}'{self.fm.thistab.path.replace(torrents[tor_id]['path'], '')}/{esc(old)}' {esc(new)}"
+                            f"stig rename --unique -- id={tor_id}'{self.fm.thistab.path.replace(torrents[tor_id]['path'], '')}/{old}' {esc(new)}"
                         )
 
             # Make sure not to forget the ending newline
