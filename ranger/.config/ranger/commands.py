@@ -322,7 +322,7 @@ class paste_torrent(Command):
 
         if self.dest.is_dir():
 
-            files_to_move = [Path(file.path) for file in self.fm.copy_buffer]
+            files_to_move = [Path(file.path.replace(".part", "")) for file in self.fm.copy_buffer]
             for file in files_to_move:
 
                 if torrents.get(file.name) is None:
