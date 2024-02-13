@@ -149,8 +149,6 @@ bindsym $alt+Tab focus mode_toggle
 #               Assign apps to workspaces
 ###########################################################
 
-assign [class="Google-chrome"] workspace $ws3
-assign [class="Code"] workspace $ws3
 assign [class="TelegramDesktop"] workspace $ws10
 assign [class="whatsappweb-nativefier-d40211"] workspace $ws10
 assign [instance="crx_hnpfjngllnobngcgfapefoaidbinmjnm"] workspace $ws10

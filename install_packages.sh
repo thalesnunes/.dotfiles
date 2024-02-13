@@ -30,14 +30,17 @@ fi
 echo
 
 if is_installed "pip"; then
-    python_packages_raw=$([ -f "$DOT/python_packages" ] && cat "$DOT/python_packages" || curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/python_packages)
-    python_packages=$(echo "$python_packages_raw" | tr "\n" " ")
     if yn_pr "Do you want to install the default python packages? [Y/n]: "; then
+        python_packages_raw=$([ -f "$DOT/python_packages" ] && cat "$DOT/python_packages" || curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/python_packages)
+        python_packages=$(echo "$python_packages_raw" | tr "\n" " ")
         pip install -U $python_packages
+        for package in $([ -f "$DOT/pipx_packages" ] && cat "$DOT/pipx_packages" || curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/pipx_packages); do
+            pipx install "$package"
+        done
+        pipx inject ranger-fm pynvim
         export ZSH_CUSTOM="$XDG_CONFIG_HOME/zsh/oh-my-zsh/custom"
-        curl -sSL https://install.python-poetry.org | python -
         mkdir -p ${ZSH_CUSTOM}/plugins/poetry
-        $HOME/.local/bin/poetry completions zsh > ${ZSH_CUSTOM}/plugins/poetry/_poetry
+        $XDG_USER_BIN/poetry completions zsh > ${ZSH_CUSTOM}/plugins/poetry/_poetry
     fi
 fi
 

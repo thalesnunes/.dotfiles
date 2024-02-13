@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+if [[ ! -d "/run/media/thales/External HD" ]]; then
+    udisksctl mount -b /dev/$(udisksctl status | awk '/Samsung SSD 850 EVO 500GB/ {print $NF}')2 &> /dev/null
+fi

@@ -1,13 +1,11 @@
 black
 doq
-gcal-notifier
-neovim
 numpy
 pandas
 pipenv
-proj-init
+pipx
 pulsemixer
+pynvim
 python-crontab
 python-lsp-server
-stig
 wheel
