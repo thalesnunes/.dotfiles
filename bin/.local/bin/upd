@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+if command -v paru > /dev/null; then
+    paru
+    exit 0
+elif command -v yay > /dev/null; then
+    yay
+    exit 0
+elif command -v pacman > /dev/null; then
+    sudo pacman -Syuu
+    exit 0
+elif command -v apt > /dev/null; then
+    sudo apt update && sudo apt upgrade
+    exit 0
+elif command -v apk > /dev/null; then
+    sudo apk update
+    exit 0
+elif command -v dnf > /dev/null; then
+    sudo dnf upgrade
+    exit 0
+elif command -v zypper > /dev/null; then
+    sudo zypper update
+    exit 0
+else
+    echo "No default update tool was found"
+    exit 1
+fi

@@ -76,15 +76,15 @@ bindsym $mod+Shift+comma resize shrink height 5 px or 5 ppt
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1:Pessoal"
-set $ws2 "2:USP"
-set $ws3 "3:Trabalho"
+set $ws2 "2:Work"
+set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8:Música"
-set $ws9 "9:Terminal"
-set $ws10 "10:Outros"
+set $ws8 "8"
+set $ws9 "9:Chat"
+set $ws10 "10:Terminal"
 
 # Switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -149,13 +149,13 @@ bindsym $alt+Tab focus mode_toggle
 #               Assign apps to workspaces
 ###########################################################
 
-assign [class="TelegramDesktop"] workspace $ws10
-assign [class="whatsappweb-nativefier-d40211"] workspace $ws10
-assign [instance="crx_hnpfjngllnobngcgfapefoaidbinmjnm"] workspace $ws10
+assign [class="TelegramDesktop"] workspace $ws9
+assign [class="whatsappweb-nativefier-d40211"] workspace $ws9
+assign [instance="crx_hnpfjngllnobngcgfapefoaidbinmjnm"] workspace $ws9
 assign [class="notion-nativefier-46aee8"] workspace $ws10
 assign [instance="crx_gpmngigldijofdhcmpepkjelnjhoddlh"] workspace $ws10
-assign [class="Slack"] workspace $ws10
-assign [class="zoom"] workspace $ws10
+assign [class="Slack"] workspace $ws9
+assign [class="zoom"] workspace $ws9
 assign [class="URxvt" instance="^stig$"] workspace $ws10
 
 # Open specific applications in floating mode
@@ -218,14 +218,13 @@ bindsym $mod+Return exec $terminal
 bindsym $alt+Control+BackSpace exec $config/rofi/launch Power
 
 # Open browsers
-bindsym $mod+b exec brave --profile-directory="Default"
-bindsym $mod+u workspace $ws2, exec brave --profile-directory="Profile 1"
+bindsym $mod+b exec brave --profile-directory="$($bin/get_profile_by_name_brave.py 'Pessoal')"
 
 # Telegram
 bindsym $mod+m exec --no-startup-id telegram-desktop
 
 # Whatsapp
-bindsym $mod+n exec brave --profile-directory="Default" --app-id=hnpfjngllnobngcgfapefoaidbinmjnm
+bindsym $mod+n exec brave --profile-directory="$($bin/get_profile_by_name_brave.py 'Pessoal')" --app-id=hnpfjngllnobngcgfapefoaidbinmjnm
 
 # File Managers
 bindsym $mod+e exec $terminal start -- ranger
@@ -318,6 +317,19 @@ mode "SCREENSHOT" {
     bindsym Escape mode "default"
 }
 
+# Work mode
+bindsym $mod+w mode "WORK"
+mode "WORK" {
+    # Browser on Upwork profile
+    bindsym b workspace $ws2, exec brave --profile-directory="$($bin/get_profile_by_name_brave.py 'Upwork')"; mode "default"
+    # Slack
+    bindsym m exec slack; mode "default"
+    # DBeaver
+    bindsym d exec dbeaver; mode "default"
+    # Escape mode
+    bindsym Escape mode "default"
+}
+
 
 ###########################################################
 #                        i3-gaps
@@ -348,13 +360,13 @@ exec --no-startup-id picom -b
 # exec_always sleep 1 && light-dark-mode
 
 # urxvt daemon
-exec --no-startup-id urxvtd -q -o -f
+# exec --no-startup-id urxvtd -q -o -f
 
 # Enable Night-Light (Redshift)
 exec --no-startup-id redshift -l -23.536215622740578:-46.68497829306198
 
 # Keyring
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id lxpolkit
 
 # Clipboard manager
 exec --no-startup-id greenclip daemon
@@ -368,6 +380,9 @@ exec --no-startup-id xdotool mousemove_relative -- 10000 10000
 
 # Merge custom Xresources on startup
 exec --no-startup-id xrdb -merge $config/X11/.Xresources
+
+# Automounting drives
+exec --no-startup-id udiskie
 
 
 # vim:filetype=i3config

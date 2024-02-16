@@ -1,7 +1,11 @@
 -- Enable LSP
 local nvim_lsp = require('lspconfig')
 
-local servers = { 'pylsp', 'texlab', 'bashls', 'lua_ls' }
+local servers = {
+    'pylsp',
+    'bashls',
+    'lua_ls'
+}
 
 local basic_keybinds = function(bufnr)
     V.buf_keymap(bufnr, 'n', 'gD', vim.lsp.buf.declaration)

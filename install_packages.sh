@@ -1,15 +1,15 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 source install_utils.sh
 
 cd $HOME
 
-sudo pacman -Syuu --noconfirm
+$DOTFILES_BIN/upd
 
 if yn_pr "Do you want to install the default packages? [Y/n]: "; then
     packages_raw=$([ -f "$DOT/packages" ] && cat "$DOT/packages" || curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/packages)
     packages=$(echo "$packages_raw" | tr "\n" " ")
-    $AUR_HELPER --noconfirm -S $packages
+    $INSTALL $packages
 fi
 
 echo
@@ -56,7 +56,8 @@ echo
 
 if is_installed "gsettings"; then
     if yn_pr "Do you want to install the Dracula theme and icons? [Y/n]: "; then
-        $AUR_HELPER --noconfirm -S dracula-gtk-theme dracula-icons-git
+        sudo git clone https://github.com/dracula/gtk /usr/share/themes/Dracula
+        sudo git clone https://github.com/m4thewz/dracula-icons /usr/share/icons/Dracula
         gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
         gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
         gsettings set org.gnome.desktop.interface icon-theme "Dracula"
