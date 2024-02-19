@@ -17,6 +17,13 @@ export XDG_USER_BIN="$HOME/.local/bin"
 export PATH="$XDG_USER_BIN:$PATH"
 export PATH="$PATH:$PYTHON_BIN_PATH"
 
+# TERMINAL
+if [ -x "$(command -v wezterm)" ]; then
+    export TERMINAL=/usr/bin/wezterm
+else
+    export TERMINAL=/usr/bin/x-terminal-emulator
+fi
+
 # EDITOR & VISUAL
 if [ -x "$(command -v nvim)" ]; then
     export EDITOR=/usr/bin/nvim
