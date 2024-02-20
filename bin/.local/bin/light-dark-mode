@@ -16,5 +16,5 @@ else
     MODE=$1
 fi
 
-$bin/feh_init $MODE > /dev/null 2>&1 &
+$bin/wallpaper_setter $MODE > /dev/null 2>&1 &
 $bin/polybar_starter $MODE > /dev/null 2>&1 &

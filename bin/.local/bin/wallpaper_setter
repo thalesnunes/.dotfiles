@@ -1,0 +1,72 @@
+#!/usr/bin/env python
+
+# DIR="$HOME/Imagens/Wallpapers"
+# day="day_valley.jpg"
+# night="night_firewatch.png"
+
+# if [[ $1 = "light" ]]; then
+#     Wallpaper=$day
+# elif [[ $1 = "dark" ]]; then
+#     Wallpaper=$night
+# fi
+
+# feh --no-fehbg --bg-fill "$DIR/$Wallpaper"
+
+# DIR="$HOME/Imagens/Wallpapers/Lakeside Day-Night"
+
+# cd "$DIR"
+# img=$(ls *$(date +%H)*)
+
+# feh --no-fehbg --bg-fill "$img"
+
+from argparse import ArgumentParser
+import os
+from pathlib import Path
+import random
+import subprocess
+import sys
+
+IMAGES_DIR = Path("/usr/share/dynamic-wallpaper/images")
+CACHE_DIR = Path(os.environ.get("XDG_CACHE_HOME", os.path.expanduser("~/.cache")))
+CURRENT_STYLE_FILE = CACHE_DIR / "dynamic-wallpaper" / "current"
+
+STYLES = []
+MIN_IMAGE_COUNT = 8
+EXCLUDE_STYLES = ["lakeside", "gradient"]
+
+parser = ArgumentParser('wallpaper_setter')
+parser.add_argument("-r", "--randomize", help="randomize wallpaper style", action="store_true")
+parser.add_argument("-s", "--style", help="name of the style to set")
+args = parser.parse_args()
+
+flag_first_run = not CURRENT_STYLE_FILE.is_file()
+flag_randomize = True if args.randomize or flag_first_run else False
+(CACHE_DIR / "dynamic-wallpaper").mkdir(exist_ok=True, parents=True)
+
+all_styles = list(IMAGES_DIR.glob("*/"))
+
+if args.style:
+    chosen_style = args.style
+
+if not flag_randomize and not flag_first_run and not args.style:
+    with open(CURRENT_STYLE_FILE) as cur_file:
+        chosen_style = cur_file.read()
+    if chosen_style == "" or chosen_style not in [style.name for style in all_styles]:
+        flag_randomize = True
+
+if flag_randomize and not args.style:
+
+    for style in all_styles:
+        style_image_count = 0
+        for file in style.glob("*"):
+            if file.suffix in (".jpg", ".png") and not file.is_symlink():
+                style_image_count += 1
+        if style_image_count >= MIN_IMAGE_COUNT and style.name not in EXCLUDE_STYLES:
+            STYLES.append(style.name)
+
+    chosen_style = random.choice(STYLES)
+
+subprocess.run(["dwall", "-s", chosen_style])
+
+with open(CURRENT_STYLE_FILE, "w") as cur_file:
+    cur_file.write(chosen_style)
