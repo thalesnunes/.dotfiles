@@ -27,3 +27,5 @@ source $ZSH/oh-my-zsh.sh
 # Home dir cleanup
 mkdir -p "$XDG_CACHE_HOME"/zsh
 compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
+setopt globdots
+zstyle ':completion:*' special-dirs false

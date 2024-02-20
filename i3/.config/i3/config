@@ -77,7 +77,7 @@ bindsym $mod+Shift+comma resize shrink height 5 px or 5 ppt
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1:Pessoal"
 set $ws2 "2:Work"
-set $ws3 "3"
+set $ws3 "3:DB"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
@@ -157,6 +157,7 @@ assign [instance="crx_gpmngigldijofdhcmpepkjelnjhoddlh"] workspace $ws10
 assign [class="Slack"] workspace $ws9
 assign [class="zoom"] workspace $ws9
 assign [class="URxvt" instance="^stig$"] workspace $ws10
+assign [class="DBeaver"] workspace $ws3
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -384,5 +385,7 @@ exec --no-startup-id xrdb -merge $config/X11/.Xresources
 # Automounting drives
 exec --no-startup-id udiskie
 
+# SSH agent
+exec --no-startup-id eval $(ssh-agent)
 
 # vim:filetype=i3config
