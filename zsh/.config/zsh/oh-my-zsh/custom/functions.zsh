@@ -76,17 +76,25 @@ function config() {
 
 function proj() {
 
-    if [[ $# -eq 1 ]]; then
-        NAME=$1
-    else
-        NAME=$(ls -1q $PROJECTS | fzf)
+    PROJ_DIR=$PROJECTS
+
+    if [[ $1 == "w" ]]; then
+        PROJ_DIR=$WORK_PROJECTS
     fi
 
-    if [[ -z "$NAME" ]] || [[ ! -d "$PROJECTS/$NAME" ]]; then
+    if [[ $# -eq 1 && $1 != "w" ]]; then
+        NAME=$1
+    elif [[ $# -eq 2 && $1 == "w" ]]; then
+        NAME=$2
+    else
+        NAME=$(ls -1q $PROJ_DIR | fzf)
+    fi
+
+    if [[ -z "$NAME" ]] || [[ ! -d "$PROJ_DIR/$NAME" ]]; then
         return
     fi
 
-    TOCD="$PROJECTS/$NAME"
+    TOCD="$PROJ_DIR/$NAME"
     CMD=""
     if [[ -f "$TOCD/poetry.lock" ]]; then
         CMD="poetry run "

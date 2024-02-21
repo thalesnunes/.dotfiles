@@ -14,6 +14,7 @@ alias gc='git commit -m'
 alias gp='git push'
 
 alias dot='cd $DOT'
+alias projw='proj w'
 
 alias per='pipenv run'
 alias por='poetry run'
