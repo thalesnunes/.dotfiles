@@ -385,7 +385,4 @@ exec --no-startup-id xrdb -merge $config/X11/.Xresources
 # Automounting drives
 exec --no-startup-id udiskie
 
-# SSH agent
-exec --no-startup-id eval $(ssh-agent)
-
 # vim:filetype=i3config
