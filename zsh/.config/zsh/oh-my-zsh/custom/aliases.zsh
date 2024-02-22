@@ -34,7 +34,5 @@ alias yt_down='yt-dlp -o "~/Downloads/%(title)s.%(ext)s" -f "[ext=mp4][height<=1
 
 alias hist="history | awk -F' ' '{ \$1=\"\"; print }' | fzf --tac --no-sort"
 
-alias run_snowsql="$WORK_PROJECTS"/dps_shared/bin/run_snowsql
-
 # HOME DIR CLEANUP
 alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME/nvidia/settings"'
