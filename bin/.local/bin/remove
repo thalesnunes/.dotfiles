@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+if command -v paru > /dev/null; then
+    paru -Rns $@
+    exit 0
+elif command -v yay > /dev/null; then
+    yay -Rns $@
+    exit 0
+elif command -v pacman > /dev/null; then
+    sudo pacman -Rns $@
+    exit 0
+elif command -v apt > /dev/null; then
+    sudo apt purge $@
+    exit 0
+elif command -v apk > /dev/null; then
+    sudo apk delete $@
+    exit 0
+elif command -v dnf > /dev/null; then
+    sudo dnf remove $@
+    exit 0
+elif command -v zypper > /dev/null; then
+    sudo zypper remove $@
+    exit 0
+else
+    echo "No default installation tool was found"
+    exit 1
+fi

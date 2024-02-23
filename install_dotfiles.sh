@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 source install_utils.sh
 
@@ -19,7 +19,7 @@ if [ -n "$conflicts" ]; then
 
     rm_pr="Do you want to REMOVE all the conflicted files? [Y/n]: "
     mv_pr="Do you want to MOVE all the conflicted files to .old files? [Y/n]: "
-    yn_pr "$rm_pr" && echo "$conflicts" | xargs rm || yn_pr "$mv_pr" && echo "$conflicts" | xargs mv {} {}.old || exit 0
+    yn_pr "$rm_pr" && echo "$conflicts" | xargs rm -rf || yn_pr "$mv_pr" && echo "$conflicts" | xargs mv {} {}.old || exit 0
 fi
 
 echo

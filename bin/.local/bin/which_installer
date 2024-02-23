@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+for pkg_mgr in paru yay pacman apt apk dnf zypper; do
+    echo "$pkg_mgr"
+    exit 0
+done
+
+echo "No default installation tool was found"
+exit 1

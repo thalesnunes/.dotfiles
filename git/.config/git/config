@@ -63,3 +63,7 @@
 
 [delta "no-side-by-side"]
     side-by-side = false
+
+# WORK CONFIG
+[includeIf "gitdir:~/work_projects/"]
+    path = ~/.config/git/work_config

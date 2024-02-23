@@ -1,60 +1,3 @@
-function upd() {
-    if command -v paru > /dev/null; then
-        paru
-        return 0
-    elif command -v yay > /dev/null; then
-        yay
-        return 0
-    elif command -v pacman > /dev/null; then
-        sudo pacman -Syuu
-        return 0
-    elif command -v apt > /dev/null; then
-        sudo apt update && sudo apt upgrade
-        return 0
-    else
-        echo "No default update tool was found"
-        return 1
-    fi
-}
-
-function install() {
-    if command -v paru > /dev/null; then
-        paru -S $1
-        return 0
-    elif command -v yay > /dev/null; then
-        yay -S $1
-        return 0
-    elif command -v pacman > /dev/null; then
-        sudo pacman -S $1
-        return 0
-    elif command -v apt > /dev/null; then
-        sudo apt install $1
-        return 0
-    else
-        echo "No default installation tool was found"
-        return 1
-    fi
-}
-
-function remove() {
-    if command -v paru > /dev/null; then
-        paru -Rns $1
-        return 0
-    elif command -v yay > /dev/null; then
-        yay -Rns $1
-        return 0
-    elif command -v pacman > /dev/null; then
-        sudo pacman -Rns $1
-        return 0
-    elif command -v apt > /dev/null; then
-        sudo apt purge $1
-        return 0
-    else
-        echo "No default installation tool was found"
-        return 1
-    fi
-}
-
 function gi() {
     curl -sL https://www.toptal.com/developers/gitignore/api/$@
 }
@@ -133,17 +76,25 @@ function config() {
 
 function proj() {
 
-    if [[ $# -eq 1 ]]; then
-        NAME=$1
-    else
-        NAME=$(ls -1q $PROJECTS | fzf)
+    PROJ_DIR=$PROJECTS
+
+    if [[ $1 == "w" ]]; then
+        PROJ_DIR=$WORK_PROJECTS
     fi
 
-    if [[ -z "$NAME" ]] || [[ ! -d "$PROJECTS/$NAME" ]]; then
+    if [[ $# -eq 1 && $1 != "w" ]]; then
+        NAME=$1
+    elif [[ $# -eq 2 && $1 == "w" ]]; then
+        NAME=$2
+    else
+        NAME=$(ls -1q $PROJ_DIR | fzf)
+    fi
+
+    if [[ -z "$NAME" ]] || [[ ! -d "$PROJ_DIR/$NAME" ]]; then
         return
     fi
 
-    TOCD="$PROJECTS/$NAME"
+    TOCD="$PROJ_DIR/$NAME"
     CMD=""
     if [[ -f "$TOCD/poetry.lock" ]]; then
         CMD="poetry run "
