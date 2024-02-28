@@ -225,7 +225,7 @@ bindsym $mod+b exec brave --profile-directory="$($bin/get_profile_by_name_brave.
 bindsym $mod+m exec --no-startup-id telegram-desktop
 
 # Whatsapp
-bindsym $mod+n exec brave --profile-directory="$($bin/get_profile_by_name_brave.py 'Pessoal')" --app-id=hnpfjngllnobngcgfapefoaidbinmjnm
+bindsym $mod+n exec gtk-launch WhatsApp
 
 # File Managers
 bindsym $mod+e exec $terminal start -- ranger
@@ -331,6 +331,8 @@ mode "WORK" {
     bindsym m exec slack; mode "default"
     # DBeaver
     bindsym d exec dbeaver; mode "default"
+    # Calendar
+    bindsym c exec gtk-launch "Google Calendar"; mode "default"
     # Escape mode
     bindsym Escape mode "default"
 }
