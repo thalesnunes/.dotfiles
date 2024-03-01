@@ -154,6 +154,7 @@ assign [class="whatsappweb-nativefier-d40211"] workspace $ws9
 assign [instance="crx_hnpfjngllnobngcgfapefoaidbinmjnm"] workspace $ws9
 assign [class="notion-nativefier-46aee8"] workspace $ws10
 assign [instance="crx_gpmngigldijofdhcmpepkjelnjhoddlh"] workspace $ws10
+assign [instance="crx_kjbdgfilnfhdoflbpgamdcdgpehopbep"] workspace $ws10
 assign [class="Slack"] workspace $ws9
 assign [class="zoom"] workspace $ws9
 assign [class="URxvt" instance="^stig$"] workspace $ws10

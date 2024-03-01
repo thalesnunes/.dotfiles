@@ -24,6 +24,8 @@ grep
 htim
 lazygit
 libqalculate
+libreoffice
+lxpolkit
 maim
 mpv
 neofetch
@@ -34,12 +36,10 @@ nm-connection-editor
 noto-fonts
 noto-fonts-emoji
 ntp
-onlyoffice
 os-prober
 pavucontrol
 pcmanfm-gtk3
 picom
-polkit-gnome
 polybar
 python
 python-pip
