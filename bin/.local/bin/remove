@@ -9,6 +9,9 @@ elif command -v yay > /dev/null; then
 elif command -v pacman > /dev/null; then
     sudo pacman -Rns $@
     exit 0
+elif command -v nala > /dev/null; then
+    sudo nala remove $@
+    exit 0
 elif command -v apt > /dev/null; then
     sudo apt purge $@
     exit 0
