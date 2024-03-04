@@ -26,7 +26,6 @@ vim.opt.scrolloff = 8
 vim.opt.termguicolors = true
 vim.opt.colorcolumn = '80'
 vim.opt.cursorline = true
-vim.opt.cursorlineopt = "number"
 
 vim.opt.laststatus = 2
 vim.opt.showmode = false
