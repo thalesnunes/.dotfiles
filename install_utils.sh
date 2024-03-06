@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DOTFILES_DIR="$(dirname "$0")"
+DOTFILES_DIR="$(realpath $(dirname ${BASH_SOURCE}))"
 DOTFILES_BIN="$DOTFILES_DIR/bin/.local/bin"
 INSTALL="$DOTFILES_BIN/install"
 
@@ -32,8 +32,17 @@ function install_aur_helper() {
     sudo rm -rf $AUR_HELPER-bin
 }
 
-echo "The installed package manager is '$($DOTFILES_BIN/which_installer)'."
-yn_pr "Would you like to install an AUR helper? [Y/n]: " && read -p "Which AUR helper: " AUR_HELPER && install_aur_helper
+PM_INSTALLED="$($DOTFILES_BIN/which_installer)"
+echo "The installed package manager is '$PM_INSTALLED'."
+case $PM_INSTALLED in
+    paru|yay)
+        echo "AUR helper already installed."
+        ;;
+    *)
+        yn_pr "Would you like to install an AUR helper? [Y/n]: " && read -p "Which AUR helper: " AUR_HELPER && install_aur_helper
+        ;;
+esac
+
 is_installed "curl"
 
 [ -f "$HOME/.dotfiles/x11/.profile" ] && source "$HOME/.dotfiles/x11/.profile" || eval "$(curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/x11/.profile)"
