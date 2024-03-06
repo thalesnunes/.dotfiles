@@ -386,6 +386,6 @@ exec --no-startup-id xdotool mousemove_relative -- 10000 10000
 exec --no-startup-id xrdb -merge $config/X11/.Xresources
 
 # Automounting drives
-exec --no-startup-id udiskie
+exec --no-startup-id udiskie -t
 
 # vim:filetype=i3config
