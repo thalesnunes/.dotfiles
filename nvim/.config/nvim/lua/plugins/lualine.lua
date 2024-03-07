@@ -1,7 +1,17 @@
+-- Change background color for better compatibility with tmux
+local custom_dracula = require('lualine.themes.dracula')
+local new_bg = '#262626'
+custom_dracula.normal.c.bg = new_bg
+custom_dracula.insert.c.bg = new_bg
+custom_dracula.visual.c.bg = new_bg
+custom_dracula.replace.c.bg = new_bg
+custom_dracula.command.c.bg = new_bg
+custom_dracula.inactive.c.bg = new_bg
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'dracula-nvim',
+    theme = custom_dracula,
     component_separators = {left = '|', right = '|'},
     section_separators = {left = '', right = ''},
     disabled_filetypes = {}
