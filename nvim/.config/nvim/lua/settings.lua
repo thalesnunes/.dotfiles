@@ -89,4 +89,5 @@ vim.cmd [[
     colorscheme dracula
     filetype plugin on
     highlight Normal guibg=none
+    highlight CursorLine guibg=#21222A
 ]]
