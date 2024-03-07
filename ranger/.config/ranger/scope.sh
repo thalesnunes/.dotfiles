@@ -148,6 +148,13 @@ handle_extension() {
         ini)
             env bat --color always --theme Dracula -pp --language ini \
                 -- "${FILE_PATH}" && exit 5
+            ;;
+
+        ## Source files
+        py|lua|sql|sh)
+            env bat --color always --theme Dracula -pp \
+                -- "${FILE_PATH}" && exit 5
+            ;;
     esac
 }
 
