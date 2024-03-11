@@ -25,8 +25,8 @@ return require('packer').startup(function(use)
 
     -- Themeing
     use {
-        'dracula/vim',
-        as = 'dracula',
+        'Mofiqul/dracula.nvim',
+        config = function() require('plugins.dracula') end
     }
 
     -- Status line

@@ -33,7 +33,7 @@ if is_installed "pip"; then
     if yn_pr "Do you want to install the default python packages? [Y/n]: "; then
         python_packages_raw=$([ -f "$DOT/python_packages" ] && cat "$DOT/python_packages" || curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/python_packages)
         python_packages=$(echo "$python_packages_raw" | tr "\n" " ")
-        pip install -U $python_packages
+        pip install --break-system-packages -U $python_packages
         for package in $([ -f "$DOT/pipx_packages" ] && cat "$DOT/pipx_packages" || curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/pipx_packages); do
             pipx install "$package"
         done
