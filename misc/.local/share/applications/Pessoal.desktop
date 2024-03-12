@@ -1,8 +1,0 @@
-[Desktop Entry]
-Exec=brave --profile-directory="Default"
-GenericName=Brave Pessoal
-Icon=internet-archive
-Name=Pessoal
-NoDisplay=false
-StartupNotify=true
-Type=Application
