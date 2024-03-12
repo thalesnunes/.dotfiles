@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-if command -v paru > /dev/null; then
+if command -v pmm > /dev/null; then
+    sudo pmm -Syu
+    exit 0
+elif command -v paru > /dev/null; then
     paru
     exit 0
 elif command -v yay > /dev/null; then
