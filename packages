@@ -45,7 +45,6 @@ redshift
 ripgrep
 rofi
 rofi-greenclip
-simplescreenrecorder
 speedtest-cli
 spotify-tui-bin
 spotifyd
@@ -65,6 +64,7 @@ ttf-liberation
 ttf-meslo-nerd-font-powerlevel10k
 ttf-ms-fonts
 ttf-opensans
+udiskie
 wezterm
 xcape
 xdg-utils
