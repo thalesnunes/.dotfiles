@@ -226,7 +226,7 @@ bindsym $mod+b exec brave --profile-directory="$($bin/get_profile_by_name_brave.
 bindsym $mod+m exec --no-startup-id telegram-desktop
 
 # Whatsapp
-bindsym $mod+n exec gtk-launch WhatsApp
+bindsym $mod+n exec brave --profile-directory=Default --app-id=hnpfjngllnobngcgfapefoaidbinmjnm
 
 # File Managers
 bindsym $mod+e exec $terminal start -- ranger
@@ -399,6 +399,6 @@ exec --no-startup-id xdotool mousemove_relative -- 10000 10000
 exec --no-startup-id xrdb -merge $config/X11/.Xresources
 
 # Automounting drives
-exec --no-startup-id udiskie -t
+exec --no-startup-id udiskie
 
 # vim:filetype=i3config
