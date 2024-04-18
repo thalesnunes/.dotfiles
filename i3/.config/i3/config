@@ -353,7 +353,7 @@ gaps inner 8
 ###########################################################
 
 # Set up monitor resolution and positioning, then theme mode
-exec_always $bin/screen_setup && $bin/light-dark-mode
+exec_always sleep 2 && $bin/desktop_setup
 
 # Picom daemon
 exec --no-startup-id picom -b
@@ -387,7 +387,7 @@ exec --no-startup-id greenclip daemon
 
 # Set keyboard rate, bell and suspension, then keyboard layout and xcape
 # then keyboard mouse control
-exec --no-startup-id $bin/brim && keynav daemonize
+exec --no-startup-id $bin/brim
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.

@@ -1,13 +1,21 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 DIR="${HOME}/.config/polybar"
+STYLE="minimal"
 
 if [[ $1 = "light" ]]; then
     COLORS=colors.day
 elif [[ $1 = "dark" ]]; then
     COLORS=colors.night
 fi
-COLORS=colors.night
 
 cp $DIR/minimal/$COLORS $DIR/minimal/colors.ini
-${HOME}/.config/polybar/launch.sh > /dev/null 2>&1 &
+
+# Terminate already running bar instances
+killall -q polybar
+
+# Wait until the processes have been shut down
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+
+# Launch the bar
+polybar -q main -c "$DIR/$STYLE/config.ini" &
