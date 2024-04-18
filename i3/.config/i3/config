@@ -349,7 +349,7 @@ gaps inner 8
 ###########################################################
 
 # Set up monitor resolution and positioning, then theme mode
-exec_always $bin/screen_setup && $bin/light-dark-mode
+exec_always sleep 2 && $bin/light-dark-mode
 
 # Picom daemon
 exec --no-startup-id picom -b
@@ -377,7 +377,7 @@ exec --no-startup-id greenclip daemon
 
 # Set keyboard rate, bell and suspension, then keyboard layout and xcape
 # then keyboard mouse control
-exec --no-startup-id $bin/brim && keynav daemonize
+exec --no-startup-id $bin/brim
 
 # Move cursor out of the way by default
 exec --no-startup-id xdotool mousemove_relative -- 10000 10000
