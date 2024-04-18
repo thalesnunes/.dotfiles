@@ -349,7 +349,7 @@ gaps inner 8
 ###########################################################
 
 # Set up monitor resolution and positioning, then theme mode
-exec_always sleep 2 && $bin/light-dark-mode
+exec_always sleep 2 && $bin/desktop_setup
 
 # Picom daemon
 exec --no-startup-id picom -b
