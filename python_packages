@@ -1,6 +1,5 @@
 black
 doq
-libtorrent
 numpy
 pandas
 pipenv

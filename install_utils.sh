@@ -2,7 +2,7 @@
 
 DOTFILES_DIR="$(realpath $(dirname ${BASH_SOURCE}))"
 DOTFILES_BIN="$DOTFILES_DIR/bin/.local/bin"
-INSTALL="$DOTFILES_BIN/install"
+INSTALL="$DOTFILES_BIN/inst"
 
 function yn_pr() {
     while true; do
