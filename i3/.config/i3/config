@@ -226,7 +226,7 @@ bindsym $mod+b exec brave --profile-directory="$($bin/get_profile_by_name_brave.
 bindsym $mod+m exec --no-startup-id telegram-desktop
 
 # Whatsapp
-bindsym $mod+n exec brave --profile-directory=Default --app-id=hnpfjngllnobngcgfapefoaidbinmjnm
+bindsym $mod+n exec brave --profile-directory="$($bin/get_profile_by_name_brave.py 'Pessoal')" --app-id=hnpfjngllnobngcgfapefoaidbinmjnm
 
 # File Managers
 bindsym $mod+e exec $terminal start -- ranger
@@ -349,22 +349,10 @@ gaps inner 8
 ###########################################################
 
 # Set up monitor resolution and positioning, then theme mode
-exec_always sleep 2 && $bin/desktop_setup
+exec_always sleep 3 && $bin/desktop_setup
 
 # Picom daemon
 exec --no-startup-id picom -b
-
-# Fetch sunrise and sunset times
-# exec --no-startup-id sunrise-sunset
-
-# Run crontab manager to set light and dark jobs
-# exec --no-startup-id sleep 3 && ctab.py
-
-# Set mode on boot
-# exec_always sleep 1 && light-dark-mode
-
-# urxvt daemon
-# exec --no-startup-id urxvtd -q -o -f
 
 # Enable Night-Light (Redshift)
 exec --no-startup-id redshift -l -23.536215622740578:-46.68497829306198
