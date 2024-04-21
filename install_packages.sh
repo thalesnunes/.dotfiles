@@ -24,6 +24,7 @@ if is_installed "zsh"; then
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
         mkdir -p "$XDG_CACHE_HOME/zsh"
+        mkdir -p "$XDG_STATE_HOME/zsh"
         chsh -s "$(which zsh)"
     fi
 fi
