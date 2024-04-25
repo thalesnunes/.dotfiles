@@ -58,15 +58,8 @@ end
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
-local packer_group = augroup('Packer', { clear = true })
 local yank_group = augroup('highlight_yank', { clear = true })
 local thales_group = augroup('thales', { clear = true })
-
-autocmd('BufWritePost', {
-    group = packer_group,
-    pattern = { 'init.lua', 'keymaps.lua', 'plugins.lua', 'settings.lua' },
-    command = 'PackerCompile',
-})
 
 autocmd('TextYankPost', {
     group = yank_group,

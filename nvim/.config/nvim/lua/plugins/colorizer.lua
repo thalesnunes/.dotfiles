@@ -1,6 +1,7 @@
-require('colorizer').setup(
-    nil,
-    {
-        rgb_fn = true;
+return {
+    'norcalli/nvim-colorizer.lua',
+    cmd = {
+        'ColorizerAttachToBuffer',
+        'ColorizerToggle',
     }
-)
+}
