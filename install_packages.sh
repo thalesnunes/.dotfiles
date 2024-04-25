@@ -50,7 +50,7 @@ echo
 
 if is_installed "nvim"; then
     if yn_pr "Do you want to install the default nvim plugins? [Y/n]: "; then
-        nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+        nvim --headless "+Lazy! sync" +qa
     fi
 fi
 

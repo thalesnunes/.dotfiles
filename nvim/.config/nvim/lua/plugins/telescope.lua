@@ -1,103 +1,117 @@
--- Telescope
-require('telescope').setup {
-    defaults = {
-        prompt_prefix = '❯ ',
-        selection_caret = '❯ ',
-        layout_strategy = 'flex',
-        layout_config = {
-            horizontal = {
-            preview_width = function(_, cols, _)
-                    if cols > 200 then
-                        return math.floor(cols * 0.4)
-                    else
-                        return math.floor(cols * 0.6)
-                    end
-                end,
-            },
-
-            vertical = {
-                width = 0.9,
-                height = 0.95,
-                preview_height = 0.5,
-            },
-
-            flex = {
-                -- horizontal = {
-                --     preview_width = 0.9,
-                -- },
-            },
+return {
+    {
+        'nvim-telescope/telescope.nvim',
+        event = 'VimEnter',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
         },
-        sorting_strategy = 'descending',
-        color_devicons = true,
-        mappings = {
-            i = {
-                ['<C-j>'] = 'move_selection_next',
-                ['<C-k>'] = 'move_selection_previous',
-                ['<ESC>'] = 'close',
-                ['<CR>'] = function(prompt_bufnr)
-                        local picker = require('telescope.actions.state').get_current_picker(prompt_bufnr)
-                        local multi = picker:get_multi_selection()
-                        if not vim.tbl_isempty(multi) then
-                            require('telescope.actions').close(prompt_bufnr)
-                            for _, j in pairs(multi) do
-                                if j.path ~= nil then
-                                    vim.cmd(string.format('%s %s', 'edit', j.path))
-                                end
+        opts = {
+            defaults = {
+                prompt_prefix = '❯ ',
+                selection_caret = '❯ ',
+                layout_strategy = 'flex',
+                layout_config = {
+                    horizontal = {
+                    preview_width = function(_, cols, _)
+                            if cols > 200 then
+                                return math.floor(cols * 0.4)
+                            else
+                                return math.floor(cols * 0.6)
                             end
-                        else
-                            require('telescope.actions').select_default(prompt_bufnr)
+                        end,
+                    },
+
+                    vertical = {
+                        width = 0.9,
+                        height = 0.95,
+                        preview_height = 0.5,
+                    },
+
+                    flex = {
+                        -- horizontal = {
+                        --     preview_width = 0.9,
+                        -- },
+                    },
+                },
+                sorting_strategy = 'descending',
+                color_devicons = true,
+                mappings = {
+                    i = {
+                        ['<C-j>'] = 'move_selection_next',
+                        ['<C-k>'] = 'move_selection_previous',
+                        ['<ESC>'] = 'close',
+                        ['<CR>'] = function(prompt_bufnr)
+                            local picker = require('telescope.actions.state').get_current_picker(prompt_bufnr)
+                            local multi = picker:get_multi_selection()
+                            if not vim.tbl_isempty(multi) then
+                                require('telescope.actions').close(prompt_bufnr)
+                                for _, j in pairs(multi) do
+                                    if j.path ~= nil then
+                                        vim.cmd(string.format('%s %s', 'edit', j.path))
+                                    end
+                                end
+                            else
+                                require('telescope.actions').select_default(prompt_bufnr)
+                            end
                         end
-                    end
+                    },
+                    n = {
+                        ['g'] = 'move_to_top',
+                        ['G'] = 'move_to_bottom',
+                    },
+                },
+                vimgrep_arguments = {
+                    'rg',
+                    '--color=never',
+                    '--no-heading',
+                    '--with-filename',
+                    '--line-number',
+                    '--column',
+                    '--smart-case',
+                    '--no-ignore',
+                    '--hidden',
+                    '--trim',
+                },
+                file_ignore_patterns = {
+                    '.git',
+                    'node_modules',
+                    '.cache',
+                    '__pycache__',
+                    '%.pyc',
+                },
             },
-            n = {
-                ['g'] = 'move_to_top',
-                ['G'] = 'move_to_bottom',
+            pickers = {
+                buffers = {
+                    initial_mode = 'normal',
+                    mappings = {
+                        n = {
+                            ['<leader>q'] = 'delete_buffer',
+                        }
+                    }
+                },
+            },
+            extensions = {
+                fzf = {
+                    fuzzy = true,
+                    override_generic_sorter = true,
+                    override_file_sorter = true,
+                    case_mode = 'smart_case',
+                },
             },
         },
-        vimgrep_arguments = {
-            'rg',
-            '--color=never',
-            '--no-heading',
-            '--with-filename',
-            '--line-number',
-            '--column',
-            '--smart-case',
-            '--no-ignore',
-            '--hidden',
-            '--trim',
-        },
-        file_ignore_patterns = {
-            '.git',
-            'node_modules',
-            '.cache',
-            '__pycache__',
-            '%.pyc',
-        },
+        config = function()
+            require('telescope').load_extension('fzf')
+
+            -- Find files using Telescope command-line sugar.
+            V.keymap('n', '<leader>ff', ':Telescope find_files hidden=true <CR>')
+            V.keymap('n', '<leader>fw', ':Telescope live_grep<CR>')
+            V.keymap('n', '<leader>b', ':Telescope buffers<CR>')
+            V.keymap('n', '<leader>H', ':Telescope help_tags<CR>')
+        end
     },
-    pickers = {
-        buffers = {
-            initial_mode = 'normal',
-            mappings = {
-                n = {
-                    ['<leader>q'] = 'delete_buffer',
-                }
-            }
-        },
-    },
-    extensions = {
-        fzf = {
-            fuzzy = true,
-            override_generic_sorter = true,
-            override_file_sorter = true,
-            case_mode = 'smart_case',
-        },
-    },
+    {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make',
+    }
+
 }
-
-require('telescope').load_extension('fzf')
-
--- Find files using Telescope command-line sugar.
-V.keymap('n', '<leader>ff', ':Telescope find_files hidden=true <CR>')
-V.keymap('n', '<leader>fw', ':Telescope live_grep<CR>')
-V.keymap('n', '<leader>b', ':Telescope buffers<CR>')
-V.keymap('n', '<leader>H', ':Telescope help_tags<CR>')
