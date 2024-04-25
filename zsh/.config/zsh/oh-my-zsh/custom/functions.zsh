@@ -80,7 +80,7 @@ function proj() {
 
     if [[ $1 == "w" ]]; then
         PROJ_DIR=$WORK_PROJECTS
-        eval $(ssh-agent)
+        pidof -q ssh-agent || eval $(ssh-agent)
         ssh-add ~/.ssh/id_rsa &> /dev/null
     fi
 
