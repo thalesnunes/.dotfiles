@@ -329,7 +329,7 @@ mode "WORK" {
     # Browser on Upwork profile
     bindsym b workspace $ws2, exec brave --profile-directory="$($bin/get_profile_by_name_brave.py 'Upwork')"; mode "default"
     # Slack
-    bindsym m exec slack; mode "default"
+    bindsym m exec TZ='America/Sao_Paulo' slack; mode "default"
     # DBeaver
     bindsym d exec dbeaver; mode "default"
     # Calendar
