@@ -28,7 +28,6 @@ if [[ $1 == "start" || $1 == "" ]]; then
          --volume "$CACHE_DIR":/cache \
          --mount type=bind,source="$MEDIA_DIR",target=/media \
          --restart=unless-stopped \
-         --gpus all \
          jellyfin/jellyfin:latest
     fi
 elif [ $1 == "stop" ]; then
