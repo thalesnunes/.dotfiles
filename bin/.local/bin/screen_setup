@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
 
-if [ -n "$1" ]; then
-    file="$1"
-else
-    file="$HOME/.config/xrandrrc"
-fi
+# if [ -n "$1" ]; then
+#     file="$1"
+# else
+#     file="$HOME/.config/xrandrrc"
+# fi
 
-if [ -f "$file" ]; then
-    while read flags; do
-        xrandr $flags 2> /dev/null && exit 0
-    done < "$file"
-    notify-send -u critical -a "Xrandr" "Error on screen setup"
-else
-    notify-send -u critical -a "Xrandr" "No xrandrrc file available"
-fi
+# if [ -f "$file" ]; then
+#     while read flags; do
+#         xrandr $flags 2> /dev/null && exit 0
+#     done < "$file"
+#     notify-send -u critical -a "Xrandr" "Error on screen setup"
+# else
+#     notify-send -u critical -a "Xrandr" "No xrandrrc file available"
+# fi
 
+autorandr --change

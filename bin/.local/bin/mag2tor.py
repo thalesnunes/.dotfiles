@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 '''
 Created on Apr 19, 2012
 @author: dan, Faless
