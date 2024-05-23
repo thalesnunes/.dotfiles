@@ -80,4 +80,14 @@ if yn_pr "Do you want to install dwall (Dynamic Wallpapers)? [Y/n]: "; then
 fi
 
 echo
+
+if yn_pr "Do you want to setup autorandr on lightdm? [Y/n]: "; then
+    mkdir -p /usr/share/lightdm/lightdm.conf.d
+    sudo /usr/bin/env bash -c 'cat <<EOF > /usr/share/lightdm/lightdm.conf.d/99-display-setup-script.conf
+[Seat:*]
+display-setup-script=/bedrock/cross/bin/autorandr --change
+EOF'
+fi
+
+echo
 echo "Done!"
