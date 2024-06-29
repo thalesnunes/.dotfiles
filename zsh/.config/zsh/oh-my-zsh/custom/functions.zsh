@@ -80,7 +80,10 @@ function proj() {
 
     if [[ $1 == "w" ]]; then
         PROJ_DIR=$WORK_PROJECTS
-        pidof -q ssh-agent || eval $(ssh-agent)
+        pidof -q ssh-agent || ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
+        if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+            source "$XDG_RUNTIME_DIR/ssh-agent.env" > /dev/null
+        fi
         ssh-add ~/.ssh/id_rsa &> /dev/null
     fi
 
