@@ -115,11 +115,11 @@ workspace $ws2 output primary
 workspace $ws3 output primary
 workspace $ws4 output primary
 workspace $ws5 output primary
-workspace $ws10 output nonprimary
 workspace $ws6 output nonprimary
 workspace $ws7 output nonprimary
 workspace $ws8 output nonprimary
 workspace $ws9 output nonprimary
+workspace $ws10 output nonprimary
 
 
 ###########################################################
@@ -197,6 +197,7 @@ for_window [class="^cmd$"] floating enable
 for_window [class="^htop$"] floating enable
 for_window [class="^pulsemixer$"] floating enable
 for_window [class="^scratchpad$"] floating enable
+for_window [instance="crx_nngceckbapebfimnlniiiahkandclblb"] floating enable
 
 
 ###########################################################
@@ -322,6 +323,8 @@ mode "SCREENSHOT" {
 # Work mode
 bindsym $mod+w mode "WORK"
 mode "WORK" {
+    # Work starter
+    bindsym s exec $bin/work_starter; mode "default"
     # Browser on Upwork profile
     bindsym b workspace $ws2, exec brave --profile-directory="$($bin/get_profile_by_name_brave.py 'Upwork')"; mode "default"
     # Slack
@@ -375,5 +378,8 @@ exec --no-startup-id xrdb -merge $config/X11/.Xresources
 
 # Automounting drives
 exec --no-startup-id udiskie
+
+# Gambiarra
+exec --no-startup-id sleep 1 && i3-msg restart && i3-msg workspace 10 && i3-msg workspace 1
 
 # vim:filetype=i3config
