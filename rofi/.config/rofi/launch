@@ -6,7 +6,7 @@ themes="$dir/themes"
 dracula="$themes/dracula"
 sidetext="$themes/sidetext"
 
-cmd="rofi -no-lazy-grab -monitor primary"
+cmd="rofi -no-lazy-grab -monitor -1"
 
 case "$1" in
     "")
