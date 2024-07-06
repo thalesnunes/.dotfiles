@@ -1,6 +1,7 @@
 autorandr
 awk
 base-devel
+bash-language-server
 bat
 blueman
 bluez
@@ -26,6 +27,7 @@ htim
 lazygit
 libqalculate
 libreoffice
+lua-language-server
 lxpolkit
 maim
 mpv
@@ -68,6 +70,7 @@ ttf-opensans
 udiskie
 wezterm
 xcape
+xclip
 xdg-utils
 xorg-xev
 xorg-xrdb
