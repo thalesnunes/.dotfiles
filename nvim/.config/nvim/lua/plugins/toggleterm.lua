@@ -2,7 +2,7 @@ return {
     'akinsho/toggleterm.nvim',
     keys = {
         '<leader>t',
-        '<leader>g',
+        -- '<leader>g',
     },
     opts = {
         -- size can be a number or function which is passed the current terminal
@@ -53,6 +53,6 @@ return {
         end
 
         -- ToggleTerm lazygit
-        V.keymap('n', '<leader>g', ':lua _lazygit_toggle()<CR>')
+        -- V.keymap('n', '<leader>g', ':lua _lazygit_toggle()<CR>')
     end,
 }

@@ -28,9 +28,6 @@ V.keymap('n', 'n', 'nzzzv')
 V.keymap('n', 'N', 'Nzzzv')
 V.keymap('n', 'J', 'mzJ`z')
 
--- Exit terminal mode
-V.keymap('t', '<Esc>', '<C-\\><C-n>')
-
 -- Add blank line
 V.keymap('n', '<leader>o', 'o<esc>')
 V.keymap('n', '<leader>O', 'O<esc>')
