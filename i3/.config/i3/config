@@ -59,8 +59,8 @@ bindsym $mod+i focus output left
 bindsym $mod+o focus output right
 
 # Move windows between monitors
-bindsym $mod+Shift+i move container output left, focus output left
-bindsym $mod+Shift+o move container output right, focus output right
+bindsym $mod+$alt+i move container output left, focus output left
+bindsym $mod+$alt+o move container output right, focus output right
 
 # Resize outside resize mode
 bindsym $mod+period resize grow width 5 px or 5 ppt
