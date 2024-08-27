@@ -1,5 +1,4 @@
 configuration {
-  font: "MesloLGS NF 13";
   show-icons: false;
 }
 
