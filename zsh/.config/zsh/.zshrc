@@ -7,6 +7,7 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="${XDG_CONFIG_HOME:-$HOME/.config}/zsh/oh-my-zsh"
+export ZSH_CUSTOM="$ZSH/custom"
 
 # Themeing
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -14,7 +15,9 @@ POWERLEVEL9K_MODE="nerdfont-complete"
 
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting poetry)
+plugins=(git zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting poetry)
+
+fpath+=$ZSH_CUSTOM/plugins/zsh-completions/src
 
 export KEYTIMEOUT=1
 
