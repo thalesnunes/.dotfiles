@@ -9,6 +9,7 @@ bluez-hid2hci
 bluez-libs
 bluez-utils
 brave-browser
+clipcat
 cronie
 cups
 cups-filters
@@ -47,7 +48,6 @@ python-pip
 redshift
 ripgrep
 rofi
-rofi-greenclip
 speedtest-cli
 spotify-tui-bin
 spotifyd
