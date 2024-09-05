@@ -233,7 +233,7 @@ bindsym $mod+e exec $terminal start -- ranger
 bindsym $mod+Shift+e exec pcmanfm
 
 # Clipboard Manager
-bindsym $mod+v exec $config/rofi/launch Clipboard
+bindsym $mod+v exec clipcat-menu
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
@@ -363,7 +363,7 @@ exec --no-startup-id redshift -l -23.536215622740578:-46.68497829306198
 exec --no-startup-id lxpolkit
 
 # Clipboard manager
-exec --no-startup-id greenclip daemon
+exec --no-startup-id clipcatd
 
 # Set keyboard rate, bell and suspension, then keyboard layout and xcape
 # then keyboard mouse control
