@@ -78,6 +78,7 @@ return {
                     '.cache',
                     '__pycache__',
                     '%.pyc',
+                    'star_schema',
                 },
             },
             pickers = {
