@@ -283,7 +283,7 @@ mode "APPS" {
     # Launch htop
     bindsym h exec $terminal start --class htop -- htop; mode "default"
     # Launch htop
-    bindsym t exec $terminal start --class scratchpad -- nvim /tmp/tmp; mode "default"
+    bindsym t exec $terminal start --class scratchpad -- nvim "/tmp/tmp_$(date +%s)"; mode "default"
     # Launch MPV script
     bindsym p exec $config/rofi/launch MPV; mode "default"
     # Open SPOTIFY mode
