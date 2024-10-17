@@ -376,7 +376,7 @@ exec --no-startup-id xdotool mousemove_relative -- 10000 10000
 exec --no-startup-id xrdb -merge $config/X11/.Xresources
 
 # Automounting drives
-exec --no-startup-id udiskie
+exec --no-startup-id udiskie -t
 
 # Gambiarra
 exec --no-startup-id sleep 1 && i3-msg restart && i3-msg workspace 10 && i3-msg workspace 1
