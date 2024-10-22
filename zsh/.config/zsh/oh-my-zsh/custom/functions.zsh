@@ -87,10 +87,14 @@ function proj() {
         ssh-add ~/.ssh/id_rsa &> /dev/null
     fi
 
-    if [[ $# -eq 1 && $1 != "w" ]]; then
+    if [[ $# -eq 1 && $1 != "w" && $1 != "a" ]]; then
         NAME=$1
     elif [[ $# -eq 2 && $1 == "w" ]]; then
         NAME=$2
+    elif [[ $# -eq 1 && $1 == "a" ]]; then
+        TOCD=$(find $PROJECTS $WORK_PROJECTS -maxdepth 1 -mindepth 1 -type d | fzf)
+        PROJ_DIR=$(dirname $TOCD)
+        NAME=$(basename $TOCD)
     else
         NAME=$(ls -1q $PROJ_DIR | fzf)
     fi
