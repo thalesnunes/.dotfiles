@@ -42,6 +42,7 @@ os-prober
 pavucontrol
 pcmanfm-gtk3
 picom
+playerctl
 polybar
 python
 python-pip
