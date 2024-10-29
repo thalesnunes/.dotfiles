@@ -34,7 +34,7 @@ alias yt_down='yt-dlp -o "~/Downloads/%(title)s.%(ext)s" -f "[ext=mp4][height<=1
 
 alias hist="history | awk -F' ' '{ \$1=\"\"; print }' | fzf --tac --no-sort"
 
-alias snowsql='i3-msg workspace "2" > /dev/null; $XDG_USER_BIN/snowsql'
+alias snowsql='i3-msg workspace "3" > /dev/null; $XDG_USER_BIN/snowsql'
 
 # HOME DIR CLEANUP
 alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME/nvidia/settings"'
