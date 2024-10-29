@@ -19,7 +19,13 @@ if [ -n "$conflicts" ]; then
 
     rm_pr="Do you want to REMOVE all the conflicted files? [Y/n]: "
     mv_pr="Do you want to MOVE all the conflicted files to .old files? [Y/n]: "
-    yn_pr "$rm_pr" && echo "$conflicts" | xargs rm -rf || yn_pr "$mv_pr" && echo "$conflicts" | xargs mv {} {}.old || exit 0
+    if yn_pr "$rm_pr"; then
+        echo "$conflicts" | xargs rm -rf
+    elif yn_pr "$mv_pr"; then
+        echo "$conflicts" | xargs mv {} {}.old
+    else
+        exit 0
+    fi
 fi
 
 echo
