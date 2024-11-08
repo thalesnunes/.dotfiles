@@ -377,9 +377,8 @@ exec --no-startup-id lxpolkit
 # Clipboard manager
 exec --no-startup-id clipcatd
 
-# Set keyboard rate, bell and suspension, then keyboard layout and xcape
-# then keyboard mouse control
-exec --no-startup-id xset r rate 330 30 b off s off -dpms
+# Set bell and suspension
+exec --no-startup-id xset b off s off -dpms
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
