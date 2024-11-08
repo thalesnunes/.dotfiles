@@ -217,7 +217,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+BackSpace exec $terminal
 
 # Exit i3 (logs you out of your X session)
-bindsym $alt+Control+BackSpace exec $config/rofi/launch Power
+bindsym $mod+$alt+BackSpace exec $config/rofi/launch Power
 
 # Open browsers
 bindsym $mod+b exec brave --profile-directory="$($bin/get_profile_by_name_brave.py 'Pessoal')"
