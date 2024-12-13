@@ -1,4 +1,5 @@
 autorandr
+acpi
 awk
 base-devel
 bash-language-server
@@ -50,8 +51,6 @@ redshift
 ripgrep
 rofi
 speedtest-cli
-spotify-tui-bin
-spotifyd
 stow
 telegram-desktop
 tmux
