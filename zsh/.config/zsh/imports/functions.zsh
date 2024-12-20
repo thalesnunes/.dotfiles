@@ -118,3 +118,14 @@ function proj() {
 function pretty_csv() {
     cat $1 | sed 's/,/ ,/g' | column -t -s, | bat
 }
+
+function prev() {
+    PREV=$(fc -lrn | head -n 1)
+    sh -c "pet new `printf %q "$PREV"`"
+}
+
+function pet-select() {
+    RBUFFER+=$(pet search)
+    CURSOR=$#BUFFER
+    zle redisplay
+}

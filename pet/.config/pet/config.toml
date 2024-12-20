@@ -1,0 +1,37 @@
+
+[GHEGist]
+  Public = false
+  access_token = ""
+  auto_sync = false
+  base_url = ""
+  file_name = ""
+  gist_id = ""
+  upload_url = ""
+
+[General]
+  Backend = "gist"
+  Cmd = []
+  Color = true
+  Column = 40
+  Editor = "/usr/bin/nvim"
+  Format = "[$description]: $command $tags"
+  SelectCmd = "fzf --ansi --layout=reverse --border --height=90% --pointer=* --cycle --prompt=Snippets:"
+  SnippetDirs = []
+  SnippetFile = "/home/thales/.local/share/pet/pet-snippet.toml"
+  SortBy = ""
+
+[Gist]
+  Public = false
+  access_token = ""
+  auto_sync = true
+  file_name = "pet-snippet.toml"
+  gist_id = "1700ecea9cdb570a38404589504c0d85"
+
+[GitLab]
+  ID = ""
+  Url = ""
+  Visibility = "private"
+  access_token = ""
+  auto_sync = false
+  file_name = "pet-snippet.toml"
+  skip_ssl = false
