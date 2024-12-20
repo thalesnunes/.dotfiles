@@ -43,6 +43,7 @@ ntp
 os-prober
 pavucontrol
 pcmanfm-gtk3
+pet-bin
 picom
 playerctl
 polybar
