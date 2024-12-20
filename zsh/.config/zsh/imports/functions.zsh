@@ -37,19 +37,19 @@ function config() {
             FILE=""
             ;;
         ali*)
-            TOCD="$DOT/zsh/.config/zsh/oh-my-zsh/custom"
+            TOCD="$DOT/zsh/.config/zsh/imports"
             FILE="aliases.zsh"
             ;;
         func*)
-            TOCD="$DOT/zsh/.config/zsh/oh-my-zsh/custom"
+            TOCD="$DOT/zsh/.config/zsh/imports"
             FILE="functions.zsh"
             ;;
         exp*)
-            TOCD="$DOT/zsh/.config/zsh/oh-my-zsh/custom"
+            TOCD="$DOT/zsh/.config/zsh/imports"
             FILE="exports.zsh"
             ;;
         tok*)
-            TOCD="$DOT/private/.config/zsh/oh-my-zsh/custom"
+            TOCD="$DOT/private/.config/zsh/imports"
             FILE="tokens.zsh"
             ;;
         *)
