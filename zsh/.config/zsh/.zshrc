@@ -109,6 +109,12 @@ alias ls="${aliases[ls]:-ls} -A"
 setopt glob_dots     # no special treatment for file names with a leading dot
 setopt no_auto_menu  # require an extra TAB press to open the completion menu
 
+# Alt+i to edit current command in $EDITOR
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^[i' edit-command-line
+
+# Ctrl+s to search pet snippets with current command
+zle -N pet-select
+stty -ixon <$TTY >$TTY
+bindkey '^s' pet-select

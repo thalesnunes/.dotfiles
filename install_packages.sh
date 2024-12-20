@@ -15,19 +15,10 @@ fi
 echo
 
 if is_installed "zsh"; then
-    if yn_pr "Do you want to install ohmyzsh and change shell? [Y/n]: "; then
-        unset ZSH
-        export ZSH="$XDG_CONFIG_HOME/zsh/oh-my-zsh"
-        export ZSH_CUSTOM="$XDG_CONFIG_HOME/zsh/oh-my-zsh/custom"
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
-        git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM}/plugins/zsh-completions
-        git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM}/plugins/zsh-history-substring-search
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting
-        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
+    if yn_pr "Do you want to change shell and install z4h? [Y/n]: "; then
         mkdir -p "$XDG_CACHE_HOME/zsh"
         mkdir -p "$XDG_STATE_HOME/zsh"
-        chsh -s "$(which zsh)"
+        zsh -c "echo 'Done!'"
     fi
 fi
 
@@ -42,9 +33,6 @@ if is_installed "pip"; then
             pipx install "$package"
         done
         pipx inject ranger-fm pynvim
-        export ZSH_CUSTOM="$XDG_CONFIG_HOME/zsh/oh-my-zsh/custom"
-        mkdir -p ${ZSH_CUSTOM}/plugins/poetry
-        $XDG_USER_BIN/poetry completions zsh > ${ZSH_CUSTOM}/plugins/poetry/_poetry
     fi
 fi
 
@@ -79,16 +67,6 @@ if yn_pr "Do you want to install dwall (Dynamic Wallpapers)? [Y/n]: "; then
     chmod +x install.sh
     ./install.sh
     cd "$OLDPWD"
-fi
-
-echo
-
-if yn_pr "Do you want to setup autorandr on lightdm? [Y/n]: "; then
-    mkdir -p /usr/share/lightdm/lightdm.conf.d
-    sudo /usr/bin/env bash -c 'cat <<EOF > /usr/share/lightdm/lightdm.conf.d/99-display-setup-script.conf
-[Seat:*]
-display-setup-script=/bedrock/cross/bin/autorandr --change
-EOF'
 fi
 
 echo

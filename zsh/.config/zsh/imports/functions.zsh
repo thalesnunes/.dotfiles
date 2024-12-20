@@ -37,19 +37,19 @@ function config() {
             FILE=""
             ;;
         ali*)
-            TOCD="$DOT/zsh/.config/zsh/oh-my-zsh/custom"
+            TOCD="$DOT/zsh/.config/zsh/imports"
             FILE="aliases.zsh"
             ;;
         func*)
-            TOCD="$DOT/zsh/.config/zsh/oh-my-zsh/custom"
+            TOCD="$DOT/zsh/.config/zsh/imports"
             FILE="functions.zsh"
             ;;
         exp*)
-            TOCD="$DOT/zsh/.config/zsh/oh-my-zsh/custom"
+            TOCD="$DOT/zsh/.config/zsh/imports"
             FILE="exports.zsh"
             ;;
         tok*)
-            TOCD="$DOT/private/.config/zsh/oh-my-zsh/custom"
+            TOCD="$DOT/private/.config/zsh/imports"
             FILE="tokens.zsh"
             ;;
         *)
@@ -117,4 +117,15 @@ function proj() {
 
 function pretty_csv() {
     cat $1 | sed 's/,/ ,/g' | column -t -s, | bat
+}
+
+function prev() {
+    PREV=$(fc -lrn | head -n 1)
+    sh -c "pet new `printf %q "$PREV"`"
+}
+
+function pet-select() {
+    RBUFFER+=$(pet search)
+    CURSOR=$#BUFFER
+    zle redisplay
 }
