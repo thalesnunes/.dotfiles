@@ -118,3 +118,6 @@ bindkey '^[i' edit-command-line
 zle -N pet-select
 stty -ixon <$TTY >$TTY
 bindkey '^s' pet-select
+
+# Ctrl+g to open navi cheatsheet
+eval "$(navi widget zsh)"
