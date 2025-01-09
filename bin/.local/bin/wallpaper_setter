@@ -32,7 +32,7 @@ CURRENT_STYLE_FILE = CACHE_DIR / "dynamic-wallpaper" / "current"
 
 STYLES = []
 MIN_IMAGE_COUNT = 8
-EXCLUDE_STYLES = ["lakeside", "gradient"]
+EXCLUDE_STYLES = ["lakeside", "gradient", "earth"]
 
 parser = ArgumentParser('wallpaper_setter')
 parser.add_argument("-r", "--randomize", help="randomize wallpaper style", action="store_true")
