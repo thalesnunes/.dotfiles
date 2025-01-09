@@ -20,4 +20,4 @@ MODE=dark
 $bin/screen_setup > /dev/null 2>&1 &
 $bin/polybar_starter $MODE > /dev/null 2>&1 &
 sleep 0.5
-$bin/wallpaper_setter > /dev/null 2>&1 &
+$bin/wallpaper_setter --random > /dev/null 2>&1 &
