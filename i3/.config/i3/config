@@ -195,6 +195,7 @@ for_window [class="^pgstop$"] floating enable
 for_window [class="^qalc$"] floating enable
 for_window [class="^cmd$"] floating enable
 for_window [class="^htop$"] floating enable
+for_window [class="^btop$"] floating enable
 for_window [class="^pulsemixer$"] floating enable
 for_window [class="^scratchpad$"] floating enable
 for_window [instance="crx_nngceckbapebfimnlniiiahkandclblb"] floating enable
@@ -278,9 +279,9 @@ mode "APPS" {
     bindsym b exec $config/rofi/launch Bluetooth; mode "default"
     # Launch nm-connection-editor
     bindsym n exec nm-connection-editor; mode "default"
-    # Launch htop
-    bindsym h exec $terminal start --class htop -- htop; mode "default"
-    # Launch htop
+    # Launch btop
+    bindsym h exec $terminal start --class btop -- btop --preset 1; mode "default"
+    # Launch tmp notepad
     bindsym t exec $terminal start --class scratchpad -- nvim "/tmp/tmp_$(date +%s)"; mode "default"
     # Launch MPV script
     bindsym p exec $config/rofi/launch MPV; mode "default"
