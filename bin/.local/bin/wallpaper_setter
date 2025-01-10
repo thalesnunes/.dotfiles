@@ -25,6 +25,7 @@ from pathlib import Path
 import random
 import subprocess
 import sys
+from time import sleep
 
 IMAGES_DIR = Path("/usr/share/dynamic-wallpaper/images")
 CACHE_DIR = Path(os.environ.get("XDG_CACHE_HOME", os.path.expanduser("~/.cache")))
@@ -66,7 +67,9 @@ if flag_randomize and not args.style:
 
     chosen_style = random.choice(STYLES)
 
-subprocess.run(["dwall", "-s", chosen_style])
-
 with open(CURRENT_STYLE_FILE, "w") as cur_file:
     cur_file.write(chosen_style)
+
+while True:
+    subprocess.run(["dwall", "-s", chosen_style])
+    sleep(600)

@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 
-bin="$HOME/.local/bin"
+bin="$XDG_USER_BIN"
 
-if [ $# -eq 0 ] && [ -e "$HOME/.sun" ]; then
-    result=$(cat ~/.sun)
-    IFS=" " read -r sunrise sunset <<< "$result"
-    now=$(date +%R)
+# if [ $# -eq 0 ] && [ -e "$HOME/.sun" ]; then
+#     result=$(cat ~/.sun)
+#     IFS=" " read -r sunrise sunset <<< "$result"
+#     now=$(date +%R)
 
-    if [[ "$now" > "$sunrise" ]] && [[ "$now" < "$sunset" ]]; then
-        MODE=light
-    else
-        MODE=dark
-    fi
-else
-    MODE=$1
-fi
+#     if [[ "$now" > "$sunrise" ]] && [[ "$now" < "$sunset" ]]; then
+#         MODE=light
+#     else
+#         MODE=dark
+#     fi
+# else
+#     MODE=$1
+# fi
 MODE=dark
 
 $bin/screen_setup > /dev/null 2>&1 &
 $bin/polybar_starter $MODE > /dev/null 2>&1 &
 sleep 0.5
-$bin/wallpaper_setter --random > /dev/null 2>&1 &
+ps aux | grep --regexp "[w]allpaper_setter" || $bin/wallpaper_setter --random > /dev/null 2>&1 &
