@@ -17,7 +17,7 @@ tui toggle topbar
 # set tui.theme custom.theme
 
 # Tabs
-tab ls all --columns name,status,%downloaded,rate-down,rate-up,size,eta,ratio
+tab ls all --columns name,status,%downloaded,rate-down,rate-up,seeds,peers,size,eta,ratio
 tab -b ls peers
 tab -b ls uploading
 tab -b ls downloading
@@ -42,6 +42,6 @@ set unitprefix.size metric
 # Maximum height of the log section.
 set tui.log.height 10
 # Show hidden log window that many seconds before hiding it again.
-set tui.log.autohide 10
+set tui.log.autohide 5
 
 # vim: ft=cfg
