@@ -6,5 +6,5 @@ case "$ROFI_RETV" in
         ;;
     1)  # Selected entry with Enter
         process_name="$(echo "$@" | cut -d' ' -f1)"
-        coproc ( killall --ignore-case --signal SIGKILL --user $(whoami) "${process_name}" & > /dev/null 2>&1 )
+        coproc ( killall --ignore-case --user $(whoami) "${process_name}" & > /dev/null 2>&1 )
 esac
