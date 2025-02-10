@@ -32,7 +32,7 @@ CACHE_DIR = Path(os.environ.get("XDG_CACHE_HOME", os.path.expanduser("~/.cache")
 CURRENT_STYLE_FILE = CACHE_DIR / "dynamic-wallpaper" / "current"
 
 STYLES = []
-MIN_IMAGE_COUNT = 8
+MIN_IMAGE_COUNT = 0
 EXCLUDE_STYLES = ["lakeside", "gradient", "earth"]
 
 parser = ArgumentParser('wallpaper_setter')
