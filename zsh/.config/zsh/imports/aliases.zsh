@@ -23,6 +23,7 @@ alias stown='stow --no-folding -nvt ~'
 alias stowv='stow --no-folding -vt ~'
 
 alias lr='ranger'
+alias slr='sudo $XDG_USER_BIN/ranger'
 alias lg='lazygit'
 
 alias gcalp='gcalcli --config-folder ~/.config/gcalcli/personal'
