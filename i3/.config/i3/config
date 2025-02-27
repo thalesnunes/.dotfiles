@@ -199,6 +199,7 @@ for_window [class="^btop$"] floating enable
 for_window [class="^pulsemixer$"] floating enable
 for_window [class="^scratchpad$"] floating enable
 for_window [instance="crx_nngceckbapebfimnlniiiahkandclblb"] floating enable
+for_window [class="^kill$"] floating enable
 
 
 ###########################################################
@@ -272,7 +273,7 @@ mode "APPS" {
     # Lauch CMD script
     bindsym Return exec $terminal start --class cmd; mode "default"
     # Lauch script to kill processes
-    bindsym k exec $config/rofi/launch Kill; mode "default"
+    bindsym k exec $terminal start --class kill -- $bin/fzf_kill; mode "default"
     # Lauch Project with tmux
     bindsym c exec $terminal start -- zsh -i -c proj; mode "default"
     # Lauch Calc
