@@ -20,6 +20,7 @@
 # feh --no-fehbg --bg-fill "$img"
 
 from argparse import ArgumentParser
+from datetime import datetime
 import os
 from pathlib import Path
 import random
@@ -27,13 +28,46 @@ import subprocess
 import sys
 from time import sleep
 
-IMAGES_DIR = Path("/usr/share/dynamic-wallpaper/images")
+IMAGES_DIR = Path(os.environ.get("XDG_DATA_HOME", os.path.expanduser("~/.local/share"))) / "wallpapers"
 CACHE_DIR = Path(os.environ.get("XDG_CACHE_HOME", os.path.expanduser("~/.cache")))
-CURRENT_STYLE_FILE = CACHE_DIR / "dynamic-wallpaper" / "current"
+CURRENT_STYLE_FILE = CACHE_DIR / "wallpaper_style" / "current"
 
 STYLES = []
 MIN_IMAGE_COUNT = 0
 EXCLUDE_STYLES = ["lakeside", "gradient", "earth"]
+
+
+def choose_style(all_styles, style_name, flag_randomize, flag_first_run) -> str:
+
+    if style_name:
+        chosen_style = style_name
+
+    if not flag_randomize and not flag_first_run and not style_name:
+        with open(CURRENT_STYLE_FILE) as cur_file:
+            chosen_style = cur_file.read()
+        if chosen_style == "" or chosen_style not in [style_dir.name for style_dir in all_styles]:
+            flag_randomize = True
+
+    if flag_randomize and not style_name:
+        for style_dir in all_styles:
+            style_image_count = 0
+            for file in style_dir.glob("*"):
+                if file.suffix in (".jpg", ".png") and not file.is_symlink():
+                    style_image_count += 1
+            if style_image_count >= MIN_IMAGE_COUNT and style_dir.name not in EXCLUDE_STYLES:
+                STYLES.append(style_dir.name)
+
+        chosen_style = random.choice(STYLES)
+
+    return chosen_style
+
+
+def set_wallpaper(chosen_style):
+
+    current_hour = datetime.now().hour
+    current_image_file = list((IMAGES_DIR / chosen_style).glob(f"{current_hour}.*", recurse_symlinks=True))[0]
+    subprocess.run(["feh", "--no-fehbg", "--bg-fill", str(current_image_file.absolute())])
+
 
 parser = ArgumentParser('wallpaper_setter')
 parser.add_argument("-r", "--randomize", help="randomize wallpaper style", action="store_true")
@@ -42,34 +76,15 @@ args = parser.parse_args()
 
 flag_first_run = not CURRENT_STYLE_FILE.is_file()
 flag_randomize = True if args.randomize or flag_first_run else False
-(CACHE_DIR / "dynamic-wallpaper").mkdir(exist_ok=True, parents=True)
+(CACHE_DIR / "wallpaper_style").mkdir(exist_ok=True, parents=True)
 
 all_styles = list(IMAGES_DIR.glob("*/"))
 
-if args.style:
-    chosen_style = args.style
-
-if not flag_randomize and not flag_first_run and not args.style:
-    with open(CURRENT_STYLE_FILE) as cur_file:
-        chosen_style = cur_file.read()
-    if chosen_style == "" or chosen_style not in [style.name for style in all_styles]:
-        flag_randomize = True
-
-if flag_randomize and not args.style:
-
-    for style in all_styles:
-        style_image_count = 0
-        for file in style.glob("*"):
-            if file.suffix in (".jpg", ".png") and not file.is_symlink():
-                style_image_count += 1
-        if style_image_count >= MIN_IMAGE_COUNT and style.name not in EXCLUDE_STYLES:
-            STYLES.append(style.name)
-
-    chosen_style = random.choice(STYLES)
+chosen_style = choose_style(all_styles, args.style, flag_randomize, flag_first_run)
 
 with open(CURRENT_STYLE_FILE, "w") as cur_file:
     cur_file.write(chosen_style)
 
 while True:
-    subprocess.run(["dwall", "-s", chosen_style])
+    set_wallpaper(chosen_style)
     sleep(600)

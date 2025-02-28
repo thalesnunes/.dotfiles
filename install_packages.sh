@@ -57,17 +57,4 @@ if is_installed "gsettings"; then
 fi
 
 echo
-
-if yn_pr "Do you want to install dwall (Dynamic Wallpapers)? [Y/n]: "; then
-    mkdir -p ~/Apps
-    [[ -d ~/Apps/dynamic-wallpaper ]] && rm -rf ~/Apps/dynamic-wallpaper
-    git clone https://github.com/adi1090x/dynamic-wallpaper.git ~/Apps/dynamic-wallpaper
-    cd ~/Apps/dynamic-wallpaper
-    sed -i 's/feh --bg-fill/feh --no-fehbg --bg-fill/' dwall.sh
-    chmod +x install.sh
-    ./install.sh
-    cd "$OLDPWD"
-fi
-
-echo
 echo "Done!"

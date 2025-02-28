@@ -1,0 +1,13 @@
+[Unit]
+Description=Wallpaper Setter service
+After=default.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=%h/.local/bin/wallpaper_setter --random
+
+[Install]
+WantedBy=default.target
