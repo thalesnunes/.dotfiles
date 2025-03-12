@@ -2,6 +2,7 @@ gui:
     scrollPastBottom: false # enable scrolling past the bottom
     showFileTree: true
     sidePanelWidth: 0.25
+    language: en
     theme:
         activeBorderColor:
             - blue

@@ -32,4 +32,4 @@ if [ -f "$torrent" ]; then
     rm "$torrent"
 fi
 
-ps -Ao comm | grep -q stig || wezterm start --class stig -- stig
+/usr/bin/env pidof -q stig || wezterm start --class stig -- stig
