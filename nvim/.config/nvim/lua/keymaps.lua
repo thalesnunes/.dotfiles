@@ -52,7 +52,7 @@ V.keymap('n', '<leader>q', ':bdelete<CR>')
 
 -- Shortcuts for search and replace yanked text
 V.keymap('n', '<leader>sr', ':%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>', { silent = false })
-V.keymap('v', '<leader>sr', ':s/<C-r>"/<C-r>"/g<Left><Left>', { silent = false })
+V.keymap('v', '<leader>sr', 'y<esc>:%s/<C-r>"/<C-r>"/g<Left><Left>', { silent = false })
 
 -- Reload config
 V.keymap('n', '<leader>r', ':so $MYVIMRC<CR>')
