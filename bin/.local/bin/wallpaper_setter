@@ -34,7 +34,19 @@ CURRENT_STYLE_FILE = CACHE_DIR / "wallpaper_style" / "current"
 
 STYLES = []
 MIN_IMAGE_COUNT = 0
-EXCLUDE_STYLES = ["lakeside", "gradient", "earth"]
+EXCLUDE_STYLES = [
+    "lakeside",
+    "gradient",
+    "earth",
+    "colony",
+    "factory",
+    "home",
+    "island",
+    "market",
+    "room",
+    "street",
+    "tokyo"
+]
 
 
 def choose_style(all_styles, style_name, flag_randomize, flag_first_run) -> str:
