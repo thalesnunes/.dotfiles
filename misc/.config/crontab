@@ -1,2 +1,0 @@
-*/10 * * * * /home/thales/.local/bin/gcal_reminder get
-* * * * * /home/thales/.local/bin/gcal_reminder notify
