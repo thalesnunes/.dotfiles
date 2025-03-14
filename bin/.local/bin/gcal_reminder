@@ -1,5 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-export XDG_RUNTIME_DIR=/run/user/$(id -u)
+while true; do
+    sleep $((60 - $(date +%S)))
 
-$HOME/.local/bin/gcal_notifier $1
+    if [ $(($(date +%M) % 10)) == 0 ]; then
+        echo "Running get $(date +%H:%M:%S)"
+        strat -r arch $HOME/.local/bin/gcal_notifier get
+    fi
+    echo "Running notify $(date +%H:%M:%S)"
+    strat -r arch $HOME/.local/bin/gcal_notifier notify
+done

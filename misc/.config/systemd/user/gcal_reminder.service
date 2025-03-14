@@ -1,0 +1,13 @@
+[Unit]
+Description=GCal Reminder service
+After=default.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=%h/.local/bin/gcal_reminder
+
+[Install]
+WantedBy=default.target
