@@ -57,4 +57,14 @@ if is_installed "gsettings"; then
 fi
 
 echo
+
+if yn_pr "Do you want to install calibre? [Y/n]: "; then
+    if is_installed "strat"; then
+        strat -r arch bash -c "sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin"
+    else
+        sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+    fi
+fi
+
+echo
 echo "Done!"
