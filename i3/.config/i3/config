@@ -228,7 +228,7 @@ bindsym $mod+b exec zen-browser -P 'Pessoal'
 bindsym $mod+m exec --no-startup-id telegram-desktop
 
 # Whatsapp
-bindsym $mod+n exec brave --profile-directory="$($bin/get_profile_by_name_brave.py 'Pessoal')" --app-id=hnpfjngllnobngcgfapefoaidbinmjnm
+bindsym $mod+n workspace $ws9, exec zen-browser -P 'Pessoal' --new-window 'web.whatsapp.com'
 
 # File Managers
 bindsym $mod+e exec $terminal start -- ranger
