@@ -222,7 +222,7 @@ bindsym $mod+BackSpace exec $terminal
 bindsym $mod+$alt+BackSpace exec $config/rofi/launch Power
 
 # Open browsers
-bindsym $mod+b exec brave --profile-directory="$($bin/get_profile_by_name_brave.py 'Pessoal')"
+bindsym $mod+b exec zen-browser -P 'Pessoal'
 
 # Telegram
 bindsym $mod+m exec --no-startup-id telegram-desktop
@@ -329,7 +329,7 @@ mode "WORK" {
     # Work starter
     bindsym s exec $bin/work_starter; mode "default"
     # Browser on Upwork profile
-    bindsym b workspace $ws2, exec brave --profile-directory="$($bin/get_profile_by_name_brave.py 'Upwork')"; mode "default"
+    bindsym b workspace $ws2, exec zen-browser -P 'Upwork'; mode "default"
     # Slack
     bindsym m exec TZ='America/Sao_Paulo' slack; mode "default"
     # DBeaver
