@@ -24,7 +24,7 @@ fi
 
 /usr/bin/env pidof -q transmission-daemon || /usr/bin/env transmission-daemon
 
-/usr/bin/env stig add --stopped "$torrent"
+stig add --stopped "$torrent"
 
 notify "Torrent added to stig"
 
@@ -32,4 +32,4 @@ if [ -f "$torrent" ]; then
     rm "$torrent"
 fi
 
-/usr/bin/env pidof -q stig || wezterm start --class stig -- stig
+ps -Ao comm | grep -q stig || wezterm start --class stig -- stig
