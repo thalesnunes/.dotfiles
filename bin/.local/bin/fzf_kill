@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-ps -u $USER -o pid,user,%cpu,%mem,command --sort=-%mem | fzf --multi --header-lines=1 --reverse --exact | awk '{print $1}' | xargs kill
+if [[ $1 == "SIGKILL" ]]; then
+    ps -u $USER -o pid,user,%cpu,%mem,command --sort=-%mem | fzf --multi --header-lines=1 --reverse --exact | awk '{print $1}' | xargs kill -9
+else
+    ps -u $USER -o pid,user,%cpu,%mem,command --sort=-%mem | fzf --multi --header-lines=1 --reverse --exact | awk '{print $1}' | xargs kill
+fi

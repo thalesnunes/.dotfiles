@@ -34,7 +34,9 @@ else
 fi
 
 # BROWSER
-if [ -x "$(command -v brave)" ]; then
+if [ -x "$(command -v zen-browser)" ]; then
+    export BROWSER=/usr/bin/zen-browser
+elif [ -x "$(command -v brave)" ]; then
     export BROWSER=/usr/bin/brave
 else
     export BROWSER=/usr/bin/firefox

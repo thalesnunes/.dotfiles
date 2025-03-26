@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+while getopts c:r:s: flag; do
+    case "$flag" in
+        c) comm=$OPTARG;;
+        r) recurrency_min=$OPTARG;;
+        s) run_on_start=${OPTARG:-"y"};;
+    esac
+done
+
+while true; do
+    sleep $((60 - $(date +%S)))
+
+    if [ $(($(date +%M) % 10)) == 0 ]; then
+        echo "Running get $(date +%H:%M:%S)"
+        strat -r arch $HOME/.local/bin/gcal_notifier get
+    fi
+    echo "Running notify $(date +%H:%M:%S)"
+    strat -r arch $HOME/.local/bin/gcal_notifier notify
+done

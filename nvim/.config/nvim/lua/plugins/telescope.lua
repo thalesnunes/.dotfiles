@@ -104,9 +104,15 @@ return {
             require('telescope').setup(opts)
             require('telescope').load_extension('fzf')
 
+            function live_grep_git_dir()
+                local git_dir = vim.fn.system(string.format("git -C %s rev-parse --show-toplevel", vim.fn.expand("%:p:h")))
+                git_dir = string.gsub(git_dir, "\n", "") -- remove newline character from git_dir
+                require('telescope.builtin').live_grep({cwd=git_dir})
+            end
+
             -- Find files using Telescope command-line sugar.
-            V.keymap('n', '<leader>ff', ':Telescope find_files hidden=true <CR>')
-            V.keymap('n', '<leader>fw', ':Telescope live_grep<CR>')
+            V.keymap('n', '<leader>ff', ':Telescope git_files hidden=true recurse_submodules=true<CR>')
+            V.keymap('n', '<leader>fw', ':lua live_grep_git_dir()<CR>')
             V.keymap('n', '<leader>b', ':Telescope buffers<CR>')
             V.keymap('n', '<leader>H', ':Telescope help_tags<CR>')
         end

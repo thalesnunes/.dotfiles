@@ -274,6 +274,7 @@ mode "APPS" {
     bindsym Return exec $terminal start --class cmd; mode "default"
     # Lauch script to kill processes
     bindsym k exec $terminal start --class kill -- $bin/fzf_kill; mode "default"
+    bindsym Shift+k exec $terminal start --class kill -- $bin/fzf_kill SIGKILL; mode "default"
     # Lauch Project with tmux
     bindsym c exec $terminal start -- zsh -i -c proj; mode "default"
     # Lauch Calc
