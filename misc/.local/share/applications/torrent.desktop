@@ -7,4 +7,4 @@ Exec=/home/thales/.local/bin/torflow %U
 Keywords=Torrent;TUI;
 Icon=torrents
 MimeType=application/x-bittorrent;x-scheme-handler/magnet;
-Terminal=true
+Terminal=false
