@@ -248,6 +248,8 @@ bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
 # Use brightnessctl to adjust brightness.
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 10%+
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+bindsym $alt+XF86MonBrightnessUp exec --no-startup-id brightnessctl set 100%
+bindsym $alt+XF86MonBrightnessDown exec --no-startup-id brightnessctl set 0%
 
 # Dunst keybinds for closing and history
 # Close notification.
