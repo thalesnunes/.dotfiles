@@ -4,17 +4,28 @@ while getopts c:r:s: flag; do
     case "$flag" in
         c) comm=$OPTARG;;
         r) recurrency_min=$OPTARG;;
-        s) run_on_start=${OPTARG:-"y"};;
+        s) run_on_start=$OPTARG;;
     esac
 done
 
-while true; do
-    sleep $((60 - $(date +%S)))
+if [[ -z $comm || -z $recurrency_min ]]; then
+    echo "ERROR: no command or recurrency given"
+    exit 1
+fi
 
-    if [ $(($(date +%M) % 10)) == 0 ]; then
-        echo "Running get $(date +%H:%M:%S)"
-        strat -r arch $HOME/.local/bin/gcal_notifier get
+if [[ ${run_on_start:-"y"} == "y" ]]; then
+    echo "Running command \"$comm\" at $(date +%H:%M:%S)"
+    bash -c "$comm"
+elif [[ -n $run_on_start && $run_on_start != "n" ]]; then
+    echo "Running command \"$run_on_start\" at $(date +%H:%M:%S)"
+    bash -c "$run_on_start"
+fi
+
+while true; do
+    sleep $((60 - "10#$(date +%S)"))
+
+    if [[ $(($(date +%M) % $recurrency_min)) == 0 ]]; then
+        echo "Running command \"$comm\" at $(date +%H:%M:%S)"
+        bash -c "$comm"
     fi
-    echo "Running notify $(date +%H:%M:%S)"
-    strat -r arch $HOME/.local/bin/gcal_notifier notify
 done

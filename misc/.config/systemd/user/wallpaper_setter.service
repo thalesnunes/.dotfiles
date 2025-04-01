@@ -7,7 +7,7 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
-ExecStart=%h/.local/bin/wallpaper_setter --random
+ExecStart=bash -c "%h/.local/bin/daemonize_command -c \"$HOME/.local/bin/wallpaper_setter\" -r 60 -s \"$HOME/.local/bin/wallpaper_setter --random\""
 
 [Install]
 WantedBy=default.target

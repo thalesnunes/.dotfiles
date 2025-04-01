@@ -1,5 +1,5 @@
 [Unit]
-Description=GCal Reminder service
+Description=GCal Notify service
 After=default.target
 StartLimitIntervalSec=0
 
@@ -7,7 +7,7 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
-ExecStart=%h/.local/bin/gcal_reminder
+ExecStart=%h/.local/bin/daemonize_command -c "strat -r arch $HOME/.local/bin/gcal_notifier notify" -r 1
 
 [Install]
 WantedBy=default.target

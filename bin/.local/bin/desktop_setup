@@ -21,4 +21,5 @@ $bin/screen_setup > /dev/null 2>&1 &
 $bin/polybar_starter $MODE > /dev/null 2>&1 &
 sleep 0.5
 systemctl --user start wallpaper_setter
-systemctl --user start gcal_reminder
+systemctl --user start gcal_get
+systemctl --user start gcal_notify

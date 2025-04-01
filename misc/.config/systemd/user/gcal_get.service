@@ -1,0 +1,13 @@
+[Unit]
+Description=GCal Get service
+After=default.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=%h/.local/bin/daemonize_command -c "strat -r arch $HOME/.local/bin/gcal_notifier get" -r 10
+
+[Install]
+WantedBy=default.target
