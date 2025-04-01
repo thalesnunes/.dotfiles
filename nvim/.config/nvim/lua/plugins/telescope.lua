@@ -12,13 +12,14 @@ return {
                 layout_strategy = 'flex',
                 layout_config = {
                     horizontal = {
-                    preview_width = function(_, cols, _)
-                            if cols > 200 then
-                                return math.floor(cols * 0.4)
-                            else
-                                return math.floor(cols * 0.6)
-                            end
-                        end,
+                        width = 0.9,
+                        preview_width = function(_, cols, _)
+                                if cols > 200 then
+                                    return math.floor(cols * 0.4)
+                                else
+                                    return math.floor(cols * 0.6)
+                                end
+                            end,
                     },
 
                     vertical = {
@@ -111,7 +112,7 @@ return {
             end
 
             -- Find files using Telescope command-line sugar.
-            V.keymap('n', '<leader>ff', ':Telescope git_files hidden=true recurse_submodules=true<CR>')
+            V.keymap('n', '<leader>ff', ':Telescope git_files hidden=true show_untracked=true<CR>')
             V.keymap('n', '<leader>fw', ':lua live_grep_git_dir()<CR>')
             V.keymap('n', '<leader>b', ':Telescope buffers<CR>')
             V.keymap('n', '<leader>H', ':Telescope help_tags<CR>')
