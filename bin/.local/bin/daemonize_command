@@ -24,7 +24,7 @@ fi
 while true; do
     sleep $((60 - "10#$(date +%S)"))
 
-    if [[ $(($(date +%M) % $recurrency_min)) == 0 ]]; then
+    if [[ $(("10#$(date +%M)" % $recurrency_min)) == 0 ]]; then
         echo "Running command \"$comm\" at $(date +%H:%M:%S)"
         bash -c "$comm"
     fi
