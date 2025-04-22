@@ -1,7 +1,5 @@
 black
 doq
-numpy
-pandas
 pipenv
 pipx
 pulsemixer

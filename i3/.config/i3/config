@@ -379,9 +379,6 @@ exec --no-startup-id xinput set-prop "Elan Touchpad" "libinput Natural Scrolling
 # Enable Night-Light (Redshift)
 exec --no-startup-id redshift -l -23.536215622740578:-46.68497829306198
 
-# Keyring
-exec --no-startup-id lxpolkit
-
 # Clipboard manager
 exec --no-startup-id clipcatd
 
