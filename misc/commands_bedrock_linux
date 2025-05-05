@@ -1,0 +1,100 @@
+sudo tee /etc/sudoers.d/bedrock_install <<END
+$USER $(hostname) = NOPASSWD: ALL
+END
+sudo -k
+
+sudo apt update
+sudo apt upgrade
+
+cd ~/Downloads
+curl -s https://api.github.com/repos/bedrocklinux/bedrocklinux-userland/releases/latest | grep "browser_download_url.*x86_64.sh" | cut -d : -f 2,3 | tr -d \" | wget -q -O bedrock-linux.sh -i -
+chmod +x bedrock-linux.sh
+sudo sh ./bedrock-linux.sh --hijack
+reboot
+
+/usr/lib/apt/apt-helper download-file https://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2024.03.04_all.deb keyring.deb SHA256:f9bb4340b5ce0ded29b7e014ee9ce788006e9bbfe31e96c09b2118ab91fca734
+sudo apt install ./keyring.deb
+rm ./keyring.deb
+echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" | sudo tee /etc/apt/sources.list.d/sur5r-i3.list
+sudo apt update
+sudo apt install i3 lightdm libfuse2 blueman bat brightnessctl
+sudo apt purge gdm3
+
+cat <<EOF > /bedrock/strata/ubuntu/usr/share/lightdm/lightdm.conf.d/99-thales-display-setup-script.conf
+[Seat:*]
+display-setup-script=/bedrock/cross/bin/autorandr --change
+EOF
+
+cat <<EOF > /bedrock/strata/ubuntu/usr/share/lightdm/lightdm.conf.d/99-thales-xserver-command.conf
+[Seat:*]
+xserver-command=X -core -ardelay 330 -arinterval 35
+EOF
+
+usermod -aG video ${USER}
+sudo usermod -aG video ${USER}
+
+sudo strat -r ubuntu chmod 000 /usr/bin/ibus-daemon
+
+sudo brl fetch -n arch arch
+sudo pacman -Syu
+
+sudo sed -i 's/^timeout =.*/timeout = 5/' /bedrock/etc/bedrock.conf
+sudo sed -i 's/^user-interface =.*/user-interface = paru/' /bedrock/etc/bedrock.conf
+sudo sed -i 's/^ignore-non-system-package-managers =.*/ignore-non-system-package-managers = false/' /bedrock/etc/bedrock.conf
+
+sudo pacman -S python python-pip
+sudo ln -s /bedrock/cross/bin/python /usr/bin/python
+
+cd ~/.dotfiles
+./install_packages.sh
+./install_dotfiles.sh
+source ~/.profile
+
+sudo strat -r ubuntu rm -rf /root/.config
+sudo strat -r ubuntu ln -s /home/thales/.config /root
+sudo strat -r ubuntu rm -rf /root/.local
+sudo strat -r ubuntu ln -s /home/thales/.local /root
+sudo strat -r arch rm -rf /root/.config
+sudo strat -r arch ln -s /home/thales/.config /root
+sudo strat -r arch rm -rf /root/.local
+sudo strat -r arch ln -s /home/thales/.local /root
+
+sudo ln -s /bedrock/cross/bin/nvim /usr/bin/nvim
+sudo strat -r ubuntu ln -s /bedrock/cross/bin/brave /usr/bin/brave
+strat -r ubuntu sudo ln -s /usr/bin/batcat /usr/bin/bat
+
+sudo strat -r arch /usr/bin/sed -i 's/#Color/Color\nILoveCandy/' /etc/pacman.conf
+sudo strat -r arch /usr/bin/sed -i 's/.*ParallelDownloads = .*/ParallelDownloads = 10/' /etc/pacman.conf
+
+bash -c "crontab -l 2>/dev/null | cat - $XDG_CONFIG_HOME/crontab | crontab -"
+
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt purge $pkg; done
+cd ~/Apps
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo groupadd docker
+sudo usermod -aG docker $USER
+sudo systemctl disable docker
+sudo systemctl disable docker.socket
+
+snap list
+sudo snap remove --purge firefox
+sudo snap remove --purge snap-store
+sudo snap remove --purge gnome-3-38-2004
+sudo snap remove --purge gnome-42-2204
+sudo snap remove --purge gtk-common-themes
+sudo snap remove --purge snapd-desktop-integration
+sudo snap remove --purge bare
+sudo snap remove --purge core22
+sudo snap remove --purge core20
+sudo snap remove --purge snapd
+sudo apt remove --autoremove snapd
+sudo -H strat -r ubuntu /usr/bin/bash -c 'cat <<EOF > /etc/apt/preferences.d/nosnap.pref
+Package: snapd
+Pin: release a=*
+Pin-Priority: -10'
+sudo apt update
+sudo apt upgrade
+
+sudo rm /etc/sudoers.d/bedrock_install
+sudo -k
