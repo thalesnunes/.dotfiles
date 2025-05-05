@@ -18,7 +18,7 @@ if is_installed "zsh"; then
     if yn_pr "Do you want to change shell and install z4h? [Y/n]: "; then
         mkdir -p "$XDG_CACHE_HOME/zsh"
         mkdir -p "$XDG_STATE_HOME/zsh"
-        zsh -c "echo 'Done!'"
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
     fi
 fi
 
