@@ -55,6 +55,8 @@ for _, plugin in pairs(disabled_built_ins) do
   vim.g['loaded_' .. plugin] = 1
 end
 
+vim.api.nvim_create_user_command('JsonFormatter', "%!jq '.'", {desc='Format current buffer json.'})
+
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
