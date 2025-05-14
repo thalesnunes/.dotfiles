@@ -41,9 +41,13 @@ sudo pacman -Syu
 sudo sed -i 's/^timeout =.*/timeout = 5/' /bedrock/etc/bedrock.conf
 sudo sed -i 's/^user-interface =.*/user-interface = paru/' /bedrock/etc/bedrock.conf
 sudo sed -i 's/^ignore-non-system-package-managers =.*/ignore-non-system-package-managers = false/' /bedrock/etc/bedrock.conf
+sudo brl apply
 
 sudo pacman -S python python-pip
 sudo ln -s /bedrock/cross/bin/python /usr/bin/python
+
+sudo strat -r arch /usr/bin/sed -i 's/#Color/Color\nILoveCandy/' /etc/pacman.conf
+sudo strat -r arch /usr/bin/sed -i 's/.*ParallelDownloads = .*/ParallelDownloads = 10/' /etc/pacman.conf
 
 cd ~/.dotfiles
 ./install_packages.sh
@@ -62,9 +66,6 @@ sudo strat -r arch ln -s /home/thales/.local /root
 sudo ln -s /bedrock/cross/bin/nvim /usr/bin/nvim
 sudo strat -r ubuntu ln -s /bedrock/cross/bin/brave /usr/bin/brave
 strat -r ubuntu sudo ln -s /usr/bin/batcat /usr/bin/bat
-
-sudo strat -r arch /usr/bin/sed -i 's/#Color/Color\nILoveCandy/' /etc/pacman.conf
-sudo strat -r arch /usr/bin/sed -i 's/.*ParallelDownloads = .*/ParallelDownloads = 10/' /etc/pacman.conf
 
 bash -c "crontab -l 2>/dev/null | cat - $XDG_CONFIG_HOME/crontab | crontab -"
 
