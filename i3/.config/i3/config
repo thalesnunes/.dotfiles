@@ -49,10 +49,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # Move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+$alt+h move left
+bindsym $mod+$alt+j move down
+bindsym $mod+$alt+k move up
+bindsym $mod+$alt+l move right
 
 # Change monitor focus
 bindsym $mod+i focus output left
@@ -65,8 +65,8 @@ bindsym $mod+$alt+o move container output right, focus output right
 # Resize outside resize mode
 bindsym $mod+period resize grow width 5 px or 5 ppt
 bindsym $mod+comma resize shrink width 5 px or 5 ppt
-bindsym $mod+Shift+period resize grow height 5 px or 5 ppt
-bindsym $mod+Shift+comma resize shrink height 5 px or 5 ppt
+bindsym $mod+$alt+period resize grow height 5 px or 5 ppt
+bindsym $mod+$alt+comma resize shrink height 5 px or 5 ppt
 
 
 ###########################################################
@@ -127,10 +127,10 @@ workspace $ws10 output nonprimary
 ###########################################################
 
 # Split in horizontal orientation
-bindsym $mod+Control+l split h
+bindsym $mod+Shift+l split h
 
 # Split in vertical orientation
-bindsym $mod+Control+j split v
+bindsym $mod+Shift+j split v
 
 # Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -162,33 +162,18 @@ assign [class="DBeaver"] workspace $ws3
 assign [class="^wcode$"] workspace $ws3
 
 # Open specific applications in floating mode
-for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="calamares"] floating enable border normal
-for_window [class="Clipgrab"] floating enable
+for_window [class="calamares"] floating enable
 for_window [title="File Transfer*"] floating enable
-for_window [class="fpakman"] floating enable
-for_window [class="Galculator"] floating enable border pixel 1
-for_window [class="GParted"] floating enable border normal
-for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [class="GParted"] floating enable
+for_window [title="i3_help"] floating enable sticky enable
 for_window [class="Lightdm-settings"] floating enable
-for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="Manjaro-hello"] floating enable
-for_window [class="Manjaro Settings Manager"] floating enable border normal
+for_window [class="Lxappearance"] floating enable sticky enable
 for_window [title="MuseScore: Play Panel"] floating enable
-for_window [class="Nitrogen"] floating enable sticky enable border normal
-for_window [class="Oblogout"] fullscreen enable
-for_window [class="octopi"] floating enable
-for_window [title="About Pale Moon"] floating enable
-for_window [class="flameshot"] floating enable
-for_window [class="Pamac-manager"] floating enable
 for_window [class="Pavucontrol"] floating enable
-for_window [class="qt5ct"] floating enable sticky enable border normal
-for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
-for_window [class="Simple-scan"] floating enable border normal
-for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Skype"] floating enable border normal
-for_window [class="Timeset-gui"] floating enable border normal
-for_window [class="Xfburn"] floating enable
+for_window [class="qt5ct"] floating enable sticky enable
+for_window [class="Qtconfig-qt4"] floating enable sticky enable
+for_window [class="Simple-scan"] floating enable
+for_window [class="(?i)System-config-printer.py"] floating enable
 for_window [title="^zoom$"] floating enable
 
 for_window [class="^pginit$"] floating enable
