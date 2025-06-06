@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+import argparse
+import calendar
+import json
+from datetime import datetime
+
+
+def count_wednesdays_in_month(year, month):
+    cal = calendar.monthcalendar(year, month)
+    # Count how many weeks have a Wednesday (weekday index 2)
+    return sum(1 for week in cal if week[2] != 0)
+
+
+def get_wednesdays_by_month(year):
+    months = {}
+    for month in range(1, 13):
+        month_name = calendar.month_name[month]
+        wednesday_count = count_wednesdays_in_month(year, month)
+        months[month_name] = wednesday_count
+    return months
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Count Wednesdays in each month of a year.")
+    parser.add_argument("-y", "--year", type=int, default=datetime.now().year, help="Year to check (default: current year)")
+    args = parser.parse_args()
+
+    year = args.year
+    months_data = get_wednesdays_by_month(year)
+
+    print("Wednesdays per month:")
+    print(json.dumps(months_data, indent=4))
+
+    months_with_5_wednesdays = [month for month, count in months_data.items() if count == 5]
+    print("\nMonths with 5 Wednesdays:")
+    for month in months_with_5_wednesdays:
+        print(month)
+
+
+if __name__ == "__main__":
+    main()
