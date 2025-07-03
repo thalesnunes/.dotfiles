@@ -52,6 +52,10 @@ function config() {
             TOCD="$DOT/private/.config/zsh/imports"
             FILE="tokens.zsh"
             ;;
+        snow*)
+            TOCD="$HOME/.snowsql"
+            FILE="config"
+            ;;
         *)
             if [ -d $DOT/$PROG ]; then
                 TOCD="$DOT/$PROG"
