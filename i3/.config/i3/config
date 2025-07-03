@@ -211,7 +211,7 @@ bindsym $mod+$alt+BackSpace exec $config/rofi/launch Power
 bindsym $mod+b exec zen-browser -P 'Pessoal'
 
 # Telegram
-bindsym $mod+m exec --no-startup-id telegram-desktop
+bindsym $mod+m exec --no-startup-id Telegram
 
 # Whatsapp
 bindsym $mod+n workspace $ws9, exec zen-browser -P 'Pessoal' --new-window 'web.whatsapp.com'
