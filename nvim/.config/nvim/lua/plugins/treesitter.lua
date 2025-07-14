@@ -10,6 +10,7 @@ return {
                     "json",
                     "lua",
                     "python",
+                    "sql",
                 },
                 highlight = {
                     enable = true,              -- false will disable the whole extension
