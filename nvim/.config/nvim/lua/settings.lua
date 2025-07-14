@@ -79,10 +79,12 @@ autocmd('BufWritePre', {
     command = [[%s/\s\+$//e]],
 })
 
-vim.cmd [[
-    syntax enable
-    colorscheme dracula
-    filetype plugin on
-    highlight Normal guibg=none
-    highlight CursorLine guibg=#21222A
-]]
+if not vim.g.vscode then
+    vim.cmd [[
+        syntax enable
+        colorscheme dracula
+        filetype plugin on
+        highlight Normal guibg=none
+        highlight CursorLine guibg=#21222A
+    ]]
+end

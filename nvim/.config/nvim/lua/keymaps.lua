@@ -59,3 +59,12 @@ V.keymap('n', '<leader>r', ':so $MYVIMRC<CR>')
 
 -- Add docstrings to current file
 V.keymap('n', '<leader>jg', ':silent !doq --formatter google -w -f %<CR>')
+
+
+if vim.g.vscode then
+    V.keymap('n', '<leader>cc', ':VSCodeCommentary<CR>')
+    V.keymap('v', '<leader>c', ':VSCodeCommentary<CR>')
+    V.keymap('n', '<leader>h', ':Tabprevious<CR>')
+    V.keymap('n', '<leader>l', ':Tabnext<CR>')
+    V.keymap('n', '<leader>q', ':Tabclose<CR>')
+end
