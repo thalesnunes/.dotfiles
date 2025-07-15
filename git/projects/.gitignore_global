@@ -36,3 +36,4 @@ $RECYCLE.BIN/
 
 # Files that I use for development
 tests.*
+.sqruff
