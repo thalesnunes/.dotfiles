@@ -5,5 +5,4 @@ pipx
 pulsemixer
 pynvim
 python-crontab
-python-lsp-server
 wheel

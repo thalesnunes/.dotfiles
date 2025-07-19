@@ -2,7 +2,6 @@ autorandr
 acpi
 awk
 base-devel
-bash-language-server
 bat
 blueman
 btop
@@ -25,7 +24,6 @@ grep
 lazygit
 libqalculate
 libreoffice
-lua-language-server
 maim
 mpv
 navi

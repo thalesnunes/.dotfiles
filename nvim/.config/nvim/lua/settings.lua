@@ -29,6 +29,7 @@ vim.opt.cursorline = true
 
 vim.opt.laststatus = 2
 vim.opt.showmode = false
+vim.g.have_nerd_font = true
 
 -- Disable distribution plugins
 local disabled_built_ins = {
