@@ -1,0 +1,73 @@
+# Mako notification daemon configuration
+# Based on Dracula color scheme
+
+# Appearance
+width=300
+height=110
+border-size=2
+border-radius=5
+background-color=#282a36
+text-color=#f8f8f2
+border-color=#6272a4
+
+# Font
+font=Noto Sans 11
+
+# Position and behavior
+anchor=top-right
+max-visible=5
+sort=-time
+output=
+
+# Default timeout in milliseconds
+default-timeout=5000
+
+# Ignore timeout for some urgency levels
+[urgency=high]
+border-color=#ff5555
+default-timeout=0
+
+[urgency=critical]
+border-color=#ff5555
+background-color=#ff5555
+text-color=#f8f8f2
+default-timeout=0
+
+# Progress bar styling
+progress-color=over #6272a4
+
+# Grouping
+group-by=summary
+max-history=20
+
+# Icons
+icons=1
+max-icon-size=64
+icon-path=/usr/share/icons/Adwaita
+
+# Markup
+markup=1
+actions=1
+
+# Urgency colors
+[urgency=low]
+border-color=#44475a
+
+[urgency=normal]
+border-color=#6272a4
+
+# Format
+format=<b>%s</b>\n%b
+
+# Margin and padding
+margin=10
+padding=15
+
+# On button clicks
+on-button-left=dismiss
+on-button-middle=none
+on-button-right=dismiss-all
+on-touch=dismiss
+
+# On notify
+on-notify=none 

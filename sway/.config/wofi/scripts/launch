@@ -1,0 +1,79 @@
+#!/bin/bash
+
+# Wofi launcher script
+# Replaces rofi launch functionality for sway
+# Usage: launch [mode]
+
+mode="${1:-}"
+
+case "$mode" in
+    "Power")
+        # Power menu
+        choice=$(echo -e "Lock\nLogout\nSuspend\nReboot\nShutdown" | wofi --dmenu --prompt "Power:")
+        case "$choice" in
+            "Lock")
+                swaylock -f -c 000000
+                ;;
+            "Logout")
+                swaymsg exit
+                ;;
+            "Suspend")
+                systemctl suspend
+                ;;
+            "Reboot")
+                systemctl reboot
+                ;;
+            "Shutdown")
+                systemctl poweroff
+                ;;
+        esac
+        ;;
+    "Bluetooth")
+        # Bluetooth menu - basic implementation
+        choice=$(echo -e "Enable\nDisable\nConnect\nDisconnect" | wofi --dmenu --prompt "Bluetooth:")
+        case "$choice" in
+            "Enable")
+                bluetoothctl power on
+                ;;
+            "Disable")
+                bluetoothctl power off
+                ;;
+            "Connect")
+                # This would need a more sophisticated implementation
+                blueman-manager
+                ;;
+            "Disconnect")
+                # This would need a more sophisticated implementation  
+                bluetoothctl disconnect
+                ;;
+        esac
+        ;;
+    "MPV")
+        # MPV menu for playing media
+        choice=$(echo -e "Play from clipboard\nPlay file\nPlay URL" | wofi --dmenu --prompt "MPV:")
+        case "$choice" in
+            "Play from clipboard")
+                url=$(wl-paste)
+                if [ -n "$url" ]; then
+                    mpv "$url"
+                fi
+                ;;
+            "Play file")
+                file=$(find ~ -type f \( -name "*.mp4" -o -name "*.mkv" -o -name "*.avi" -o -name "*.mp3" -o -name "*.flac" \) | wofi --dmenu --prompt "Select file:")
+                if [ -n "$file" ]; then
+                    mpv "$file"
+                fi
+                ;;
+            "Play URL")
+                url=$(echo "" | wofi --dmenu --prompt "Enter URL:")
+                if [ -n "$url" ]; then
+                    mpv "$url"
+                fi
+                ;;
+        esac
+        ;;
+    *)
+        # Default application launcher
+        wofi --show drun
+        ;;
+esac 

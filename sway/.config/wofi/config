@@ -1,0 +1,54 @@
+# Wofi configuration
+# Application launcher for Wayland (replaces rofi)
+
+# Display mode
+mode=drun,run
+
+# Window dimensions
+width=400
+height=300
+
+# Position
+location=center
+
+# Allow scrolling
+allow_markup=true
+allow_images=true
+image_size=32
+
+# Prompt
+prompt=Launch
+
+# Case sensitivity
+insensitive=true
+
+# Results per page
+lines=8
+
+# Columns
+columns=1
+
+# Terminal command for terminal applications
+term=wezterm
+
+# Hide scroll bars
+hide_scroll=true
+
+# Show search results immediately
+show=drun
+
+# Sort order
+sort_order=alphabetical
+
+# Matching
+matching=fuzzy
+
+# No actions (disable right-click menu)
+no_actions=true
+
+# Font
+font=Noto Sans 11
+
+# Key bindings
+key_expand=Tab
+key_exit=Escape 

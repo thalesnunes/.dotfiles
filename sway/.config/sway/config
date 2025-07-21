@@ -1,0 +1,468 @@
+###########################################################
+#                    General Settings
+###########################################################
+
+set $mod Mod4
+set $alt Mod1
+set $terminal wezterm
+
+# Executables and config directories
+set $bin ${HOME}/.local/bin
+set $config ${XDG_CONFIG_HOME}
+
+# Font for window titles and bar
+font pango:Noto Sans 11
+
+# Set focus not to follow mouse
+focus_follows_mouse no
+
+# Auto focus on new window  
+focus_on_window_activation focus
+
+# Set no mouse warping with multiple monitors
+mouse_warping none
+
+# Align title
+title_align center
+
+# Dracula color scheme adapted for sway
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #50FA7B
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+client.background       #F8F8F2
+
+
+###########################################################
+#                     Output Configuration
+###########################################################
+
+# Set wallpaper (replace feh with swaybg)
+output * bg ~/.config/sway/wallpaper.jpg fill
+
+# Monitor configuration
+# Get output names with: swaymsg -t get_outputs
+# Example:
+# output HDMI-A-1 resolution 1920x1080 position 1920,0
+# output eDP-1 resolution 1920x1080 position 0,0
+
+
+###########################################################
+#                     Input Configuration  
+###########################################################
+
+# Touchpad configuration
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+    dwt enabled
+    accel_profile "flat"
+    click_method clickfinger
+}
+
+# Keyboard configuration
+input type:keyboard {
+    xkb_layout us
+    repeat_delay 300
+    repeat_rate 50
+}
+
+
+###########################################################
+#                        Movements
+###########################################################
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod normal
+
+# Change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move focused window
+bindsym $mod+$alt+h move left
+bindsym $mod+$alt+j move down
+bindsym $mod+$alt+k move up
+bindsym $mod+$alt+l move right
+
+# Change monitor focus
+bindsym $mod+i focus output left
+bindsym $mod+o focus output right
+
+# Move windows between monitors
+bindsym $mod+$alt+i move container output left, focus output left
+bindsym $mod+$alt+o move container output right, focus output right
+
+# Resize outside resize mode
+bindsym $mod+period resize grow width 5 px or 5 ppt
+bindsym $mod+comma resize shrink width 5 px or 5 ppt
+bindsym $mod+$alt+period resize grow height 5 px or 5 ppt
+bindsym $mod+$alt+comma resize shrink height 5 px or 5 ppt
+
+
+###########################################################
+#                      Workspaces
+###########################################################
+
+# Define names for default workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Move focused container to workspace
+bindsym $mod+$alt+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+$alt+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+$alt+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+$alt+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+$alt+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+$alt+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+$alt+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+$alt+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+$alt+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+$alt+0 move container to workspace $ws10; workspace $ws10
+
+# Workspace output assignment
+workspace $ws1 output primary
+workspace $ws2 output primary  
+workspace $ws3 output primary
+workspace $ws4 output primary
+workspace $ws5 output primary
+workspace $ws6 output nonprimary
+workspace $ws7 output nonprimary
+workspace $ws8 output nonprimary
+workspace $ws9 output nonprimary
+workspace $ws10 output nonprimary
+
+
+###########################################################
+#                        Layouts
+###########################################################
+
+# Split in horizontal orientation
+bindsym $mod+Shift+l splith
+
+# Split in vertical orientation
+bindsym $mod+Shift+j splitv
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+Tab layout toggle splith tabbed
+
+# Toggle tiling / floating
+bindsym $mod+Shift+f floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+Shift+Tab focus mode_toggle
+
+
+###########################################################
+#               Assign apps to workspaces
+###########################################################
+
+assign [class="TelegramDesktop"] workspace $ws9
+assign [class="whatsappweb-nativefier-d40211"] workspace $ws9
+assign [app_id="crx_hnpfjngllnobngcgfapefoaidbinmjnm"] workspace $ws9
+assign [class="notion-nativefier-46aee8"] workspace $ws10
+assign [app_id="crx_gpmngigldijofdhcmpepkjelnjhoddlh"] workspace $ws10
+assign [app_id="crx_kjbdgfilnfhdoflbpgamdcdgpehopbep"] workspace $ws10
+assign [class="Slack"] workspace $ws9
+assign [class="zoom"] workspace $ws9
+assign [class="^stig$"] workspace $ws10
+assign [class="DBeaver"] workspace $ws3
+assign [class="^wcode$"] workspace $ws3
+
+# Open specific applications in floating mode
+for_window [class="calamares"] floating enable
+for_window [title="File Transfer*"] floating enable
+for_window [class="GParted"] floating enable
+for_window [title="i3_help"] floating enable sticky enable
+for_window [class="Lightdm-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable
+for_window [title="MuseScore: Play Panel"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="qt5ct"] floating enable sticky enable
+for_window [class="Qtconfig-qt4"] floating enable sticky enable
+for_window [class="Simple-scan"] floating enable
+for_window [class="(?i)System-config-printer.py"] floating enable
+for_window [title="^zoom$"] floating enable
+
+for_window [class="^pginit$"] floating enable
+for_window [class="^pgstop$"] floating enable
+for_window [class="^qalc$"] floating enable
+for_window [class="^cmd$"] floating enable
+for_window [class="^htop$"] floating enable
+for_window [class="^btop$"] floating enable
+for_window [class="^pulsemixer$"] floating enable
+for_window [class="^scratchpad$"] floating enable
+for_window [app_id="crx_nngceckbapebfimnlniiiahkandclblb"] floating enable
+for_window [class="^kill$"] floating enable
+
+
+###########################################################
+#                     Personal Binds
+###########################################################
+
+# Kill focused window
+bindsym $mod+q kill
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Restart sway inplace (preserves your layout/session)
+bindsym $mod+Shift+r exec swaymsg reload
+
+# Start a terminal
+bindsym $mod+BackSpace exec $terminal
+
+# Exit sway (logs you out of your Wayland session)
+bindsym $mod+$alt+BackSpace exec $config/wofi/scripts/launch Power
+
+# Open browsers
+bindsym $mod+b exec zen-browser -P 'Pessoal'
+
+# Telegram
+bindsym $mod+m exec --no-startup-id Telegram
+
+# Whatsapp
+bindsym $mod+n workspace $ws9, exec zen-browser -P 'Pessoal' --new-window 'web.whatsapp.com'
+
+# File Managers
+bindsym $mod+e exec $terminal start -- ranger
+bindsym $mod+Shift+e exec pcmanfm
+
+# Clipboard Manager (replace clipcat with clipse)
+bindsym $mod+v exec clipse
+
+# Use pactl to adjust volume in PulseAudio/PipeWire
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+
+# Use brightnessctl to adjust brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 10%+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+bindsym $alt+XF86MonBrightnessUp exec --no-startup-id brightnessctl set 100%
+bindsym $alt+XF86MonBrightnessDown exec --no-startup-id brightnessctl set 0%
+
+# Notification control (using mako instead of dunst)
+# Close notification
+bindsym $alt+space exec --no-startup-id makoctl dismiss
+# Close all notifications
+bindsym $alt+Control+space exec --no-startup-id makoctl dismiss -a
+# Redisplay last message(s)
+bindsym $alt+Control+h exec --no-startup-id makoctl restore
+# Context menu (if supported by mako)
+bindsym $alt+Control+c exec --no-startup-id makoctl menu
+
+
+###########################################################
+#                        Modes
+###########################################################
+
+# General launching utilities
+bindsym $mod+space mode "APPS"
+mode "APPS" {
+    # Launch main script (app launcher and others) - using wofi instead of rofi
+    bindsym space exec $config/wofi/scripts/launch; mode "default"
+    bindsym $mod+space exec $config/wofi/scripts/launch; mode "default"
+    # Launch CMD script
+    bindsym Return exec $terminal start --class cmd; mode "default"
+    # Launch script to kill processes
+    bindsym k exec $terminal start --class kill -- $bin/fzf_kill; mode "default"
+    bindsym Shift+k exec $terminal start --class kill -- $bin/fzf_kill SIGKILL; mode "default"
+    # Launch Project with tmux
+    bindsym c exec $terminal start -- zsh -i -c proj; mode "default"
+    # Launch Calc
+    bindsym m exec $terminal start --class qalc -- qalc -t; mode "default"
+    # Launch pulsemixer
+    bindsym v exec $terminal start --class pulsemixer -- pulsemixer; mode "default"
+    # Launch bluetooth script (adapt for sway)
+    bindsym b exec $config/wofi/scripts/launch Bluetooth; mode "default"
+    # Launch nm-connection-editor
+    bindsym n exec nm-connection-editor; mode "default"
+    # Launch btop
+    bindsym h exec $terminal start --class btop -- btop --preset 1; mode "default"
+    # Launch tmp notepad
+    bindsym t exec $terminal start --class scratchpad -- nvim "/tmp/tmp_$(date +%s)"; mode "default"
+    # Launch MPV script
+    bindsym p exec $config/wofi/scripts/launch MPV; mode "default"
+    # Open SPOTIFY mode
+    bindsym s mode "SPOTIFY"
+    # Launch power script
+    bindsym BackSpace exec $config/wofi/scripts/launch Power; mode "default"
+    # Escape mode
+    bindsym Escape mode "default"
+}
+
+# Spotifyd and Spotify-TUI mode
+mode "SPOTIFY" {
+    # Run sptinit (start spotifyd and spt)
+    bindsym i exec --no-startup-id $bin/sptinit; mode "default"
+    # Run sptstop (stop spotifyd)
+    bindsym s exec --no-startup-id $bin/sptstop; mode "default"
+    # Escape mode
+    bindsym Escape mode "default"
+}
+
+# Screenshot mode (using grimshot/grim instead of maim)
+bindsym $mod+s mode "SCREENSHOT"
+mode "SCREENSHOT" {
+    # Screenshot region
+    bindsym s exec "grim -g \"$(slurp)\" - | wl-copy"; mode "default"
+    # Screenshot screen 1
+    bindsym 1 exec $bin/grim_monitor 0; mode "default"
+    # Screenshot screen 2
+    bindsym 2 exec $bin/grim_monitor 1; mode "default"
+    # Screenshot all screens
+    bindsym f exec "grim - | wl-copy"; mode "default"
+    # Screenshot active window
+    bindsym a exec "grim -g \"$(swaymsg -t get_tree | jq -r '.. | select(.focused?) | .rect | \"\\(.x),\\(.y) \\(.width)x\\(.height)\"')\" - | wl-copy"; mode "default"
+    # Save clipboard image to file in screenshot directory
+    bindsym Shift+s exec "wl-paste > ~/Imagens/Screenshots/$(date +%Y%m%d%H%M%S).png"; mode "default"
+    # Escape mode
+    bindsym Escape mode "default"
+}
+
+# Work mode
+bindsym $mod+w mode "WORK"
+mode "WORK" {
+    # Work starter
+    bindsym s exec $bin/work_starter; mode "default"
+    # Browser on Upwork profile
+    bindsym b workspace $ws2, exec zen-browser -P 'Upwork'; mode "default"
+    # Slack
+    bindsym m exec TZ='America/Sao_Paulo' slack; mode "default"
+    # DBeaver
+    bindsym d exec dbeaver; mode "default"
+    # Launch Project with tmux
+    bindsym c exec $terminal start --class wcode -- zsh -i -c projw; mode "default"
+    # Escape mode
+    bindsym Escape mode "default"
+}
+
+
+###########################################################
+#                     Resize mode
+###########################################################
+
+mode "resize" {
+    # These bindings trigger as soon as you enter the resize mode
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+
+###########################################################
+#                        Gaps
+###########################################################
+
+# Remove window title bars
+default_border pixel 2
+default_floating_border pixel 2
+
+# Set gaps
+gaps inner 8
+gaps outer 0
+
+# Smart gaps (gaps used if only more than one container on the workspace)
+smart_gaps on
+
+
+###########################################################
+#                     Idle Configuration
+###########################################################
+
+# Lock screen after timeout
+exec swayidle -w \
+    timeout 300 'swaylock -f -c 000000' \
+    timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock -f -c 000000'
+
+
+###########################################################
+#                     Autostart Apps
+###########################################################
+
+# Set up monitor resolution and positioning, then theme mode
+exec_always $bin/desktop_setup
+
+# Notification daemon (mako instead of dunst)
+exec --no-startup-id mako
+
+# Enable Night-Light (gammastep instead of redshift)
+exec --no-startup-id gammastep -l -23.536215622740578:-46.68497829306198
+
+# Clipboard manager (clipse instead of clipcat)
+exec --no-startup-id clipse -listen
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet --indicator
+
+# Blueman applet to control bluetooth
+exec --no-startup-id blueman-applet
+
+# Automounting drives
+exec --no-startup-id udiskie --tray
+
+# Start waybar instead of polybar
+exec_always --no-startup-id waybar
+
+# Polkit authentication agent
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+
+###########################################################
+#                     Status Bar
+###########################################################
+
+# Disable the default sway bar since we're using waybar
+bar {
+    swaybar_command waybar
+}
+
+# Include additional config files
+include /etc/sway/config.d/*
+
+# vim:filetype=sway 

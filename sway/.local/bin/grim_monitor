@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Grim monitor screenshot script
+# Replaces maim_monitor for Wayland/Sway
+# Usage: grim_monitor <monitor_number>
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <monitor_number>"
+    echo "Monitor numbers start from 0"
+    exit 1
+fi
+
+monitor_num="$1"
+
+# Get output names
+outputs=($(swaymsg -t get_outputs | jq -r '.[].name'))
+
+if [ "$monitor_num" -ge "${#outputs[@]}" ]; then
+    echo "Monitor $monitor_num does not exist"
+    echo "Available monitors:"
+    for i in "${!outputs[@]}"; do
+        echo "  $i: ${outputs[$i]}"
+    done
+    exit 1
+fi
+
+target_output="${outputs[$monitor_num]}"
+
+# Take screenshot of specific output and copy to clipboard
+grim -o "$target_output" - | wl-copy
+
+echo "Screenshot of monitor $monitor_num (${target_output}) copied to clipboard" 
