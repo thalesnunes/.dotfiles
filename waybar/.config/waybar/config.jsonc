@@ -1,0 +1,65 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 28,
+    "modules-left": ["cpu", "memory", "sway/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["sway/mode", "sway/workspaces", "battery", "pulseaudio", "network", "tray"],
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false
+    },
+    "sway/mode": {
+    },
+    "tray": {
+        "icon-size": 24,
+        "spacing": 6
+    },
+    "clock": {
+        "interval": 5,
+        "format": "{:%H:%M | %d %b}",
+        "format-alt": "{:%H:%M:%S | %A, %d de %B de %Y}"
+    },
+    "cpu": {
+        "interval": 3,
+        "format": "{usage}% "
+
+    },
+    "memory": {
+        "interval": 3,
+        "format": "{used:0.2f} GB "
+    },
+    "battery": {
+        "bat": "BAT0",
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+       "interface": "wlp0s20f3",
+       "format-wifi": " {signalStrength}%",
+       "format-ethernet": "",
+       "format-disconnected": "",
+       "tooltip-format": "{ifname} ({essid}): {ipaddr}",
+       "on-click": "swaymsg exec \\$terminal start -- nmtui"
+    },
+    "pulseaudio": {
+        //"scroll-step": 1,
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-muted": "X Muted",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
+    }
+}
