@@ -3,4 +3,5 @@ poetry
 proj-init
 ranger-fm
 stig
+uv
 yt-dlp
