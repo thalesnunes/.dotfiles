@@ -1,0 +1,7 @@
+clipcat -> clipse
+feh -> swaybg
+maim -> grimshot
+polybar -> waybar
+redshift -> gammastep
+rofi -> wofi
+xclip -> wl-clipboard

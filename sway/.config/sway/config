@@ -1,0 +1,6 @@
+# User configs
+include $HOME/.config/sway/variables.d/*.conf
+include $HOME/.config/sway/config.d/*.conf
+include $HOME/.config/sway/inputs/*.conf
+include $HOME/.config/sway/outputs/*.conf
+include $HOME/.config/sway/modes/*.conf

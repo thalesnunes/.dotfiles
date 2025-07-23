@@ -16,7 +16,6 @@ dunst
 exa
 fastfetch
 fd
-feh
 fzf
 git
 git-delta
@@ -24,7 +23,6 @@ grep
 lazygit
 libqalculate
 libreoffice
-maim
 mpv
 navi
 neovim
@@ -35,13 +33,11 @@ ntp
 os-prober
 pcmanfm-gtk3
 pet-bin
-picom
 pipewire
 playerctl
 polybar
 python
 python-pip
-redshift
 ripgrep
 rofi
 speedtest-cli
@@ -63,11 +59,7 @@ ttf-ms-fonts
 ttf-opensans
 udiskie
 wezterm
-xcape
-xclip
 xdg-utils
-xorg-xev
-xorg-xrdb
 zathura
 zathura-pdf-mupdf
 zen-browser-bin
