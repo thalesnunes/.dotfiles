@@ -160,6 +160,7 @@ assign [class="zoom"] workspace $ws9
 assign [class="^stig$"] workspace $ws10
 assign [class="DBeaver"] workspace $ws3
 assign [class="^wcode$"] workspace $ws3
+assign [class="^cursor$"] workspace $ws3
 
 # Open specific applications in floating mode
 for_window [class="calamares"] floating enable
