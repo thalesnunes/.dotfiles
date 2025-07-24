@@ -6,7 +6,6 @@ import os
 from pathlib import Path
 import random
 import subprocess
-import sys
 from time import sleep
 
 IMAGES_DIR = Path(os.environ.get("XDG_DATA_HOME", os.path.expanduser("~/.local/share"))) / "wallpapers"
@@ -59,7 +58,16 @@ def set_wallpaper(chosen_style):
 
     current_hour = datetime.now().hour
     current_image_file = list((IMAGES_DIR / chosen_style).glob(f"{current_hour}.*", recurse_symlinks=True))[0]
-    subprocess.run(["feh", "--no-fehbg", "--bg-fill", str(current_image_file.absolute())])
+
+    try:
+        old_swaybg_pid = int(subprocess.check_output(["pgrep", "swaybg"]))
+    except subprocess.CalledProcessError:
+        old_swaybg_pid = False
+    finally:
+        subprocess.Popen(["swaybg", "-o", "*", "-m", "fill", "-i", str(current_image_file.absolute())])
+    if old_swaybg_pid:
+        sleep(2)
+        subprocess.run(["kill", str(old_swaybg_pid)])
 
 
 parser = ArgumentParser('wallpaper_setter')
