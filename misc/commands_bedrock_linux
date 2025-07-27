@@ -8,8 +8,6 @@ chmod +x bedrock-linux.sh
 sudo sh ./bedrock-linux.sh --hijack
 reboot
 
-sudo apt install blueman bat
-
 usermod -aG video ${USER}
 sudo usermod -aG video ${USER}
 
@@ -26,8 +24,6 @@ sudo strat -r arch /usr/bin/sed -i 's/#Color/Color\nILoveCandy/' /etc/pacman.con
 sudo strat -r arch /usr/bin/sed -i 's/.*ParallelDownloads = .*/ParallelDownloads = 10/' /etc/pacman.conf
 
 cd ~/.dotfiles
-export XDG_USER_BIN="$HOME/.local/bin"
-export PATH="$XDG_USER_BIN:$PATH:$PYTHON_BIN_PATH"
 ./install_packages.sh
 ./install_dotfiles.sh
 source ~/.profile

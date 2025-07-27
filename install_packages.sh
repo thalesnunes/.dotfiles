@@ -7,9 +7,13 @@ cd $HOME
 $DOTFILES_BIN/upd
 
 if yn_pr "Do you want to install the default packages? [Y/n]: "; then
-    packages_raw=$([ -f "$DOT/packages" ] && cat "$DOT/packages" || curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/packages)
+    packages_raw=$([ -f "$DOT/packages_arch" ] && cat "$DOT/packages_arch" || curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/packages_arch)
     packages=$(echo "$packages_raw" | tr "\n" " ")
     $INSTALL $packages
+
+    packages_raw=$([ -f "$DOT/packages_ubuntu" ] && cat "$DOT/packages_ubuntu" || curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/packages_ubuntu)
+    packages=$(echo "$packages_raw" | tr "\n" " ")
+    sudo apt install $packages
 fi
 
 echo
@@ -33,14 +37,6 @@ if is_installed "pip"; then
             pipx install "$package"
         done
         pipx inject ranger-fm pynvim
-    fi
-fi
-
-echo
-
-if is_installed "nvim"; then
-    if yn_pr "Do you want to install the default nvim plugins? [Y/n]: "; then
-        nvim --headless "+Lazy! sync" +qa
     fi
 fi
 
