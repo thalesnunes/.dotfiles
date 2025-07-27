@@ -56,8 +56,8 @@ for _, plugin in pairs(disabled_built_ins) do
 	vim.g["loaded_" .. plugin] = 1
 end
 
-vim.api.nvim_create_user_command( "AddPythonDocstrings", "silent !doq --formatter google -w -f %", { desc = "Add docstrings to all objects in this file." })
-vim.api.nvim_create_user_command("JsonFormatter", "%!jq '.'", { desc = "Format current buffer json." })
+vim.api.nvim_create_user_command("AddPythonDocstrings", "silent !doq --formatter google -w -f %", { desc = "Add docstrings to all objects in this file." })
+vim.api.nvim_create_user_command("JsonFormatter", "%!jq --indent 4 '.'", { desc = "Format current buffer json." })
 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd

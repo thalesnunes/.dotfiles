@@ -2,9 +2,23 @@
     "position": "top",
     "height": 28,
     "output": "HDMI-A-1",
-    "modules-left": ["cpu", "memory", "sway/window"],
-    "modules-center": ["clock"],
-    "modules-right": ["sway/mode", "sway/workspaces", "battery", "pulseaudio", "network", "tray"],
+    "modules-left": [
+        "cpu",
+        "memory",
+        "sway/window"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "sway/mode",
+        "sway/workspaces",
+        "battery",
+        "pulseaudio",
+        "network",
+        "bluetooth",
+        "tray"
+    ],
     "margin-top": 4,
     "margin-bottom": 0,
     "margin-left": 8,
@@ -25,7 +39,6 @@
     "cpu": {
         "interval": 3,
         "format": "{usage}% "
-
     },
     "memory": {
         "interval": 3,
@@ -38,18 +51,23 @@
             "critical": 10
         },
         "format": "{icon} {capacity}%",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
     },
     "network": {
-       "interface": "wlp0s20f3",
-       "format-wifi": " {signalStrength}%",
-       "format-ethernet": "",
-       "format-disconnected": "",
-       "tooltip-format": "{ifname} ({essid}): {ipaddr}",
-       "on-click": "swaymsg exec \\$terminal start -- nmtui"
+        "interface": "wlp0s20f3",
+        "format-wifi": " {signalStrength}%",
+        "format-ethernet": "",
+        "format-disconnected": "",
+        "tooltip-format": "{ifname} ({essid}): {ipaddr}",
+        "on-click": "swaymsg exec \"\\$terminal start --class nmtui -- nmtui\""
     },
     "pulseaudio": {
-        //"scroll-step": 1,
         "format": "{icon} {volume}%",
         "format-bluetooth": "{icon} {volume}%",
         "format-muted": "X Muted",
@@ -60,8 +78,20 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", ""]
+            "default": [
+                "",
+                ""
+            ]
         },
-        "on-click": "pavucontrol"
+        "on-click": "swaymsg exec \"\\$terminal start --class pulsemixer -- pulsemixer\""
+    },
+    "bluetooth": {
+        "format": "{icon}",
+        "format-icons": {
+            "enabled": " 󰂯 ",
+            "disabled": ""
+        },
+        "tooltip-format": "{}",
+        "on-click": "swaymsg exec \"\\$terminal start --class bluetui -- bluetui\""
     }
 }
