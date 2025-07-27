@@ -11,7 +11,7 @@ cd "$DOT"
 is_installed "stow"
 is_installed "awk"
 
-conflicts=$(stow -nt ~ */ 2>&1 | awk -v home="$HOME/" '/directory: */ {print home$NF}')
+conflicts=$(stow -nt ~ */ 2>&1 | sed -n 's|.*over existing target \([^ ]*\).*|'"$HOME"'/\1|p')
 
 if [ -n "$conflicts" ]; then
     echo "The following conflicts were found:"
