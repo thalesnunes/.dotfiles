@@ -1,0 +1,49 @@
+# Mako Configuration - Dracula Theme
+
+# Global settings
+font=Inter 10
+
+width=350
+height=100
+
+# Position notifications in the top-right corner
+anchor=top-right
+margin=10
+padding=15
+
+# Border settings
+border-size=2
+border-radius=8
+
+# Background color (Dracula background)
+background-color=#282a3699
+
+# Text color (Dracula foreground)
+text-color=#f8f8f2
+
+# Border color (Dracula accent/selection)
+border-color=#bd93f999
+
+# Default timeout for notifications (in milliseconds)
+default-timeout=5000
+
+# Icon settings
+# Set to '1' to show icons, '0' to hide them
+icons=1
+
+# Urgency levels (Dracula themed)
+[urgency=low]
+background-color=#44475a99
+text-color=#f8f8f2
+border-color=#44475a99
+
+[urgency=normal]
+background-color=#282a3699
+text-color=#f8f8f2
+border-color=#bd93f999
+
+[urgency=critical]
+background-color=#ff555599
+text-color=#f8f8f2
+border-color=#ff555599
+default-timeout=0
