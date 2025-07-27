@@ -85,6 +85,11 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
 export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$HOST"
 
+# NPM
+export NPM_CONFIG_INIT_MODULE="$XDG_CONFIG_HOME"/npm/config/npm-init.js
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME"/npm
+export NPM_CONFIG_TMP="$XDG_RUNTIME_DIR"/npm
+
 # URXVT
 export RXVT_SOCKET="$XDG_RUNTIME_DIR/urxvtd"
 
