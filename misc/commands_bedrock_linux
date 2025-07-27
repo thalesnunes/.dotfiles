@@ -1,7 +1,3 @@
-sudo tee /etc/sudoers.d/bedrock_install <<END
-$USER $(hostname) = NOPASSWD: ALL
-END
-sudo -k
 
 sudo apt update
 sudo apt upgrade
@@ -12,28 +8,10 @@ chmod +x bedrock-linux.sh
 sudo sh ./bedrock-linux.sh --hijack
 reboot
 
-/usr/lib/apt/apt-helper download-file https://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2024.03.04_all.deb keyring.deb SHA256:f9bb4340b5ce0ded29b7e014ee9ce788006e9bbfe31e96c09b2118ab91fca734
-sudo apt install ./keyring.deb
-rm ./keyring.deb
-echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" | sudo tee /etc/apt/sources.list.d/sur5r-i3.list
-sudo apt update
-sudo apt install i3 lightdm libfuse2 blueman bat brightnessctl
-sudo apt purge gdm3
-
-cat <<EOF > /bedrock/strata/ubuntu/usr/share/lightdm/lightdm.conf.d/99-thales-display-setup-script.conf
-[Seat:*]
-display-setup-script=/bedrock/cross/bin/autorandr --change
-EOF
-
-cat <<EOF > /bedrock/strata/ubuntu/usr/share/lightdm/lightdm.conf.d/99-thales-xserver-command.conf
-[Seat:*]
-xserver-command=X -core -ardelay 330 -arinterval 35
-EOF
+sudo apt install blueman bat
 
 usermod -aG video ${USER}
 sudo usermod -aG video ${USER}
-
-sudo strat -r ubuntu chmod 000 /usr/bin/ibus-daemon
 
 sudo brl fetch -n arch arch
 sudo pacman -Syu
@@ -41,15 +19,15 @@ sudo pacman -Syu
 sudo sed -i 's/^timeout =.*/timeout = 5/' /bedrock/etc/bedrock.conf
 sudo sed -i 's/^user-interface =.*/user-interface = paru/' /bedrock/etc/bedrock.conf
 sudo sed -i 's/^ignore-non-system-package-managers =.*/ignore-non-system-package-managers = false/' /bedrock/etc/bedrock.conf
+echo "ADD PYTHON AND NEOVIM PIN TO ARCH"
 sudo brl apply
-
-sudo pacman -S python python-pip
-sudo ln -s /bedrock/cross/bin/python /usr/bin/python
 
 sudo strat -r arch /usr/bin/sed -i 's/#Color/Color\nILoveCandy/' /etc/pacman.conf
 sudo strat -r arch /usr/bin/sed -i 's/.*ParallelDownloads = .*/ParallelDownloads = 10/' /etc/pacman.conf
 
 cd ~/.dotfiles
+export XDG_USER_BIN="$HOME/.local/bin"
+export PATH="$XDG_USER_BIN:$PATH:$PYTHON_BIN_PATH"
 ./install_packages.sh
 ./install_dotfiles.sh
 source ~/.profile
@@ -62,10 +40,8 @@ sudo strat -r arch rm -rf /root/.config
 sudo strat -r arch ln -s /home/thales/.config /root
 sudo strat -r arch rm -rf /root/.local
 sudo strat -r arch ln -s /home/thales/.local /root
-
-sudo ln -s /bedrock/cross/bin/nvim /usr/bin/nvim
-sudo strat -r ubuntu ln -s /bedrock/cross/bin/brave /usr/bin/brave
-strat -r ubuntu sudo ln -s /usr/bin/batcat /usr/bin/bat
+sudo strat -r ubuntu rm /usr/bin/bat
+sudo strat -r ubuntu sudo ln -s /usr/bin/batcat /usr/bin/bat
 
 bash -c "crontab -l 2>/dev/null | cat - $XDG_CONFIG_HOME/crontab | crontab -"
 
@@ -75,8 +51,8 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 sudo groupadd docker
 sudo usermod -aG docker $USER
-sudo systemctl disable docker
-sudo systemctl disable docker.socket
+rm get-docker.sh
+cd ~
 
 snap list
 sudo snap remove --purge firefox
@@ -96,6 +72,3 @@ Pin: release a=*
 Pin-Priority: -10'
 sudo apt update
 sudo apt upgrade
-
-sudo rm /etc/sudoers.d/bedrock_install
-sudo -k

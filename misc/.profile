@@ -14,8 +14,7 @@ export XDG_VIDEOS_DIR="$HOME/Videos"
 export XDG_USER_BIN="$HOME/.local/bin"
 
 # Adding python and other scripts to PATH
-export PATH="$XDG_USER_BIN:$PATH"
-export PATH="$PATH:$PYTHON_BIN_PATH"
+export PATH="$XDG_USER_BIN:$PATH:$PYTHON_BIN_PATH"
 
 # TERMINAL
 if [ -x "$(command -v wezterm)" ]; then
