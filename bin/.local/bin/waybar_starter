@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# DIR="${HOME}/.config/polybar"
+# STYLE="minimal"
+
+# if [[ $1 = "light" ]]; then
+#     COLORS=colors.day
+# elif [[ $1 = "dark" ]]; then
+#     COLORS=colors.night
+# fi
+
+# cp $DIR/minimal/$COLORS $DIR/minimal/colors.ini
+
+# # Terminate already running bar instances
+killall -q waybar
+
+# # Wait until the processes have been shut down
+while pgrep -u $UID -x waybar >/dev/null; do sleep 1; done
+
+# # Launch the bar
+# polybar -q main -c "$DIR/$STYLE/config.ini" &
+
+waybar -c $XDG_CONFIG_HOME/waybar/config.jsonc -s $XDG_CONFIG_HOME/waybar/style.css

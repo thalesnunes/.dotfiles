@@ -1,15 +1,17 @@
 {
-    "layer": "top",
     "position": "top",
     "height": 28,
+    "output": "HDMI-A-1",
     "modules-left": ["cpu", "memory", "sway/window"],
     "modules-center": ["clock"],
     "modules-right": ["sway/mode", "sway/workspaces", "battery", "pulseaudio", "network", "tray"],
+    "margin-top": 4,
+    "margin-bottom": 0,
+    "margin-left": 8,
+    "margin-right": 8,
     "sway/workspaces": {
         "disable-scroll": true,
-        "all-outputs": false
-    },
-    "sway/mode": {
+        "all-outputs": true
     },
     "tray": {
         "icon-size": 24,
