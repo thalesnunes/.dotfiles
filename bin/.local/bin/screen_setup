@@ -1,18 +1,24 @@
 #!/usr/bin/env bash
 
-# if [ -n "$1" ]; then
-#     file="$1"
-# else
-#     file="$HOME/.config/xrandrrc"
-# fi
+OUTPUTS_DIR="$XDG_CONFIG_HOME/sway/outputs"
 
-# if [ -f "$file" ]; then
-#     while read flags; do
-#         xrandr $flags 2> /dev/null && exit 0
-#     done < "$file"
-#     notify-send -u critical -a "Xrandr" "Error on screen setup"
-# else
-#     notify-send -u critical -a "Xrandr" "No xrandrrc file available"
-# fi
+if [ -n "$1" ]; then
+    screen_profile="$1"
+else
+    active_monitors=$(swaymsg -t get_outputs | jq  -r '.[] | select(.dpms and .active).name' | sort | xargs)
 
-autorandr --change
+    case "$active_monitors" in
+        "eDP-1 HDMI-A-1")
+            screen_profile="lh" ;;
+        "eDP-1")
+            screen_profile="l" ;;
+        *)
+            screen_profile="l" ;;
+    esac
+
+fi
+
+(return 0 2>/dev/null) && return 0
+
+cp $OUTPUTS_DIR/"$screen_profile-screen.conf" $OUTPUTS_DIR/screen.conf
+notify-send "Screen setup" "$screen_profile output profile was setup"

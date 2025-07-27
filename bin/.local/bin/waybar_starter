@@ -1,23 +1,27 @@
 #!/usr/bin/env bash
 
-# DIR="${HOME}/.config/polybar"
-# STYLE="minimal"
+source $XDG_USER_BIN/screen_setup $1
+WAYBAR_DIR="$XDG_CONFIG_HOME/waybar"
 
-# if [[ $1 = "light" ]]; then
-#     COLORS=colors.day
-# elif [[ $1 = "dark" ]]; then
-#     COLORS=colors.night
-# fi
-
-# cp $DIR/minimal/$COLORS $DIR/minimal/colors.ini
-
-# # Terminate already running bar instances
+# Terminate already running bar instances
 killall -q waybar
 
-# # Wait until the processes have been shut down
+# Wait until the processes have been shut down
 while pgrep -u $UID -x waybar >/dev/null; do sleep 1; done
 
-# # Launch the bar
-# polybar -q main -c "$DIR/$STYLE/config.ini" &
+cp $WAYBAR_DIR/default.jsonc $WAYBAR_DIR/config.jsonc
 
-waybar -c $XDG_CONFIG_HOME/waybar/config.jsonc -s $XDG_CONFIG_HOME/waybar/style.css
+case $screen_profile in
+    lh)
+        echo "lh"
+        primary="HDMI-A-1" ;;
+    l)
+        echo "l"
+        primary="eDP-1" ;;
+    *)
+        echo "*"
+        primary="eDP-1" ;;
+esac
+sed -i "s/\"output\": \"\\S*\",/\"output\": \"$primary\",/" $WAYBAR_DIR/config.jsonc
+
+waybar -c $WAYBAR_DIR/config.jsonc -s $WAYBAR_DIR/style.css &!
