@@ -15,10 +15,10 @@ case "$1" in
         modi="drun"
         ;;
     "Clipboard")
-        theme=$sidetext
+        theme=$dracula
         show="Clip"
-        modi="$show:greenclip print"
-        extra="-run-command '{cmd}'"
+        modi="$show:$dir/modi/$1.sh"
+        extra='-kb-remove-char-forward Delete -kb-custom-1 Control+d'
         ;;
     "Bluetooth")
         theme=$sidetext
