@@ -1,0 +1,23 @@
+[general]
+# Exit directly after copy/save action
+early-exit = true
+
+# Draw corners of rectangles round if the value is greater than 0 (0 disables rounded corners)
+corner-roundness = 10
+
+# Select the tool on startup [possible values: pointer, crop, line, arrow, rectangle, text, marker, blur, brush]
+initial-tool = "rectangle"
+
+# Configure the command to be called on copy, for example `wl-copy`
+copy-command = "wl-copy"
+
+# Disable notifications
+disable-notifications = false
+
+# Actions to trigger on Enter key (order is important)
+# [possible values: save-to-clipboard, save-to-file, exit]
+actions-on-enter = ["save-to-clipboard", "exit"]
+
+# Actions to trigger on Escape key (order is important)
+# [possible values: save-to-clipboard, save-to-file, exit]
+actions-on-escape = ["exit"]
