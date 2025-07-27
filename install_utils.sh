@@ -45,4 +45,4 @@ esac
 
 is_installed "curl"
 
-[ -f "$HOME/.dotfiles/x11/.profile" ] && source "$HOME/.dotfiles/x11/.profile" || eval "$(curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/x11/.profile)"
+[ -f "$DOTFILES_DIR/misc/.profile" ] && source "$DOTFILES_DIR/misc/.profile" || eval "$(curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/misc/.profile)"
