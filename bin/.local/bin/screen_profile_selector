@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+active_monitors=$(swaymsg -t get_outputs | jq  -r '.[] | select(.dpms and .active).name' | sort | xargs)
+
+case "$active_monitors" in
+    "eDP-1 HDMI-A-1")
+        screen_profile="lh"
+        primary_monitor="HDMI-A-1"
+        ;;
+    "eDP-1")
+        screen_profile="l"
+        primary_monitor="eDP-1"
+        ;;
+    *)
+        screen_profile="l"
+        primary_monitor="eDP-1"
+        ;;
+esac

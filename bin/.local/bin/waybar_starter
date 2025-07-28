@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
-source $XDG_USER_BIN/screen_setup $1
 WAYBAR_DIR="$XDG_CONFIG_HOME/waybar"
+
+if [ -n "$1" ]; then
+    primary_monitor="$1"
+else
+    source $XDG_USER_BIN/screen_profile_selector
+fi
 
 # Terminate already running bar instances
 killall -q waybar
@@ -10,18 +15,6 @@ killall -q waybar
 while pgrep -u $UID -x waybar >/dev/null; do sleep 1; done
 
 cp $WAYBAR_DIR/default.jsonc $WAYBAR_DIR/config.jsonc
-
-case $screen_profile in
-    lh)
-        echo "lh"
-        primary="HDMI-A-1" ;;
-    l)
-        echo "l"
-        primary="eDP-1" ;;
-    *)
-        echo "*"
-        primary="eDP-1" ;;
-esac
-sed -i "s/\"output\": \"\\S*\",/\"output\": \"$primary\",/" $WAYBAR_DIR/config.jsonc
+sed -i "s/\"output\": \"\\S*\",/\"output\": \"$primary_monitor\",/" $WAYBAR_DIR/config.jsonc
 
 waybar -c $WAYBAR_DIR/config.jsonc -s $WAYBAR_DIR/style.css &!

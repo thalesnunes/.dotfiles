@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+MAKO_DIR="$XDG_CONFIG_HOME/mako"
+
+if [ -n "$1" ]; then
+    primary_monitor="$1"
+else
+    source $XDG_USER_BIN/screen_profile_selector
+fi
+
+cp $MAKO_DIR/default $MAKO_DIR/config
+sed -i "s/output=\\S*/output=$primary_monitor/" $MAKO_DIR/config
+
+makoctl reload

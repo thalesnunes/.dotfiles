@@ -5,20 +5,8 @@ OUTPUTS_DIR="$XDG_CONFIG_HOME/sway/outputs"
 if [ -n "$1" ]; then
     screen_profile="$1"
 else
-    active_monitors=$(swaymsg -t get_outputs | jq  -r '.[] | select(.dpms and .active).name' | sort | xargs)
-
-    case "$active_monitors" in
-        "eDP-1 HDMI-A-1")
-            screen_profile="lh" ;;
-        "eDP-1")
-            screen_profile="l" ;;
-        *)
-            screen_profile="l" ;;
-    esac
-
+    source $XDG_USER_BIN/screen_profile_selector
 fi
-
-(return 0 2>/dev/null) && return 0
 
 cp $OUTPUTS_DIR/"$screen_profile-screen.conf" $OUTPUTS_DIR/screen.conf
 notify-send "Screen setup" "$screen_profile output profile was setup"

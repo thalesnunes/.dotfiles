@@ -1,7 +1,10 @@
 # Mako Configuration - Dracula Theme
 
+# Monitor to display all notifications
+output=HDMI-A-1
+
 # Global settings
-font=Inter 10
+font=FontAwesome 12
 
 width=350
 height=100
@@ -13,16 +16,16 @@ padding=15
 
 # Border settings
 border-size=2
-border-radius=8
+border-radius=10
 
 # Background color (Dracula background)
-background-color=#282a3699
+background-color=#282a36CC
 
 # Text color (Dracula foreground)
 text-color=#f8f8f2
 
 # Border color (Dracula accent/selection)
-border-color=#bd93f999
+border-color=#bd93f9CC
 
 # Default timeout for notifications (in milliseconds)
 default-timeout=5000
@@ -31,21 +34,24 @@ default-timeout=5000
 # Set to '1' to show icons, '0' to hide them
 icons=1
 
+# Message format
+format=<b>%a</b>\n<i>%s</i>\n%b
+
 # Urgency levels (Dracula themed)
 [urgency=low]
-background-color=#44475a99
+background-color=#44475aCC
 text-color=#f8f8f2
-border-color=#44475a99
+border-color=#44475aCC
 
 [urgency=normal]
-background-color=#282a3699
+background-color=#282a36CC
 text-color=#f8f8f2
-border-color=#bd93f999
+border-color=#bd93f9CC
 
 [urgency=critical]
-background-color=#ff555599
+background-color=#ff5555CC
 text-color=#f8f8f2
-border-color=#ff555599
+border-color=#ff5555CC
 default-timeout=0
 
 [app-name=Brightness]

@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 
-bin="$XDG_USER_BIN"
+if [ -n "$1" ]; then
+    screen_profile="$1"
+else
+    source $XDG_USER_BIN/screen_profile_selector
+fi
 
-$bin/screen_setup $1 > /dev/null 2>&1 &
-$bin/waybar_starter $1 > /dev/null 2>&1 &
+$XDG_USER_BIN/screen_setup $screen_profile > /dev/null 2>&1 &
+$XDG_USER_BIN/waybar_starter $primary_monitor > /dev/null 2>&1 &
+$XDG_USER_BIN/mako_starter $primary_monitor > /dev/null 2>&1 &
 
 sleep 0.5
 systemctl --user start wallpaper_setter
