@@ -69,13 +69,14 @@
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon} {volume}%",
-        "format-muted": "X Muted",
+        "format-bluetooth": "{icon}  {volume}%",
+        "format-muted": " Muted",
         "format-icons": {
             "headphones": "",
-            "handsfree": "",
-            "headset": "",
+            "handsfree": "",
+            "headset": "",
             "phone": "",
+            "phone-muted": "",
             "portable": "",
             "car": "",
             "default": [
@@ -88,8 +89,8 @@
     "bluetooth": {
         "format": "{icon}",
         "format-icons": {
-            "enabled": " 󰂯 ",
-            "disabled": ""
+            "enabled": "  ",
+            "disabled": "  "
         },
         "tooltip-format": "{}",
         "on-click": "swaymsg exec \"\\$terminal start --class bluetui -- bluetui\""
