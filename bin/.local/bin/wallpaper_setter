@@ -60,14 +60,14 @@ def set_wallpaper(chosen_style):
     current_image_file = list((IMAGES_DIR / chosen_style).glob(f"{current_hour}.*", recurse_symlinks=True))[0]
 
     try:
-        old_swaybg_pid = int(subprocess.check_output(["pgrep", "swaybg"]))
+        old_swaybg_pids = subprocess.check_output(["pgrep", "swaybg"]).splitlines()
     except subprocess.CalledProcessError:
-        old_swaybg_pid = False
+        old_swaybg_pids = False
     finally:
         subprocess.Popen(["swaybg", "-o", "*", "-m", "fill", "-i", str(current_image_file.absolute())])
-    if old_swaybg_pid:
+    if old_swaybg_pids:
         sleep(2)
-        subprocess.run(["kill", str(old_swaybg_pid)])
+        subprocess.run(["kill", *old_swaybg_pids])
 
 
 parser = ArgumentParser('wallpaper_setter')
