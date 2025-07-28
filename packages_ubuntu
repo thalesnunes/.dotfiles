@@ -1,6 +1,7 @@
 ca-certificates
 curl
 dbus
+gammastep
 jq
 libdbus-glib-1-2
 libglib2.0-0
