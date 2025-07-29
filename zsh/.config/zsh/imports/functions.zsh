@@ -123,7 +123,7 @@ function pretty_csv() {
     cat $1 | sed 's/,/ ,/g' | column -t -s, | bat
 }
 
-function prev() {
+function pet_save_prev() {
     PREV=$(fc -lrn | head -n 1)
     sh -c "pet new `printf %q "$PREV"`"
 }
