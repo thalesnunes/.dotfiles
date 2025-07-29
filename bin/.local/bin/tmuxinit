@@ -24,11 +24,10 @@ if tmux has-session -t $SESS 2> /dev/null; then
 else
     cd "$TOCD"
     tmux new-session -ds $SESS $WINDOW -c $TOCD $CMD
-
-    if [[ -z $TMUX ]]; then
-        tmux attach-session -t $SESS
-    else
-        tmux switch-client -t $SESS
-    fi
 fi
 
+if [[ -z $TMUX ]]; then
+    tmux attach-session -t $SESS
+else
+    tmux switch-client -t $SESS
+fi
