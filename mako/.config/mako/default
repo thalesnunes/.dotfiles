@@ -54,15 +54,18 @@ text-color=#f8f8f2
 border-color=#ff5555CC
 default-timeout=0
 
+
 [app-name=Brightness]
 layer=overlay
 history=0
 anchor=top-center
 group-by=app-name
 format=<b>%s</b>\n%b
+progress-color=#8be9fdCC
 
 [app-name=Brightness group-index=0]
 invisible=0
+
 
 [app-name=Volume]
 layer=overlay
@@ -70,6 +73,7 @@ history=0
 anchor=top-center
 group-by=app-name
 format=<b>%s</b>\n%b
+progress-color=#6272a4CC
 
 [app-name=Volume group-index=0]
 invisible=0
