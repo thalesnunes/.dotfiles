@@ -1,5 +1,5 @@
-V = require('helpers')
+V = require("helpers")
 
-require('keymaps')
-require('settings')
-require('lazy_init')
+require("keymaps")
+require("settings")
+require("lazy_init")

@@ -1,4 +1,4 @@
 return {
-    'mboughaba/i3config.vim',
-    ft = 'i3config',
+	"mboughaba/i3config.vim",
+	ft = "i3config",
 }
