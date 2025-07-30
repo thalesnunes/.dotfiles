@@ -24,6 +24,7 @@ if [ -n "$conflicts" ]; then
     elif yn_pr "$mv_pr"; then
         echo "$conflicts" | xargs mv {} {}.old
     else
+        cd "$OLDPWD"
         exit 0
     fi
 fi
@@ -32,4 +33,6 @@ echo
 stow --no-folding -nvt ~ */
 echo
 
-yn_pr "Do you accept these changes? [Y/n]: " && stow --no-folding -vt ~ */ || exit 0
+yn_pr "Do you accept these changes? [Y/n]: " && stow --no-folding -vt ~ */
+
+cd "$OLDPWD"
