@@ -122,6 +122,8 @@ return {
 				require("telescope.builtin").live_grep({ cwd = git_dir })
 			end
 
+			vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
+
 			-- Find files using Telescope command-line sugar.
 			V.keymap("n", "<leader>ff", ":Telescope git_files hidden=true show_untracked=true<CR>")
 			V.keymap("n", "<leader>fw", ":lua live_grep_git_dir()<CR>")
