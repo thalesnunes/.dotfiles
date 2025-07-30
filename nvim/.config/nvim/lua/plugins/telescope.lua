@@ -102,6 +102,7 @@ return {
 				},
 				undo = {
 					side_by_side = true,
+					layout_strategy = "horizontal",
 					layout_config = {
 						preview_width = 0.8,
 					},
@@ -112,6 +113,7 @@ return {
 			require("telescope").setup(opts)
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("undo")
+			require("telescope").load_extension("noice")
 
 			function live_grep_git_dir()
 				local git_dir =

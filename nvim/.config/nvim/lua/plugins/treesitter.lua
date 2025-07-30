@@ -11,6 +11,7 @@ return {
 					"lua",
 					"python",
 					"sql",
+					"regex",
 				},
 				highlight = {
 					enable = true, -- false will disable the whole extension
