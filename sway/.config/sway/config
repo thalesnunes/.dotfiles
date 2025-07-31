@@ -1,4 +1,12 @@
 # User configs
+
+# Additional configs
+include /etc/sway/config.d/10-systemd-cgroups.conf
+include /etc/sway/config.d/10-systemd-session.conf
+include /etc/sway/config.d/30-applications-defaults.conf
+include /etc/sway/config.d/50-systemd-user.conf
+include /etc/sway/config.d/95-xdg-desktop-autostart.conf
+
 include $HOME/.config/sway/variables.d/*.conf
 include $HOME/.config/sway/config.d/*.conf
 include $HOME/.config/sway/inputs/*.conf
