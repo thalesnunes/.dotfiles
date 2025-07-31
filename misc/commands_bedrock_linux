@@ -1,6 +1,7 @@
 
-sudo apt update
-sudo apt upgrade
+swaymsg input type:keyboard xkb_layout br
+
+sudo apt update && sudo apt upgrade
 
 cd ~/Downloads
 curl -s https://api.github.com/repos/bedrocklinux/bedrocklinux-userland/releases/latest | grep "browser_download_url.*x86_64.sh" | cut -d : -f 2,3 | tr -d \" | wget -q -O bedrock-linux.sh -i -
@@ -11,13 +12,13 @@ reboot
 usermod -aG video ${USER}
 sudo usermod -aG video ${USER}
 
-sudo brl fetch -n arch arch
+sudo brl fetch -n arch -m "https://mirrors.ic.unicamp.br/archlinux/$repo/os/$arch" arch
 sudo pacman -Syu
 
 sudo sed -i 's/^timeout =.*/timeout = 5/' /bedrock/etc/bedrock.conf
 sudo sed -i 's/^user-interface =.*/user-interface = paru/' /bedrock/etc/bedrock.conf
 sudo sed -i 's/^ignore-non-system-package-managers =.*/ignore-non-system-package-managers = false/' /bedrock/etc/bedrock.conf
-echo "ADD PYTHON AND NEOVIM PIN TO ARCH"
+echo "ADD PYTHON, NEOVIM, ZSH PIN TO ARCH"
 sudo brl apply
 
 sudo strat -r arch /usr/bin/sed -i 's/#Color/Color\nILoveCandy/' /etc/pacman.conf
