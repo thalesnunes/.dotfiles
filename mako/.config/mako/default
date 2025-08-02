@@ -38,7 +38,7 @@ icons=1
 format=<b>%a</b>\n<i>%s</i>\n%b
 
 # Notification sound
-on-notify=exec mpv --no-video /home/thales/.local/share/pipx/venvs/gcal-notifier/lib/python3.13/site-packages/gcal_notifier/resources/pop.wav
+# on-notify=exec mpv --no-video /home/thales/.local/share/pipx/venvs/gcal-notifier/lib/python3.13/site-packages/gcal_notifier/resources/pop.wav
 
 # Urgency levels (Dracula themed)
 [urgency=low]
