@@ -14,3 +14,4 @@ sleep 0.5
 systemctl --user start wallpaper_setter
 systemctl --user start gcal_get
 systemctl --user start gcal_notify
+systemctl --user start battery_warning

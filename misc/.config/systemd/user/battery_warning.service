@@ -1,0 +1,13 @@
+[Unit]
+Description=Battery warning service
+After=default.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=%h/.local/bin/daemonize_command -c %h/.local/bin/battery_warning -r 1
+
+[Install]
+WantedBy=default.target
