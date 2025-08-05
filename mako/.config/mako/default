@@ -37,9 +37,6 @@ icons=1
 # Message format
 format=<b>%a</b>\n<i>%s</i>\n%b
 
-# Notification sound
-# on-notify=exec mpv --no-video /home/thales/.local/share/pipx/venvs/gcal-notifier/lib/python3.13/site-packages/gcal_notifier/resources/pop.wav
-
 # Urgency levels (Dracula themed)
 [urgency=low]
 background-color=#44475aCC
@@ -80,3 +77,8 @@ progress-color=#6272a4CC
 
 [app-name=Volume group-index=0]
 invisible=0
+
+
+[app-name=GoogleCalendar]
+# Notification sound
+on-notify=exec mpv --no-video $XDG_DATA_HOME/sounds/pop.wav
