@@ -30,6 +30,7 @@ application/vnd.oasis.opendocument.spreadsheet=org.onlyoffice.desktopeditors.des
 x-scheme-handler/discord-424004941485572097=discord-424004941485572097.desktop
 x-scheme-handler/webcal=zen.desktop
 text/markdown=nvim.desktop
+application/x-ndjson=nvim.desktop
 
 [Added Associations]
 x-scheme-handler/http=zen.desktop
@@ -61,3 +62,4 @@ application/json=nvim.desktop;
 application/vnd.oasis.opendocument.spreadsheet=org.onlyoffice.desktopeditors.desktop;
 audio/vnd.wave=mpv.desktop;
 text/markdown=nvim.desktop
+application/x-ndjson=nvim.desktop
