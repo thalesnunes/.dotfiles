@@ -3,6 +3,15 @@ return {
 		"echasnovski/mini.surround",
 		event = "VimEnter",
 		opts = {
+			custom_surroundings = {
+				["("] = { output = { left = "(", right = ")" } },
+				["["] = { output = { left = "[", right = "]" } },
+				["{"] = { output = { left = "{", right = "}" } },
+
+				[")"] = { output = { left = "( ", right = " )" } },
+				["]"] = { output = { left = "[ ", right = " ]" } },
+				["}"] = { output = { left = "{ ", right = " }" } },
+			},
 			mappings = {
 				add = "gsa", -- Add surrounding in Normal and Visual modes
 				delete = "gsd", -- Delete surrounding
