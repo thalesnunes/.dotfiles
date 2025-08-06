@@ -1,4 +1,4 @@
-from __future__ import (absolute_import, division, print_function)
+from __future__ import absolute_import, division, print_function
 
 # You always need to import ranger.api.commands here to get the Command class:
 from ranger.api.commands import Command
@@ -26,50 +26,55 @@ class fzf_select(Command):
         import os
         from ranger.ext.get_executables import get_executables
 
-        if 'fzf' not in get_executables():
-            self.fm.notify('Could not find fzf in the PATH.', bad=True)
+        if "fzf" not in get_executables():
+            self.fm.notify("Could not find fzf in the PATH.", bad=True)
             return
 
         fd = None
-        if 'fdfind' in get_executables():
-            fd = 'fdfind'
-        elif 'fd' in get_executables():
-            fd = 'fd'
+        if "fdfind" in get_executables():
+            fd = "fdfind"
+        elif "fd" in get_executables():
+            fd = "fd"
 
         if fd is not None:
-            hidden = ('--hidden' if self.fm.settings.show_hidden else '')
+            hidden = "--hidden" if self.fm.settings.show_hidden else ""
             exclude = "--no-ignore-vcs --exclude '.git' --exclude '*.py[co]' \
                     --exclude '__pycache__'"
-            only_directories = ('--type directory' if self.quantifier else '')
-            fzf_default_command = '{} --follow {} {} {} --color=always'.format(
+            only_directories = "--type directory" if self.quantifier else ""
+            fzf_default_command = "{} --follow {} {} {} --color=always".format(
                 fd, hidden, exclude, only_directories
             )
         else:
-            hidden = ('-false' if self.fm.settings.show_hidden
-                      else r"-path '*/\.*' -prune")
+            hidden = (
+                "-false" if self.fm.settings.show_hidden else r"-path '*/\.*' -prune"
+            )
             exclude = r"\( -name '\.git' -o -iname '\.*py[co]' \
                         -o -fstype 'dev' -o -fstype 'proc' \) -prune"
-            only_directories = ('-type d' if self.quantifier else '')
-            fzf_default_command = 'find -L . -mindepth 1 {} -o {} -o {} -print\
-                        | cut -b3-'.format(
+            only_directories = "-type d" if self.quantifier else ""
+            fzf_default_command = "find -L . -mindepth 1 {} -o {} -o {} -print\
+                        | cut -b3-".format(
                 hidden, exclude, only_directories
             )
 
         env = os.environ.copy()
-        env['FZF_DEFAULT_COMMAND'] = fzf_default_command
-        env['FZF_DEFAULT_OPTS'] = '--height=40% --layout=reverse --ansi \
-                                    --preview="{}"'.format('''
+        env["FZF_DEFAULT_COMMAND"] = fzf_default_command
+        env["FZF_DEFAULT_OPTS"] = (
+            '--height=40% --layout=reverse --ansi \
+                                    --preview="{}"'.format(
+                """
             (
                 batcat --color=always {} ||
                 bat --color=always {} ||
                 cat {} ||
                 tree -ahpCL 3 -I '.git' -I '*.py[co]' -I '__pycache__' {}
             ) 2>/dev/null | head -n 100
-        ''')
+        """
+            )
+        )
 
-        fzf = self.fm.execute_command('fzf --no-multi', env=env,
-                                      universal_newlines=True,
-                                      stdout=subprocess.PIPE)
+        fzf = self.fm.execute_command(
+            "fzf --no-multi", env=env, universal_newlines=True, stdout=subprocess.PIPE
+        )
         stdout, _ = fzf.communicate()
         if fzf.returncode == 0:
             selected = os.path.abspath(stdout.strip())
@@ -83,7 +88,7 @@ class add_mpv_playlist(Command):
     def execute(self):
         from pathlib import Path
 
-        cache_file = Path('~/.cache/mpv/playlist_history').expanduser()
+        cache_file = Path("~/.cache/mpv/playlist_history").expanduser()
         cache_file.parent.mkdir(parents=True, exist_ok=True)
         path = Path(str(self.fm.thisfile))
 
@@ -92,10 +97,10 @@ class add_mpv_playlist(Command):
         else:
             target = path.parent.absolute()
 
-        with open(cache_file, 'a') as file_obj:
-            file_obj.write(f'{str(path.name)}={str(target)}\n')
+        with open(cache_file, "a") as file_obj:
+            file_obj.write(f"{str(path.name)}={str(target)}\n")
 
-        self.fm.notify(f'{str(path.name)} added to saved playlists')
+        self.fm.notify(f"{str(path.name)} added to saved playlists")
 
 
 class bulkrename_torrent(Command):
@@ -123,13 +128,13 @@ class bulkrename_torrent(Command):
                     join_dict[r_index] = {"tor_id": tor_id, "file_index": index}
                     break
 
-        assert len(new_filelist) == len(join_dict), "Filelist and join are not the same length"
+        assert len(new_filelist) == len(
+            join_dict
+        ), "Filelist and join are not the same length"
         return new_filelist, join_dict
 
-
     def create_torrents_match(self, torrent_list: list, ranger_files: list):
-        """Create torrents and fetch its attributes
-        """
+        """Create torrents and fetch its attributes"""
         import subprocess
         from pathlib import Path
 
@@ -141,26 +146,27 @@ class bulkrename_torrent(Command):
             if any([tor_name in str(r_file.absolute()) for r_file in ranger_files]):
                 # get filelist for each torrent
                 torrent_files = self.fm.run(
-                    ['stig', 'filelist', f'"{tor_name}"', '-c', 'name'],
-                    stdout=subprocess.PIPE
+                    ["stig", "filelist", f'"{tor_name}"', "-c", "name"],
+                    stdout=subprocess.PIPE,
                 )
 
                 if torrent_files.returncode == 0:
                     # read filelist from output
                     filelist = list(map(Path, self.read_stig_output(torrent_files)))
                 else:
-                    self.fm.notify(f"There was an error running filelist for {tor_name}")
+                    self.fm.notify(
+                        f"There was an error running filelist for {tor_name}"
+                    )
                     return
-
 
                 filelist, join = self.filter_match(tor_id, filelist, ranger_files)
 
                 if filelist:
                     torrents[tor_id] = {
-                            "name": tor_name,
-                            "path": f"{tor_path}/{tor_name}",
-                            "files": filelist
-                        }
+                        "name": tor_name,
+                        "path": f"{tor_path}/{tor_name}",
+                        "files": filelist,
+                    }
                     join_dict.update(join)
 
         return torrents, join_dict
@@ -176,8 +182,7 @@ class bulkrename_torrent(Command):
 
         # Getting all torrents from stig
         torrents_cmd = self.fm.run(
-            ['stig', 'ls', '-c', 'id,name,path'],
-            stdout=subprocess.PIPE
+            ["stig", "ls", "-c", "id,name,path"], stdout=subprocess.PIPE
         )
 
         if torrents_cmd.returncode == 0:
@@ -194,25 +199,26 @@ class bulkrename_torrent(Command):
         torrents, join_dict = self.create_torrents_match(torrent_list, ranger_files)
 
         filenames = [
-                str(file.absolute()).replace(f"{self.fm.thistab.path}/", "")
-                for file in ranger_files
-            ]
+            str(file.absolute()).replace(f"{self.fm.thistab.path}/", "")
+            for file in ranger_files
+        ]
 
         with tempfile.NamedTemporaryFile(delete=False) as listfile:
             listpath = listfile.name
             if PY3:
                 listfile.write(
-                        "\n".join(filenames)
-                        .encode(encoding="utf-8", errors="surrogateescape")
+                    "\n".join(filenames).encode(
+                        encoding="utf-8", errors="surrogateescape"
                     )
+                )
             else:
-                listfile.write(
-                        "\n".join(filenames)
-                    )
+                listfile.write("\n".join(filenames))
 
-        self.fm.execute_file([File(listpath)], app='editor')
+        self.fm.execute_file([File(listpath)], app="editor")
 
-        with open(listpath, "r", encoding="utf-8", errors="surrogateescape") as listfile:
+        with open(
+            listpath, "r", encoding="utf-8", errors="surrogateescape"
+        ) as listfile:
             new_filenames = listfile.read().split("\n")
 
         os.unlink(listpath)
@@ -229,9 +235,7 @@ class bulkrename_torrent(Command):
             for index, (old, new) in enumerate(zip(filenames, new_filenames)):
                 if old != new:
                     if index not in join_dict.keys():
-                        script_lines.append(
-                            f"mv -vi -- {esc(old)} {esc(new)}"
-                        )
+                        script_lines.append(f"mv -vi -- {esc(old)} {esc(new)}")
                         continue
 
                     tor_id = join_dict[index]["tor_id"]
@@ -248,8 +252,7 @@ class bulkrename_torrent(Command):
             script_content = "\n".join(script_lines) + "\n"
             if PY3:
                 cmdfile.write(
-                    script_content
-                    .encode(encoding="utf-8", errors="surrogateescape")
+                    script_content.encode(encoding="utf-8", errors="surrogateescape")
                 )
             else:
                 cmdfile.write(script_content)
@@ -257,12 +260,12 @@ class bulkrename_torrent(Command):
 
             # Open the script and let the user review it, then check if the
             # script was modified by the user
-            self.fm.execute_file([File(cmdfile.name)], app='editor')
+            self.fm.execute_file([File(cmdfile.name)], app="editor")
             cmdfile.seek(0)
-            script_was_edited = (script_content != cmdfile.read())
+            script_was_edited = script_content != cmdfile.read()
 
             # Do the renaming
-            self.fm.run(['/bin/sh', cmdfile.name])
+            self.fm.run(["/bin/sh", cmdfile.name])
 
         # Retag the files, but only if the script wasn't changed during review,
         # because only then we know which are the source and destination files.
@@ -270,8 +273,8 @@ class bulkrename_torrent(Command):
             tags_changed = False
             for old, new in zip(filenames, new_filenames):
                 if old != new:
-                    oldpath = self.fm.thisdir.path + '/' + old
-                    newpath = self.fm.thisdir.path + '/' + new
+                    oldpath = self.fm.thisdir.path + "/" + old
+                    newpath = self.fm.thisdir.path + "/" + new
                     if oldpath in self.fm.tags:
                         old_tag = self.fm.tags.tags[oldpath]
                         self.fm.tags.remove(oldpath)
@@ -286,6 +289,7 @@ class paste_torrent(Command):
     Paste the selected items into the current directory or to dest
     if provided, using stig interface when applicable.
     """
+
     overwrite = False
     append = False
     dest = None
@@ -303,8 +307,7 @@ class paste_torrent(Command):
 
         # Getting all torrents from stig
         torrents_cmd = self.fm.run(
-            ['stig', 'ls', '-c', 'id,name'],
-            stdout=subprocess.PIPE
+            ["stig", "ls", "-c", "id,name"], stdout=subprocess.PIPE
         )
 
         if torrents_cmd.returncode == 0:
@@ -316,25 +319,29 @@ class paste_torrent(Command):
             self.fm.notify("There was an error fetching the torrent list")
             return
 
-
         if self.dest is None:
             self.dest = Path(self.fm.thistab.path)
 
         if self.dest.is_dir():
 
-            files_to_move = [Path(file.path.replace(".part", "")) for file in self.fm.copy_buffer]
+            files_to_move = [
+                Path(file.path.replace(".part", "")) for file in self.fm.copy_buffer
+            ]
             for file in files_to_move:
 
                 if torrents.get(file.name) is None:
-                    self.fm.run(
-                        ['mv', str(file.absolute()), str(self.dest.absolute())]
-                    )
+                    self.fm.run(["mv", str(file.absolute()), str(self.dest.absolute())])
 
                 else:
                     self.fm.run(
-                        ['stig', 'mv', f'id={torrents[file.name]}', str(self.dest.absolute())]
+                        [
+                            "stig",
+                            "mv",
+                            f"id={torrents[file.name]}",
+                            str(self.dest.absolute()),
+                        ]
                     )
 
             self.fm.do_cut = False
         else:
-            self.notify('Failed to paste. The destination is invalid.', bad=True)
+            self.notify("Failed to paste. The destination is invalid.", bad=True)
