@@ -84,8 +84,3 @@ autocmd("BufWritePre", {
 	pattern = "*",
 	command = [[%s/\s\+$//e]],
 })
-
-vim.cmd([[
-    syntax enable
-    filetype plugin on
-]])
