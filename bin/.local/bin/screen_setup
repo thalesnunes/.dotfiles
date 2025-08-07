@@ -9,4 +9,4 @@ else
 fi
 
 cp $OUTPUTS_DIR/"$screen_profile-screen.conf" $OUTPUTS_DIR/screen.conf
-notify-send "Screen setup" "$screen_profile output profile was setup"
+notify-send -a "Desktop Setup" "Screen Setup" "$screen_profile output profile was setup"
