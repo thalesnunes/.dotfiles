@@ -1,11 +1,11 @@
 alias ..='cd ..'
 alias ...='cd ../..'
 
-alias la='exa -a --color=always --group-directories-first'
-alias ll='exa -l --color=always --group-directories-first'
-alias lla='exa -al --color=always --group-directories-first'
-alias lt='exa -aT --color=always --group-directories-first'
-alias tree='exa -T --color=always'
+alias la='eza -a --color=always --group-directories-first'
+alias ll='eza -l --color=always --group-directories-first'
+alias lla='eza -al --color=always --group-directories-first'
+alias lt='eza -aT --color=always --group-directories-first'
+alias tree='eza -T --color=always'
 
 alias gs='git status'
 alias gd='git diff'
