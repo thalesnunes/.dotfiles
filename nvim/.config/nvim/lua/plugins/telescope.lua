@@ -127,10 +127,12 @@ return {
 			-- Find files using Telescope command-line sugar.
 			V.keymap("n", "<leader>ff", ":Telescope git_files hidden=true show_untracked=true<CR>")
 			V.keymap("n", "<leader>fw", ":lua live_grep_git_dir()<CR>")
-			V.keymap("n", "<leader>b", ":Telescope buffers<CR>")
-			V.keymap("n", "<leader>H", ":Telescope help_tags<CR>")
+			V.keymap("n", "<leader>fb", ":Telescope buffers<CR>")
+			V.keymap("n", "<leader>fh", ":Telescope help_tags<CR>")
+			V.keymap("n", "<leader>fk", ":Telescope keymaps<CR>")
+			V.keymap("n", "<leader>fm", ":Telescope noice<CR>")
 
-			V.keymap("n", "<leader>u", ":Telescope undo<CR>")
+			V.keymap("n", "<leader>fu", ":Telescope undo<CR>")
 		end,
 	},
 	{
