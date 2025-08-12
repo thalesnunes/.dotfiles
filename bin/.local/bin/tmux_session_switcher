@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+SESS_NAME=$(tmux list-sessions -F "#{session_name}" | fzf --reverse --header="Select session to switch (Ctrl-d to kill)" --bind 'ctrl-d:execute(tmux kill-session -t {})+reload(tmux list-sessions -F "#{session_name}")')
+if [[ -z "$SESS_NAME" ]]; then
+    exit 0
+fi
+
+$XDG_USER_BIN/tmux_init -s "$SESS_NAME"

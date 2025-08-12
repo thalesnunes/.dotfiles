@@ -116,7 +116,7 @@ function proj() {
     fi
     CMD="$CMD$EDITOR"
 
-    tmuxinit -s $NAME -d $TOCD $CMD
+    tmux_init -s $NAME -d $TOCD $CMD
 }
 
 function pretty_csv() {

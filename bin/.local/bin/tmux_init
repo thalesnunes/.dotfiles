@@ -2,7 +2,12 @@
 
 CMD=""
 TOCD=$HOME
-SESS="cli"
+
+CLI_SESS=0
+while tmux has-session -t="cli-$CLI_SESS" 2> /dev/null; do
+    ((CLI_SESS++))
+done
+SESS="cli-$CLI_SESS"
 
 while getopts d:s:w: flag; do
     case "$flag" in
@@ -19,8 +24,8 @@ if [[ -z $TMUX ]] && [[ -z $(pgrep tmux) ]]; then
     exit 0
 fi
 
-if tmux has-session -t $SESS 2> /dev/null; then
-    tmux new-window -t $SESS $WINDOW -c $TOCD $CMD
+if tmux has-session -t=$SESS 2> /dev/null; then
+     [[ -n $WINDOW ]] && tmux new-window -t $SESS $WINDOW -c $TOCD $CMD
 else
     cd "$TOCD"
     tmux new-session -ds $SESS $WINDOW -c $TOCD $CMD
