@@ -29,13 +29,7 @@ return {
 		-- vim.g.rnvimr_ranger_cmd = {'ranger', '--cmd=set draw_borders both'}
 
 		-- Map Rnvimr action
-		-- vim.g.rnvimr_action = {
-		--     ['<C-t>'] = 'NvimEdit tabedit',
-		--     ['<C-x>'] = 'NvimEdit split',
-		--     ['<C-v>'] = 'NvimEdit vsplit',
-		--     ['gw'] = 'JumpNvimCwd',
-		--     ['yw'] = 'EmitRangerCwd'
-		-- }
+		vim.g.rnvimr_action = false
 
 		-- Fullscreen for initial layout
 		vim.g.rnvimr_layout = {
