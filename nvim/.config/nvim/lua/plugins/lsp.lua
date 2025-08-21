@@ -252,6 +252,7 @@ return {
 							end
 						end
 					end)
+					vim.notify("Called formatter!")
 				end,
 				mode = "",
 				desc = "[F]ormat buffer",

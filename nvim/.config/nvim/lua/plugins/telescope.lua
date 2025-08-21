@@ -130,7 +130,7 @@ return {
 			V.keymap("n", "<leader>fb", ":Telescope buffers<CR>")
 			V.keymap("n", "<leader>fh", ":Telescope help_tags<CR>")
 			V.keymap("n", "<leader>fk", ":Telescope keymaps<CR>")
-			V.keymap("n", "<leader>fm", ":Telescope noice<CR>")
+			V.keymap("n", "<leader>fn", ":Telescope noice<CR>")
 
 			V.keymap("n", "<leader>fu", ":Telescope undo<CR>")
 		end,
