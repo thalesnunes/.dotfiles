@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source install_utils.sh
+source $DOT/install_utils.sh
 
 if [ ! -d "$DOT" ]; then
     git clone https://github.com/thalesnunes/.dotfiles "$DOT"
