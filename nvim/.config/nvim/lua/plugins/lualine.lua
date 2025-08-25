@@ -8,15 +8,17 @@ return {
 			icons_enabled = true,
 			theme = "dracula-nvim",
 			component_separators = { left = "|", right = "|" },
-			section_separators = { left = "", right = "" },
+			section_separators = { left = "", right = "" },
 			disabled_filetypes = {},
 		},
 		sections = {
 			lualine_a = {
 				{
 					"mode",
-					fmt = function(mode)
-						return mode:sub(1, 1)
+					separator = { left = "", right = "" },
+					right_padding = 2,
+					fmt = function(str)
+						return str:sub(1, 1)
 					end,
 				},
 			},
@@ -58,7 +60,12 @@ return {
 				},
 				"filetype",
 			},
-			lualine_z = { "location" },
+			lualine_z = {
+				{
+					"location",
+					separator = { left = "", right = "" },
+				},
+			},
 		},
 	},
 }
