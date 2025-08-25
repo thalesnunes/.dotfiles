@@ -41,17 +41,14 @@ format=<b>%a</b>\n<i>%s</i>\n%b
 [urgency=low]
 background-color=#44475aCC
 text-color=#f8f8f2
-border-color=#44475aCC
 
 [urgency=normal]
 background-color=#282a36CC
 text-color=#f8f8f2
-border-color=#bd93f9CC
 
 [urgency=critical]
 background-color=#ff5555CC
 text-color=#f8f8f2
-border-color=#ff5555CC
 default-timeout=0
 
 
