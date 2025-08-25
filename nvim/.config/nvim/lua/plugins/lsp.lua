@@ -209,6 +209,7 @@ return {
 				"stylua", -- Used to format Lua code
 				"black", -- Used to format Python code
 				"sleek", -- Used to format SQL code
+				"jq", -- Used to format JSON code
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -278,11 +279,19 @@ return {
 				lua = { "stylua" },
 				python = { "black" },
 				sql = { "sleek" },
+				json = { "jq" },
+				jsonc = { "jq" },
+
 				-- Conform can also run multiple formatters sequentially
 				-- python = { "isort", "black" },
 				--
 				-- You can use 'stop_after_first' to run the first available formatter from the list
 				-- javascript = { "prettierd", "prettier", stop_after_first = true },
+			},
+			formatters = {
+				jq = {
+					append_args = { "--indent", "4" },
+				},
 			},
 		},
 	},
