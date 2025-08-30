@@ -96,11 +96,11 @@ function proj() {
     elif [[ $# -eq 2 && $1 == "w" ]]; then
         NAME=$2
     elif [[ $# -eq 1 && $1 == "a" ]]; then
-        TOCD=$(find $PROJECTS $WORK_PROJECTS -maxdepth 1 -type d | fzf)
+        TOCD=$(find $PROJECTS $WORK_PROJECTS -mindepth 1 -maxdepth 1 -type d | fzf)
         PROJ_DIR=$(dirname $TOCD)
         NAME=$(basename $TOCD)
     else
-        NAME=$(ls -1q $PROJ_DIR | fzf)
+        NAME=$(ls -l $PROJ_DIR | awk '/^d/ { print $NF }' | fzf)
     fi
 
     if [[ -z "$NAME" ]] || [[ ! -d "$PROJ_DIR/$NAME" ]]; then
