@@ -81,6 +81,7 @@ return {
 					"__pycache__",
 					"%.pyc",
 					"star_schema",
+                    "archive",
 				},
 			},
 			pickers = {
