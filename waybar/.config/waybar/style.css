@@ -20,7 +20,7 @@ window#waybar>box {
 }
 
 
-#clock, #battery, #cpu, #memory, #network, #pulseaudio, #custom-spotify, #tray, #mode, #window, #workspaces {
+#clock, #battery, #cpu, #memory, #pulseaudio, #tray, #mode, #window, #workspaces, #custom-calendar {
     padding: 0 3px;
     margin: 0 2px;
 }
@@ -101,4 +101,8 @@ window#waybar>box {
 
 #bluetooth.disconnected {
     color: @red;
+}
+
+#custom-calendar {
+    color: @yellow;
 }

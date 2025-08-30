@@ -13,6 +13,7 @@
     "modules-right": [
         "sway/mode",
         "sway/workspaces",
+        "custom/calendar",
         "battery",
         "pulseaudio",
         "network",
@@ -94,5 +95,10 @@
         },
         "tooltip-format": "{}",
         "on-click": "swaymsg exec \"\\$terminal start --class bluetui -- bluetui\""
+    },
+    "custom/calendar": {
+        "exec": "json_next_calendar_event",
+        "return-type": "json",
+        "interval": 60
     }
 }

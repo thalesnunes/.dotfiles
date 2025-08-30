@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Sat, 10:00 (Pessoal) - Agendamento - Don Salerno Barbearia
+RAW_TEXT="$(strat -r arch gcal_notifier print next)"
+text=" ${RAW_TEXT:0:10}"
+
+echo "{ \"text\": \"$text\", \"alt\": \"$text\", \"tooltip\": \"$RAW_TEXT\" }"
