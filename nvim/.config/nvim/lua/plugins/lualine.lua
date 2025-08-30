@@ -1,3 +1,12 @@
+local custom_dracula = require("lualine.themes.dracula-nvim")
+local new_bg = require("dracula").colors().bg
+custom_dracula.normal.b.bg = new_bg
+custom_dracula.insert.b.bg = new_bg
+custom_dracula.visual.b.bg = new_bg
+custom_dracula.replace.b.bg = new_bg
+custom_dracula.command.b.bg = new_bg
+custom_dracula.inactive.b.bg = new_bg
+
 return {
 	"hoob3rt/lualine.nvim",
 	dependencies = {
@@ -6,7 +15,7 @@ return {
 	opts = {
 		options = {
 			icons_enabled = true,
-			theme = "dracula-nvim",
+			theme = custom_dracula,
 			component_separators = { left = "|", right = "|" },
 			section_separators = { left = "", right = "" },
 			disabled_filetypes = {},
