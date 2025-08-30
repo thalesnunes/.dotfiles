@@ -18,18 +18,14 @@ while getopts d:s:w: flag; do
 done
 CMD=${@:$OPTIND:1}
 
-if [[ -z $TMUX ]] && [[ -z $(pgrep tmux) ]]; then
-    cd "$TOCD"
-    tmux new-session -s $SESS $WINDOW -c $TOCD $CMD
-    exit 0
-fi
-
 if tmux has-session -t=$SESS 2> /dev/null; then
      [[ -n $WINDOW ]] && tmux new-window -t $SESS $WINDOW -c $TOCD $CMD
 else
     cd "$TOCD"
     tmux new-session -ds $SESS $WINDOW -c $TOCD $CMD
 fi
+
+[[ "$SESS" == "cli-"* ]] && tmux set-option -t $SESS detach-on-destroy on
 
 if [[ -z $TMUX ]]; then
     tmux attach-session -t $SESS
