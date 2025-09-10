@@ -33,12 +33,12 @@ return {
 
 		-- Fullscreen for initial layout
 		vim.g.rnvimr_layout = {
-			["relative"] = "editor",
-			["width"] = vim.fn.winwidth("%"),
-			["height"] = vim.fn.winheight("%") - 2,
-			["col"] = 0,
-			["row"] = 0,
-			["style"] = "minimal",
+			relative = "editor",
+			width = vim.o.columns,
+			height = math.floor(0.9 * vim.o.lines),
+			col = 0,
+			row = 1,
+			style = "minimal",
 		}
 
 		-- Link CursorLine into RnvimrNormal highlight in the Floating window
