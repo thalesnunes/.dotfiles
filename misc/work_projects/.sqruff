@@ -1,6 +1,6 @@
 [sqruff]
 dialect = snowflake
-exclude_rules = LT01,LT02,LT05
+exclude_rules = LT01,LT02,LT04,LT05,CV03
 rules = all
 
 [sqruff:indentation]
