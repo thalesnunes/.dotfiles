@@ -1,5 +1,6 @@
 return {
 	"kevinhwang91/rnvimr",
+    event = "VeryLazy",
 	config = function()
 		-- Make Ranger replace Netrw and be the file explorer
 		vim.g.rnvimr_enable_ex = 1
