@@ -41,6 +41,7 @@ alias yt_down='yt-dlp -o "~/Downloads/%(title)s.%(ext)s" -f "[ext=mp4][height<=1
 alias hist="history | awk -F' ' '{ \$1=\"\"; print }' | fzf --tac --no-sort"
 
 alias snowsql='swaymsg workspace number 3 > /dev/null; strat -r ubuntu $XDG_USER_BIN/snowsql'
+alias rge="rg --hidden --sort=path -g '!**/.git/**' -g '!**/deployment/**' -g '!**/archive/**' -g '!**/release/**' -g '!**/ddl/**' -i"
 
 # HOME DIR CLEANUP
 alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME/nvidia/settings"'
