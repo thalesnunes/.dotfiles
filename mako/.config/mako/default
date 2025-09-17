@@ -4,10 +4,10 @@
 output=HDMI-A-1
 
 # Global settings
-font=FontAwesome 12
+font=FiraCode Nerd Font 12
 
 width=350
-height=100
+height=120
 
 # Position notifications in the top-right corner
 anchor=top-right

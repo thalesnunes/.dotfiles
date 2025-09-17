@@ -3,8 +3,8 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: FontAwesome;
-    font-size: 14px;
+    font-family: "FiraCode Nerd Font";
+    font-size: 16px;
     min-height: 0;
 }
 
@@ -20,9 +20,8 @@ window#waybar>box {
 }
 
 
-#clock, #battery, #cpu, #memory, #pulseaudio, #tray, #mode, #window, #workspaces, #custom-calendar {
-    padding: 0 3px;
-    margin: 0 2px;
+#clock, #battery, #cpu, #memory, #pulseaudio, #tray, #mode, #window, #workspaces, #custom-calendar, #bluetooth {
+    padding: 0 8px;
 }
 
 
@@ -35,7 +34,7 @@ window#waybar>box {
 }
 
 #clock {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
 }
 
@@ -45,7 +44,6 @@ window#waybar>box {
 }
 
 #workspaces {
-    font-size: 16px;
     font-weight: bold;
 }
 
@@ -95,7 +93,6 @@ window#waybar>box {
 }
 
 #bluetooth {
-    font-size: 16px;
     color: @cyan;
 }
 

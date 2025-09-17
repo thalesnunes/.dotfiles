@@ -39,11 +39,11 @@
     },
     "cpu": {
         "interval": 3,
-        "format": "{usage}% "
+        "format": "{usage}% "
     },
     "memory": {
         "interval": 3,
-        "format": "{used:0.2f} GB "
+        "format": "{used:0.2f} GB "
     },
     "battery": {
         "bat": "BAT0",
@@ -51,27 +51,32 @@
             "warning": 20,
             "critical": 10
         },
-        "format": "{icon} {capacity}%",
+        "format": "{icon}{capacity}%",
         "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "󰂃",
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
         ]
     },
     "network": {
-        "interface": "wlp0s20f3",
         "format-wifi": " {signalStrength}%",
-        "format-ethernet": "",
-        "format-disconnected": "",
+        "format-ethernet": " ",
+        "format-disconnected": " ",
         "tooltip-format": "{ifname} ({essid}): {ipaddr}",
-        "on-click": "swaymsg exec \"\\$terminal start --class nmtui -- nmtui\""
+        "on-click": "swaymsg exec \"\\$terminal start --class impala -- impala\""
     },
     "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon}  {volume}%",
-        "format-muted": " Muted",
+        "format": "{icon}{volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-muted": "",
         "format-icons": {
             "headphones": "",
             "handsfree": "",
@@ -81,8 +86,9 @@
             "portable": "",
             "car": "",
             "default": [
-                "",
-                ""
+                "󰕿",
+                "󰖀",
+                "󰕾"
             ]
         },
         "on-click": "swaymsg exec \"\\$terminal start --class pulsemixer -- pulsemixer\""
@@ -90,8 +96,8 @@
     "bluetooth": {
         "format": "{icon}",
         "format-icons": {
-            "enabled": "  ",
-            "disabled": "  "
+            "enabled": "󰂱",
+            "disabled": "󰂲"
         },
         "tooltip-format": "{}",
         "on-click": "swaymsg exec \"\\$terminal start --class bluetui -- bluetui\""
