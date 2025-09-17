@@ -11,9 +11,11 @@ if yn_pr "Do you want to install the default packages? [Y/n]: "; then
     packages=$(echo "$packages_raw" | tr "\n" " ")
     $INSTALL $packages
 
-    packages_raw=$([ -f "$DOT/packages_ubuntu" ] && cat "$DOT/packages_ubuntu" || curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/packages_ubuntu)
-    packages=$(echo "$packages_raw" | tr "\n" " ")
-    sudo apt install $packages
+    if [ -x "$(command -v apt)" ]; then
+        packages_raw=$([ -f "$DOT/packages_ubuntu" ] && cat "$DOT/packages_ubuntu" || curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/packages_ubuntu)
+        packages=$(echo "$packages_raw" | tr "\n" " ")
+        sudo apt install $packages
+    fi
 fi
 
 echo
@@ -46,9 +48,18 @@ if is_installed "gsettings"; then
     if yn_pr "Do you want to install the Dracula theme and icons? [Y/n]: "; then
         sudo git clone https://github.com/dracula/gtk /usr/share/themes/Dracula
         sudo git clone https://github.com/m4thewz/dracula-icons /usr/share/icons/Dracula
+
         gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
         gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
         gsettings set org.gnome.desktop.interface icon-theme "Dracula"
+
+        rm -rf $HOME/.config/assets
+        rm -rf $HOME/.config/gtk-4.0
+        mkdir -p ~/.config/gtk-4.0
+
+        cp -r /usr/share/themes/Dracula/assets/ $HOME/.config/
+        cp /usr/share/themes/Dracula/gtk-4.0/gtk.css $HOME/.config/gtk-4.0/gtk.css
+        cp /usr/share/themes/Dracula/gtk-4.0/gtk-dark.css $HOME/.config/gtk-4.0/gtk-dark.css
     fi
 fi
 

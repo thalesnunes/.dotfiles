@@ -82,7 +82,7 @@ export POETRY_HOME="$XDG_DATA_HOME/poetry"
 # ZSH
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$HOST"
-export HISTFILE="$XDG_STATE_HOME/zsh/history"
+export HISTFILE="$XDG_STATE_HOME/zsh/.zsh_history"
 export HISTSIZE=10000
 export SAVEHIST=10000
 

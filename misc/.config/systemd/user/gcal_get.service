@@ -7,7 +7,7 @@ StartLimitIntervalSec=0
 Type=simple
 Restart=always
 RestartSec=1
-ExecStart=%h/.local/bin/daemonize_command -c "strat -r arch $HOME/.local/bin/gcal_notifier get" -r 10
+ExecStart=%h/.local/bin/daemonize_command -c "%h/.local/bin/gcal_notifier get" -r 10
 
 [Install]
 WantedBy=default.target

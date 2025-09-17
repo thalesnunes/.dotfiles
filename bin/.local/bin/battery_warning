@@ -2,7 +2,7 @@
 
 export DISPLAY=:0.0
 battery_level=`acpi -b | grep -P -o '[0-9]+(?=%)'`
-if ! on_ac_power && [ $battery_level -le 10 ]; then
+if [[ $(cat /sys/class/power_supply/BAT0/status) == "Discharging" ]] && [ $battery_level -le 10 ]; then
     notify-send -u critical -a "Battery" "Battery is low" "Battery level: ${battery_level}%"
     mpv --no-video $(find $XDG_DATA_HOME/pipx/venvs/gcal-notifier/lib -type f -name "pop.wav" | head -n 1)
 else

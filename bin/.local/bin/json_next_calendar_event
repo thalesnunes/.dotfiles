@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 # Sat, 10:00 (Pessoal) - Agendamento - Don Salerno Barbearia
-RAW_TEXT="$(strat -r arch gcal_notifier print next)"
+if command -v "$1" &> /dev/null; then
+    RAW_TEXT="$(strat -r arch gcal_notifier print next)"
+else
+    RAW_TEXT="$(gcal_notifier print next)"
+fi
 text=" ${RAW_TEXT:0:10}"
 
 echo "{ \"text\": \"$text\", \"alt\": \"$text\", \"tooltip\": \"$RAW_TEXT\" }"
