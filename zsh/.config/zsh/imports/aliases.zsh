@@ -40,8 +40,11 @@ alias yt_down='yt-dlp -o "~/Downloads/%(title)s.%(ext)s" -f "[ext=mp4][height<=1
 
 alias hist="history | awk -F' ' '{ \$1=\"\"; print }' | fzf --tac --no-sort"
 
-alias snowsql='swaymsg workspace number 3 > /dev/null; strat -r ubuntu $XDG_USER_BIN/snowsql'
+# alias snowsql='swaymsg workspace number 3 > /dev/null; strat -r ubuntu $XDG_USER_BIN/snowsql'
 alias rge="rg --hidden --sort=path -g '!**/.git/**' -g '!**/deployment/**' -g '!**/archive/**' -g '!**/release/**' -g '!**/ddl/**' -i"
+alias cc="CLAUDE_CONFIG_DIR=\"$XDG_CONFIG_HOME/claude\" NODE_EXTRA_CA_CERTS='/etc/ca-certificates/trust-source/Upwork_Global_Root_CA.p11-kit' claude"
+
+alias avante='nvim -c "lua vim.defer_fn(function()require(\"avante.api\").zen_mode()end, 100)"'
 
 # HOME DIR CLEANUP
 alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME/nvidia/settings"'
