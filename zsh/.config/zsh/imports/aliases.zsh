@@ -42,7 +42,7 @@ alias hist="history | awk -F' ' '{ \$1=\"\"; print }' | fzf --tac --no-sort"
 
 # alias snowsql='swaymsg workspace number 3 > /dev/null; strat -r ubuntu $XDG_USER_BIN/snowsql'
 alias rge="rg --hidden --sort=path -g '!**/.git/**' -g '!**/deployment/**' -g '!**/archive/**' -g '!**/release/**' -g '!**/ddl/**' -i"
-alias cc="CLAUDE_CONFIG_DIR=\"$XDG_CONFIG_HOME/claude\" NODE_EXTRA_CA_CERTS='/etc/ca-certificates/trust-source/Upwork_Global_Root_CA.p11-kit' claude"
+alias cc="unset ANTHROPIC_API_KEY && CLAUDE_CONFIG_DIR=\"$XDG_CONFIG_HOME/claude\" NODE_EXTRA_CA_CERTS='/etc/ca-certificates/trust-source/Upwork_Global_Root_CA.p11-kit' claude"
 
 # HOME DIR CLEANUP
 alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME/nvidia/settings"'
