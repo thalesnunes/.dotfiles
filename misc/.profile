@@ -73,6 +73,9 @@ export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
 # Less
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 
+# Claude Code
+export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
+
 # Java
 export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java"
 
@@ -90,6 +93,7 @@ export SAVEHIST=10000
 export NPM_CONFIG_INIT_MODULE="$XDG_CONFIG_HOME"/npm/config/npm-init.js
 export NPM_CONFIG_CACHE="$XDG_CACHE_HOME"/npm
 export NPM_CONFIG_TMP="$XDG_RUNTIME_DIR"/npm
+export NODE_EXTRA_CA_CERTS="/etc/ca-certificates/trust-source/Upwork_Global_Root_CA.p11-kit"
 
 # URXVT
 export RXVT_SOCKET="$XDG_RUNTIME_DIR/urxvtd"
