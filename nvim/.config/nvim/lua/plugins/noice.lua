@@ -12,6 +12,9 @@ return {
 			end,
 		},
 	},
+	keys = {
+		{ "<leader>md", "<cmd>Noice dismiss<CR>", desc = "[M]essage [D]ismiss" },
+	},
 	opts = {
 		lsp = {
 			override = {
