@@ -5,7 +5,7 @@ if [[ $1 == "start" || $1 == "" ]]; then
     CACHE_DIR="$HOME/.cache/jellyfin"
 
     [ -d "/run/media" ] && MEDIA_DIR="/run/media" || MEDIA_DIR="/media"
-    MEDIA_DIR="$MEDIA_DIR/$USER/sata_ssd/ANIMES_FILMES_SERIES"
+    MEDIA_DIR="$MEDIA_DIR/$USER/External HD/ANIMES_FILMES_SERIES"
 
     mkdir -p "$CONFIG_DIR" "$CACHE_DIR"
 
