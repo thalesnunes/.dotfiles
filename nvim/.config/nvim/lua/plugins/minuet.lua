@@ -16,7 +16,7 @@ return {
 			},
 		},
 		virtualtext = {
-			auto_trigger_ft = { "*" },
+			auto_trigger_ft = {},
 			keymap = {
 				accept = "<F5>",
 				prev = "<F2>",
