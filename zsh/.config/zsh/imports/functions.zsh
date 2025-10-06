@@ -84,6 +84,7 @@ function proj() {
 
     if [[ $1 == "w" ]]; then
         PROJ_DIR=$WORK_PROJECTS
+        SERVER="-m work"
         pidof -q ssh-agent || ssh-agent > "$XDG_RUNTIME_DIR/ssh-agent.env"
         if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
             source "$XDG_RUNTIME_DIR/ssh-agent.env" > /dev/null
@@ -116,7 +117,7 @@ function proj() {
     fi
     CMD="$CMD$EDITOR"
 
-    tmux_init -s $NAME -d $TOCD $CMD
+    tmux_init $SERVER -s $NAME -d $TOCD $CMD
 }
 
 function pretty_csv() {
