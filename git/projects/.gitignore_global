@@ -186,3 +186,6 @@ pyrightconfig.json
 tests.*
 .sqruff
 .claude/*
+CLAUDE.md
+openspec/*
+openspec*
