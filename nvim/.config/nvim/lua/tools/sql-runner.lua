@@ -3,8 +3,8 @@ local M = {}
 -- Configuration (will be set by setup function)
 local config = {}
 
--- Output file path
-local outfile = vim.fn.stdpath("data") .. "/sql-runner/sql.out"
+Infile = nil
+Outfile = nil
 
 -- Select a command to use
 function M.select_command(callback)
@@ -129,20 +129,17 @@ end
 
 -- Common function to run queries with any backend
 local function run_query(name, cmd, query_text)
-	local abs_out = vim.fn.fnamemodify(outfile, ":p")
-
-	-- Clear out file
-	io.open(outfile, "w"):close()
-
 	vim.api.nvim_echo({ { "[sql-runner] Running " .. name .. " query…", "ModeMsg" } }, false, {})
 
 	-- Step 1: Always store the query in a temp file first
-	local query_file = vim.fn.tempname()
+	local current_timestamp = os.date("%s")
+	Infile = "/tmp/sql_" .. current_timestamp .. ".in"
+	Outfile = "/tmp/sql_" .. current_timestamp .. ".out"
 	if not query_text or query_text == "" then
 		vim.api.nvim_echo({ { "[sql-runner] No SQL statement found", "ErrorMsg" } }, false, {})
 		return
 	end
-	local file = io.open(query_file, "w")
+	local file = io.open(Infile, "w")
 	if file then
 		file:write(query_text)
 		file:close()
@@ -151,67 +148,66 @@ local function run_query(name, cmd, query_text)
 		return
 	end
 
+	-- Run in tmux window with less, non-blocking
+	local full_cmd = string.format(cmd .. " &", Infile, Outfile)
+	io.popen(full_cmd)
+	vim.api.nvim_echo(
+		{ { "[sql-runner] " .. name .. " query running in tmux window 'sql-run'", "ModeMsg" } },
+		false,
+		{}
+	)
+
 	-- Step 2: Run the command
 	if config.use_tmux_window and vim.env.TMUX then
-		-- Run in tmux window with less, non-blocking
-		local tmux_cmd = string.format(
-			"tmux neww -nsql 'cat %s | %s%s | less; pspg -f %s'",
-			vim.fn.shellescape(query_file),
-			cmd,
-			vim.fn.shellescape(outfile),
-			vim.fn.shellescape(outfile)
-		)
-		vim.cmd("silent !" .. tmux_cmd)
-		vim.api.nvim_echo(
-			{ { "[sql-runner] " .. name .. " query running in tmux window 'sql-run'", "ModeMsg" } },
-			false,
-			{}
-		)
+		local file_handle = assert(io.popen("tmux display-message -p '#{session_name}'"))
+		local tmux_current_session = assert(file_handle:read("*l"))
+		file_handle:close()
+		local socket_filename = "/tmp/nvim_" .. tmux_current_session .. ".sock"
+		if vim.fn.filereadable(socket_filename) == 0 then
+			local nvim_sql_cmd = string.format("tmux neww -d -nsql nvim --listen " .. socket_filename)
+			vim.cmd("silent !" .. nvim_sql_cmd)
+		end
 
-		M.view_last_output()
+		M.view_output_file(Outfile, socket_filename)
 	else
-		-- Traditional behavior: run and save to output file
-		local t0 = vim.loop.hrtime()
-
-		local full_cmd =
-			string.format("cat %s | %s%s", vim.fn.shellescape(query_file), cmd, vim.fn.shellescape(outfile))
-		vim.cmd("silent !" .. full_cmd)
-		vim.fn.delete(query_file)
-
 		-- Show results in nvim split
-		local win = find_win_by_path(abs_out)
+		local win = find_win_by_path(Outfile)
 		if win then
 			vim.api.nvim_set_current_win(win)
 			vim.cmd("noautocmd edit")
 		else
-			vim.cmd("split " .. vim.fn.fnameescape(outfile))
+			vim.cmd("split " .. vim.fn.fnameescape(Outfile))
 		end
-
-		local ms = math.floor((vim.loop.hrtime() - t0) / 1e6)
-		vim.api.nvim_echo({ { string.format("[sql-runner] %s query done in %d ms", name, ms), "ModeMsg" } }, false, {})
 	end
+
+	local ms = math.floor((os.date("%s") - current_timestamp) / 1e6)
+	vim.api.nvim_echo({ { string.format("[sql-runner] %s query done in %d ms", name, ms), "ModeMsg" } }, false, {})
 end
 
--- View last SQL query output in tmux window
-function M.view_last_output(silent)
-	if vim.fn.filereadable(outfile) == 0 then
-		if not silent then
-			vim.notify("[sql-runner] No previous query output found", vim.log.levels.WARN)
-		end
+-- View SQL query output in tmux window
+function M.view_output_file(filename, socket_filename)
+	local outfile = filename == {} and Outfile or filename
+
+	if not filename and vim.fn.filereadable(outfile) == 0 then
+		vim.notify("[sql-runner] No previous query output found", vim.log.levels.WARN)
 		return false
 	end
 
 	if not vim.env.TMUX then
-		if not silent then
-			vim.notify("[sql-runner] Not running in tmux session", vim.log.levels.WARN)
-		end
+		vim.notify("[sql-runner] Not running in tmux session", vim.log.levels.WARN)
 		return false
 	end
 
-	vim.cmd(string.format("silent !tmux neww -nsql zsh -i -c 'pspg -f %s'", vim.fn.shellescape(outfile)))
-	if not silent then
-		vim.notify("[sql-runner] Opened last query output in tmux window", vim.log.levels.INFO)
-	end
+	io.popen(
+		string.format(
+			'bash -c "until [ -f \\"%s\\" ]; do sleep 1; done; nvim --server %s --remote %s" &',
+			filename,
+			socket_filename,
+			filename
+		)
+	)
+
+	vim.notify("[sql-runner] Opened query output in tmux window", vim.log.levels.INFO)
 	return true
 end
 
@@ -261,7 +257,7 @@ M.setup()
 
 -- Register commands
 vim.api.nvim_create_user_command("SelectSqlCmd", M.select_command, { desc = "Select a SQL command to use." })
-vim.api.nvim_create_user_command("ViewSqlOutput", M.view_last_output, { desc = "View the last SQL query output." })
+vim.api.nvim_create_user_command("ViewSqlOutput", M.view_output_file, { desc = "View the last SQL query output." })
 vim.api.nvim_create_user_command(
 	"RunSQL",
 	M.run_sql,
