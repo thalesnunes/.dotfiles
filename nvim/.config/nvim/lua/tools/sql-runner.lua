@@ -164,7 +164,7 @@ local function run_query(name, cmd, query_text)
 		file_handle:close()
 		local socket_filename = "/tmp/nvim_" .. tmux_current_session .. ".sock"
 		if vim.fn.filereadable(socket_filename) == 0 then
-			local nvim_sql_cmd = string.format("tmux neww -d -nsql nvim --listen " .. socket_filename)
+			local nvim_sql_cmd = string.format("tmux neww -d -nsql nvim --cmd 'let g:rnvimr_skip_toggle=v:true' --listen " .. socket_filename)
 			vim.cmd("silent !" .. nvim_sql_cmd)
 		end
 

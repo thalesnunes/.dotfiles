@@ -30,7 +30,7 @@ return {
 		-- vim.g.rnvimr_ranger_cmd = {'ranger', '--cmd=set draw_borders both'}
 
 		-- Map Rnvimr action
-		vim.g.rnvimr_action = false
+		-- vim.g.rnvimr_action = false
 
 		-- Fullscreen for initial layout
 		vim.g.rnvimr_layout = {
@@ -59,7 +59,7 @@ return {
 		-- Else open ranger as background process
 		vim.defer_fn(function()
 			local curr_path = vim.fn.expand("%:p")
-			if vim.fn.isdirectory(curr_path) == 1 or curr_path == "" then
+			if not vim.g.rnvimr_skip_toggle and (vim.fn.isdirectory(curr_path) == 1 or curr_path == "") then
 				vim.cmd("RnvimrToggle")
 			else
 				vim.cmd("RnvimrStartBackground")
