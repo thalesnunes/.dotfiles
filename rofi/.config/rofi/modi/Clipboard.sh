@@ -8,14 +8,14 @@ case "$ROFI_RETV" in
     1)  # Selected entry with Enter
         while read line; do
             if [[ $line == *"$@" ]]; then
-                coproc ( echo "$line" | cliphist decode | wl-copy &> /dev/null )
+                coproc ( cliphist decode <<<"$line" | wl-copy &> /dev/null )
             fi
         done < <(cliphist list)
         ;;
     10) # Deleted entry with Control+d
         while read line; do
             if [[ $line == *"$@" ]]; then
-                coproc ( echo "$line" | cliphist delete &> /dev/null )
+                coproc ( cliphist delete <<<"$line" &> /dev/null )
             fi
         done < <(cliphist list)
         cliphist list | sort -n -r | awk -F' ' '{$1=""; print substr($0, 2)}'
