@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-active_monitors=$(swaymsg -t get_outputs | jq  -r '.[] | select(.dpms and .active).name' | sort | xargs)
+active_monitors=$(swaymsg -t get_outputs | jq  -r '.[] | select(.dpms and .active) | "\(.make) \(.model) \(.serial)\\t\(.name)"')
+monitor_names=$(echo -e "$active_monitors" | cut -f1 | sort | xargs)
+monitor_ids=$(echo -e "$active_monitors" | cut -f2 | sort | xargs)
 
-case "$active_monitors" in
+# Match by unchanging IDs
+case "$monitor_ids" in
     "eDP-1 HDMI-A-1")
         screen_profile="lh"
         primary_monitor="HDMI-A-1"
@@ -14,5 +17,14 @@ case "$active_monitors" in
     *)
         screen_profile="l"
         primary_monitor="eDP-1"
+        ;;
+esac
+
+# Match by name when the IDs change
+case "$monitor_names" in
+    "AOC 22B35HM2 189O8XA000294 Samsung Display Corp. 0x4187 Unknown Samsung Electric Company S22F350 HX5N600217")
+        screen_profile="vhl"
+        primary_monitor="DP-6"
+        secondary_monitor="DP-5"
         ;;
 esac

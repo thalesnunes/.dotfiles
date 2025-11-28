@@ -8,5 +8,5 @@ else
     source $XDG_USER_BIN/screen_profile_selector
 fi
 
-cp $OUTPUTS_DIR/"$screen_profile-screen.conf" $OUTPUTS_DIR/screen.conf
+sed "s/:PRIMARY_MONITOR/$primary_monitor/g; s/:SECONDARY_MONITOR/$secondary_monitor/g;" $OUTPUTS_DIR/"$screen_profile-screen.conf" > $OUTPUTS_DIR/screen.conf
 notify-send -a "Desktop Setup" "Screen Setup" "$screen_profile output profile was setup"
