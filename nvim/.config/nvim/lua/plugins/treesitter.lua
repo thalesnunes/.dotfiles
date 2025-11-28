@@ -13,6 +13,10 @@ return {
 					"python",
 					"sql",
 					"regex",
+                    "markdown",
+                    "markdown_inline",
+                    "yaml",
+                    "dockerfile",
 				},
 				highlight = {
 					enable = true,
