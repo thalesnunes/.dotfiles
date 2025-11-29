@@ -14,7 +14,7 @@ return {
 		top = 6,
 		bottom = 0,
 	},
-	window_decorations = "RESIZE",
+	window_decorations = "NONE",
 	window_background_opacity = 0.9,
 	adjust_window_size_when_changing_font_size = false,
 
