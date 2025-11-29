@@ -6,7 +6,7 @@ else
     source $XDG_USER_BIN/screen_profile_selector
 fi
 
-$XDG_USER_BIN/screen_setup $screen_profile > /dev/null 2>&1 &
+$XDG_USER_BIN/screen_setup $screen_profile $primary_monitor $secondary_monitor > /dev/null 2>&1 &
 $XDG_USER_BIN/waybar_starter $primary_monitor > /dev/null 2>&1 &
 $XDG_USER_BIN/mako_starter $primary_monitor > /dev/null 2>&1 &
 

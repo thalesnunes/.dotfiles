@@ -4,6 +4,8 @@ OUTPUTS_DIR="$XDG_CONFIG_HOME/sway/outputs"
 
 if [ -n "$1" ]; then
     screen_profile="$1"
+    primary_monitor="$2"
+    secondary_monitor="$3"
 else
     source $XDG_USER_BIN/screen_profile_selector
 fi
