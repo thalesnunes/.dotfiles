@@ -1,9 +1,8 @@
-black
 doq
 libtorrent
-pipenv
 pipx
 pulsemixer
 pynvim
 python-crontab
+ruff
 wheel
