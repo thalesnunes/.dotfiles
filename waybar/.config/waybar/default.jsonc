@@ -35,7 +35,8 @@
     "clock": {
         "interval": 5,
         "format": "{:%H:%M | %d %b}",
-        "format-alt": "{:%H:%M:%S | %A, %d de %B de %Y}"
+        "format-alt": "{:%H:%M:%S | %A, %d de %B de %Y}",
+        "tooltip-format": "{:%H:%M:%S | %A, %d de %B de %Y}"
     },
     "cpu": {
         "interval": 3,
