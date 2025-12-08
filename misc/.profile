@@ -108,3 +108,6 @@ export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
 
 # MISC
 export QT_QPA_PLATFORMTHEME="qt5ct"
+
+# ADB
+export ANDROID_USER_HOME="$XDG_CONFIG_HOME/android"
