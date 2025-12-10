@@ -4,5 +4,4 @@ pipx
 pulsemixer
 pynvim
 python-crontab
-ruff
 wheel
