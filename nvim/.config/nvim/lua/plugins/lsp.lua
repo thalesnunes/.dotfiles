@@ -178,6 +178,8 @@ return {
 					},
 				},
 
+				ruff = {},
+
 				sqruff = {},
 
 				-- texlab = {
@@ -207,7 +209,6 @@ return {
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format Lua code
-				"black", -- Used to format Python code
 				"sleek", -- Used to format SQL code
 				"jq", -- Used to format JSON code
 			})
@@ -277,7 +278,7 @@ return {
 			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
-				python = { "black" },
+				python = { "ruff_format" },
 				sql = { "sleek" },
 				json = { "jq" },
 				jsonc = { "jq" },

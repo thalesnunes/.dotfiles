@@ -24,7 +24,7 @@ vim.opt.undodir = vim.fn.stdpath("cache") .. "/undodir"
 
 vim.opt.scrolloff = 8
 vim.opt.termguicolors = true
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "100"
 vim.opt.cursorline = true
 
 vim.opt.laststatus = 2
