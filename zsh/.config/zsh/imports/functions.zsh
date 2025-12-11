@@ -110,7 +110,9 @@ function proj() {
 
     TOCD="$PROJ_DIR/$NAME"
     CMD=""
-    if [[ -f "$TOCD/poetry.lock" ]]; then
+    if [[ -f "$TOCD/uv.lock" ]]; then
+        CMD="uv run "
+    elif [[ -f "$TOCD/poetry.lock" ]]; then
         CMD="poetry run "
     elif [[ -f "$TOCD/Pipfile.lock" ]]; then
         CMD="pipenv run "
