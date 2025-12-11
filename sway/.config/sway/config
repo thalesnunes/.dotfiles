@@ -14,4 +14,4 @@ include $HOME/.config/sway/outputs/screen.conf
 include $HOME/.config/sway/modes/*.conf
 
 # Gambiarra
-exec sleep 1 && swaymsg reload && swaymsg workspace 10 && swaymsg workspace 9 && swaymsg workspace 1
+exec sleep 1 && swaymsg reload && swaymsg workspace 10 && swaymsg workspace 7 && swaymsg workspace 1

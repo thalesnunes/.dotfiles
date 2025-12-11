@@ -79,3 +79,4 @@ invisible=0
 [app-name=GoogleCalendar]
 # Notification sound
 on-notify=exec mpv --no-video $XDG_DATA_HOME/sounds/pop.wav
+on-button-left=exec swaymsg workspace 9 && sleep 1 && zen-browser -P 'Upwork' --new-window "https://meet.google.com/"
