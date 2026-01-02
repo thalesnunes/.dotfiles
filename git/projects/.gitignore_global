@@ -187,5 +187,6 @@ tests.*
 .sqruff
 .claude/*
 CLAUDE.md
+GEMINI.md
 openspec/*
 openspec*
