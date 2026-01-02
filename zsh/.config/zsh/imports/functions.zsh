@@ -136,3 +136,26 @@ function pet-select() {
     CURSOR=$#BUFFER
     zle redisplay
 }
+
+function agent() {
+
+    DEFAULT="gemini"
+
+    case $1 in
+        claude)
+            CMD="unset ANTHROPIC_API_KEY && CLAUDE_CONFIG_DIR=\"$XDG_CONFIG_HOME/claude\" NODE_EXTRA_CA_CERTS='/etc/ca-certificates/trust-source/Upwork_Global_Root_CA.p11-kit' claude -c || claude"
+            ;;
+        gemini)
+            CMD="NODE_EXTRA_CA_CERTS='/etc/ca-certificates/trust-source/Upwork_Global_Root_CA.p11-kit' gemini -r || gemini"
+            ;;
+        cursor)
+            CMD="cursor-agent resume || cursor-agent"
+            ;;
+        *)
+            agent "$DEFAULT"
+            return
+            ;;
+    esac
+
+    zsh -i -c "$CMD"
+}
