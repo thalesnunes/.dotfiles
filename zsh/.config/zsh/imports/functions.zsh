@@ -139,7 +139,7 @@ function pet-select() {
 
 function agent() {
 
-    DEFAULT="gemini"
+    DEFAULT="claude"
 
     case $1 in
         claude)
