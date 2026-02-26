@@ -11,16 +11,13 @@ if [[ $input == magnet:?* ]]; then
 
     notify "Starting magnet conversion to torrent"
 
-    torrent="$HOME/.cache/stig/$(date +%s).torrent"
-    $HOME/.local/bin/mag2tor.py --magnet "$input" --output "$torrent"
+    torrent_dir="$HOME/.cache/stig"
+    torrent=$(aria2c --bt-save-metadata=true --bt-metadata-only=true --dir "$torrent_dir" "$input" | grep --word-regexp --only-matching "$torrent_dir.*" | sed "s/\.$//")
 
     notify "Magnet conversion to torrent successful"
 else
     torrent="$input"
 fi
-
-# $XDG_USER_BIN/mount_ext_hd
-# sleep 2
 
 /usr/bin/env pidof -q transmission-daemon || /usr/bin/env transmission-daemon
 
