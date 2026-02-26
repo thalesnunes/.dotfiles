@@ -138,24 +138,25 @@ function pet-select() {
 }
 
 function agent() {
+    # 1. Define the associative array (the map)
+    typeset -A AGENTS
+    AGENTS=(
+        [claude]="unset ANTHROPIC_API_KEY && CLAUDE_CONFIG_DIR=\"$XDG_CONFIG_HOME/claude\" NODE_EXTRA_CA_CERTS='/etc/ca-certificates/trust-source/Upwork_Global_Root_CA.p11-kit' claude -c || claude"
+        [gemini]="NODE_EXTRA_CA_CERTS='/etc/ca-certificates/trust-source/Upwork_Global_Root_CA.p11-kit' gemini -r || gemini"
+        [cursor]="cursor-agent resume || cursor-agent"
+    )
 
-    DEFAULT="claude"
+    local AGENT=$1
 
-    case $1 in
-        claude)
-            CMD="unset ANTHROPIC_API_KEY && CLAUDE_CONFIG_DIR=\"$XDG_CONFIG_HOME/claude\" NODE_EXTRA_CA_CERTS='/etc/ca-certificates/trust-source/Upwork_Global_Root_CA.p11-kit' claude -c || claude"
-            ;;
-        gemini)
-            CMD="NODE_EXTRA_CA_CERTS='/etc/ca-certificates/trust-source/Upwork_Global_Root_CA.p11-kit' gemini -r || gemini"
-            ;;
-        cursor)
-            CMD="cursor-agent resume || cursor-agent"
-            ;;
-        *)
-            agent "$DEFAULT"
-            return
-            ;;
-    esac
+    # 2. If no argument provided, use FZF with the keys of the map
+    if [[ -z "$AGENT" ]]; then
+        # ${(k)AGENTS} retrieves only the keys (names) of the map
+        AGENT=$(printf "%s\n" "${(k)AGENTS[@]}" | fzf)
+    fi
 
-    zsh -i -c "$CMD"
+    # 3. Exit if no agent was selected or found in the map
+    [[ -z "$AGENT" || -z "${AGENTS[$AGENT]}" ]] && return 0
+
+    # 4. Execute the command mapped to that agent
+    zsh -i -c "${AGENTS[$AGENT]}"
 }
