@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-source $DOT/install_utils.sh
+source $DOTFILES_DIR/install_utils.sh
 
-if [ ! -d "$DOT" ]; then
+if [ ! -d "$DOTFILES_DIR" ]; then
     git clone https://github.com/thalesnunes/.dotfiles "$DOT"
 fi
 
-cd "$DOT"
+cd "$DOTFILES_DIR"
 
 is_installed "stow"
 is_installed "awk"

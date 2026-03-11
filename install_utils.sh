@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-DOTFILES_DIR="$(realpath $(dirname ${BASH_SOURCE}))"
-DOTFILES_BIN="$DOTFILES_DIR/bin/.local/bin"
-INSTALL="$DOTFILES_BIN/inst"
+export DOTFILES_DIR="$(realpath $(dirname ${BASH_SOURCE}))"
+export DOTFILES_BIN="$DOTFILES_DIR/bin/.local/bin"
+export INSTALL="$DOTFILES_BIN/inst"
 
 function yn_pr() {
     while true; do
