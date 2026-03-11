@@ -180,7 +180,7 @@ return {
 
 				ruff = {},
 
-				sqruff = {},
+				-- sqruff = {},
 
 				-- texlab = {
 				--     on_attach = function(_, bufnr)
@@ -228,9 +228,6 @@ return {
 					end,
 				},
 			})
-
-			-- Force sqruff LSP, since not supported by Mason
-			vim.lsp.enable("sqruff")
 		end,
 	},
 
