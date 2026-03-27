@@ -137,26 +137,25 @@ function pet-select() {
     zle redisplay
 }
 
-function agent() {
-    # 1. Define the associative array (the map)
-    typeset -A AGENTS
-    AGENTS=(
-        [claude]="unset ANTHROPIC_API_KEY && CLAUDE_CONFIG_DIR=\"$XDG_CONFIG_HOME/claude\" NODE_EXTRA_CA_CERTS='/etc/ca-certificates/trust-source/Upwork_Global_Root_CA.p11-kit' claude -c || claude"
-        [gemini]="NODE_EXTRA_CA_CERTS='/etc/ca-certificates/trust-source/Upwork_Global_Root_CA.p11-kit' gemini -r || gemini"
-        [cursor]="cursor-agent resume || cursor-agent"
-    )
+function dockerbr() {
 
-    local AGENT=$1
+    DIRNAME=$(basename $(pwd))
 
-    # 2. If no argument provided, use FZF with the keys of the map
-    if [[ -z "$AGENT" ]]; then
-        # ${(k)AGENTS} retrieves only the keys (names) of the map
-        AGENT=$(printf "%s\n" "${(k)AGENTS[@]}" | fzf)
+    local STEP=$1
+
+    if [[ -z "$STEP" ]]; then
+        STEP="br"
     fi
 
-    # 3. Exit if no agent was selected or found in the map
-    [[ -z "$AGENT" || -z "${AGENTS[$AGENT]}" ]] && return 0
+    if [[ "$STEP" == *"b"* ]]; then
+        docker build --no-cache --rm -t "$DIRNAME":latest -f $(fd -t f "Dockerfile") .
+    fi
 
-    # 4. Execute the command mapped to that agent
-    zsh -i -c "${AGENTS[$AGENT]}"
+    if [[ "$STEP" == *"r"* ]]; then
+        docker run --env-file .env -it --net=host --rm --name "$DIRNAME" "$DIRNAME":latest
+    fi
+}
+
+function dockercompose() {
+    docker compose --file deployment/local/docker-compose.yaml up --build --force-recreate
 }

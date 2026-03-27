@@ -1,0 +1,36 @@
+#!/usr/bin/env zsh
+
+while getopts t flag; do
+    case "$flag" in
+        t) from_tmux=true;;
+    esac
+done
+
+# 3. Shift away the flags
+shift $((OPTIND - 1))
+
+# 1. Define the associative array (the map)
+typeset -A AGENTS
+AGENTS=(
+    [claude]="unset ANTHROPIC_API_KEY && CLAUDE_CONFIG_DIR=\"$XDG_CONFIG_HOME/claude\" NODE_EXTRA_CA_CERTS='/etc/ca-certificates/trust-source/Upwork_Global_Root_CA.p11-kit' claude -c || claude"
+    [gemini]="NODE_EXTRA_CA_CERTS='/etc/ca-certificates/trust-source/Upwork_Global_Root_CA.p11-kit' gemini -r || gemini"
+    [cursor]="cursor-agent resume || cursor-agent"
+)
+
+local AGENT="$1"
+
+# 2. If no argument provided, use FZF with the keys of the map
+if [[ -z "$AGENT" ]]; then
+    # ${(k)AGENTS} retrieves only the keys (names) of the map
+    AGENT=$(printf "%s\n" "${(k)AGENTS[@]}" | fzf --cycle --reverse --tmux 50%)
+fi
+
+# 3. Exit if no agent was selected or found in the map
+[[ -z "$AGENT" || -z "${AGENTS[$AGENT]}" ]] && return 0
+
+# 4. Execute the command mapped to that agent
+if [[ $from_tmux ]]; then
+    tmux neww -nagent -- zsh -i -c "${AGENTS[$AGENT]}"
+else
+    zsh -i -c "${AGENTS[$AGENT]}"
+fi
