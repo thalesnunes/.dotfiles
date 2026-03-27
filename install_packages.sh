@@ -4,7 +4,7 @@ source install_utils.sh
 
 cd $HOME
 
-$DOTFILES_BIN/upd
+$DOT/upd
 
 if yn_pr "Do you want to install the default packages? [Y/n]: "; then
     packages_raw=$([ -f "$DOT/packages_arch" ] && cat "$DOT/packages_arch" || curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/packages_arch)

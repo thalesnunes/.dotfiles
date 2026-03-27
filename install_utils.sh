@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-export DOTFILES_DIR="$(realpath $(dirname ${BASH_SOURCE}))"
-export DOTFILES_BIN="$DOTFILES_DIR/bin/.local/bin"
+export DOT="$(realpath $(dirname ${BASH_SOURCE}))"
+export DOTFILES_BIN="$DOT/bin/.local/bin"
 export INSTALL="$DOTFILES_BIN/inst"
 
 function yn_pr() {
@@ -45,4 +45,4 @@ esac
 
 is_installed "curl"
 
-[ -f "$DOTFILES_DIR/misc/.profile" ] && source "$DOTFILES_DIR/misc/.profile" || eval "$(curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/misc/.profile)"
+[ -f "$DOT/misc/.profile" ] && source "$DOT/misc/.profile" || eval "$(curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/misc/.profile)"
