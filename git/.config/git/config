@@ -3,7 +3,7 @@
 	email = thalesaknunes22@gmail.com
 
 [core]
-	excludesFile = ~/projects/.gitignore_global
+	excludesFile = ~/.config/git/.gitignore_global
     pager = delta
 
 [credential]
