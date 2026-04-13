@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+import argparse
+from datetime import date, timedelta
+from pathlib import Path
+
+from gcsa.event import Event
+from gcsa.google_calendar import GoogleCalendar
+
+CONFIG = Path("~/.config/gcal_notifier").expanduser()
+
+parser = argparse.ArgumentParser(
+    description="Create events for every Day Off in next month (if day >20)"
+)
+parser.add_argument(
+    "days_of_month",
+    type=int,
+    nargs="*",
+    help="Days of month to create Off Days",
+)
+args = parser.parse_args()
+
+calendar = GoogleCalendar(
+    "9aa4beee3f0b0b817d19ccd59aa4ee714410c7cb2f31ddd3098ad55e73b65865@group.calendar.google.com",
+    credentials_path=CONFIG / "default" / "credentials.json",
+)
+
+day_off = date.today()
+
+if day_off.day >= 20:
+    day_off = day_off + timedelta(days=12)
+
+for day in args.days_of_month:
+    day_off = day_off.replace(day=day)
+    event = Event(
+        "Folga Nati",
+        start=day_off,
+        end=day_off,
+        transparency='transparent',
+    )
+    calendar.add_event(event)
