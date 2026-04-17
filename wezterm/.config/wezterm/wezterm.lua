@@ -20,7 +20,5 @@ return {
 
 	check_for_updates = false,
 
-	disable_default_key_bindings = true,
 	keys = keybinds["keys"],
-	key_tables = keybinds["key_tables"],
 }
