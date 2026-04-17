@@ -77,6 +77,3 @@ bindkey '^s' pet-select
 
 # Ctrl+g to open navi cheatsheet
 eval "$(navi widget zsh)"
-
-# MCPTools completion
-eval "$(mcptools completion zsh | sed 's/mcp/mcptools/g')"
