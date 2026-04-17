@@ -112,10 +112,6 @@ function proj() {
     CMD=""
     if [[ -f "$TOCD/uv.lock" ]]; then
         CMD="uv run "
-    elif [[ -f "$TOCD/poetry.lock" ]]; then
-        CMD="poetry run "
-    elif [[ -f "$TOCD/Pipfile.lock" ]]; then
-        CMD="pipenv run "
     fi
     CMD="$CMD$EDITOR"
 
