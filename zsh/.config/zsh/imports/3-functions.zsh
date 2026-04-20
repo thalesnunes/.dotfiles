@@ -38,15 +38,11 @@ function config() {
             ;;
         ali*)
             TOCD="$DOT/zsh/.config/zsh/imports"
-            FILE="aliases.zsh"
+            FILE="2-aliases.zsh"
             ;;
         func*)
             TOCD="$DOT/zsh/.config/zsh/imports"
-            FILE="functions.zsh"
-            ;;
-        exp*)
-            TOCD="$DOT/zsh/.config/zsh/imports"
-            FILE="exports.zsh"
+            FILE="3-functions.zsh"
             ;;
         tok*)
             TOCD="$DOT/private/.config/zsh/imports"
