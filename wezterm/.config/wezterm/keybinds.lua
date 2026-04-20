@@ -3,6 +3,8 @@ local act = wezterm.action
 
 return {
 	keys = {
+		-- Multiple line terminal input
+		{ key = "Enter", mods = "ALT", action = "DisableDefaultAssignment" },
 		-- Zooming and resizing
 		{ key = "F12", mods = "CTRL", action = act.DecreaseFontSize },
 		{ key = "=", mods = "CTRL", action = act.IncreaseFontSize },
