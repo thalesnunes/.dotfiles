@@ -26,6 +26,10 @@ if is_installed "zsh"; then
         mkdir -p "$XDG_STATE_HOME/zsh"
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
     fi
+    if yn_pr "Do you want to add ZDOTDIR to /etc/zsh/zshenv? [Y/n]: "; then
+        sudo mkdir -p "/etc/zsh"
+        echo "export ZDOTDIR=\$HOME/.config/zsh" | sudo tee -a /etc/zsh/zshenv > /dev/null
+    fi
 fi
 
 echo
