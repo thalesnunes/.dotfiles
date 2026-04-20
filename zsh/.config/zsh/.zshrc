@@ -53,7 +53,7 @@ zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh'
 z4h init || return
 
 # Source additional local files
-for file in $ZDOTDIR/imports/*; do
+for file in $ZDOTDIR/imports/*(ND); do
     z4h source $file
 done
 
