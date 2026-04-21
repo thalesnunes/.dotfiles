@@ -18,6 +18,7 @@ git
 git-delta
 grep
 jq
+keyd
 lazygit
 less
 libappindicator-gtk3
