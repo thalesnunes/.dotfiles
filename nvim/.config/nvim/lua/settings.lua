@@ -31,6 +31,8 @@ vim.opt.laststatus = 2
 vim.opt.showmode = false
 vim.g.have_nerd_font = true
 
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 -- Disable distribution plugins
 local disabled_built_ins = {
 	"netrw",
