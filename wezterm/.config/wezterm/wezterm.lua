@@ -1,7 +1,8 @@
+local wezterm = require("wezterm")
 local keybinds = require("keybinds")
 
 return {
-	-- font = wezterm.font("MesloLGS NF"),
+	font = wezterm.font("JetBrainsMono NFP"),
 	font_size = 14,
 	color_scheme = "Dracula",
 	default_cursor_style = "SteadyBlock",
@@ -15,7 +16,7 @@ return {
 		bottom = 0,
 	},
 	window_decorations = "NONE",
-	window_background_opacity = 0.9,
+	window_background_opacity = 0.8,
 	adjust_window_size_when_changing_font_size = false,
 
 	check_for_updates = false,
