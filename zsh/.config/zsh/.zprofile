@@ -111,3 +111,6 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # ADB
 export ANDROID_USER_HOME="$XDG_CONFIG_HOME/android"
+
+# Gemini
+export GEMINI_CLI_HOME="$XDG_CONFIG_HOME"
