@@ -1,0 +1,52 @@
+#compdef ct
+
+_ct() {
+  local curcontext="$curcontext" state
+  local -a commands templates
+  local source_file source_dir
+
+  commands=(
+    'list:List available templates'
+    'run:Run a template'
+    'pick:Pick a template with fzf'
+    'help:Show general or template help'
+  )
+
+  source_dir="${CT_TEMPLATES_DIR:-}"
+  if [[ -z "$source_dir" ]]; then
+    source_file="${functions_source[_ct]-}"
+  fi
+  if [[ -z "$source_dir" && -n "$source_file" ]]; then
+    source_dir="${source_file:a:h}"
+  fi
+  if [[ -n "$source_dir" ]]; then
+    templates=(
+      ${${(@f)"$(print -rl -- "$source_dir"/tpl-*.zsh(N:t))"}#tpl-}
+    )
+    templates=(${templates%.zsh})
+  fi
+
+  # Fallback when completion file is loaded from a different path.
+  if [[ ${#templates} -eq 0 ]] && command -v ct >/dev/null 2>&1; then
+    templates=(${(@f)"$(ct list 2>/dev/null | awk -F '\t' '{print $1}')"})
+  fi
+
+  _arguments -C \
+    '1:command:->command' \
+    '2:template:->template' \
+    '*::args:_guard "^-*" "template args"'
+
+  case "$state" in
+    command)
+      _describe -t commands 'ct command' commands
+      ;;
+    template)
+      case "${words[2]-}" in
+        run|help)
+          _describe -t templates 'template' templates
+          ;;
+      esac
+      ;;
+  esac
+}
+

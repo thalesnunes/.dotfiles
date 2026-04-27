@@ -1,0 +1,128 @@
+#!/usr/bin/env zsh
+
+set -euo pipefail
+
+ROOT_DIR="${CT_TEMPLATES_DIR:-${0:a:h}}"
+
+usage() {
+  cat <<'EOF'
+Usage:
+  ct list
+  ct run <template-name> [template-args...]
+  ct pick
+  ct help [template-name]
+
+Examples:
+  ct list
+  ct run ttd-single-agent-ask stg "what was GSV last week?"
+  ct help timbr-answer
+EOF
+}
+
+template_file_by_name() {
+  local name="$1"
+  print -- "$ROOT_DIR/tpl-$name.zsh"
+}
+
+template_desc() {
+  local file="$1"
+  local line
+  line="$(sed -n 's/^# desc: //p' "$file" | sed -n '1p')"
+  print -- "${line:-No description}"
+}
+
+template_usage_line() {
+  local file="$1"
+  local line
+  line="$(sed -n 's/^# usage: //p' "$file" | sed -n '1p')"
+  print -- "${line:-No usage line}"
+}
+
+list_templates() {
+  local file name desc usage_line
+  for file in "$ROOT_DIR"/tpl-*.zsh(N); do
+    name="${file:t}"
+    name="${name#tpl-}"
+    name="${name%.zsh}"
+    desc="$(template_desc "$file")"
+    usage_line="$(template_usage_line "$file")"
+    print -- "$name"$'\t'"$desc"$'\t'"$usage_line"
+  done | sort
+}
+
+run_template() {
+  local name="$1"
+  shift
+  local file
+  file="$(template_file_by_name "$name")"
+  [[ -f "$file" ]] || {
+    print -u2 -- "Unknown template: $name"
+    print -u2 -- "Run: ct list"
+    return 1
+  }
+  # Source templates so they resolve paths relative to ct's directory
+  # when templates themselves are symlinked from other locations.
+  source "$file" "$@"
+}
+
+pick_template() {
+  command -v fzf >/dev/null 2>&1 || {
+    print -u2 -- "fzf not found. Use: ct run <name> ..."
+    return 1
+  }
+
+  local selection name file argline
+  selection="$(
+    list_templates \
+      | fzf --height=80% --layout=reverse --delimiter=$'\t' --with-nth=1,2,3 --prompt='template> '
+  )"
+  [[ -n "$selection" ]] || return 0
+
+  name="${selection%%$'\t'*}"
+  file="$(template_file_by_name "$name")"
+
+  print -- ""
+  print -- "Selected: $name"
+  print -- "Usage: $(template_usage_line "$file")"
+  print -n -- "Args (optional): "
+  IFS= read -r argline || true
+
+  local -a args
+  args=(${(z)argline})
+  "$file" "${args[@]}"
+}
+
+main() {
+  local cmd="${1:-help}"
+  case "$cmd" in
+    list)
+      list_templates
+      ;;
+    run)
+      shift
+      [[ $# -ge 1 ]] || {
+        print -u2 -- "ct run requires template name"
+        return 1
+      }
+      run_template "$@"
+      ;;
+    pick)
+      pick_template
+      ;;
+    help)
+      shift || true
+      if [[ $# -eq 0 ]]; then
+        usage
+      else
+        run_template "$1" --help
+      fi
+      ;;
+    *)
+      usage
+      return 1
+      ;;
+  esac
+}
+
+main "$@"
+
