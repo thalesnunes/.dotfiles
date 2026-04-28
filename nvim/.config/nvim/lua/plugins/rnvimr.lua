@@ -58,6 +58,12 @@ return {
 		-- Run Rnvimr on startup when opened object is directory or [No name]
 		-- Else open ranger as background process
 		vim.defer_fn(function()
+
+            -- Avoid Rnvimr startup when root
+            if vim.env.USER == "root" then
+                return
+            end
+
 			local curr_path = vim.fn.expand("%:p")
 			if not vim.g.rnvimr_skip_toggle and (vim.fn.isdirectory(curr_path) == 1 or curr_path == "") then
 				vim.cmd("RnvimrToggle")
