@@ -52,6 +52,10 @@ function config() {
             TOCD="$HOME/.snowsql"
             FILE="config"
             ;;
+        templ*)
+            TOCD="$DOT/private/.local/share/zsh/curl_templates"
+            FILE=""
+            ;;
         *)
             if [ -d $DOT/$PROG ]; then
                 TOCD="$DOT/$PROG"
