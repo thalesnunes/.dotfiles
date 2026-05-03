@@ -1,6 +1,7 @@
 return {
 	{
-		"echasnovski/mini.surround",
+		"nvim-mini/mini.surround",
+        version = false,
 		event = "VimEnter",
 		opts = {
 			custom_surroundings = {
@@ -27,7 +28,8 @@ return {
 		},
 	},
 	{
-		"echasnovski/mini.pairs",
+		"nvim-mini/mini.pairs",
+        version = false,
 		event = "VeryLazy",
 		opts = {
 			modes = { insert = true, command = true, terminal = false },
