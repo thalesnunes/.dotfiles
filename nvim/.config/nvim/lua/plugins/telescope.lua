@@ -4,7 +4,6 @@ return {
 		event = "VimEnter",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"debugloop/telescope-undo.nvim",
 		},
 		opts = {
 			defaults = {
@@ -101,19 +100,11 @@ return {
 					override_file_sorter = true,
 					case_mode = "smart_case",
 				},
-				undo = {
-					side_by_side = true,
-					layout_strategy = "horizontal",
-					layout_config = {
-						preview_width = 0.8,
-					},
-				},
 			},
 		},
 		config = function(_, opts)
 			require("telescope").setup(opts)
 			require("telescope").load_extension("fzf")
-			require("telescope").load_extension("undo")
 			require("telescope").load_extension("noice")
 
 			function live_grep_git_dir()
@@ -133,8 +124,6 @@ return {
 			V.keymap("n", "<leader>fk", ":Telescope keymaps<CR>")
 			V.keymap("n", "<leader>ft", ":Telescope filetypes<CR>")
 			V.keymap("n", "<leader>fn", ":Telescope noice<CR>")
-
-			V.keymap("n", "<leader>fu", ":Telescope undo<CR>")
 		end,
 	},
 	{
