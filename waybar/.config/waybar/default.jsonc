@@ -44,7 +44,8 @@
     },
     "memory": {
         "interval": 3,
-        "format": "{used:0.2f} GB "
+        "format": "{used:0.2f} GB ",
+        "format-alt": "{percentage}% "
     },
     "battery": {
         "bat": "BAT0",
