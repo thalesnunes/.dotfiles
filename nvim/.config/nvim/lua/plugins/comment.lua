@@ -1,7 +1,7 @@
 return {
 	"nvim-mini/mini.comment",
 	version = false,
-	event = { "BufReadPre", "BufNewFile" },
+	event = "VeryLazy",
 	opts = {
 		-- Options which control module behavior
 		options = {

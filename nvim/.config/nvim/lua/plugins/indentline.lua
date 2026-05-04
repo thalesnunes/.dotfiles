@@ -1,7 +1,7 @@
 return {
 	"nvim-mini/mini.indentscope",
 	version = false,
-	event = { "BufReadPre", "BufNewFile" },
+	event = "VeryLazy",
 	opts = {
 		-- Module mappings. Use `''` (empty string) to disable one.
 		mappings = {

@@ -1,5 +1,8 @@
 return {
 	"mbbill/undotree",
+	keys = {
+		"<leader>u",
+	},
 	config = function()
 		-- Cleaner looks
 		vim.g.undotree_ShortIndicators = 1
