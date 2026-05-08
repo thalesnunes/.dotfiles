@@ -73,7 +73,7 @@
         "format-ethernet": " ",
         "format-disconnected": " ",
         "tooltip-format": "{ifname} ({essid}): {ipaddr}",
-        "on-click": "swaymsg exec \"\\$terminal start --class impala -- impala\""
+        "on-click": "swaymsg exec \"\\$terminal --app-id impala -- impala\""
     },
     "pulseaudio": {
         "format": "{icon}{volume}%",
@@ -93,7 +93,7 @@
                 "󰕾"
             ]
         },
-        "on-click": "swaymsg exec \"\\$terminal start --class pulsemixer -- pulsemixer\""
+        "on-click": "swaymsg exec \"\\$terminal --app-id pulsemixer -- pulsemixer\""
     },
     "bluetooth": {
         "format": "{icon}",
@@ -102,7 +102,7 @@
             "disabled": "󰂲"
         },
         "tooltip-format": "{}",
-        "on-click": "swaymsg exec \"\\$terminal start --class bluetui -- bluetui\""
+        "on-click": "swaymsg exec \"\\$terminal --app-id bluetui -- bluetui\""
     },
     "custom/calendar": {
         "exec": "json_next_calendar_event",
