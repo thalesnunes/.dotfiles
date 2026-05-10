@@ -86,3 +86,11 @@ autocmd("BufWritePre", {
 	pattern = "*",
 	command = [[%s/\s\+$//e]],
 })
+
+autocmd("FileType", {
+	pattern = "qf",
+	callback = function()
+		V.keymap("n", "j", "<Down><CR><C-w>p", { buffer = true, remap = false, desc = "Navigate down quickfix" })
+		V.keymap("n", "k", "<Up><CR><C-w>p", { buffer = true, remap = false, desc = "Navigate up quickfix" })
+	end,
+})

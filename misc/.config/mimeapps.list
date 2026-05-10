@@ -32,6 +32,7 @@ x-scheme-handler/webcal=zen.desktop
 text/markdown=nvim.desktop
 application/x-ndjson=nvim.desktop
 x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+x-scheme-handler/claude=claude.desktop
 
 [Added Associations]
 x-scheme-handler/http=zen.desktop
