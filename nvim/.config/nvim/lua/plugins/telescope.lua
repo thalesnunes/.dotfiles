@@ -124,6 +124,7 @@ return {
 			V.keymap("n", "<leader>fk", ":Telescope keymaps<CR>")
 			V.keymap("n", "<leader>ft", ":Telescope filetypes<CR>")
 			V.keymap("n", "<leader>fn", ":Telescope noice<CR>")
+            V.keymap("n", "<leader>fo", ":Telescope oldfiles<CR>")
 		end,
 	},
 	{

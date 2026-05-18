@@ -31,11 +31,6 @@ return {
 					text = "Undotree",
 					highlight = "PanelHeading",
 				},
-				{
-					filetype = "packer",
-					text = "Packer",
-					highlight = "PanelHeading",
-				},
 			},
 		},
 	},
