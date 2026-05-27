@@ -7,11 +7,10 @@ include /etc/sway/config.d/30-applications-defaults.conf
 include /etc/sway/config.d/50-systemd-user.conf
 include /etc/sway/config.d/95-xdg-desktop-autostart.conf
 
-include $HOME/.config/sway/variables.d/*.conf
-include $HOME/.config/sway/config.d/*.conf
-include $HOME/.config/sway/inputs/*.conf
+include $HOME/.config/sway/configs/*.conf
 include $HOME/.config/sway/outputs/screen.conf
+include $HOME/.config/sway/inputs/*.conf
 include $HOME/.config/sway/modes/*.conf
 
 # Gambiarra
-exec sleep 1 && swaymsg reload && swaymsg workspace 10 && swaymsg workspace 7 && swaymsg workspace 1
+# exec sleep 1 && swaymsg reload && swaymsg workspace 10 && swaymsg workspace 7 && swaymsg workspace 1
