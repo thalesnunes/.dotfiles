@@ -34,6 +34,14 @@ keybinding:
     pullFiles: 'P'
   branches:
     pushTag: 'p'
+customCommands:
+  - key: 'E'
+    context: 'global'
+    command: 'git commit --allow-empty -m "[deploy-mesh-staging-sandbox]"'
+    prompts:
+    -  type: 'confirm'
+       title: 'Commit with deploy to sbx tag'
+       body: 'Are you sure you want to commit with the sandbox deploy tag?'
 git:
   pagers:
     - colorArg: always
