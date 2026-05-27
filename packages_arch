@@ -46,6 +46,7 @@ rofi
 satty
 speedtest-cli
 stow
+swaybg
 sway-contrib
 swaylock-effects
 telegram-desktop
@@ -63,6 +64,8 @@ wev
 wezterm
 wget
 wlogout
+wl-paste
+wlr-randr
 wlsunset
 xdg-desktop-portal
 xdg-desktop-portal-wlr
