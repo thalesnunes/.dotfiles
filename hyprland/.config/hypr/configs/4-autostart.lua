@@ -1,0 +1,12 @@
+hl.on("hyprland.start", function()
+    hl.exec_cmd(IDLE)
+    hl.exec_cmd(CLIPHIST)
+    hl.exec_cmd(MAKO)
+    hl.exec_cmd(UDISKIE)
+    hl.exec_cmd(WLSUNSET)
+    hl.exec_cmd(TERMINAL_SERVER)
+end)
+
+hl.on("config.reloaded", function()
+    hl.exec_cmd(DESKTOP_SETUP)
+end)

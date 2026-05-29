@@ -1,0 +1,8 @@
+hl.define_submap("SCREENSHOT", "reset", function()
+    hl.bind("S", "exec", screenshot_window)
+    hl.bind("F", "exec", screenshot_output)
+    hl.bind("A", "exec", screenshot_active)
+    hl.bind(shift .. ", S", "exec", screenshot_save)
+    hl.bind(shift .. ", A", "exec", screenshot_annotate)
+    hl.bind("ESCAPE", hl.dsp.submap("reset"))
+end)
