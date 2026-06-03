@@ -28,6 +28,16 @@ V.keymap("n", "n", "nzzzv")
 V.keymap("n", "N", "Nzzzv")
 V.keymap("n", "J", "mzJ`z")
 
+-- Horizontal scolling
+V.keymap("n", "<Right>", "zl")
+V.keymap("n", "<Left>", "zh")
+V.keymap("v", "<Right>", "zl")
+V.keymap("v", "<Left>", "zh")
+V.keymap("n", "<S-Right>", "zL")
+V.keymap("n", "<S-Left>", "zH")
+V.keymap("v", "<S-Right>", "zL")
+V.keymap("v", "<S-Left>", "zH")
+
 -- Add blank line
 V.keymap("n", "<leader>o", "o<esc>")
 V.keymap("n", "<leader>O", "O<esc>")
