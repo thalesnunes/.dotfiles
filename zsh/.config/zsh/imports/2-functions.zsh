@@ -153,5 +153,7 @@ function dockerbr() {
 }
 
 function dockercompose() {
-    docker compose --file deployment/local/docker-compose.yaml up --build --force-recreate
+    docker compose --file deployment/local/docker-compose.yaml up --build --force-recreate -d
+    docker compose --file deployment/local/docker-compose.yaml -p local logs --follow "$(basename $(pwd))"
+    docker compose --file deployment/local/docker-compose.yaml down --remove-orphans
 }
