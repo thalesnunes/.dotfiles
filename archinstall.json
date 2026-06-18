@@ -43,7 +43,7 @@
     "ntp": true,
     "packages": [
         "firefox",
-        "wezterm"
+        "foot"
     ],
     "parallel_downloads": 0,
     "profile_config": {

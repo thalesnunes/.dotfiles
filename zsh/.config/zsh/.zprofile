@@ -17,8 +17,8 @@ export XDG_USER_BIN="$HOME/.local/bin"
 export PATH="$XDG_USER_BIN:$PATH:$PYTHON_BIN_PATH"
 
 # TERMINAL
-if [ -x "$(command -v wezterm)" ]; then
-    export TERMINAL=/usr/bin/wezterm
+if [ -x "$(command -v foot)" ]; then
+    export TERMINAL=/usr/bin/foot
 else
     export TERMINAL=/usr/bin/x-terminal-emulator
 fi

@@ -39,7 +39,7 @@ return {
 		V.keymap(
 			"n",
 			"<leader>jr",
-			':silent !i3-msg -q "workspace 9:Terminal, exec wezterm start -- jupyconsole $(basename $(pwd))"<CR>'
+			':silent !i3-msg -q "workspace 9:Terminal, exec foot -- jupyconsole $(basename $(pwd))"<CR>'
 		)
 	end,
 }
