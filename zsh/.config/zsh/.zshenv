@@ -1,45 +1,109 @@
-# Documentation: https://github.com/romkatv/zsh4humans/blob/v5/README.md.
-#
-# Do not modify this file unless you know exactly what you are doing.
-# It is strongly recommended to keep all shell customization and configuration
-# (including exported environment variables such as PATH) in ~/.zshrc or in
-# files sourced from ~/.zshrc. If you are certain that you must export some
-# environment variables in ~/.zshenv, do it where indicated by comments below.
+# XDG default directories
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_DESKTOP_DIR="$HOME/Desktop"
+export XDG_DOWNLOAD_DIR="$HOME/Downloads"
+export XDG_TEMPLATES_DIR="$HOME/Modelos"
+export XDG_PUBLICSHARE_DIR="$HOME/Public"
+export XDG_DOCUMENTS_DIR="$HOME/Documentos"
+export XDG_MUSIC_DIR="$HOME/Music"
+export XDG_PICTURES_DIR="$HOME/Imagens"
+export XDG_VIDEOS_DIR="$HOME/Videos"
+export XDG_USER_BIN="$HOME/.local/bin"
 
-if [ -n "${ZSH_VERSION-}" ]; then
-  # If you are certain that you must export some environment variables
-  # in ~/.zshenv (see comments at the top!), do it here:
-  #
-  #   export GOPATH=$HOME/go
-  #
-  # Do not change anything else in this file.
+# Adding python and other scripts to PATH
+export PATH="$XDG_USER_BIN:$PATH:$PYTHON_BIN_PATH"
 
-  : ${ZDOTDIR:=~}
-  setopt no_global_rcs
-  [[ -o no_interactive && -z "${Z4H_BOOTSTRAPPING-}" ]] && return
-  setopt no_rcs
-  unset Z4H_BOOTSTRAPPING
+# TERMINAL
+if [ -x "$(command -v foot)" ]; then
+    export TERMINAL=/usr/bin/foot
+else
+    export TERMINAL=/usr/bin/x-terminal-emulator
 fi
 
-Z4H_URL="https://raw.githubusercontent.com/romkatv/zsh4humans/v5"
-: "${Z4H:=${XDG_CACHE_HOME:-$HOME/.cache}/zsh4humans/v5}"
-
-umask o-w
-
-if [ ! -e "$Z4H"/z4h.zsh ]; then
-  mkdir -p -- "$Z4H" || return
-  >&2 printf '\033[33mz4h\033[0m: fetching \033[4mz4h.zsh\033[0m\n'
-  if command -v curl >/dev/null 2>&1; then
-    curl -fsSL -- "$Z4H_URL"/z4h.zsh >"$Z4H"/z4h.zsh.$$ || return
-  elif command -v wget >/dev/null 2>&1; then
-    wget -O-   -- "$Z4H_URL"/z4h.zsh >"$Z4H"/z4h.zsh.$$ || return
-  else
-    >&2 printf '\033[33mz4h\033[0m: please install \033[32mcurl\033[0m or \033[32mwget\033[0m\n'
-    return 1
-  fi
-  mv -- "$Z4H"/z4h.zsh.$$ "$Z4H"/z4h.zsh || return
+# EDITOR & VISUAL
+if [ -x "$(command -v nvim)" ]; then
+    export EDITOR=/usr/bin/nvim
+    export VISUAL=/usr/bin/nvim
+else
+    export EDITOR=/usr/bin/vim
+    export VISUAL=/usr/bin/vim
 fi
 
-. "$Z4H"/z4h.zsh || return
+# BROWSER
+if [ -x "$(command -v zen-browser)" ]; then
+    export BROWSER=/usr/bin/zen-browser
+elif [ -x "$(command -v brave)" ]; then
+    export BROWSER=/usr/bin/brave
+else
+    export BROWSER=/usr/bin/firefox
+fi
 
-setopt rcs
+# Set less as manpager with bat coloring
+export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat --theme \"Monokai Extended\" -p -lman'"
+export PSPG="--style 5"
+
+# User dotfiles and projects directories
+export DOT="$HOME/.dotfiles"
+export PROJECTS="$HOME/projects"
+export WORK_PROJECTS="$HOME/work_projects"
+
+
+##### HOME DIR CLEANUP #####
+
+# Cargo
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+
+# Docker
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+
+# GNUpg
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+
+# Go
+export GOPATH="$XDG_DATA_HOME/go"
+
+# GTK-2
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+
+# Jupyter
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
+
+# Less
+export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
+
+# Claude Code
+export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
+
+# Java
+export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java"
+
+# Poetry
+export POETRY_HOME="$XDG_DATA_HOME/poetry"
+
+# NPM
+export NPM_CONFIG_INIT_MODULE="$XDG_CONFIG_HOME"/npm/config/npm-init.js
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME"/npm
+export NPM_CONFIG_TMP="$XDG_RUNTIME_DIR"/npm
+export NODE_EXTRA_CA_CERTS="/etc/ca-certificates/trust-source/Upwork_Global_Root_CA.p11-kit"
+
+# URXVT
+export RXVT_SOCKET="$XDG_RUNTIME_DIR/urxvtd"
+
+# TERMINFO
+export TERMINFO="$XDG_DATA_HOME"/terminfo
+export TERMINFO_DIRS="$XDG_DATA_HOME"/terminfo:/usr/share/terminfo
+
+# Xsession-erros
+export ERRFILE="$XDG_CACHE_HOME/X11/xsession-errors"
+
+# MISC
+export QT_QPA_PLATFORMTHEME="qt5ct"
+
+# ADB
+export ANDROID_USER_HOME="$XDG_CONFIG_HOME/android"
+
+# Gemini
+export GEMINI_CLI_HOME="$XDG_CONFIG_HOME"

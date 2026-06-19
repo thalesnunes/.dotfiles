@@ -1,8 +1,19 @@
+# Generate LS_COLORS if not set
+if (( $+commands[dircolors] )); then
+    eval "$(dircolors -b 2>/dev/null)"
+fi
+
 # FZF dracula colorscheme
-export FZF_DEFAULT_OPTS="--color=fg:#f8f8f2,hl:#bd93f9 "\
-"--color=fg+:#f8f8f2,hl+:#bd93f9 "\
-"--color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 "\
-"--color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4 "
+export FZF_DEFAULT_OPTS="
+  --pointer='»'
+  --color=fg:#f8f8f2,hl:#bd93f9
+  --color=fg+:#f8f8f2,hl+:#bd93f9
+  --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6
+  --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4
+"
+
+# Reverse history order (newest first) on Ctrl+R
+export FZF_CTRL_R_OPTS='--layout=reverse'
 
 # Docker Dracula theme
 export BUILDKIT_COLORS="run=189,147,249:cancel=241,250,140:error=255,85,85:warning=241,250,140"

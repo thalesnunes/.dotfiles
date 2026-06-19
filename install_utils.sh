@@ -45,6 +45,6 @@ esac
 
 is_installed "curl"
 
-zprofile_path="zsh/.config/zsh/.zprofile"
+source_path="zsh/.config/zsh/.zshenv"
 
-[ -f "$DOT/$zprofile_path" ] && source "$DOT/$zprofile_path" || eval "$(curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/$zprofile_path)"
+[ -f "$DOT/$source_path" ] && source "$DOT/$source_path" || eval "$(curl https://raw.githubusercontent.com/thalesnunes/.dotfiles/main/$source_path)"
