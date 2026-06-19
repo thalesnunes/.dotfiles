@@ -60,5 +60,8 @@ function stow_packages() {
     cd "$OLDPWD"
 }
 
-stow_packages "$DOT" "$HOME"
-stow_packages "$DOT/root" "/"
+if [[ "$1" == "--root" ]]; then
+    stow_packages "$DOT/root" "/"
+else
+    stow_packages "$DOT" "$HOME"
+fi
