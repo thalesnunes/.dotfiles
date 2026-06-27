@@ -17,6 +17,14 @@ bindkey '\eOF' end-of-line
 # Ctrl+Backspace (sends ^H in foot)
 bindkey '^H' backward-kill-word
 
+# Delete (erase next char)
+bindkey "${terminfo[kdch1]}" delete-char
+bindkey '\e[3~' delete-char
+
+# Ctrl+Delete (erase next word)
+bindkey '\e[3;5~' kill-word     # Standard xterm/foot sequence
+bindkey '\e[3^' kill-word       # Alternative fallback
+
 # Up / Down for history substring search
 bindkey "${terminfo[kcuu1]}" history-substring-search-up
 bindkey "${terminfo[kcud1]}" history-substring-search-down
