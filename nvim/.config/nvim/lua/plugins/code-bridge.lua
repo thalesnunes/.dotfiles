@@ -1,24 +1,21 @@
-return {
-	"samir-roy/code-bridge.nvim",
-	event = "VeryLazy",
-	keys = {
-		{ "<leader>as", ":CodeBridgeTmux<CR>", mode = "n", desc = "Send file to claude" },
-		{ "<leader>as", ":CodeBridgeTmux<CR>", mode = "v", desc = "Send selection to claude" },
+vim.pack.add({
+	"https://github.com/samir-roy/code-bridge.nvim",
+})
 
-		{ "<leader>ai", ":CodeBridgeTmuxInteractive<CR>", mode = "n", desc = "Interactive prompt to claude" },
-		{ "<leader>ai", ":CodeBridgeTmuxInteractive<CR>", mode = "v", desc = "Interactive selection to claude" },
-		{ "<leader>ad", ":CodeBridgeTmuxDiff<CR>", mode = "n", desc = "Send git diff to claude" },
+require("code-bridge").setup({
+	tmux = {
+		target_mode = "window_name",
+		window_name = "agent",
+		switch_to_target = true,
+		find_node_process = true,
 	},
-	opts = {
-		tmux = {
-			target_mode = "window_name", -- 'window_name', 'current_window', 'find_process'
-			window_name = "agent", -- used when target_mode = 'window_name'
-			-- process_name = "claude", -- used when target_mode = 'current_window' or 'find_process'
-			switch_to_target = true, -- whether to switch to target after sending
-			find_node_process = true, -- whether to look for a node.js process
-		},
-		interactive = {
-			use_telescope = true, -- use telescope for interactive prompts (default: true)
-		},
+	interactive = {
+		use_telescope = true,
 	},
-}
+})
+
+V.keymap("n", "<leader>as", ":CodeBridgeTmux<CR>", { desc = "Send file to claude" })
+V.keymap("v", "<leader>as", ":CodeBridgeTmux<CR>", { desc = "Send selection to claude" })
+V.keymap("n", "<leader>ai", ":CodeBridgeTmuxInteractive<CR>", { desc = "Interactive prompt to claude" })
+V.keymap("v", "<leader>ai", ":CodeBridgeTmuxInteractive<CR>", { desc = "Interactive selection to claude" })
+V.keymap("n", "<leader>ad", ":CodeBridgeTmuxDiff<CR>", { desc = "Send git diff to claude" })

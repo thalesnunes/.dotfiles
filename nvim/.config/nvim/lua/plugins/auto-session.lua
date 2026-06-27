@@ -1,11 +1,8 @@
-return {
-	"rmagatti/auto-session",
-	lazy = false,
-	opts = {
-		allowed_dirs = { vim.env.PROJECTS .. "/*", vim.env.WORK_PROJECTS .. "/*" },
-	},
-	config = function(_, opts)
-		require("auto-session").setup(opts)
-		V.keymap("n", "<leader>fs", ":AutoSession search<CR>")
-	end,
-}
+vim.pack.add({
+	"https://github.com/rmagatti/auto-session",
+})
+
+require("auto-session").setup({
+	allowed_dirs = { vim.env.PROJECTS .. "/*", vim.env.WORK_PROJECTS .. "/*" },
+})
+V.keymap("n", "<leader>fs", ":AutoSession search<CR>")

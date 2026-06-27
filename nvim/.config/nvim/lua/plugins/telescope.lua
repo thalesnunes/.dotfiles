@@ -1,134 +1,120 @@
-return {
-	{
-		"nvim-telescope/telescope.nvim",
-		event = "VimEnter",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
+vim.pack.add({
+	"https://github.com/nvim-telescope/telescope.nvim",
+	"https://github.com/nvim-lua/plenary.nvim",
+	"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
+})
+
+require("telescope").setup({
+	defaults = {
+		prompt_prefix = "❯ ",
+		selection_caret = "❯ ",
+		layout_strategy = "flex",
+		layout_config = {
+			horizontal = {
+				width = 0.9,
+				preview_width = function(_, cols, _)
+					if cols > 200 then
+						return math.floor(cols * 0.4)
+					else
+						return math.floor(cols * 0.6)
+					end
+				end,
+			},
+
+			vertical = {
+				width = 0.9,
+				height = 0.95,
+				preview_height = 0.5,
+			},
+
+			flex = {},
 		},
-		opts = {
-			defaults = {
-				prompt_prefix = "❯ ",
-				selection_caret = "❯ ",
-				layout_strategy = "flex",
-				layout_config = {
-					horizontal = {
-						width = 0.9,
-						preview_width = function(_, cols, _)
-							if cols > 200 then
-								return math.floor(cols * 0.4)
-							else
-								return math.floor(cols * 0.6)
+		sorting_strategy = "descending",
+		color_devicons = true,
+		mappings = {
+			i = {
+				["<C-j>"] = "move_selection_next",
+				["<C-k>"] = "move_selection_previous",
+				["<ESC>"] = "close",
+				["<CR>"] = function(prompt_bufnr)
+					local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+					local multi = picker:get_multi_selection()
+					if not vim.tbl_isempty(multi) then
+						require("telescope.actions").close(prompt_bufnr)
+						for _, j in pairs(multi) do
+							if j.path ~= nil then
+								vim.cmd(string.format("%s %s", "edit", j.path))
 							end
-						end,
-					},
-
-					vertical = {
-						width = 0.9,
-						height = 0.95,
-						preview_height = 0.5,
-					},
-
-					flex = {
-						-- horizontal = {
-						--     preview_width = 0.9,
-						-- },
-					},
-				},
-				sorting_strategy = "descending",
-				color_devicons = true,
-				mappings = {
-					i = {
-						["<C-j>"] = "move_selection_next",
-						["<C-k>"] = "move_selection_previous",
-						["<ESC>"] = "close",
-						["<CR>"] = function(prompt_bufnr)
-							local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
-							local multi = picker:get_multi_selection()
-							if not vim.tbl_isempty(multi) then
-								require("telescope.actions").close(prompt_bufnr)
-								for _, j in pairs(multi) do
-									if j.path ~= nil then
-										vim.cmd(string.format("%s %s", "edit", j.path))
-									end
-								end
-							else
-								require("telescope.actions").select_default(prompt_bufnr)
-							end
-						end,
-					},
-					n = {
-						["g"] = "move_to_top",
-						["G"] = "move_to_bottom",
-					},
-				},
-				vimgrep_arguments = {
-					"rg",
-					"--color=never",
-					"--no-heading",
-					"--with-filename",
-					"--line-number",
-					"--column",
-					"--smart-case",
-					"--no-ignore",
-					"--hidden",
-					"--trim",
-				},
-				file_ignore_patterns = {
-					".git",
-					"node_modules",
-					".cache",
-					"__pycache__",
-					"%.pyc",
-					"star_schema",
-                    "archive",
-				},
+						end
+					else
+						require("telescope.actions").select_default(prompt_bufnr)
+					end
+				end,
 			},
-			pickers = {
-				buffers = {
-					initial_mode = "normal",
-					mappings = {
-						n = {
-							["<leader>q"] = "delete_buffer",
-						},
-					},
-				},
+			n = {
+				["g"] = "move_to_top",
+				["G"] = "move_to_bottom",
 			},
-			extensions = {
-				fzf = {
-					fuzzy = true,
-					override_generic_sorter = true,
-					override_file_sorter = true,
-					case_mode = "smart_case",
+		},
+		vimgrep_arguments = {
+			"rg",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+			"--no-ignore",
+			"--hidden",
+			"--trim",
+		},
+		file_ignore_patterns = {
+			".git",
+			"node_modules",
+			".cache",
+			"__pycache__",
+			"%.pyc",
+			"star_schema",
+			"archive",
+		},
+	},
+	pickers = {
+		buffers = {
+			initial_mode = "normal",
+			mappings = {
+				n = {
+					["<leader>q"] = "delete_buffer",
 				},
 			},
 		},
-		config = function(_, opts)
-			require("telescope").setup(opts)
-			require("telescope").load_extension("fzf")
-			require("telescope").load_extension("noice")
-
-			function live_grep_git_dir()
-				local git_dir =
-					vim.fn.system(string.format("git -C %s rev-parse --show-toplevel", vim.fn.expand("%:p:h")))
-				git_dir = string.gsub(git_dir, "\n", "") -- remove newline character from git_dir
-				require("telescope.builtin").live_grep({ cwd = git_dir })
-			end
-
-			vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
-
-			-- Find files using Telescope command-line sugar.
-			V.keymap("n", "<leader>ff", ":Telescope git_files hidden=true show_untracked=true<CR>")
-			V.keymap("n", "<leader>fw", ":lua live_grep_git_dir()<CR>")
-			V.keymap("n", "<leader>fb", ":Telescope buffers<CR>")
-			V.keymap("n", "<leader>fh", ":Telescope help_tags<CR>")
-			V.keymap("n", "<leader>fk", ":Telescope keymaps<CR>")
-			V.keymap("n", "<leader>ft", ":Telescope filetypes<CR>")
-			V.keymap("n", "<leader>fn", ":Telescope noice<CR>")
-            V.keymap("n", "<leader>fo", ":Telescope oldfiles<CR>")
-		end,
 	},
-	{
-		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "make",
+	extensions = {
+		fzf = {
+			fuzzy = true,
+			override_generic_sorter = true,
+			override_file_sorter = true,
+			case_mode = "smart_case",
+		},
 	},
-}
+})
+
+require("telescope").load_extension("fzf")
+require("telescope").load_extension("noice")
+
+function live_grep_git_dir()
+	local git_dir =
+		vim.fn.system(string.format("git -C %s rev-parse --show-toplevel", vim.fn.expand("%:p:h")))
+	git_dir = string.gsub(git_dir, "\n", "")
+	require("telescope.builtin").live_grep({ cwd = git_dir })
+end
+
+vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
+
+V.keymap("n", "<leader>ff", ":Telescope git_files hidden=true show_untracked=true<CR>")
+V.keymap("n", "<leader>fw", ":lua live_grep_git_dir()<CR>")
+V.keymap("n", "<leader>fb", ":Telescope buffers<CR>")
+V.keymap("n", "<leader>fh", ":Telescope help_tags<CR>")
+V.keymap("n", "<leader>fk", ":Telescope keymaps<CR>")
+V.keymap("n", "<leader>ft", ":Telescope filetypes<CR>")
+V.keymap("n", "<leader>fn", ":Telescope noice<CR>")
+V.keymap("n", "<leader>fo", ":Telescope oldfiles<CR>")

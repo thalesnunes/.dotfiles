@@ -1,4 +1,3 @@
-return {
-	"mboughaba/i3config.vim",
-	ft = "i3config",
-}
+vim.pack.add({
+	"https://github.com/mboughaba/i3config.vim",
+})

@@ -1,45 +1,32 @@
-return {
-	{
-		"nvim-mini/mini.surround",
-        version = false,
-		event = "VimEnter",
-		opts = {
-			custom_surroundings = {
-				["("] = { output = { left = "(", right = ")" } },
-				["["] = { output = { left = "[", right = "]" } },
-				["{"] = { output = { left = "{", right = "}" } },
+vim.pack.add({
+	"https://github.com/nvim-mini/mini.surround",
+	"https://github.com/nvim-mini/mini.pairs",
+})
 
-				[")"] = { output = { left = "( ", right = " )" } },
-				["]"] = { output = { left = "[ ", right = " ]" } },
-				["}"] = { output = { left = "{ ", right = " }" } },
-			},
-			mappings = {
-				add = "gsa", -- Add surrounding in Normal and Visual modes
-				delete = "gsd", -- Delete surrounding
-				find = "gsf", -- Find surrounding (to the right)
-				find_left = "gsF", -- Find surrounding (to the left)
-				highlight = "gsh", -- Highlight surrounding
-				replace = "gsr", -- Replace surrounding
-				update_n_lines = "gsn", -- Update `n_lines`
-			},
-		},
-		keys = {
-			{ "gs", "", desc = "+surround" },
-		},
+require("mini.surround").setup({
+	custom_surroundings = {
+		["("] = { output = { left = "(", right = ")" } },
+		["["] = { output = { left = "[", right = "]" } },
+		["{"] = { output = { left = "{", right = "}" } },
+
+		[")"] = { output = { left = "( ", right = " )" } },
+		["]"] = { output = { left = "[ ", right = " ]" } },
+		["}"] = { output = { left = "{ ", right = " }" } },
 	},
-	{
-		"nvim-mini/mini.pairs",
-        version = false,
-		event = "VeryLazy",
-		opts = {
-			modes = { insert = true, command = true, terminal = false },
-			-- skip autopair when next character is one of these
-			skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
-			-- skip autopair when next character is closing pair
-			-- and there are more closing pairs than opening pairs
-			skip_unbalanced = true,
-			-- better deal with markdown code blocks
-			markdown = true,
-		},
+	mappings = {
+		add = "gsa",
+		delete = "gsd",
+		find = "gsf",
+		find_left = "gsF",
+		highlight = "gsh",
+		replace = "gsr",
+		update_n_lines = "gsn",
 	},
-}
+})
+
+require("mini.pairs").setup({
+	modes = { insert = true, command = true, terminal = false },
+	skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
+	skip_unbalanced = true,
+	markdown = true,
+})
