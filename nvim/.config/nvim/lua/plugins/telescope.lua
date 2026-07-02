@@ -111,7 +111,7 @@ return {
 				local git_dir =
 					vim.fn.system(string.format("git -C %s rev-parse --show-toplevel", vim.fn.expand("%:p:h")))
 				git_dir = string.gsub(git_dir, "\n", "") -- remove newline character from git_dir
-				require("telescope.builtin").live_grep({ cwd = git_dir })
+				require("telescope.builtin").live_grep({ cwd = git_dir, glob_pattern = { "!.venv/*" } })
 			end
 
 			vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
