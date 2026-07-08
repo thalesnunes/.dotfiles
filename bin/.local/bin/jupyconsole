@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-kernel=$1
-RUNNING=$(ps aux | awk '/jupyter-console --kernel='"$kernel"'/ && !/awk/ {print $2}')
-if [[ -n "$RUNNING" ]]; then
-    kill $RUNNING
-fi
-
-tmux_init -s console -w $kernel -d $PROJECTS/$kernel "jupyter console --kernel=$kernel"
