@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 for pkg_mgr in paru yay pacman apt apk dnf zypper; do
-    if command -v $pkg_mgr > /dev/null; then
+    if command -v "$pkg_mgr" > /dev/null 2>&1; then
         echo "$pkg_mgr"
         exit 0
     fi

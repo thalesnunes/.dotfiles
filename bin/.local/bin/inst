@@ -1,29 +1,23 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 if command -v paru > /dev/null; then
-    paru -S $@
-    exit 0
+    paru -S "$@"
 elif command -v yay > /dev/null; then
-    yay -S $@
-    exit 0
+    yay -S "$@"
 elif command -v pacman > /dev/null; then
-    sudo pacman -S $@
-    exit 0
+    sudo pacman -S "$@"
 elif command -v nala > /dev/null; then
-    sudo nala install $@
-    exit 0
+    sudo nala install "$@"
 elif command -v apt > /dev/null; then
-    sudo apt install $@
-    exit 0
+    sudo apt install -y "$@"
 elif command -v apk > /dev/null; then
-    sudo apk add --no-cache $@
-    exit 0
+    sudo apk add --no-cache "$@"
 elif command -v dnf > /dev/null; then
-    sudo dnf install $@
-    exit 0
+    sudo dnf install -y "$@"
 elif command -v zypper > /dev/null; then
-    sudo zypper install $@
-    exit 0
+    sudo zypper install -y "$@"
 else
     echo "No default installation tool was found"
     exit 1

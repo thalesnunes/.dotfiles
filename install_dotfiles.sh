@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-source $DOT/install_utils.sh
+set -euo pipefail
+
+source "$DOT/install_utils.sh"
 
 is_installed "stow"
 is_installed "awk"
@@ -10,24 +12,27 @@ if [ ! -d "$DOT" ]; then
 fi
 
 function solve_stow_conflicts() {
+    local target="$1"
     conflicts=$(stow -nt "$target" */ 2>&1 | sed -n 's|.*over existing target \([^ ]*\).*|'"$target"'/\1|p')
 
     if [ -n "$conflicts" ]; then
-        echo "The following conflicts were found:"
+        log "The following conflicts were found:"
         echo "$conflicts"
 
         rm_pr="Do you want to REMOVE all the conflicted files? [Y/n]: "
         mv_pr="Do you want to MOVE all the conflicted files to .old files? [Y/n]: "
         if yn_pr "$rm_pr"; then
             echo "$conflicts" | xargs rm -rf
+            log "Removed conflicted files"
         elif yn_pr "$mv_pr"; then
             echo "$conflicts" | xargs mv {} {}.old
+            log "Moved conflicted files to .old"
         else
-            echo "Can't stow with conflicting packages"
+            log_error "Can't stow with conflicting packages"
             return 1
         fi
     else
-        echo "No conflicts found in $target"
+        log "No conflicts found in $target"
     fi
     return 0
 }
@@ -39,7 +44,7 @@ function stow_packages() {
 
     cd "$source"
 
-    echo "Solving for $source into $target"
+    log "Solving for $source into $target"
 
     solve_stow_conflicts "$target"
     if [ $? -ne 0 ]; then
@@ -55,12 +60,13 @@ function stow_packages() {
         else
             stow --no-folding -vt "$target" */
         fi
+        log "Stowed packages from $source"
     fi
 
     cd "$OLDPWD"
 }
 
-if [[ "$1" == "--root" ]]; then
+if [[ "${1:-}" == "--root" ]]; then
     stow_packages "$DOT/root" "/"
 else
     stow_packages "$DOT" "$HOME"
