@@ -21,10 +21,9 @@ fi
 echo
 
 if is_installed "zsh"; then
-    if yn_pr "Do you want to change shell and install z4h? [Y/n]: "; then
+    if yn_pr "Do you want to change shell and create zsh deps? [Y/n]: "; then
         mkdir -p "$XDG_CACHE_HOME/zsh"
         mkdir -p "$XDG_STATE_HOME/zsh"
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
     fi
     if yn_pr "Do you want to add ZDOTDIR to /etc/zsh/zshenv? [Y/n]: "; then
         sudo mkdir -p "/etc/zsh"
