@@ -43,4 +43,5 @@ alias hist="history | awk -F' ' '{ \$1=\"\"; print }' | fzf --tac --no-sort"
 
 alias rge="rg --hidden --sort=path -g '!**/.git/**' -g '!**/deployment/**' -g '!**/archive/**' -g '!**/release/**' -g '!**/ddl/**' -i"
 
-    alias nta="ssh nta@192.168.0.2"
+alias nta="ssh nta@192.168.0.2"
+alias mount_nta="sudo mount --mkdir -t cifs -o username=nta,uid=$(id -u),gid=$(id -g) //192.168.0.2/nta /run/media/homeserver"
