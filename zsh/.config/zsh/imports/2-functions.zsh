@@ -157,3 +157,20 @@ function dockercompose() {
     docker compose --file deployment/local/docker-compose.yaml -p local logs --follow "$(basename $(pwd))"
     docker compose --file deployment/local/docker-compose.yaml down --remove-orphans
 }
+
+
+function fix_cursor_agent_rg() {
+    local cursor_rg=/opt/cursor-agent/rg
+    local system_rg=/usr/bin/rg
+    [[ -x "$system_rg" ]] || { echo "error: missing $system_rg" >&2; return 1; }
+    [[ -d /opt/cursor-agent ]] || { echo "error: cursor-agent not installed" >&2; return 1; }
+    sudo rm -f "$cursor_rg"
+    sudo tee "$cursor_rg" > /dev/null <<'EOF'
+#!/usr/bin/env bash
+exec /usr/bin/rg "${@/--cursor-ignore/--ignore-file}"
+EOF
+    sudo chmod 755 "$cursor_rg"
+    "$cursor_rg" --cursor-ignore=/dev/null --version >/dev/null
+    echo "OK: installed wrapper at $cursor_rg"
+    file -b "$cursor_rg"
+}
