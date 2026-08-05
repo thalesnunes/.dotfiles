@@ -17,18 +17,12 @@ alias dot='cd $DOT'
 alias idot='$DOT/install_dotfiles.sh'
 alias projw='proj w'
 
-alias per='pipenv run'
-alias por='poetry run'
-
 alias stown='stow --no-folding -nvt ~'
 alias stowv='stow --no-folding -vt ~'
 
 alias lr='ranger'
 alias slr='sudo $XDG_USER_BIN/ranger'
 alias lg='lazygit'
-
-alias gcalp='gcalcli --config-folder ~/.config/gcalcli/personal'
-alias gcalw='gcalcli --config-folder ~/.config/gcalcli/work'
 
 alias conservation_on="sudo modprobe ideapad_laptop && sudo tee /sys/bus/platform/drivers/ideapad_acpi/*/conservation_mode <<< '1'"
 alias conservation_off="sudo modprobe ideapad_laptop && sudo tee /sys/bus/platform/drivers/ideapad_acpi/*/conservation_mode <<< '0'"

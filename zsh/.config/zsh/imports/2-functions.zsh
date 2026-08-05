@@ -2,23 +2,6 @@ function gi() {
     curl -sL https://www.toptal.com/developers/gitignore/api/$@
 }
 
-function jupyter_docker() {
-    docker run --name jupyter -p 8888:8888 -it -e JUPYTER_ENABLE_LAB=yes \
-        --rm -d -v "$PROJECTS"/db-crawler:/usr/src/app -w /usr/src/app \
-        thalesnunes1/db-crawler:latest &&
-    sleep 2 &&
-    jupyter_url=$(docker logs jupyter | \
-            grep -o "http:\/\/127\.0\.0\.1:8888\/lab?token=.*" | tail -1) &&
-    google-chrome $jupyter_url &!
-}
-
-function gcala() {
-    args=$@
-    for dir in ~/.config/gcalcli/*/; do
-        gcalcli --config-folder $dir $args;
-    done
-}
-
 function config() {
     TOCD=$DOT
     FILE=""
