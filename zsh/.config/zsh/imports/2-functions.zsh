@@ -84,7 +84,7 @@ function proj() {
         PROJ_DIR=$(dirname $TOCD)
         NAME=$(basename $TOCD)
     else
-        NAME=$(ls -l $PROJ_DIR | awk '/^d/ { print $NF }' | fzf)
+        NAME=$(find $PROJ_DIR -mindepth 1 -maxdepth 1 -type d,l -printf '%f\n'| fzf)
     fi
 
     if [[ -z "$NAME" ]] || [[ ! -d "$PROJ_DIR/$NAME" ]]; then
