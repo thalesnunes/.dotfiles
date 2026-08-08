@@ -39,10 +39,10 @@ customCommands:
     context: 'global'
     command: 'git commit --allow-empty -m "[deploy-mesh-staging-sandbox]"'
     prompts:
-    -  type: 'confirm'
-       title: 'Commit with deploy to sbx tag'
-       body: 'Are you sure you want to commit with the sandbox deploy tag?'
+      - type: 'confirm'
+        title: 'Commit with deploy to sbx tag'
+        body: 'Are you sure you want to commit with the sandbox deploy tag?'
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: DELTA_FEATURES='mantis-shrimp-lite no-side-by-side' delta --paging=never
+      command: DELTA_FEATURES='mantis-shrimp-lite no-side-by-side' delta --paging=never
