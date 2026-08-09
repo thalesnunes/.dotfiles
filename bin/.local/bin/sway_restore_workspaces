@@ -1,0 +1,147 @@
+#!/usr/bin/env python
+import json
+import os
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+def get_outputs():
+    try:
+        output_data = subprocess.check_output(["swaymsg", "-t", "get_outputs"])
+        return json.loads(output_data.decode("utf-8"))
+    except Exception as e:
+        print(f"Error getting outputs: {e}", file=sys.stderr)
+        return []
+
+def get_workspaces():
+    try:
+        workspace_data = subprocess.check_output(["swaymsg", "-t", "get_workspaces"])
+        return json.loads(workspace_data.decode("utf-8"))
+    except Exception as e:
+        print(f"Error getting workspaces: {e}", file=sys.stderr)
+        return []
+
+def parse_screen_config():
+    config_dir = Path(os.environ.get('XDG_CONFIG_HOME', os.path.expanduser('~/.config')))
+    screen_conf_path = config_dir / 'sway' / 'outputs' / 'screen.conf'
+
+    variables = {}
+    workspace_outputs = {}
+
+    if not screen_conf_path.exists():
+        print(f"Config path {screen_conf_path} does not exist", file=sys.stderr)
+        return workspace_outputs
+
+    with open(screen_conf_path, 'r') as f:
+        content = f.read()
+
+    # Parse variables: set $var_name value
+    for line in content.splitlines():
+        line = line.strip()
+        if not line or line.startswith('#'):
+            continue
+        var_match = re.match(r'^set\s+\$(\w+)\s+(.+)$', line)
+        if var_match:
+            var_name, var_val = var_match.groups()
+            var_val = var_val.split('#')[0].strip()
+            # Remove any wrapping quotes from variables
+            if (var_val.startswith('"') and var_val.endswith('"')) or (var_val.startswith("'") and var_val.endswith("'")):
+                var_val = var_val[1:-1]
+            variables[var_name] = var_val
+
+    # Parse workspace blocks or inline commands
+    in_workspace_block = False
+    for line in content.splitlines():
+        line = line.strip()
+        if not line or line.startswith('#'):
+            continue
+
+        # Check for block entry
+        if line.startswith('workspace') and '{' in line:
+            in_workspace_block = True
+            continue
+
+        if in_workspace_block and line == '}':
+            in_workspace_block = False
+            continue
+
+        if in_workspace_block:
+            # Inside workspace block, e.g.: 1 output $primary_monitor eDP-1
+            match = re.match(r'^(\d+|"[^"]+")\s+output\s+(.+)$', line)
+            if match:
+                ws_name, outputs_str = match.groups()
+                ws_name = ws_name.replace('"', '')
+                outputs = []
+                for out in outputs_str.split():
+                    if out.startswith('$'):
+                        var_name = out[1:]
+                        if var_name in variables:
+                            outputs.append(variables[var_name])
+                        else:
+                            outputs.append(out)
+                    else:
+                        outputs.append(out)
+                workspace_outputs[ws_name] = outputs
+        else:
+            # Inline workspace output, e.g. workspace 1 output $primary_monitor eDP-1
+            match = re.match(r'^workspace\s+(\d+|"[^"]+")\s+output\s+(.+)$', line)
+            if match:
+                ws_name, outputs_str = match.groups()
+                ws_name = ws_name.replace('"', '')
+                outputs = []
+                for out in outputs_str.split():
+                    if out.startswith('$'):
+                        var_name = out[1:]
+                        if var_name in variables:
+                            outputs.append(variables[var_name])
+                        else:
+                            outputs.append(out)
+                    else:
+                        outputs.append(out)
+                workspace_outputs[ws_name] = outputs
+
+    return workspace_outputs
+
+def main():
+    workspace_rules = parse_screen_config()
+    if not workspace_rules:
+        print("No workspace output rules found. Exiting.")
+        sys.exit(1)
+
+    outputs = get_outputs()
+    active_outputs = {out['name'] for out in outputs if out.get('active', True)}
+
+    workspaces = get_workspaces()
+
+    moved_count = 0
+    for ws in workspaces:
+        ws_name = str(ws['name'])
+        current_output = ws['output']
+
+        # Check if we have output preferences for this workspace
+        if ws_name in workspace_rules:
+            prefs = workspace_rules[ws_name]
+
+            # Find the first active output in the preferences list
+            target_output = None
+            for pref in prefs:
+                if pref in active_outputs:
+                    target_output = pref
+                    break
+
+            if target_output and current_output != target_output:
+                print(f"Moving workspace {ws_name} from {current_output} to configured target output {target_output}...")
+                try:
+                    subprocess.run(["swaymsg", f"[workspace=\"{ws_name}\"] move workspace to output {target_output}"], check=True)
+                    moved_count += 1
+                except Exception as e:
+                    print(f"Failed to move workspace {ws_name}: {e}", file=sys.stderr)
+
+    if moved_count > 0:
+        print(f"Successfully restored {moved_count} workspaces.")
+    else:
+        print("All workspaces are already on their correct outputs.")
+
+if __name__ == '__main__':
+    main()

@@ -9,6 +9,7 @@ fi
 $XDG_USER_BIN/screen_setup $screen_profile $primary_monitor $secondary_monitor > /dev/null 2>&1 &
 $XDG_USER_BIN/waybar_starter $primary_monitor > /dev/null 2>&1 &
 $XDG_USER_BIN/mako_starter $primary_monitor > /dev/null 2>&1 &
+$XDG_USER_BIN/sway_restore_workspaces > /dev/null 2>&1 &
 
 sleep 0.5
 systemctl --user start wallpaper_setter
