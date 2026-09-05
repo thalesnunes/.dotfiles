@@ -27,8 +27,6 @@ alias lg='lazygit'
 alias conservation_on="sudo modprobe ideapad_laptop && sudo tee /sys/bus/platform/drivers/ideapad_acpi/*/conservation_mode <<< '1'"
 alias conservation_off="sudo modprobe ideapad_laptop && sudo tee /sys/bus/platform/drivers/ideapad_acpi/*/conservation_mode <<< '0'"
 
-alias toggle_internal_keyboard="swaymsg input \$(swaymsg -t get_inputs | jq -r '.[] | select(.name == \"keyd virtual keyboard\") | .identifier') events toggle"
-
 alias dockerps='docker ps -a --format=$DOCKER_FORMAT'
 
 alias yt_down='yt-dlp -o "~/Downloads/%(title)s.%(ext)s" -f "[ext=mp4][height<=1080]"'

@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+# Toggle script for internal laptop keyboard and keyd remapping daemon.
+# Solves Bluetooth freezes/lags on external split keyboards (e.g. Ergonaut / ZMK)
+# caused by keyd's background evdev/udev device monitoring.
+
+notify() {
+    if command -v notify-send >/dev/null 2>&1; then
+        notify-send -u low -i input-keyboard "Keyboard Toggle" "$1"
+    else
+        echo "$1"
+    fi
+}
+
+INTERNAL_KBD_ID=$(swaymsg -t get_inputs 2>/dev/null | jq -r '.[] | select(.name | contains("AT Translated Set 2")) | .identifier' | head -n1)
+
+if systemctl is-active --quiet keyd 2>/dev/null; then
+    # --- SPLIT KEYBOARD MODE (keyd OFF, Internal Keyboard OFF) ---
+    # 1. Stop keyd daemon to stop evdev monitoring and prevent Bluetooth freezes
+    sudo systemctl stop keyd
+
+    # 2. Disable raw physical internal keyboard in Sway to prevent accidental presses when split keyboard rests on top
+    if [ -n "$INTERNAL_KBD_ID" ]; then
+        swaymsg input "$INTERNAL_KBD_ID" events disabled >/dev/null 2>&1
+    fi
+
+    notify "Internal Keyboard & keyd DISABLED (Split Keyboard Mode)"
+else
+    # --- LAPTOP MODE (keyd ON, Internal Keyboard ON) ---
+    # 1. Enable physical internal keyboard in Sway
+    if [ -n "$INTERNAL_KBD_ID" ]; then
+        swaymsg input "$INTERNAL_KBD_ID" events enabled >/dev/null 2>&1
+    fi
+
+    # 2. Start keyd service to re-enable custom key bindings
+    sudo systemctl start keyd
+
+    # 3. Ensure keyd virtual keyboard events are enabled in Sway
+    sleep 0.2
+    KEYD_KBD_ID=$(swaymsg -t get_inputs 2>/dev/null | jq -r '.[] | select(.name == "keyd virtual keyboard") | .identifier' | head -n1)
+    if [ -n "$KEYD_KBD_ID" ]; then
+        swaymsg input "$KEYD_KBD_ID" events enabled >/dev/null 2>&1
+    fi
+
+    notify "Internal Keyboard & keyd ENABLED (Laptop Mode)"
+fi
