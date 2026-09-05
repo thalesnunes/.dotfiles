@@ -20,8 +20,8 @@ alias projw='proj w'
 alias stown='stow --no-folding -nvt ~'
 alias stowv='stow --no-folding -vt ~'
 
-alias lr='ranger'
-alias slr='sudo $XDG_USER_BIN/ranger'
+alias ly='y'
+alias sly='sudo yazi'
 alias lg='lazygit'
 
 alias conservation_on="sudo modprobe ideapad_laptop && sudo tee /sys/bus/platform/drivers/ideapad_acpi/*/conservation_mode <<< '1'"

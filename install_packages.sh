@@ -64,7 +64,6 @@ if is_installed "pip"; then
                 log "pipx package '$package' already installed, skipping."
             fi
         done
-        pipx inject ranger-fm pynvim
     fi
 fi
 
