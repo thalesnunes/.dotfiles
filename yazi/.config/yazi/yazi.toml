@@ -1,0 +1,49 @@
+# A TOML linter such as Tombi can use this schema to validate your config.
+#:schema https://yazi-rs.github.io/schemas/yazi.json
+
+[mgr]
+show_hidden = true
+sort_by = "natural"
+sort_sensitive = false
+sort_reverse = false
+sort_dir_first = true
+linemode = "size"
+ratio = [1, 2, 3]
+
+[preview]
+wrap = "no"
+tab_size = 4
+
+[opener]
+edit = [
+	{ run = '${EDITOR:-nvim} %s', block = true, desc = "Open with editor" },
+]
+pdf = [
+	{ run = 'zathura %s', orphan = true, desc = "Open with Zathura" },
+]
+image = [
+	{ run = 'satty -f %s', orphan = true, desc = "Open with Satty" },
+]
+play = [
+	{ run = 'mpv %s', orphan = true, desc = "Play with mpv" },
+]
+open = [
+	{ run = 'xdg-open %s1', desc = "Open with xdg" },
+]
+
+[open]
+prepend_rules = [
+	# PDFs
+	{ url = "*.pdf", use = [ "pdf", "reveal" ] },
+	{ mime = "application/pdf", use = [ "pdf", "reveal" ] },
+
+	# Images (Satty / Feh)
+	{ mime = "image/*", use = [ "image", "reveal" ] },
+
+	# Media (Audio / Video)
+	{ mime = "{audio,video}/*", use = [ "play", "reveal" ] },
+
+	# Documents / text / code
+	{ mime = "text/*", use = [ "edit", "reveal" ] },
+	{ url = "*.{json,toml,yaml,yml,conf,sh,lua,py,md}", use = [ "edit", "reveal" ] },
+]
