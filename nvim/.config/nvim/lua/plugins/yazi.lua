@@ -33,11 +33,6 @@ return {
 
 		-- Run Yazi on startup when opened with [No Name] (empty buffer without file args)
 		vim.defer_fn(function()
-			-- Avoid Yazi startup when root or explicitly skipped
-			if vim.env.USER == "root" or vim.g.yazi_skip_toggle then
-				return
-			end
-
 			local curr_path = vim.fn.expand("%:p")
 			-- open_for_directories handles directories; this handles empty [No Name] buffer
 			if curr_path == "" and vim.fn.argc() == 0 and vim.bo.buftype == "" then

@@ -1,8 +1,11 @@
 return {
 	"rmagatti/auto-session",
 	lazy = false,
+	cond = function()
+		return vim.loop.getuid() ~= 0
+	end,
 	opts = {
-		allowed_dirs = { vim.env.PROJECTS .. "/*", vim.env.WORK_PROJECTS .. "/*" },
+		allowed_dirs = { (vim.env.PROJECTS or "") .. "/*", (vim.env.WORK_PROJECTS or "") .. "/*" },
 	},
 	config = function(_, opts)
 		require("auto-session").setup(opts)
