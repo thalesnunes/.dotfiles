@@ -1,3 +1,4 @@
+7zip
 acpi
 aria2
 atool
@@ -44,8 +45,10 @@ pcmanfm-gtk3
 pet-bin
 pipewire
 playerctl
+poppler
 python
 python-pip
+resvg
 ripgrep
 rofi
 satty
