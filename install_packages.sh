@@ -6,7 +6,7 @@ source "$DOT/install_utils.sh"
 
 cd "$HOME"
 
-$DOT/upd
+$DOT/bin/.local/bin/upd
 
 if yn_pr "Do you want to install the default packages? [Y/n]: "; then
     log "Installing system packages..."
