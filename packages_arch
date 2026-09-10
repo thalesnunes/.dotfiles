@@ -18,6 +18,8 @@ fzf
 git
 git-delta
 grep
+grim
+hyprpicker
 jq
 keyd
 lazygit
@@ -47,12 +49,15 @@ python-pip
 ripgrep
 rofi
 satty
+slurp
 speedtest-cli
 stow
 swaybg
-sway-contrib
 swaylock-effects
 telegram-desktop
+tesseract
+tesseract-data-eng
+tesseract-data-por
 tmux
 transmission-cli
 tree-sitter-cli
@@ -68,7 +73,7 @@ wayland-pipewire-idle-inhibit
 wev
 wget
 wlogout
-wl-paste
+wl-clipboard
 wlr-randr
 wlsunset
 xdg-desktop-portal
