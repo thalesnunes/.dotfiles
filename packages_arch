@@ -45,6 +45,7 @@ pcmanfm-gtk3
 pet-bin
 pipewire
 playerctl
+polkit-gnome
 poppler
 python
 python-pip
