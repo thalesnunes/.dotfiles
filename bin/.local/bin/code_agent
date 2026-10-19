@@ -16,6 +16,7 @@ AGENTS=(
     [agy]="NODE_EXTRA_CA_CERTS='/etc/ca-certificates/trust-source/Upwork_Global_Root_CA.p11-kit' agy -c"
     [cursor]="cursor-agent resume || cursor-agent"
     [opencode]="opencode -c || opencode"
+    [pi]="POWERLINE_NERD_FONTS=1 pi --continue"
 )
 
 local AGENT="$1"

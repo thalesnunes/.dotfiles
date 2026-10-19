@@ -1,0 +1,8 @@
+{
+  "executor": "openrouter/poolside/laguna-s-2.1:free",
+  "advisor": "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
+  "advisorEffort": "max",
+  "executorEffort": "medium",
+  "alwaysOn": true,
+  "advisorOutcomeLogging": false
+}

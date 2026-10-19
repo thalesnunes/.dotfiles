@@ -107,3 +107,8 @@ export ANDROID_USER_HOME="$XDG_CONFIG_HOME/android"
 
 # Gemini
 export GEMINI_CLI_HOME="$XDG_CONFIG_HOME"
+
+# Pi
+export PI_CODING_AGENT_DIR="$XDG_CONFIG_HOME/pi"
+export PI_CODING_AGENT_SESSION_DIR="$XDG_DATA_HOME/pi-sessions"
+export PI_LENS_HOME="$XDG_CONFIG_HOME/pi/pi-lens"
