@@ -11,6 +11,7 @@ btop
 cargo
 curl
 docker
+earlyoom
 eza
 fastfetch
 fd
@@ -87,4 +88,5 @@ yazi
 zathura
 zathura-pdf-mupdf
 zen-browser-bin
+zram-generator
 zsh

@@ -24,6 +24,17 @@ fi
 
 echo
 
+if is_installed "earlyoom"; then
+    if ! systemctl is-enabled earlyoom &>/dev/null; then
+        if yn_pr "Do you want to enable and start the earlyoom service? [Y/n]: "; then
+            sudo systemctl enable --now earlyoom
+            log "Enabled and started earlyoom service"
+        fi
+    fi
+fi
+
+echo
+
 if is_installed "zsh"; then
     if yn_pr "Do you want to change shell and create zsh deps? [Y/n]: "; then
         if [ ! -d "$XDG_CACHE_HOME/zsh" ]; then
