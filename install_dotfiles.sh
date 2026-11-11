@@ -13,7 +13,22 @@ fi
 
 function solve_stow_conflicts() {
     local target="$1"
-    conflicts=$(stow -nt "$target" */ 2>&1 | sed -n 's|.*over existing target \([^ ]*\).*|'"$target"'/\1|p')
+    local target_prefix="${target%/}"
+    local sudo_cmd=""
+    if [ "$target" == "/" ]; then
+        sudo_cmd="sudo"
+    fi
+
+    conflicts=$( ($sudo_cmd stow --no-folding -nt "$target" */ 2>&1 || true) | awk -v prefix="$target_prefix" '
+        /over existing.*target / {
+            for (i=1; i<=NF; i++) {
+                if ($i == "target") {
+                    print prefix "/" $(i+1)
+                    break
+                }
+            }
+        }
+    ')
 
     if [ -n "$conflicts" ]; then
         log "The following conflicts were found:"
@@ -22,10 +37,10 @@ function solve_stow_conflicts() {
         rm_pr="Do you want to REMOVE all the conflicted files? [Y/n]: "
         mv_pr="Do you want to MOVE all the conflicted files to .old files? [Y/n]: "
         if yn_pr "$rm_pr"; then
-            echo "$conflicts" | xargs rm -rf
+            echo "$conflicts" | xargs -r $sudo_cmd rm -rf
             log "Removed conflicted files"
         elif yn_pr "$mv_pr"; then
-            echo "$conflicts" | xargs mv {} {}.old
+            echo "$conflicts" | xargs -r -I {} $sudo_cmd mv "{}" "{}.old"
             log "Moved conflicted files to .old"
         else
             log_error "Can't stow with conflicting packages"
@@ -41,25 +56,24 @@ function stow_packages() {
 
     source="$1"
     target=$(realpath "$2")
+    local sudo_cmd=""
+    if [ "$target" == "/" ]; then
+        sudo_cmd="sudo"
+    fi
 
     cd "$source"
 
     log "Solving for $source into $target"
 
-    solve_stow_conflicts "$target"
-    if [ $? -ne 0 ]; then
+    if ! solve_stow_conflicts "$target"; then
         return 1
     fi
 
     echo
-    stow --no-folding -nvt "$target" */
+    $sudo_cmd stow --no-folding -nvt "$target" */
     echo
     if yn_pr "Do you accept these changes? [Y/n]: "; then
-        if [ "$target" == "/" ]; then
-            sudo stow --no-folding -vt "$target" */
-        else
-            stow --no-folding -vt "$target" */
-        fi
+        $sudo_cmd stow --no-folding -vt "$target" */
         log "Stowed packages from $source"
     fi
 
