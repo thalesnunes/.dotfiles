@@ -24,17 +24,6 @@ fi
 
 echo
 
-if is_installed "earlyoom"; then
-    if ! systemctl is-enabled earlyoom &>/dev/null; then
-        if yn_pr "Do you want to enable and start the earlyoom service? [Y/n]: "; then
-            sudo systemctl enable --now earlyoom
-            log "Enabled and started earlyoom service"
-        fi
-    fi
-fi
-
-echo
-
 if is_installed "zsh"; then
     if yn_pr "Do you want to change shell and create zsh deps? [Y/n]: "; then
         if [ ! -d "$XDG_CACHE_HOME/zsh" ]; then
@@ -75,6 +64,31 @@ if is_installed "pip"; then
                 log "pipx package '$package' already installed, skipping."
             fi
         done
+    fi
+fi
+
+echo
+
+if is_installed "earlyoom"; then
+    if yn_pr "Do you want to configure RAM peak safeguards (zram and earlyoom)? [Y/n]: "; then
+        if [ -x "/usr/lib/systemd/system-generators/zram-generator" ] && [ -f "$DOT/root/zram/etc/systemd/zram-generator.conf" ]; then
+            if [ ! -f "/etc/systemd/zram-generator.conf" ] || [ -L "/etc/systemd/zram-generator.conf" ]; then
+                sudo mkdir -p "/etc/systemd"
+                [ -L "/etc/systemd/zram-generator.conf" ] && sudo rm -f "/etc/systemd/zram-generator.conf"
+                sudo cp "$DOT/root/zram/etc/systemd/zram-generator.conf" "/etc/systemd/zram-generator.conf"
+                log "Copied zram-generator.conf to /etc/systemd/"
+            fi
+            sudo systemctl daemon-reload
+            sudo systemctl start dev-zram0.swap 2>/dev/null || true
+            log "Configured and activated zram swap"
+        fi
+
+        if ! systemctl is-enabled earlyoom &>/dev/null; then
+            sudo systemctl enable --now earlyoom
+            log "Enabled and started earlyoom service"
+        else
+            log "earlyoom service is already enabled, skipping."
+        fi
     fi
 fi
 
