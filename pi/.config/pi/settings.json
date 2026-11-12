@@ -15,7 +15,7 @@
   "lastChangelogVersion": "1.4.0",
   "powerline": "default",
   "defaultProvider": "openrouter",
-  "defaultModel": "openrouter/poolside/laguna-s-2.1:free",
+  "defaultModel": "nvidia/nemotron-3.5-lightning:free",
   "editorPaddingX": 1,
   "tuiMode": "regular",
   "quietStartup": "header",
@@ -24,6 +24,7 @@
     "openrouter/nvidia/nemotron-3.5-lightning:free",
     "openrouter/nvidia/nemotron-3-ultra-550b-a55b:free",
     "openrouter/nvidia/nemotron-3.5-super-vl:free",
-    "openrouter/minimax/minimax-m3.1-flash"
+    "openrouter/minimax/minimax-m3.1-flash",
+    "openrouter/openrouter/free"
   ]
 }
