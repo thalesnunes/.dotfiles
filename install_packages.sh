@@ -83,11 +83,19 @@ if is_installed "earlyoom"; then
             log "Configured and activated zram swap"
         fi
 
+        if [ -f "$DOT/root/earlyoom/etc/default/earlyoom" ]; then
+            sudo mkdir -p "/etc/default"
+            [ -L "/etc/default/earlyoom" ] && sudo rm -f "/etc/default/earlyoom"
+            sudo cp "$DOT/root/earlyoom/etc/default/earlyoom" "/etc/default/earlyoom"
+            log "Copied earlyoom config to /etc/default/"
+        fi
+
         if ! systemctl is-enabled earlyoom &>/dev/null; then
             sudo systemctl enable --now earlyoom
             log "Enabled and started earlyoom service"
         else
-            log "earlyoom service is already enabled, skipping."
+            sudo systemctl restart earlyoom
+            log "Restarted earlyoom service with updated configuration"
         fi
     fi
 fi
