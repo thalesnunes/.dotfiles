@@ -12,7 +12,7 @@
     "npm:@gotgenes/pi-permission-system",
     "npm:pi-advisor-flow"
   ],
-  "lastChangelogVersion": "1.2.0",
+  "lastChangelogVersion": "1.4.0",
   "powerline": "default",
   "defaultProvider": "openrouter",
   "defaultModel": "openrouter/poolside/laguna-s-2.1:free",
