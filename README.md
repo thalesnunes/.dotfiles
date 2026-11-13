@@ -14,4 +14,12 @@ In your HOME directory, run:
 
 `./install_dotfiles.sh`
 
+To deploy root configuration files to `/` (copied directly instead of symlinked):
+
+`./install_dotfiles.sh --root`
+
+## Run the install_setup.sh script to configure system services and desktop settings
+
+`./install_setup.sh`
+
 Happy coding!
