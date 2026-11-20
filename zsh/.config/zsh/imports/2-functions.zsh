@@ -92,11 +92,10 @@ function proj() {
     fi
 
     TOCD="$PROJ_DIR/$NAME"
-    CMD=""
+    CMD="$EDITOR"
     if [[ -f "$TOCD/uv.lock" ]]; then
-        CMD="uv run "
+        CMD="uv run $EDITOR || $EDITOR"
     fi
-    CMD="$CMD$EDITOR"
 
     tmux_init $SERVER -s $NAME -d $TOCD $CMD
 }
