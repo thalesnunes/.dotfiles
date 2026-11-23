@@ -52,6 +52,10 @@ prepend_keymap = [
 	{ on = ["g", "o"], run = "cd ~/Documents/notes", desc = "Go to ~/Documents/notes" },
 	{ on = ["g", "i"], run = "cd /run/media", desc = "Go to removable media mount point" },
 
+    # File and text search
+	{ on = "s", run = "search --via=fd --args='--hidden --no-ignore'", desc = "Search files by name via fd" },
+	{ on = "S", run = "search --via=rg --args='--hidden --no-ignore'", desc = "Search files by content via ripgrep" },
+
 	# Sub-terminal in current directory (S remains rg search)
 	{ on = "T", run = 'shell "$SHELL" --block', desc = "Open sub-shell in current directory" },
 
